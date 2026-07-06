@@ -1,0 +1,626 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    <!-- SEO Meta Tags -->
+    <title>Stratexa | Custom Algorithmic Trading Systems & Automation</title>
+    <meta name="description" content="Transform your trading ideas into automated systems. Custom algorithmic trading solutions from strategy development and backtesting to secure cloud deployment and 24/7 support. We automate Indian markets, Crypto, and Forex." />
+    <meta name="keywords" content="algorithmic trading, automated trading, trading bot, python trading, Indian stock market automation, Zerodha Kite API, Dhan API, Crypto trading bot, Forex automation, Chennai IT, Stratexa" />
+    <meta name="author" content="Stratexa" />
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://www.stratexa.in/" />
+    <meta property="og:title" content="Stratexa | Custom Algorithmic Trading Systems & Automation" />
+    <meta property="og:description" content="Transform your trading ideas into automated systems. Professional algorithmic trading development, backtesting, and deployment." />
+    <meta property="og:image" content="https://www.stratexa.in/og-image.jpg" />
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content="https://www.stratexa.in/" />
+    <meta property="twitter:title" content="Stratexa | Custom Algorithmic Trading Systems & Automation" />
+    <meta property="twitter:description" content="Transform your trading ideas into automated systems. Professional algorithmic trading development, backtesting, and deployment." />
+    <meta property="twitter:image" content="https://www.stratexa.in/og-image.jpg" />
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome for standard icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    
+    <!-- Main Project Stylesheet -->
+    <link rel="stylesheet" href="/src/style.css" />
+  </head>
+  <body>
+    <!-- Header / Navigation -->
+    <header class="navbar" id="main-header">
+      <div class="nav-container">
+        <a href="#" class="nav-logo" id="nav-logo-link">
+          <div class="logo-icon">
+            <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M25 75L75 25M75 25H45M75 25V55" stroke="#10b981" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M25 45V75H55" stroke="#ffffff" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <div class="logo-text">
+            <span class="brand-name">STRATEXA</span>
+            <span class="brand-tagline">AUTOMATE. EXECUTE. ELEVATE.</span>
+          </div>
+        </a>
+        
+        <nav class="nav-menu" id="nav-menu">
+          <a href="#services" class="nav-link">Services</a>
+          <a href="#process" class="nav-link">Our Process</a>
+          <a href="#markets" class="nav-link">Markets</a>
+          <a href="#tech" class="nav-link">Tech Stack</a>
+          <a href="#why-us" class="nav-link">Why Choose Us</a>
+          <a href="#consultation" class="btn btn-primary btn-nav">Book Free Consultation</a>
+        </nav>
+        
+        <button class="nav-toggle" id="nav-toggle" aria-label="Toggle menu">
+          <span class="bar"></span>
+          <span class="bar"></span>
+          <span class="bar"></span>
+        </button>
+      </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+      <!-- Hero Section -->
+      <section class="hero-section" id="hero">
+        <div class="hero-bg-gradient"></div>
+        <div class="container hero-container">
+          <div class="hero-content">
+            <div class="badge">TRADING AUTOMATION PARTNER</div>
+            <h1 class="hero-title">
+              Transform Your Trading Ideas into <span class="text-glow-green">Automated Systems</span>
+            </h1>
+            <p class="hero-subtitle">
+              Custom algorithmic trading solutions—from strategy development and backtesting to deployment and ongoing support.
+            </p>
+            <div class="hero-quote">
+              <span class="quote-char">“</span>You define the strategy. <span class="highlight-green">We build the automation.</span><span class="quote-char">”</span>
+            </div>
+            <div class="hero-actions">
+              <a href="#consultation" class="btn btn-primary btn-lg" id="hero-cta-btn">
+                <i class="fa-regular fa-calendar-check icon-spacing"></i> Book Free Consultation
+              </a>
+              <a href="#services" class="btn btn-secondary btn-lg">Explore Our Services</a>
+            </div>
+          </div>
+          
+          <!-- Live Interactive Chart Widget -->
+          <div class="hero-visual">
+            <div class="chart-card-wrapper">
+              <div class="chart-card-header">
+                <div class="chart-badge">
+                  <span class="pulse-dot"></span> LIVE STRATEGY SIMULATION
+                </div>
+                <div class="chart-stats">
+                  <div class="stat-item">
+                    <span class="stat-label">PnL</span>
+                    <span class="stat-val positive" id="live-pnl">+18.4%</span>
+                  </div>
+                  <div class="stat-item">
+                    <span class="stat-label">Win Rate</span>
+                    <span class="stat-val" id="live-winrate">67.8%</span>
+                  </div>
+                </div>
+              </div>
+              <div class="canvas-container">
+                <canvas id="live-trading-chart"></canvas>
+              </div>
+              <div class="chart-card-footer">
+                <span class="ticker" id="live-ticker">NIFTY50 FUTURES</span>
+                <span class="signals" id="live-signal-log"><i class="fa-solid fa-arrow-trend-up"></i> Strategy Initialized...</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Core Services Section -->
+      <section class="services-section" id="services">
+        <div class="container">
+          <div class="section-header">
+            <h2 class="section-title">Our Solutions</h2>
+            <p class="section-subtitle">We design, build, and support robust systems to run your strategies autonomously.</p>
+          </div>
+          <div class="services-grid">
+            <!-- Card 1 -->
+            <div class="service-card">
+              <div class="service-icon">
+                <i class="fa-solid fa-code"></i>
+              </div>
+              <h3>Strategy Automation</h3>
+              <p>Convert manual setups, indicators, and charting patterns into clean, high-performance execution algorithms.</p>
+            </div>
+            <!-- Card 2 -->
+            <div class="service-card">
+              <div class="service-icon">
+                <i class="fa-brands fa-python"></i>
+              </div>
+              <h3>Custom Python Development</h3>
+              <p>Custom execution files, logic scripting, and API wrappers built using clean, robust, and maintainable Python code.</p>
+            </div>
+            <!-- Card 3 -->
+            <div class="service-card">
+              <div class="service-icon">
+                <i class="fa-solid fa-chart-line"></i>
+              </div>
+              <h3>Backtesting & Validation</h3>
+              <p>Rigorous verification using historical market data to eliminate lookahead bias and optimize parameters before live deployment.</p>
+            </div>
+            <!-- Card 4 -->
+            <div class="service-card">
+              <div class="service-icon">
+                <i class="fa-solid fa-cloud-arrow-up"></i>
+              </div>
+              <h3>Cloud Deployment</h3>
+              <p>Secure setup on AWS, Azure, or VPS environments for robust 24x7 operations, low-latency, and failsafe execution.</p>
+            </div>
+            <!-- Card 5 -->
+            <div class="service-card">
+              <div class="service-icon">
+                <i class="fa-solid fa-headset"></i>
+              </div>
+              <h3>Ongoing Support</h3>
+              <p>Continuous monitoring, API schema update maintenance, and technical updates to ensure long-term bot stability.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Our Process Section -->
+      <section class="process-section" id="process">
+        <div class="container">
+          <div class="section-header">
+            <h2 class="section-title">Our Process</h2>
+            <p class="section-subtitle">A structured, end-to-end framework turning ideas into execution bots.</p>
+          </div>
+          <div class="timeline" id="process-timeline">
+            <!-- Step 1 -->
+            <div class="timeline-item" id="step-1">
+              <div class="timeline-number">1</div>
+              <div class="timeline-content">
+                <div class="timeline-header-block">
+                  <span class="timeline-icon-box"><i class="fa-regular fa-comments"></i></span>
+                  <h3>Consult</h3>
+                </div>
+                <p>We work closely with you to understand your specific trading criteria, risk tolerances, and business goals.</p>
+              </div>
+            </div>
+            <!-- Step 2 -->
+            <div class="timeline-item" id="step-2">
+              <div class="timeline-number">2</div>
+              <div class="timeline-content">
+                <div class="timeline-header-block">
+                  <span class="timeline-icon-box"><i class="fa-solid fa-pencil"></i></span>
+                  <h3>Design</h3>
+                </div>
+                <p>Create a scalable automation architecture, select API channels, and construct a logical execution blueprint.</p>
+              </div>
+            </div>
+            <!-- Step 3 -->
+            <div class="timeline-item" id="step-3">
+              <div class="timeline-number">3</div>
+              <div class="timeline-content">
+                <div class="timeline-header-block">
+                  <span class="timeline-icon-box"><i class="fa-solid fa-laptop-code"></i></span>
+                  <h3>Develop</h3>
+                </div>
+                <p>Code your strategy using structured Python standards, integrating broker APIs and execution logic.</p>
+              </div>
+            </div>
+            <!-- Step 4 -->
+            <div class="timeline-item" id="step-4">
+              <div class="timeline-number">4</div>
+              <div class="timeline-content">
+                <div class="timeline-header-block">
+                  <span class="timeline-icon-box"><i class="fa-solid fa-arrow-rotate-left"></i></span>
+                  <h3>Backtest</h3>
+                </div>
+                <p>Validate the performance criteria against historical tick or minute candles to evaluate parameters and drawdown metrics.</p>
+              </div>
+            </div>
+            <!-- Step 5 -->
+            <div class="timeline-item" id="step-5">
+              <div class="timeline-number">5</div>
+              <div class="timeline-content">
+                <div class="timeline-header-block">
+                  <span class="timeline-icon-box"><i class="fa-solid fa-server"></i></span>
+                  <h3>Deploy</h3>
+                </div>
+                <p>Configure secure cloud instances (VPS/EC2), schedule persistent scripts, and complete paper-trading trials.</p>
+              </div>
+            </div>
+            <!-- Step 6 -->
+            <div class="timeline-item" id="step-6">
+              <div class="timeline-number">6</div>
+              <div class="timeline-content">
+                <div class="timeline-header-block">
+                  <span class="timeline-icon-box"><i class="fa-solid fa-screwdriver-wrench"></i></span>
+                  <h3>Support</h3>
+                </div>
+                <p>Real-time status updates, error notifications, API changes maintenance, and general code updates.</p>
+              </div>
+            </div>
+          </div>
+          
+          <div class="process-callout">
+            <span class="quote-symbol">“</span> We engineer trading automation—not trading advice. <span class="quote-symbol">”</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- Trading Markets We Automate -->
+      <section class="markets-section" id="markets">
+        <div class="container">
+          <div class="section-header">
+            <h2 class="section-title">Trading Markets We Automate</h2>
+            <p class="section-subtitle">Tailored connectivity across multiple liquid markets and exchanges globally.</p>
+          </div>
+          <div class="markets-grid">
+            <!-- Market 1 -->
+            <div class="market-card">
+              <div class="market-header">
+                <img src="https://flagcdn.com/w80/in.png" alt="Indian Flag" class="market-flag" />
+                <h3>Indian Stock Market</h3>
+              </div>
+              <ul class="market-features">
+                <li><i class="fa-solid fa-check"></i> Equity (Cash segment)</li>
+                <li><i class="fa-solid fa-check"></i> Futures & Options (F&O)</li>
+                <li><i class="fa-solid fa-check"></i> Commodity Trading (MCX)</li>
+                <li><i class="fa-solid fa-check"></i> Index Trading (Nifty, BankNifty)</li>
+              </ul>
+              <div class="market-visual">
+                <svg viewBox="0 0 200 120" class="market-svg">
+                  <!-- Bull / Stock graph illustration -->
+                  <path d="M10 100 L50 80 L90 90 L130 50 L170 20" stroke="#10b981" stroke-width="4" stroke-linecap="round" fill="none"/>
+                  <circle cx="170" cy="20" r="6" fill="#10b981" class="pulsing-glow"/>
+                  <rect x="25" y="70" width="10" height="30" fill="#1e293b" rx="2" />
+                  <rect x="65" y="60" width="10" height="40" fill="#1e293b" rx="2" />
+                  <rect x="105" y="45" width="10" height="55" fill="#1e293b" rx="2" />
+                  <rect x="145" y="25" width="10" height="75" fill="#10b981" rx="2" />
+                </svg>
+              </div>
+            </div>
+            
+            <!-- Market 2 -->
+            <div class="market-card">
+              <div class="market-header">
+                <span class="crypto-icon-box"><i class="fa-brands fa-btc"></i></span>
+                <h3>Cryptocurrency</h3>
+              </div>
+              <ul class="market-features">
+                <li><i class="fa-solid fa-check"></i> Spot Market trading</li>
+                <li><i class="fa-solid fa-check"></i> Perpetual Futures contracts</li>
+                <li><i class="fa-solid fa-check"></i> Options configurations</li>
+                <li><i class="fa-solid fa-check"></i> 24x7 continuous strategy runs</li>
+              </ul>
+              <div class="market-visual">
+                <svg viewBox="0 0 200 120" class="market-svg">
+                  <path d="M10 80 L40 90 L70 50 L100 70 L130 30 L160 40 L190 10" stroke="#f59e0b" stroke-width="4" stroke-linecap="round" fill="none"/>
+                  <circle cx="190" cy="10" r="6" fill="#f59e0b"/>
+                  <!-- Candles representation -->
+                  <line x1="40" y1="70" x2="40" y2="105" stroke="#ef4444" stroke-width="2" />
+                  <rect x="35" y="80" width="10" height="15" fill="#ef4444" />
+                  <line x1="130" y1="20" x2="130" y2="90" stroke="#10b981" stroke-width="2" />
+                  <rect x="125" y="30" width="10" height="40" fill="#10b981" />
+                </svg>
+              </div>
+            </div>
+
+            <!-- Market 3 -->
+            <div class="market-card">
+              <div class="market-header">
+                <span class="forex-icon-box"><i class="fa-solid fa-globe"></i></span>
+                <h3>Forex</h3>
+              </div>
+              <ul class="market-features">
+                <li><i class="fa-solid fa-check"></i> Major Currency Pairs</li>
+                <li><i class="fa-solid fa-check"></i> Minor Currency Pairs</li>
+                <li><i class="fa-solid fa-check"></i> Automated Forex Strategies</li>
+                <li><i class="fa-solid fa-check"></i> MT5 & Custom Integrations</li>
+              </ul>
+              <div class="market-visual">
+                <div class="currency-badges">
+                  <span class="curr-pill"><i class="fa-solid fa-dollar-sign"></i></span>
+                  <span class="curr-pill"><i class="fa-solid fa-euro-sign"></i></span>
+                  <span class="curr-pill"><i class="fa-solid fa-sterling-sign"></i></span>
+                  <span class="curr-pill"><i class="fa-solid fa-yen-sign"></i></span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Technologies We Work With -->
+      <section class="tech-section" id="tech">
+        <div class="container">
+          <div class="section-header">
+            <h2 class="section-title">Technologies We Work With</h2>
+            <p class="section-subtitle">Integration across elite platforms, brokers, APIs, and modern engineering tools.</p>
+          </div>
+          <div class="tech-grid">
+            <div class="tech-item"><i class="fa-brands fa-python color-python"></i> <span>Python</span></div>
+            <div class="tech-item"><i class="fa-solid fa-chart-line color-tv"></i> <span>TradingView</span></div>
+            <div class="tech-item"><i class="fa-solid fa-k color-kite"></i> <span>Zerodha Kite</span></div>
+            <div class="tech-item"><i class="fa-solid fa-d color-dhan"></i> <span>Dhan API</span></div>
+            <div class="tech-item"><i class="fa-solid fa-square-root-variable color-smart"></i> <span>Angel One SmartAPI</span></div>
+            <div class="tech-item"><i class="fa-solid fa-delta color-delta"></i> <span>Delta Exchange</span></div>
+            <div class="tech-item"><i class="fa-solid fa-chart-bar color-mt5"></i> <span>MetaTrader 5</span></div>
+            <div class="tech-item"><i class="fa-brands fa-aws color-aws"></i> <span>AWS</span></div>
+            <div class="tech-item"><i class="fa-brands fa-microsoft color-azure"></i> <span>Azure</span></div>
+            <div class="tech-item"><i class="fa-brands fa-docker color-docker"></i> <span>Docker</span></div>
+            <div class="tech-item"><i class="fa-brands fa-github color-github"></i> <span>GitHub</span></div>
+            <div class="tech-item"><i class="fa-solid fa-database color-postgres"></i> <span>PostgreSQL</span></div>
+            <div class="tech-item"><i class="fa-solid fa-server color-nginx"></i> <span>Nginx</span></div>
+            <div class="tech-item"><i class="fa-brands fa-linux color-linux"></i> <span>Linux</span></div>
+            <div class="tech-item"><i class="fa-brands fa-slack color-slack"></i> <span>Slack</span></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Why Choose Stratexa? -->
+      <section class="why-us-section" id="why-us">
+        <div class="container">
+          <div class="section-header">
+            <h2 class="section-title">Why Choose STRATEXA?</h2>
+            <p class="section-subtitle">Engineered for durability, speed, and precision.</p>
+          </div>
+          <div class="why-grid">
+            <div class="why-item">
+              <i class="fa-solid fa-screwdriver-wrench"></i>
+              <div>
+                <h4>Custom-built Solutions</h4>
+                <p>Every strategy is built specifically to your requirements—no generic setups.</p>
+              </div>
+            </div>
+            <div class="why-item">
+              <i class="fa-solid fa-code-commit"></i>
+              <div>
+                <h4>Professional Python Development</h4>
+                <p>Clean code architecture separating data retrieval, logical triggers, and execution layers.</p>
+              </div>
+            </div>
+            <div class="why-item">
+              <i class="fa-solid fa-shield-halved"></i>
+              <div>
+                <h4>Secure Cloud Deployment</h4>
+                <p>Deployment with robust systemd processes, automated API token managers, and alerts.</p>
+              </div>
+            </div>
+            <div class="why-item">
+              <i class="fa-solid fa-network-wired"></i>
+              <div>
+                <h4>Multi-broker & Exchange API Integration</h4>
+                <p>Unified connection handlers that bridge logic to the broker of your preference.</p>
+              </div>
+            </div>
+            <div class="why-item">
+              <i class="fa-solid fa-vial-circle-check"></i>
+              <div>
+                <h4>Strategy Validation & Backtesting</h4>
+                <p>Eliminate lookahead errors and perform rigorous performance checks before running capital.</p>
+              </div>
+            </div>
+            <div class="why-item">
+              <i class="fa-solid fa-display"></i>
+              <div>
+                <h4>Continuous Monitoring & Support</h4>
+                <p>We check for socket failures, authorization re-challenges, and schema changes.</p>
+              </div>
+            </div>
+            <div class="why-item">
+              <i class="fa-solid fa-tags"></i>
+              <div>
+                <h4>Transparent Pricing</h4>
+                <p>Fixed milestones and transparent scope metrics, ensuring you know exactly what is delivered.</p>
+              </div>
+            </div>
+            <div class="why-item">
+              <i class="fa-solid fa-gears"></i>
+              <div>
+                <h4>Reliable & Scalable Automation</h4>
+                <p>Engineered for high uptime, multi-threading safety, and instant order routing.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Contact / Consultation Booking Section -->
+      <section class="consultation-section" id="consultation">
+        <div class="container consultation-container">
+          <div class="consultation-info">
+            <div class="badge badge-accent">GET STARTED</div>
+            <h2>Book Your FREE Strategy Consultation</h2>
+            <p>Let's turn your manual trading systems into high-performance autonomous programs. Let's discuss requirements, API targets, and deployment timelines.</p>
+            
+            <div class="contact-details">
+              <div class="contact-item">
+                <i class="fa-solid fa-envelope"></i>
+                <div>
+                  <h5>Email Us</h5>
+                  <a href="mailto:hello@stratexa.in">hello@stratexa.in</a>
+                </div>
+              </div>
+              <div class="contact-item">
+                <i class="fa-solid fa-phone"></i>
+                <div>
+                  <h5>Call Us</h5>
+                  <a href="tel:+919150087233">+91 91500 87233</a>
+                </div>
+              </div>
+              <div class="contact-item">
+                <i class="fa-solid fa-location-dot"></i>
+                <div>
+                  <h5>Office Address</h5>
+                  <p>Chennai, India (Physical Office Opening Soon)</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Styled QR Code Scanner Card -->
+            <div class="qr-card">
+              <div class="qr-graphic-container">
+                <svg viewBox="0 0 100 100" class="qr-svg">
+                  <!-- Simplified representation of a QR Code layout -->
+                  <rect x="5" y="5" width="25" height="25" stroke="#10b981" stroke-width="4" fill="none"/>
+                  <rect x="10" y="10" width="15" height="15" fill="#10b981"/>
+                  <rect x="70" y="5" width="25" height="25" stroke="#10b981" stroke-width="4" fill="none"/>
+                  <rect x="75" y="10" width="15" height="15" fill="#10b981"/>
+                  <rect x="5" y="70" width="25" height="25" stroke="#10b981" stroke-width="4" fill="none"/>
+                  <rect x="10" y="75" width="15" height="15" fill="#10b981"/>
+                  
+                  <!-- QR Code dot matrices -->
+                  <rect x="35" y="10" width="10" height="5" fill="#ffffff"/>
+                  <rect x="50" y="5" width="5" height="10" fill="#ffffff"/>
+                  <rect x="60" y="15" width="5" height="15" fill="#ffffff"/>
+                  <rect x="35" y="25" width="15" height="5" fill="#ffffff"/>
+                  
+                  <rect x="5" y="40" width="5" height="10" fill="#ffffff"/>
+                  <rect x="15" y="50" width="10" height="5" fill="#ffffff"/>
+                  <rect x="25" y="45" width="5" height="15" fill="#ffffff"/>
+                  
+                  <rect x="35" y="40" width="20" height="20" fill="#10b981"/>
+                  <rect x="60" y="45" width="10" height="10" fill="#ffffff"/>
+                  <rect x="75" y="35" width="15" height="15" fill="#ffffff"/>
+                  
+                  <rect x="40" y="70" width="15" height="5" fill="#ffffff"/>
+                  <rect x="60" y="75" width="5" height="15" fill="#ffffff"/>
+                  <rect x="70" y="70" width="20" height="10" fill="#ffffff"/>
+                  <rect x="45" y="85" width="10" height="10" fill="#ffffff"/>
+                  <rect x="75" y="85" width="15" height="5" fill="#ffffff"/>
+                  <rect x="90" y="75" width="5" height="20" fill="#10b981"/>
+                </svg>
+                <div class="qr-scan-line"></div>
+              </div>
+              <div class="qr-label">
+                <span>Scan to book instantly</span>
+                <span class="domain-text">www.stratexa.in</span>
+              </div>
+            </div>
+          </div>
+          
+          <div class="consultation-form-card">
+            <h4>Request Consultation</h4>
+            <p>Tell us about your requirements, and our developer team will reach out within 24 business hours.</p>
+            
+            <form id="consultation-form">
+              <div class="form-group">
+                <label for="form-name">Full Name <span class="required">*</span></label>
+                <input type="text" id="form-name" required placeholder="John Doe" />
+              </div>
+              
+              <div class="form-group">
+                <label for="form-email">Work Email <span class="required">*</span></label>
+                <input type="email" id="form-email" required placeholder="john@example.com" />
+              </div>
+
+              <div class="form-group">
+                <label for="form-phone">Phone Number <span class="required">*</span></label>
+                <input type="tel" id="form-phone" required placeholder="+91 98765 43210" />
+              </div>
+
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="form-market">Primary Market <span class="required">*</span></label>
+                  <select id="form-market" required>
+                    <option value="">Select market...</option>
+                    <option value="indian">Indian Stocks & F&O</option>
+                    <option value="crypto">Cryptocurrency</option>
+                    <option value="forex">Forex</option>
+                    <option value="multiple">Multiple Markets</option>
+                  </select>
+                </div>
+                
+                <div class="form-group">
+                  <label for="form-api">Preferred API (Optional)</label>
+                  <select id="form-api">
+                    <option value="none">Not decided yet</option>
+                    <option value="zerodha">Zerodha Kite</option>
+                    <option value="dhan">Dhan API</option>
+                    <option value="angel">Angel One SmartAPI</option>
+                    <option value="mt5">MetaTrader 5</option>
+                    <option value="binance">Delta / Crypto API</option>
+                    <option value="other">Other / Custom</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="form-message">Describe Your Trading Strategy Ideas <span class="required">*</span></label>
+                <textarea id="form-message" required rows="4" placeholder="Briefly explain the strategy rules, indicators, target assets, or entry/exit conditions you want to automate..."></textarea>
+              </div>
+
+              <button type="submit" class="btn btn-primary btn-block" id="form-submit-btn">
+                <span class="btn-text">Send Consultation Request</span>
+                <i class="fa-solid fa-paper-plane btn-icon"></i>
+              </button>
+            </form>
+            
+            <div id="form-success-message" class="form-success-card hidden">
+              <div class="success-icon"><i class="fa-solid fa-circle-check"></i></div>
+              <h4>Request Submitted!</h4>
+              <p>Thank you for reaching out to STRATEXA. A trading automation developer will review your request and get in touch via email or phone within 24 hours.</p>
+              <button class="btn btn-secondary btn-block" id="form-reset-btn">Submit Another Request</button>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="container footer-content">
+        <div class="footer-brand">
+          <div class="footer-logo">
+            <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" class="footer-logo-svg">
+              <path d="M25 75L75 25M75 25H45M75 25V55" stroke="#10b981" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M25 45V75H55" stroke="#ffffff" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <span class="footer-brand-name">STRATEXA</span>
+          </div>
+          <p class="footer-description">We build secure, low-latency, automated execution software for retail and institutional traders globally. Transform your trading rules into standard Python-driven machines.</p>
+        </div>
+        
+        <div class="footer-links">
+          <h4>Navigation</h4>
+          <a href="#services">Services</a>
+          <a href="#process">Our Process</a>
+          <a href="#markets">Markets we Automate</a>
+          <a href="#tech">Technologies</a>
+          <a href="#why-us">Why Choose Us</a>
+        </div>
+
+        <div class="footer-disclaimer">
+          <h4>Disclaimer</h4>
+          <p>STRATEXA is a technology and software development company. We do not provide financial advice, trading signals, recommendation packages, or management services. All automated trading strategies coded are built strictly based on customer specifications. Backtested performance results are historical and do not guarantee future profitability. Algorithmic trading carries significant financial risk.</p>
+        </div>
+      </div>
+      
+      <div class="footer-bottom">
+        <div class="container footer-bottom-container">
+          <p>&copy; 2026 STRATEXA. All rights reserved. Registered address: Chennai, TN, India (Office Opening Soon).</p>
+          <div class="social-links">
+            <a href="https://github.com" target="_blank" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+            <a href="mailto:hello@stratexa.in" aria-label="Email"><i class="fa-regular fa-envelope"></i></a>
+            <a href="tel:+919150087233" aria-label="Phone"><i class="fa-solid fa-phone"></i></a>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Script Entry Point -->
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>
