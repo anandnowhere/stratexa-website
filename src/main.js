@@ -56,8 +56,8 @@ function initNavbar() {
 }
 
 // Configuration
-// Get your free access key by entering your email at https://web3forms.com
-const WEB3FORMS_ACCESS_KEY = "YOUR_ACCESS_KEY_HERE";
+// Paste your deployed Google Apps Script Web App URL below
+const GOOGLE_SHEET_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxp4utuxkTKfW2VNY9PqZBKVfSD-n_s3bYQ81JbpJqcK4d-o9RQiswUPbZ2Vu7wHup8xw/exec";
 
 // --- Consultation Form Handler ---
 function initFormHandler() {
@@ -84,8 +84,8 @@ function initFormHandler() {
       return;
     }
 
-    if (WEB3FORMS_ACCESS_KEY === "YOUR_ACCESS_KEY_HERE") {
-      alert('Consultation request simulation successful! To receive actual emails, please get a free key from web3forms.com and add it to src/main.js.');
+    if (GOOGLE_SHEET_SCRIPT_URL === "YOUR_GOOGLE_SCRIPT_URL_HERE") {
+      alert('Consultation request simulation successful! To save leads in Google Sheets, please set up the Apps Script and add the Web App URL to src/main.js.');
       // Fallback transition to mock success state
       form.classList.add('hidden');
       successCard.classList.remove('hidden');
@@ -101,34 +101,27 @@ function initFormHandler() {
       <i class="fa-solid fa-circle-notch fa-spin btn-icon"></i>
     `;
 
-    // Send actual email request to Web3Forms API
-    fetch('https://api.web3forms.com/submit', {
+    // Send data to Google Sheets via Apps Script Web App
+    fetch(GOOGLE_SHEET_SCRIPT_URL, {
       method: 'POST',
+      mode: 'cors',
       headers: {
-        'Content-Type': 'application/json',
-        'Accept': 'application/json'
+        'Content-Type': 'text/plain' // Use text/plain to avoid CORS preflight issues with Apps Script
       },
       body: JSON.stringify({
-        access_key: WEB3FORMS_ACCESS_KEY,
         name: name,
         email: email,
         phone: phone,
         market: market,
         preferred_api: preferredApi,
-        message: message,
-        subject: `New Stratexa Consultation Request from ${name}`
+        message: message
       })
     })
     .then(async (response) => {
-      if (response.status === 200) {
-        // Transition to Success State
-        form.classList.add('hidden');
-        successCard.classList.remove('hidden');
-        form.reset();
-      } else {
-        const json = await response.json();
-        alert(json.message || 'Something went wrong. Please try again.');
-      }
+      // Google Apps Script usually returns 200 even for redirects
+      form.classList.add('hidden');
+      successCard.classList.remove('hidden');
+      form.reset();
     })
     .catch((error) => {
       console.error(error);
