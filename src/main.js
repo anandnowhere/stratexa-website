@@ -55,6 +55,10 @@ function initNavbar() {
   });
 }
 
+// Configuration
+// Get your free access key by entering your email at https://web3forms.com
+const WEB3FORMS_ACCESS_KEY = "YOUR_ACCESS_KEY_HERE";
+
 // --- Consultation Form Handler ---
 function initFormHandler() {
   const form = document.querySelector('#consultation-form');
@@ -72,10 +76,20 @@ function initFormHandler() {
     const email = document.querySelector('#form-email').value.trim();
     const phone = document.querySelector('#form-phone').value.trim();
     const market = document.querySelector('#form-market').value;
+    const preferredApi = document.querySelector('#form-api') ? document.querySelector('#form-api').value : 'Not decided';
     const message = document.querySelector('#form-message').value.trim();
 
     if (!name || !email || !phone || !market || !message) {
       alert('Please fill out all required fields.');
+      return;
+    }
+
+    if (WEB3FORMS_ACCESS_KEY === "YOUR_ACCESS_KEY_HERE") {
+      alert('Consultation request simulation successful! To receive actual emails, please get a free key from web3forms.com and add it to src/main.js.');
+      // Fallback transition to mock success state
+      form.classList.add('hidden');
+      successCard.classList.remove('hidden');
+      form.reset();
       return;
     }
 
@@ -87,19 +101,44 @@ function initFormHandler() {
       <i class="fa-solid fa-circle-notch fa-spin btn-icon"></i>
     `;
 
-    // Simulate Server Request (e.g. 1.5 seconds delay)
-    setTimeout(() => {
-      // Transition to Success State
-      form.classList.add('hidden');
-      successCard.classList.remove('hidden');
-      
+    // Send actual email request to Web3Forms API
+    fetch('https://api.web3forms.com/submit', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      },
+      body: JSON.stringify({
+        access_key: WEB3FORMS_ACCESS_KEY,
+        name: name,
+        email: email,
+        phone: phone,
+        market: market,
+        preferred_api: preferredApi,
+        message: message,
+        subject: `New Stratexa Consultation Request from ${name}`
+      })
+    })
+    .then(async (response) => {
+      if (response.status === 200) {
+        // Transition to Success State
+        form.classList.add('hidden');
+        successCard.classList.remove('hidden');
+        form.reset();
+      } else {
+        const json = await response.json();
+        alert(json.message || 'Something went wrong. Please try again.');
+      }
+    })
+    .catch((error) => {
+      console.error(error);
+      alert('Form submission failed. Please check your internet connection.');
+    })
+    .finally(() => {
       // Reset button state
       submitBtn.disabled = false;
       submitBtn.innerHTML = originalText;
-      
-      // Reset form fields
-      form.reset();
-    }, 1500);
+    });
   });
 
   // Reset form card back to input state
