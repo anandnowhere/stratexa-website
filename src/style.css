@@ -1090,6 +1090,13 @@ p {
   overflow: hidden;
 }
 
+.qr-image-large {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
+
 .qr-scan-line {
   position: absolute;
   left: 0;
