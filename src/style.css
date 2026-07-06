@@ -1054,6 +1054,13 @@ p {
   gap: 20px;
   max-width: 380px;
   margin-top: auto;
+  transition: all 0.3s ease;
+}
+
+.qr-card-link:hover .qr-card {
+  border-color: var(--accent-green);
+  box-shadow: 0 0 15px rgba(16, 185, 129, 0.2);
+  transform: translateY(-3px);
 }
 
 .qr-graphic-container {
