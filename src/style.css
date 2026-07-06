@@ -1043,40 +1043,51 @@ p {
   color: var(--accent-green-bright);
 }
 
-/* QR Code Card Design */
-.qr-card {
+/* WhatsApp Booking Section */
+.whatsapp-booking-container {
+  margin-top: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  max-width: 380px;
+}
+
+.whatsapp-booking-header {
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: -4px;
+}
+
+.qr-card-large {
   background-color: var(--bg-primary);
   border: 1px solid var(--border-color);
-  border-radius: 12px;
-  padding: 16px 24px;
+  border-radius: 14px;
+  padding: 24px;
   display: flex;
+  flex-direction: column;
   align-items: center;
-  gap: 20px;
-  max-width: 380px;
-  margin-top: auto;
+  text-align: center;
+  gap: 16px;
   transition: all 0.3s ease;
 }
 
-.qr-card-link:hover .qr-card {
-  border-color: var(--accent-green);
-  box-shadow: 0 0 15px rgba(16, 185, 129, 0.2);
-  transform: translateY(-3px);
+.qr-card-large:hover {
+  border-color: rgba(16, 185, 129, 0.3);
+  box-shadow: 0 0 20px rgba(16, 185, 129, 0.1);
 }
 
-.qr-graphic-container {
-  width: 70px;
-  height: 70px;
+.qr-graphic-container-large {
+  width: 160px;
+  height: 160px;
   background-color: #0b0f19;
   border: 1px solid rgba(255,255,255,0.05);
-  border-radius: 6px;
-  padding: 4px;
+  border-radius: 8px;
+  padding: 10px;
   position: relative;
   overflow: hidden;
-}
-
-.qr-svg {
-  width: 100%;
-  height: 100%;
 }
 
 .qr-scan-line {
@@ -1101,20 +1112,44 @@ p {
   }
 }
 
-.qr-label {
+.qr-label-large {
   display: flex;
   flex-direction: column;
+  gap: 4px;
 }
 
-.qr-label span:first-child {
-  font-size: 0.85rem;
+.qr-label-large span:first-child {
+  font-size: 1rem;
   font-weight: 600;
   color: #fff;
 }
 
-.qr-label .domain-text {
-  font-size: 0.75rem;
-  color: var(--accent-green-bright);
+.qr-label-large span:last-child {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+}
+
+.whatsapp-btn {
+  background-color: #25d366 !important;
+  color: #fff !important;
+  border: none !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  font-weight: 600;
+  padding: 14px 20px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.whatsapp-btn:hover {
+  background-color: #20ba5a !important;
+  box-shadow: 0 0 15px rgba(37, 211, 102, 0.3);
+  transform: translateY(-2px);
 }
 
 /* Consultation Form Card */
