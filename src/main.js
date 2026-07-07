@@ -53,6 +53,34 @@ function initNavbar() {
       }
     });
   });
+
+  // Theme Toggle Logic
+  const themeToggleBtn = document.querySelector('#theme-toggle-btn');
+  
+  // Set initial icon state based on active theme attribute
+  const currentTheme = document.documentElement.getAttribute('data-theme') || 'dark';
+  updateThemeIcon(currentTheme);
+
+  if (themeToggleBtn) {
+    themeToggleBtn.addEventListener('click', () => {
+      const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+      document.documentElement.setAttribute('data-theme', theme);
+      localStorage.setItem('theme', theme);
+      updateThemeIcon(theme);
+    });
+  }
+
+  function updateThemeIcon(theme) {
+    if (!themeToggleBtn) return;
+    const icon = themeToggleBtn.querySelector('i');
+    if (icon) {
+      if (theme === 'light') {
+        icon.className = 'fa-solid fa-sun';
+      } else {
+        icon.className = 'fa-solid fa-moon';
+      }
+    }
+  }
 }
 
 // Configuration
@@ -203,8 +231,14 @@ function initLiveChart() {
     const w = canvas.width / window.devicePixelRatio;
     const h = 250;
     
+    // Fetch theme colors dynamically
+    const style = getComputedStyle(document.documentElement);
+    const gridLineColor = style.getPropertyValue('--grid-line').trim() || 'rgba(255, 255, 255, 0.04)';
+    const laserGreenColor = style.getPropertyValue('--laser-line-green').trim() || 'rgba(16, 185, 129, 0.35)';
+    const laserRedColor = style.getPropertyValue('--laser-line-red').trim() || 'rgba(239, 68, 68, 0.35)';
+    
     // Draw Grid Lines
-    ctx.strokeStyle = 'rgba(255, 255, 255, 0.04)';
+    ctx.strokeStyle = gridLineColor;
     ctx.lineWidth = 1;
     const gridCols = 8;
     const gridRows = 5;
@@ -300,7 +334,7 @@ function initLiveChart() {
           ctx.beginPath();
           ctx.arc(x + candleWidth / 2, yLow + 8, 5, 0, Math.PI * 2);
           ctx.fill();
-          ctx.fillStyle = '#000';
+          ctx.fillStyle = '#ffffff';
           ctx.fillText('B', x + candleWidth / 2, yLow + 11);
         } else if (c.signal === 'SELL') {
           ctx.fillStyle = '#ef4444';
@@ -316,7 +350,7 @@ function initLiveChart() {
     // Draw Current price laser line
     const lastCandle = candles[candles.length - 1];
     const laserY = mapY(lastCandle.close);
-    ctx.strokeStyle = lastCandle.close >= lastCandle.open ? 'rgba(16, 185, 129, 0.35)' : 'rgba(239, 68, 68, 0.35)';
+    ctx.strokeStyle = lastCandle.close >= lastCandle.open ? laserGreenColor : laserRedColor;
     ctx.lineWidth = 1;
     ctx.setLineDash([4, 4]);
     ctx.beginPath();
@@ -328,7 +362,7 @@ function initLiveChart() {
     // Draw Live price label on laser
     ctx.fillStyle = lastCandle.close >= lastCandle.open ? '#10b981' : '#ef4444';
     ctx.fillRect(w - 60, laserY - 8, 60, 16);
-    ctx.fillStyle = '#000';
+    ctx.fillStyle = '#ffffff';
     ctx.font = '500 9px Outfit';
     ctx.textAlign = 'center';
     ctx.fillText(lastCandle.close.toFixed(2), w - 30, laserY + 3);

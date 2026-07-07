@@ -26,7 +26,42 @@
   --font-heading: 'Outfit', sans-serif;
   --font-body: 'Inter', sans-serif;
   
+  --nav-bg: rgba(10, 14, 26, 0.85);
+  --logo-stroke: #ffffff;
+  --logo-bg: rgba(255, 255, 255, 0.02);
+  --grid-line: rgba(255, 255, 255, 0.04);
+  --laser-line-green: rgba(16, 185, 129, 0.35);
+  --laser-line-red: rgba(239, 68, 68, 0.35);
+  --process-bg: rgba(17, 23, 38, 0.35);
+  --tech-bg: rgba(10, 14, 26, 0.8);
+  
   scroll-behavior: smooth;
+}
+
+:root[data-theme="light"] {
+  --bg-primary: #f8fafc;
+  --bg-secondary: #ffffff;
+  --bg-tertiary: #f1f5f9;
+  
+  --text-primary: #0f172a;
+  --text-secondary: #475569;
+  --text-muted: #64748b;
+  
+  --border-color: rgba(0, 0, 0, 0.08);
+  --border-color-glow: rgba(16, 185, 129, 0.15);
+  
+  --glass-bg: rgba(255, 255, 255, 0.8);
+  --glass-border: rgba(0, 0, 0, 0.06);
+  --glass-shadow: rgba(0, 0, 0, 0.05) 0 20px 40px -10px;
+  
+  --nav-bg: rgba(248, 250, 252, 0.85);
+  --logo-stroke: #0f172a;
+  --logo-bg: rgba(0, 0, 0, 0.02);
+  --grid-line: rgba(0, 0, 0, 0.04);
+  --laser-line-green: rgba(16, 185, 129, 0.2);
+  --laser-line-red: rgba(239, 68, 68, 0.2);
+  --process-bg: rgba(241, 245, 249, 0.4);
+  --tech-bg: rgba(241, 245, 249, 0.7);
 }
 
 /* --- Base Resets & Global Styles --- */
@@ -182,7 +217,7 @@ p {
   left: 0;
   width: 100%;
   z-index: 1000;
-  background-color: rgba(10, 14, 26, 0.85);
+  background-color: var(--nav-bg);
   backdrop-filter: blur(16px);
   border-bottom: 1px solid var(--border-color);
   transition: all 0.3s ease;
@@ -215,9 +250,14 @@ p {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: rgba(255, 255, 255, 0.02);
+  background: var(--logo-bg);
   border-radius: 10px;
   border: 1px solid var(--border-color);
+}
+
+.logo-icon svg {
+  width: 24px;
+  height: 24px;
 }
 
 .logo-text {
@@ -229,7 +269,7 @@ p {
   font-family: var(--font-heading);
   font-size: 1.5rem;
   font-weight: 800;
-  color: #fff;
+  color: var(--text-primary);
   letter-spacing: 0.05em;
   line-height: 1.1;
 }
@@ -285,6 +325,33 @@ p {
   border-radius: 2px;
   transition: all 0.3s ease;
   transform-origin: center;
+}
+
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.theme-toggle-btn {
+  background: transparent;
+  border: 1px solid var(--border-color);
+  width: 38px;
+  height: 38px;
+  border-radius: 8px;
+  color: var(--text-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 1.1rem;
+}
+
+.theme-toggle-btn:hover {
+  border-color: var(--accent-green);
+  color: var(--accent-green);
+  background-color: var(--logo-bg);
 }
 
 /* --- Hero Section & Simulation Chart --- */
@@ -564,7 +631,7 @@ p {
 .service-card h3 {
   font-size: 1.3rem;
   margin-bottom: 12px;
-  color: #fff;
+  color: var(--text-primary);
 }
 
 .service-card p {
@@ -575,7 +642,7 @@ p {
 
 /* --- Process Timeline Section --- */
 .process-section {
-  background-color: rgba(17, 23, 38, 0.35);
+  background-color: var(--process-bg);
   border-top: 1px solid var(--border-color);
   border-bottom: 1px solid var(--border-color);
 }
@@ -682,7 +749,7 @@ p {
 .timeline-content h3 {
   margin-bottom: 0;
   font-size: 1.25rem;
-  color: #fff;
+  color: var(--text-primary);
 }
 
 .timeline-content p {
@@ -779,7 +846,7 @@ p {
 .market-header h3 {
   font-size: 1.35rem;
   margin-bottom: 0;
-  color: #fff;
+  color: var(--text-primary);
 }
 
 .market-features {
@@ -865,7 +932,7 @@ p {
 
 /* --- Technologies Grid --- */
 .tech-section {
-  background-color: rgba(10, 14, 26, 0.8);
+  background-color: var(--tech-bg);
   border-top: 1px solid var(--border-color);
 }
 
@@ -973,7 +1040,7 @@ p {
 
 .why-item h4 {
   font-size: 1.15rem;
-  color: #fff;
+  color: var(--text-primary);
   margin-bottom: 6px;
 }
 
@@ -1279,7 +1346,7 @@ textarea {
 
 .form-success-card h4 {
   font-size: 1.8rem;
-  color: #fff;
+  color: var(--text-primary);
   margin-bottom: 12px;
 }
 

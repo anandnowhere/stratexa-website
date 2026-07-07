@@ -35,6 +35,14 @@
     
     <!-- Main Project Stylesheet -->
     <link rel="stylesheet" href="/src/style.css" />
+    
+    <!-- Inline Theme Script to prevent theme flash -->
+    <script>
+      (function() {
+        const theme = localStorage.getItem('theme') || 'dark';
+        document.documentElement.setAttribute('data-theme', theme);
+      })();
+    </script>
   </head>
   <body>
     <!-- Header / Navigation -->
@@ -44,7 +52,7 @@
           <div class="logo-icon">
             <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M25 75L75 25M75 25H45M75 25V55" stroke="#10b981" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
-              <path d="M25 45V75H55" stroke="#ffffff" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M25 45V75H55" stroke="var(--logo-stroke)" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
           </div>
           <div class="logo-text">
@@ -62,11 +70,16 @@
           <a href="#consultation" class="btn btn-primary btn-nav">Book Free Consultation</a>
         </nav>
         
-        <button class="nav-toggle" id="nav-toggle" aria-label="Toggle menu">
-          <span class="bar"></span>
-          <span class="bar"></span>
-          <span class="bar"></span>
-        </button>
+        <div class="nav-actions">
+          <button class="theme-toggle-btn" id="theme-toggle-btn" aria-label="Toggle theme">
+            <i class="fa-solid fa-moon"></i>
+          </button>
+          <button class="nav-toggle" id="nav-toggle" aria-label="Toggle menu">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+          </button>
+        </div>
       </div>
     </header>
 
