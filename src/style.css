@@ -39,29 +39,29 @@
 }
 
 :root[data-theme="light"] {
-  --bg-primary: #f8fafc;
+  --bg-primary: #f4f6fa;
   --bg-secondary: #ffffff;
-  --bg-tertiary: #f1f5f9;
+  --bg-tertiary: #e2e8f0;
   
   --text-primary: #0f172a;
   --text-secondary: #475569;
   --text-muted: #64748b;
   
-  --border-color: rgba(0, 0, 0, 0.08);
-  --border-color-glow: rgba(16, 185, 129, 0.15);
+  --border-color: rgba(15, 23, 42, 0.12);
+  --border-color-glow: rgba(16, 185, 129, 0.3);
   
-  --glass-bg: rgba(255, 255, 255, 0.8);
-  --glass-border: rgba(0, 0, 0, 0.06);
-  --glass-shadow: rgba(0, 0, 0, 0.05) 0 20px 40px -10px;
+  --glass-bg: rgba(255, 255, 255, 0.85);
+  --glass-border: rgba(15, 23, 42, 0.08);
+  --glass-shadow: rgba(15, 23, 42, 0.08) 0 20px 40px -10px;
   
-  --nav-bg: rgba(248, 250, 252, 0.85);
+  --nav-bg: rgba(244, 246, 250, 0.85);
   --logo-stroke: #0f172a;
-  --logo-bg: rgba(0, 0, 0, 0.02);
-  --grid-line: rgba(0, 0, 0, 0.04);
-  --laser-line-green: rgba(16, 185, 129, 0.2);
-  --laser-line-red: rgba(239, 68, 68, 0.2);
-  --process-bg: rgba(241, 245, 249, 0.4);
-  --tech-bg: rgba(241, 245, 249, 0.7);
+  --logo-bg: rgba(15, 23, 42, 0.04);
+  --grid-line: rgba(15, 23, 42, 0.06);
+  --laser-line-green: rgba(16, 185, 129, 0.25);
+  --laser-line-red: rgba(239, 68, 68, 0.25);
+  --process-bg: rgba(226, 232, 240, 0.5);
+  --tech-bg: rgba(226, 232, 240, 0.8);
 }
 
 /* --- Base Resets & Global Styles --- */

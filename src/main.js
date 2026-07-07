@@ -75,9 +75,9 @@ function initNavbar() {
     const icon = themeToggleBtn.querySelector('i');
     if (icon) {
       if (theme === 'light') {
-        icon.className = 'fa-solid fa-sun';
+        icon.className = 'fa-regular fa-sun';
       } else {
-        icon.className = 'fa-solid fa-moon';
+        icon.className = 'fa-regular fa-moon';
       }
     }
   }
