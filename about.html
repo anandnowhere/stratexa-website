@@ -61,6 +61,13 @@
     "url": "https://www.stratexa.in/about.html"
   }
   </script>
+  <!-- Inline Theme Script to prevent theme flash -->
+  <script>
+    (function() {
+      const theme = localStorage.getItem('theme') || 'dark';
+      document.documentElement.setAttribute('data-theme', theme);
+    })();
+  </script>
 </head>
 <body>
   <header class="navbar" id="main-header">

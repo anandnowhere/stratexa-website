@@ -60,8 +60,9 @@ function initNavbar() {
   // Theme Toggle Logic
   const themeToggleBtn = document.querySelector('#theme-toggle-btn');
   
-  // Set initial icon state based on active theme attribute
-  const currentTheme = document.documentElement.getAttribute('data-theme') || 'dark';
+  // Load and apply saved theme
+  const currentTheme = localStorage.getItem('theme') || document.documentElement.getAttribute('data-theme') || 'dark';
+  document.documentElement.setAttribute('data-theme', currentTheme);
   updateThemeIcon(currentTheme);
 
   if (themeToggleBtn) {

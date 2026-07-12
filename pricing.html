@@ -23,6 +23,13 @@
     "url": "https://www.stratexa.in/pricing.html"
   }
   </script>
+  <!-- Inline Theme Script to prevent theme flash -->
+  <script>
+    (function() {
+      const theme = localStorage.getItem('theme') || 'dark';
+      document.documentElement.setAttribute('data-theme', theme);
+    })();
+  </script>
 </head>
 <body>
   <header class="navbar" id="main-header">
@@ -63,7 +70,7 @@
     </div>
   </header>
   <main style="padding-top: 100px;">
-    <section class="pricing-hero" style="background: var(--gradient-primary); padding: 4rem 0 2.5rem; text-align:center; color:#fff;">
+    <section class="pricing-hero" style="background: linear-gradient(135deg, var(--bg-secondary) 0%, var(--bg-primary) 100%); border-bottom: 1px solid var(--border-color); padding: 5rem 0; text-align: center; color: var(--text-primary);">
       <h1>Transparent Pricing for Automation Services</h1>
       <p class="large-text" style="margin-bottom: 0;">Choose a development tier or a monthly care plan that fits your needs.</p>
     </section>
