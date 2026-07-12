@@ -1975,4 +1975,70 @@ textarea {
   }
 }
 
+/* Strategy Detail Page Visual Enhancements */
+.sticky-sidebar {
+  position: sticky;
+  top: 100px;
+  align-self: start;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+@media (max-width: 991px) {
+  .sticky-sidebar {
+    position: static;
+  }
+}
+
+/* Monthly heat map table styling */
+.monthly-table {
+  font-size: 0.85rem !important;
+  border-collapse: collapse;
+}
+
+.monthly-table th {
+  padding: 10px 4px !important;
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  letter-spacing: 0.05em;
+}
+
+.monthly-table td {
+  padding: 12px 4px !important;
+  border: 1px solid var(--border-color);
+  font-family: var(--font-heading);
+  font-weight: 500;
+}
+
+.monthly-table td.pos {
+  color: var(--accent-green-bright) !important;
+  background: rgba(16, 185, 129, 0.08) !important;
+}
+
+.monthly-table td.neg {
+  color: #ef4444 !important;
+  background: rgba(239, 68, 68, 0.08) !important;
+}
+
+.monthly-table td.na {
+  color: var(--text-secondary);
+  background: rgba(255, 255, 255, 0.02) !important;
+  opacity: 0.3;
+}
+
+/* Package Inclusions Polish */
+.inclusion-card {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.inclusion-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
+}
+.theme-light .inclusion-card:hover {
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.05);
+}
+
+
 
