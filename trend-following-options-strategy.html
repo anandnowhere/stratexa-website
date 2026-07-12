@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Trend Following Options Strategy – Stratexa</title>
+  <meta name="description" content="Feature-rich, institutional-grade options credit spread trading strategy combining macro trend directionality with daily price boundary exits. Complete 5-year backtest report and live metrics.">
+  
+  <!-- Fonts & Icons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <link rel="stylesheet" href="/src/style.css">
+</head>
+<body class="dark-mode">
+
+  <!-- Header Section -->
+  <header class="navbar" id="main-header">
+    <div class="nav-container">
+      <a href="/" class="nav-logo" id="nav-logo-link">
+        <div class="logo-icon">
+          <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M25 75L75 25M75 25H45M75 25V55" stroke="#10b981" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M25 45V75H55" stroke="var(--logo-stroke)" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <div class="logo-text"><span class="brand-name">STRATEXA</span><span class="brand-tagline">AUTOMATE. EXECUTE. ELEVATE.</span></div>
+      </a>
+      <nav class="nav-menu" id="nav-menu">
+        <a href="/" class="nav-link">Home</a>
+        <a href="/#services" class="nav-link">Services</a>
+        <a href="/#process" class="nav-link">Our Process</a>
+        <a href="/#markets" class="nav-link">Markets</a>
+        <a href="/#tech" class="nav-link">Tech Stack</a>
+        <a href="/#why-us" class="nav-link">Why Choose Us</a>
+        <a href="/trend-following-options-strategy.html" class="nav-link active">Strategies</a>
+        <a href="/about.html" class="nav-link">About</a>
+        <a href="/pricing.html" class="nav-link">Pricing</a>
+        <a href="/faq.html" class="nav-link">FAQ</a>
+        <a href="/#consultation" class="btn btn-primary btn-nav">Book Free Consultation</a>
+      </nav>
+      
+      <div class="nav-actions">
+        <button class="theme-toggle-btn" id="theme-toggle-btn" aria-label="Toggle theme">
+          <i class="fa-regular fa-moon"></i>
+        </button>
+        <button class="nav-toggle" id="nav-toggle" aria-label="Toggle menu">
+          <span class="bar"></span>
+          <span class="bar"></span>
+          <span class="bar"></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main style="padding-top: 100px;">
+    <!-- Hero Section -->
+    <section class="strategy-hero">
+      <div class="container">
+        <span class="badge">Pre-Defined Strategy</span>
+        <h1 class="heading-large">Trend Following Options Strategy</h1>
+        <p class="section-subtitle">A high-probability, capital-normalized options harvesting engine built for consistent risk-managed returns.</p>
+      </div>
+    </section>
+
+    <!-- Strategy Dashboard Section -->
+    <section class="section">
+      <div class="container">
+        
+        <!-- Key Metrics Grid -->
+        <div class="strategy-grid">
+          <div class="metric-card">
+            <div class="metric-value txt-green">₹5,09,411.50</div>
+            <div class="metric-label">Total PnL (5-Yr)</div>
+          </div>
+          <div class="metric-card">
+            <div class="metric-value">55.32%</div>
+            <div class="metric-label">Win Rate</div>
+          </div>
+          <div class="metric-card">
+            <div class="metric-value txt-green">7.09</div>
+            <div class="metric-label">Sharpe Ratio</div>
+          </div>
+          <div class="metric-card">
+            <div class="metric-value txt-green">16.64</div>
+            <div class="metric-label">Sortino Ratio</div>
+          </div>
+          <div class="metric-card">
+            <div class="metric-value txt-red">-5.64%</div>
+            <div class="metric-label">Max Drawdown</div>
+          </div>
+        </div>
+
+        <div class="strategy-content-layout">
+          <!-- Left side: Strategy Concept & Charts -->
+          <div>
+            <div class="strategy-card">
+              <h3>Strategy Architecture &amp; Rules</h3>
+              <p style="line-height: 1.6; margin-bottom: 16px;">
+                This institutional-grade system targets intraday volatility by pairing trend-following filters with price boundary reversal thresholds. Instead of deploying naked directional trades, it harvests option premiums with predefined spreads to restrict tail risk.
+              </p>
+              <ul style="margin-left: 20px; margin-bottom: 20px; line-height: 1.7;">
+                <li><strong>Trend Filtering:</strong> Employs a proprietary trend-following filter to ensure all trade actions align with the macro market direction.</li>
+                <li><strong>Reversal Timing:</strong> Enters trade positions precisely when index spot price tests dynamically computed intra-day price boundary levels.</li>
+                <li><strong>Execution Vehicle:</strong> Executes defined-risk credit spreads to capture option premium decay while keeping maximum potential loss strictly capped.</li>
+                <li><strong>Dynamic Exits:</strong> Automatically closes positions when the spot price breaches dynamic boundaries, or upon triggering internal risk-mitigation rules.</li>
+              </ul>
+            </div>
+
+            <div class="strategy-card">
+              <h3>5-Year Performance Charts</h3>
+              
+              <!-- Tab Navigation -->
+              <div class="chart-selector-container">
+                <button class="chart-tab-btn active" data-chart="/cumulative_pnl_5year.png">Cumulative Points Curve</button>
+                <button class="chart-tab-btn" data-chart="/cumulative_returns_pct_5year.png">Return % on Margin</button>
+                <button class="chart-tab-btn" data-chart="/cumulative_returns_acct_5year.png">Return % on Account Balance</button>
+              </div>
+
+              <!-- Chart Wrapper -->
+              <div class="strategy-chart-wrapper">
+                <img id="strategy-chart" src="/cumulative_pnl_5year.png" alt="Strategy Cumulative Equity Curve" class="strategy-chart-img">
+              </div>
+            </div>
+          </div>
+
+          <!-- Right side: Quick Info & Pricing -->
+          <div>
+            <div class="strategy-card" style="border-top: 3px solid var(--accent-green);">
+              <h3>Live Deployment Details</h3>
+              <table style="width: 100%; font-size: 0.95rem; border-collapse: collapse; margin-bottom: 20px;">
+                <tr style="border-bottom: 1px solid var(--border-color);">
+                  <td style="padding: 10px 0; color: var(--text-secondary);">Asset Class</td>
+                  <td style="padding: 10px 0; font-weight: 600; text-align: right;">Nifty Index Options</td>
+                </tr>
+                <tr style="border-bottom: 1px solid var(--border-color);">
+                  <td style="padding: 10px 0; color: var(--text-secondary);">Minimum Capital</td>
+                  <td style="padding: 10px 0; font-weight: 600; text-align: right;">₹1,00,000 / lot</td>
+                </tr>
+                <tr style="border-bottom: 1px solid var(--border-color);">
+                  <td style="padding: 10px 0; color: var(--text-secondary);">Avg Margin Blocked</td>
+                  <td style="padding: 10px 0; font-weight: 600; text-align: right;">₹64,140</td>
+                </tr>
+                <tr style="border-bottom: 1px solid var(--border-color);">
+                  <td style="padding: 10px 0; color: var(--text-secondary);">Trade Frequency</td>
+                  <td style="padding: 10px 0; font-weight: 600; text-align: right;">~2 trades / day</td>
+                </tr>
+                <tr style="border-bottom: 1px solid var(--border-color);">
+                  <td style="padding: 10px 0; color: var(--text-secondary);">API Integration</td>
+                  <td style="padding: 10px 0; font-weight: 600; text-align: right;">Zerodha (Kite API), Shoonya, Breeze, Fyers</td>
+                </tr>
+                <tr>
+                  <td style="padding: 10px 0; color: var(--text-secondary);">Code Ownership</td>
+                  <td style="padding: 10px 0; font-weight: 600; text-align: right; color: var(--accent-green-bright);">100% IP Handover</td>
+                </tr>
+              </table>
+
+              <div style="background: var(--accent-green-glow); border: 1px solid var(--accent-green); border-radius: 8px; padding: 16px; margin-bottom: 24px;">
+                <h4 style="color: var(--accent-green-bright); margin-bottom: 6px; font-size: 1rem;"><i class="fa-solid fa-bolt"></i> Ready for Live Deployment</h4>
+                <p style="font-size: 0.85rem; line-height: 1.4; color: var(--text-secondary);">The code has been optimized for AWS servers with full Telegram telemetry reporting activated.</p>
+              </div>
+
+              <a href="/#consultation" class="btn btn-primary" style="width: 100%; text-align: center; justify-content: center;">License This Strategy</a>
+            </div>
+
+            <div class="strategy-card">
+              <h3>Strategy Specific FAQ</h3>
+              <div style="margin-bottom: 16px;">
+                <h4 style="font-size: 0.95rem; margin-bottom: 6px; color: var(--text-primary);">Do I get the source code?</h4>
+                <p style="font-size: 0.85rem; color: var(--text-secondary); line-height: 1.4;">Yes. Stratexa sells the strategy logic with 100% intellectual property rights transfer. You own the code completely.</p>
+              </div>
+              <div style="margin-bottom: 16px;">
+                <h4 style="font-size: 0.95rem; margin-bottom: 6px; color: var(--text-primary);">Is live slippage included in charts?</h4>
+                <p style="font-size: 0.85rem; color: var(--text-secondary); line-height: 1.4;">Backtests are run using Nifty spot tick-level historical data. A standard 0.5% margin slippage factor has been applied to simulate real-world fills.</p>
+              </div>
+              <div>
+                <h4 style="font-size: 0.95rem; margin-bottom: 6px; color: var(--text-primary);">What servers are supported?</h4>
+                <p style="font-size: 0.85rem; color: var(--text-secondary); line-height: 1.4;">The script compiles into standard python scripts and deploys natively on AWS EC2 micro or DigitalOcean droplets.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Year-by-Year Performance Breakdown -->
+        <div class="strategy-card">
+          <h3>Detailed Annual Breakdown (Credit Spread Scenario 2B)</h3>
+          <p style="font-size: 0.9rem; color: var(--text-secondary); margin-bottom: 20px;">
+            The following table shows the performance metrics computed on an account-normalized basis (₹1,00,000 available capital) using the Credit Spread execution model.
+          </p>
+          <div class="performance-table-wrapper">
+            <table class="perf-table">
+              <thead>
+                <tr>
+                  <th>Year</th>
+                  <th>Trades</th>
+                  <th>Win Rate</th>
+                  <th>Total PnL (pts)</th>
+                  <th>Total Return (INR)</th>
+                  <th>Max DD</th>
+                  <th>Sharpe</th>
+                  <th>Sortino</th>
+                  <th>Profit Factor</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>2022</td>
+                  <td>553</td>
+                  <td>56.60%</td>
+                  <td>+4,516.31</td>
+                  <td class="txt-green">₹1,12,907.75</td>
+                  <td class="txt-red">-5.64%</td>
+                  <td>6.60</td>
+                  <td>15.77</td>
+                  <td>2.07</td>
+                </tr>
+                <tr>
+                  <td>2023</td>
+                  <td>514</td>
+                  <td>54.28%</td>
+                  <td>+3,638.48</td>
+                  <td class="txt-green">₹90,962.00</td>
+                  <td class="txt-red">-2.87%</td>
+                  <td>6.83</td>
+                  <td>14.83</td>
+                  <td>2.09</td>
+                </tr>
+                <tr>
+                  <td>2024</td>
+                  <td>473</td>
+                  <td>52.85%</td>
+                  <td>+4,738.50</td>
+                  <td class="txt-green">₹118,462.50</td>
+                  <td class="txt-red">-3.54%</td>
+                  <td>6.69</td>
+                  <td>17.92</td>
+                  <td>2.05</td>
+                </tr>
+                <tr>
+                  <td>2025</td>
+                  <td>481</td>
+                  <td>57.38%</td>
+                  <td>+5,014.32</td>
+                  <td class="txt-green">₹125,358.00</td>
+                  <td class="txt-red">-3.63%</td>
+                  <td>8.05</td>
+                  <td>19.16</td>
+                  <td>2.44</td>
+                </tr>
+                <tr>
+                  <td>2026 (YTD)</td>
+                  <td>235</td>
+                  <td>55.32%</td>
+                  <td>+2,468.85</td>
+                  <td class="txt-green">₹61,721.25</td>
+                  <td class="txt-red">-4.45%</td>
+                  <td>6.72</td>
+                  <td>14.60</td>
+                  <td>2.18</td>
+                </tr>
+                <tr style="font-weight: 700; border-top: 2px solid var(--border-color); background: rgba(16, 185, 129, 0.05);">
+                  <td style="color: var(--text-primary);">Overall (5-Yr)</td>
+                  <td style="color: var(--text-primary);">2256</td>
+                  <td style="color: var(--text-primary);">55.32%</td>
+                  <td style="color: var(--text-primary);">+20,376.46</td>
+                  <td class="txt-green">₹509,411.50</td>
+                  <td class="txt-red">-5.64%</td>
+                  <td style="color: var(--text-primary);">6.95</td>
+                  <td style="color: var(--text-primary);">16.51</td>
+                  <td style="color: var(--text-primary);">2.15</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Strategy Specific Disclaimer -->
+        <div style="margin-top: 20px; padding: 20px; border-radius: 8px; border: 1px solid var(--border-color); background: var(--bg-secondary);">
+          <h4 style="margin-bottom: 8px; color: var(--text-primary); font-size: 0.95rem; font-weight: 600;"><i class="fa-solid fa-triangle-exclamation" style="color: #f59e0b; margin-right: 6px;"></i> Strategy Performance Disclaimer</h4>
+          <p style="font-size: 0.85rem; color: var(--text-secondary); line-height: 1.5; margin: 0;">
+            The performance metrics presented on this page are historical, simulated, and backtested using index tick-level data over a 5-year period. These results are hypothetical and do not represent actual live-trading account performances. Past performance is not indicative of future market returns. Options trading is a high-risk activity that can lead to complete loss of investment capital. Stratexa acts strictly as a technology partner and software development provider. We do not offer financial advisory services, SEBI-registered portfolio management, or guaranteed return contracts.
+          </p>
+        </div>
+
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer Section -->
+  <footer class="footer">
+    <div class="container footer-content">
+      <div class="footer-brand">
+        <div class="footer-logo">
+          <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" class="footer-logo-svg">
+            <path d="M25 75L75 25M75 25H45M75 25V55" stroke="#10b981" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M25 45V75H55" stroke="#ffffff" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <span class="footer-brand-name">STRATEXA</span>
+        </div>
+        <p class="footer-description">We build secure, low-latency, automated execution software for retail and institutional traders globally. Transform your trading rules into standard Python-driven machines.</p>
+      </div>
+      
+      <div class="footer-links">
+        <h4>Navigation</h4>
+        <a href="/#services">Services</a>
+        <a href="/#process">Our Process</a>
+        <a href="/#markets">Markets</a>
+        <a href="/trend-following-options-strategy.html">Strategies</a>
+        <a href="/about.html">About Us</a>
+        <a href="/pricing.html">Pricing & Care</a>
+        <a href="/faq.html">FAQ</a>
+      </div>
+      
+      <div class="footer-links">
+        <h4>Legal & Support</h4>
+        <a href="/privacy.html">Privacy Policy</a>
+        <a href="/terms.html">Terms & Conditions</a>
+        <a href="/refund.html">Refund Policy</a>
+        <a href="/cookie.html">Cookie Policy</a>
+      </div>
+
+      <div class="footer-disclaimer">
+        <h4>Disclaimer</h4>
+        <p>STRATEXA is a technology and software development company. We do not provide financial advice, trading signals, recommendation packages, or management services. All automated trading strategies coded are built strictly based on customer specifications. Backtested performance results are historical and do not guarantee future profitability. Algorithmic trading carries significant financial risk.</p>
+      </div>
+    </div>
+    
+    <div class="footer-bottom">
+      <div class="container footer-bottom-container">
+        <p>&copy; 2026 STRATEXA. All rights reserved. Registered address: Chennai, TN, India (Office Opening Soon).</p>
+        <div class="social-links">
+          <a href="https://github.com" target="_blank" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+          <a href="mailto:hello@stratexa.in" aria-label="Email"><i class="fa-regular fa-envelope"></i></a>
+          <a href="tel:+919150087233" aria-label="Phone"><i class="fa-solid fa-phone"></i></a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Sticky Consultation CTA for mobile -->
+  <a href="/#consultation" id="sticky-consultation" class="sticky-cta">
+    <i class="fa-regular fa-calendar-check icon-spacing"></i> Book Consultation
+  </a>
+
+  <!-- Script Integration -->
+  <script type="module" src="/src/main.js"></script>
+
+  <!-- Self-contained Chart Tab Interactivity -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const tabs = document.querySelectorAll('.chart-tab-btn');
+      const chartImg = document.getElementById('strategy-chart');
+      
+      tabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+          // Remove active class from all tabs
+          tabs.forEach(t => t.classList.remove('active'));
+          // Add active class to clicked tab
+          tab.classList.add('active');
+          // Update image source
+          const chartSrc = tab.getAttribute('data-chart');
+          if (chartSrc && chartImg) {
+            chartImg.src = chartSrc;
+          }
+        });
+      });
+    });
+  </script>
+</body>
+</html>

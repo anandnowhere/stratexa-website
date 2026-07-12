@@ -49,6 +49,27 @@
     <!-- FontAwesome for standard icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
     
+    <!-- JSON-LD Organization Schema -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "Stratexa",
+      "url": "https://www.stratexa.in/",
+      "logo": "https://www.stratexa.in/logo.png",
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "telephone": "+91-91500-87233",
+        "contactType": "customer service",
+        "areaServed": "IN",
+        "availableLanguage": ["en"]
+      },
+      "sameAs": [
+        "https://github.com"
+      ]
+    }
+    </script>
+    
     <!-- Main Project Stylesheet -->
     <link rel="stylesheet" href="/src/style.css" />
     
@@ -87,6 +108,10 @@
           <a href="#markets" class="nav-link">Markets</a>
           <a href="#tech" class="nav-link">Tech Stack</a>
           <a href="#why-us" class="nav-link">Why Choose Us</a>
+          <a href="/trend-following-options-strategy.html" class="nav-link">Strategies</a>
+          <a href="/about.html" class="nav-link">About</a>
+          <a href="/pricing.html" class="nav-link">Pricing</a>
+          <a href="/faq.html" class="nav-link">FAQ</a>
           <a href="#consultation" class="btn btn-primary btn-nav">Book Free Consultation</a>
         </nav>
         
@@ -375,6 +400,58 @@
         </div>
       </section>
 
+      <!-- Pre-defined Strategies Section -->
+      <section class="strategies-showcase-section" id="strategies-showcase" style="border-top: 1px solid var(--border-color); padding: 80px 0;">
+        <div class="container">
+          <div class="section-header">
+            <span class="badge">Plug &amp; Play Trading</span>
+            <h2 class="section-title">Pre-Defined Trading Strategies</h2>
+            <p class="section-subtitle">Fully backtested, production-ready strategy packages ready to link to your broker account.</p>
+          </div>
+          
+          <div style="background: var(--bg-secondary); border: 1px solid var(--border-color); border-radius: 16px; padding: 40px; display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 40px; align-items: center; box-shadow: var(--glass-shadow);">
+            <div>
+              <span class="badge" style="background: var(--accent-green-glow); color: var(--accent-green-bright); border-color: var(--accent-green);">Featured Product</span>
+              <h3 style="font-family: var(--font-heading); font-size: 1.8rem; font-weight: 800; margin: 15px 0 10px; color: #fff;">Trend Following Options Strategy</h3>
+              <p style="color: var(--text-secondary); line-height: 1.6; margin-bottom: 24px;">
+                An institutional-grade index options trading model that matches macro momentum with daily price boundary reversal thresholds. Built strictly as credit spreads to maximize theta decay while keeping drawdowns mathematically capped.
+              </p>
+              
+              <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-bottom: 24px;">
+                <div style="background: rgba(255,255,255,0.02); border: 1px solid var(--border-color); border-radius: 8px; padding: 12px; text-align: center;">
+                  <div style="font-size: 1.3rem; font-weight: 700; color: var(--accent-green-bright); margin-bottom: 4px;">55.32%</div>
+                  <div style="font-size: 0.75rem; color: var(--text-secondary); text-transform: uppercase;">Win Rate</div>
+                </div>
+                <div style="background: rgba(255,255,255,0.02); border: 1px solid var(--border-color); border-radius: 8px; padding: 12px; text-align: center;">
+                  <div style="font-size: 1.3rem; font-weight: 700; color: #fff; margin-bottom: 4px;">7.09</div>
+                  <div style="font-size: 0.75rem; color: var(--text-secondary); text-transform: uppercase;">Sharpe Ratio</div>
+                </div>
+                <div style="background: rgba(255,255,255,0.02); border: 1px solid var(--border-color); border-radius: 8px; padding: 12px; text-align: center;">
+                  <div style="font-size: 1.3rem; font-weight: 700; color: var(--accent-green-bright); margin-bottom: 4px;">+₹5.09L</div>
+                  <div style="font-size: 0.75rem; color: var(--text-secondary); text-transform: uppercase;">5-Year Return</div>
+                </div>
+              </div>
+
+              <div style="display: flex; gap: 16px; flex-wrap: wrap;">
+                <a href="/trend-following-options-strategy.html" class="btn btn-primary">View Strategy Details</a>
+                <a href="#consultation" class="btn btn-secondary">Request Live Demo</a>
+              </div>
+            </div>
+            
+            <div style="position: relative; display: flex; justify-content: center;">
+              <!-- Beautiful preview visual representing the strategy -->
+              <div style="background: #0d1117; border: 1px solid var(--border-color); border-radius: 12px; padding: 20px; width: 100%; max-width: 380px;">
+                <div style="display: flex; justify-content: space-between; border-bottom: 1px solid var(--border-color); padding-bottom: 10px; margin-bottom: 15px;">
+                  <span style="font-family: var(--font-heading); font-weight: 700; color: #fff; font-size: 0.85rem;"><i class="fa-solid fa-chart-line"></i> EQUITY CURVE</span>
+                  <span style="color: var(--accent-green-bright); font-size: 0.8rem; font-weight: 600;"><i class="fa-solid fa-arrow-trend-up"></i> STABLE GROWTH</span>
+                </div>
+                <img src="/cumulative_pnl_5year.png" alt="Equity Curve Preview" style="width: 100%; height: auto; border-radius: 4px; filter: saturate(1.2);">
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <!-- Technologies We Work With -->
       <section class="tech-section" id="tech">
         <div class="container">
@@ -604,14 +681,21 @@
           </div>
           <p class="footer-description">We build secure, low-latency, automated execution software for retail and institutional traders globally. Transform your trading rules into standard Python-driven machines.</p>
         </div>
-        
         <div class="footer-links">
           <h4>Navigation</h4>
           <a href="#services">Services</a>
           <a href="#process">Our Process</a>
-          <a href="#markets">Markets we Automate</a>
-          <a href="#tech">Technologies</a>
-          <a href="#why-us">Why Choose Us</a>
+          <a href="#markets">Markets</a>
+          <a href="/about.html">About Us</a>
+          <a href="/pricing.html">Pricing & Care</a>
+          <a href="/faq.html">FAQ</a>
+        </div>
+        <div class="footer-links">
+          <h4>Legal & Support</h4>
+          <a href="/privacy.html">Privacy Policy</a>
+          <a href="/terms.html">Terms & Conditions</a>
+          <a href="/refund.html">Refund Policy</a>
+          <a href="/cookie.html">Cookie Policy</a>
         </div>
 
         <div class="footer-disclaimer">
@@ -631,6 +715,11 @@
         </div>
       </div>
     </footer>
+
+    <!-- Sticky Consultation CTA for mobile -->
+    <a href="#consultation" id="sticky-consultation" class="sticky-cta">
+      <i class="fa-regular fa-calendar-check icon-spacing"></i> Book Consultation
+    </a>
 
     <!-- Script Entry Point -->
     <script type="module" src="/src/main.js"></script>
