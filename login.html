@@ -1,0 +1,329 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Stratexa | Client Portal Access</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome for standard icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    
+    <style>
+      :root {
+        --bg-primary: #0a0e1a;
+        --bg-secondary: #111726;
+        --accent-green: #10b981;
+        --accent-green-hover: #059669;
+        --accent-green-glow: rgba(16, 185, 129, 0.2);
+        --text-primary: #f3f4f6;
+        --text-secondary: #9ca3af;
+        --border-color: rgba(255, 255, 255, 0.06);
+        --glass-bg: rgba(17, 23, 38, 0.75);
+        --glass-border: rgba(255, 255, 255, 0.08);
+        --logo-stroke: #ffffff;
+      }
+
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        font-family: 'Inter', sans-serif;
+        background-color: var(--bg-primary);
+        background-image: 
+          radial-gradient(at 0% 0%, rgba(16, 185, 129, 0.08) 0px, transparent 50%),
+          radial-gradient(at 100% 0%, rgba(6, 182, 212, 0.06) 0px, transparent 50%);
+        color: var(--text-primary);
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        overflow-x: hidden;
+        padding: 20px;
+      }
+
+      .portal-container {
+        width: 100%;
+        max-width: 440px;
+      }
+
+      .glass-card {
+        background: var(--glass-bg);
+        border: 1px solid var(--glass-border);
+        border-radius: 16px;
+        backdrop-filter: blur(16px);
+        -webkit-backdrop-filter: blur(16px);
+        box-shadow: 0 24px 60px rgba(0, 0, 0, 0.5);
+        padding: 40px 32px;
+        width: 100%;
+        transition: transform 0.3s ease, border-color 0.3s ease;
+      }
+
+      .glass-card:hover {
+        border-color: rgba(16, 185, 129, 0.2);
+      }
+
+      /* Logo Area styling */
+      .logo-area {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 16px;
+        margin-bottom: 36px;
+      }
+
+      .logo-icon-container {
+        width: 72px;
+        height: 72px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: rgba(255, 255, 255, 0.02);
+        border-radius: 14px;
+        border: 1px solid var(--border-color);
+      }
+
+      .official-logo-svg {
+        width: 40px;
+        height: 40px;
+      }
+
+      .logo-text {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .brand-name {
+        font-family: 'Outfit', sans-serif;
+        font-size: 2.2rem;
+        font-weight: 800;
+        letter-spacing: 0.05em;
+        line-height: 1.1;
+        color: var(--text-primary);
+      }
+
+      .brand-tagline {
+        font-size: 0.7rem;
+        font-weight: 600;
+        color: var(--accent-green);
+        letter-spacing: 0.22em;
+        margin-top: 4px;
+      }
+
+      /* Form inputs styling */
+      .form-title {
+        font-family: 'Outfit', sans-serif;
+        font-size: 1.25rem;
+        font-weight: 600;
+        margin-bottom: 24px;
+        text-align: center;
+        color: var(--text-primary);
+      }
+
+      .form-group {
+        margin-bottom: 24px;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+      }
+
+      .form-group label {
+        font-size: 0.85rem;
+        color: var(--text-secondary);
+        font-weight: 500;
+      }
+
+      .input-wrapper {
+        position: relative;
+        display: flex;
+        align-items: center;
+      }
+
+      .input-wrapper i {
+        position: absolute;
+        left: 16px;
+        color: var(--text-secondary);
+        font-size: 1rem;
+      }
+
+      .input-wrapper input {
+        width: 100%;
+        background: rgba(10, 14, 26, 0.5);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        border-radius: 8px;
+        color: var(--text-primary);
+        padding: 14px 16px 14px 44px;
+        font-size: 1rem;
+        outline: none;
+        transition: border-color 0.2s, box-shadow 0.2s;
+        font-family: 'Inter', sans-serif;
+      }
+
+      .input-wrapper input:focus {
+        border-color: var(--accent-green);
+        box-shadow: 0 0 12px rgba(16, 185, 129, 0.2);
+      }
+
+      /* Access button */
+      .btn {
+        width: 100%;
+        padding: 14px;
+        background: var(--accent-green);
+        color: #ffffff;
+        border: none;
+        border-radius: 8px;
+        font-family: 'Outfit', sans-serif;
+        font-size: 1.05rem;
+        font-weight: 600;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 12px var(--accent-green-glow);
+      }
+
+      .btn:hover {
+        background: var(--accent-green-hover);
+        transform: translateY(-1px);
+        box-shadow: 0 6px 16px rgba(16, 185, 129, 0.3);
+      }
+
+      .btn:active {
+        transform: translateY(0);
+      }
+
+      /* Error text */
+      .error-box {
+        background: rgba(239, 68, 68, 0.1);
+        border: 1px solid rgba(239, 68, 68, 0.2);
+        border-radius: 8px;
+        color: #f87171;
+        padding: 12px;
+        font-size: 0.85rem;
+        margin-bottom: 20px;
+        display: none;
+        align-items: center;
+        gap: 8px;
+        line-height: 1.4;
+      }
+
+      .error-box.active {
+        display: flex;
+      }
+
+      /* Back Link */
+      .back-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        color: var(--text-secondary);
+        text-decoration: none;
+        font-size: 0.9rem;
+        margin-top: 24px;
+        transition: color 0.2s;
+        justify-content: center;
+        width: 100%;
+      }
+
+      .back-link:hover {
+        color: var(--text-primary);
+      }
+
+      /* Mobile Optimizations */
+      @media (max-width: 480px) {
+        .glass-card {
+          padding: 30px 20px;
+        }
+        .brand-name {
+          font-size: 1.9rem;
+        }
+        .brand-tagline {
+          font-size: 0.6rem;
+          letter-spacing: 0.18em;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="portal-container">
+      <div class="glass-card">
+        <!-- Official Stratexa Logo -->
+        <div class="logo-area">
+          <div class="logo-icon-container">
+            <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" class="official-logo-svg">
+              <path d="M25 75L75 25M75 25H45M75 25V55" stroke="#10b981" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M25 45V75H55" stroke="var(--logo-stroke)" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <div class="logo-text">
+            <span class="brand-name">STRATEXA</span>
+            <span class="brand-tagline">AUTOMATE. EXECUTE. ELEVATE.</span>
+          </div>
+        </div>
+
+        <h3 class="form-title">Console Terminal Access</h3>
+
+        <div id="error-message" class="error-box">
+          <i class="fa-solid fa-circle-exclamation"></i>
+          <span id="error-text">Client ID not recognized. Please check your spelling.</span>
+        </div>
+
+        <form id="portal-form">
+          <div class="form-group">
+            <label for="client-id">Client ID</label>
+            <div class="input-wrapper">
+              <i class="fa-solid fa-user-gear"></i>
+              <input type="text" id="client-id" required placeholder="Enter your Client ID (e.g. Anand, Mohan)" autofocus autocomplete="off" />
+            </div>
+          </div>
+
+          <button type="submit" class="btn">
+            <span>Connect to Terminal</span>
+            <i class="fa-solid fa-arrow-right-to-bracket"></i>
+          </button>
+        </form>
+
+        <a href="/" class="back-link">
+          <i class="fa-solid fa-arrow-left"></i>
+          <span>Return to Homepage</span>
+        </a>
+      </div>
+    </div>
+
+    <script>
+      const CLIENT_MAP = {
+        'anand': 'http://15.206.73.50:8080/',
+        'mohan': 'http://165.232.186.227:8000/'
+      };
+
+      document.getElementById('portal-form').addEventListener('submit', function(e) {
+        e.preventDefault();
+        const clientId = document.getElementById('client-id').value.trim().toLowerCase();
+        const errorBox = document.getElementById('error-message');
+        const errorText = document.getElementById('error-text');
+
+        if (clientId in CLIENT_MAP) {
+          errorBox.classList.remove('active');
+          // Redirect to client server dashboard
+          window.location.href = CLIENT_MAP[clientId];
+        } else {
+          errorText.textContent = "Client ID '" + document.getElementById('client-id').value.trim() + "' not recognized. Please contact support.";
+          errorBox.classList.add('active');
+          document.getElementById('client-id').focus();
+        }
+      });
+    </script>
+  </body>
+</html>

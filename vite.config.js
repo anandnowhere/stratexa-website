@@ -17,6 +17,7 @@ export default defineConfig({
         refund: resolve(__dirname, 'refund.html'),
         cookie: resolve(__dirname, 'cookie.html'),
         strategy: resolve(__dirname, 'trend-following-options-strategy.html'),
+        login: resolve(__dirname, 'login.html'),
       }
     }
   }
