@@ -300,15 +300,23 @@
 
         <div id="error-message" class="error-box">
           <i class="fa-solid fa-circle-exclamation"></i>
-          <span id="error-text">Client ID not recognized. Please check your spelling.</span>
+          <span id="error-text">Username not recognized. Please check your spelling.</span>
         </div>
 
         <form id="portal-form">
           <div class="form-group">
-            <label for="client-id">Client ID</label>
+            <label for="client-id">Username</label>
             <div class="input-wrapper">
-              <i class="fa-solid fa-user-gear"></i>
-              <input type="text" id="client-id" required placeholder="Enter your Client ID (e.g. Anand, Mohan)" autofocus autocomplete="off" />
+              <i class="fa-solid fa-user"></i>
+              <input type="text" id="client-id" required placeholder="Enter your Username" autofocus autocomplete="off" />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="client-password">Password</label>
+            <div class="input-wrapper">
+              <i class="fa-solid fa-lock"></i>
+              <input type="password" id="client-password" required placeholder="Enter your Password" autocomplete="current-password" />
             </div>
           </div>
 
@@ -334,15 +342,16 @@
       document.getElementById('portal-form').addEventListener('submit', function(e) {
         e.preventDefault();
         const clientId = document.getElementById('client-id').value.trim().toLowerCase();
+        const password = document.getElementById('client-password').value;
         const errorBox = document.getElementById('error-message');
         const errorText = document.getElementById('error-text');
 
         if (clientId in CLIENT_MAP) {
           errorBox.classList.remove('active');
-          // Redirect to client server dashboard
-          window.location.href = CLIENT_MAP[clientId];
+          // Redirect to client server dashboard with auth fragment
+          window.location.href = CLIENT_MAP[clientId] + "#auth=" + encodeURIComponent(password);
         } else {
-          errorText.textContent = "Client ID '" + document.getElementById('client-id').value.trim() + "' not recognized. Please contact support.";
+          errorText.textContent = "Username '" + document.getElementById('client-id').value.trim() + "' not recognized. Please contact support.";
           errorBox.classList.add('active');
           document.getElementById('client-id').focus();
         }
