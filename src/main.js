@@ -100,6 +100,16 @@ function initFormHandler() {
 
   if (!form) return;
 
+  // Pre-select product from URL parameter if present
+  const urlParams = new URLSearchParams(window.location.search);
+  const productParam = urlParams.get('product');
+  if (productParam) {
+    const productSelect = document.querySelector('#form-product');
+    if (productSelect) {
+      productSelect.value = productParam;
+    }
+  }
+
   form.addEventListener('submit', (e) => {
     e.preventDefault();
 
@@ -108,7 +118,7 @@ function initFormHandler() {
     const email = document.querySelector('#form-email').value.trim();
     const phone = document.querySelector('#form-phone').value.trim();
     const market = document.querySelector('#form-market').value;
-    const preferredApi = document.querySelector('#form-api') ? document.querySelector('#form-api').value : 'Not decided';
+    const productType = document.querySelector('#form-product') ? document.querySelector('#form-product').value : 'Not decided';
     const message = document.querySelector('#form-message').value.trim();
 
     if (!name || !email || !phone || !market || !message) {
@@ -145,7 +155,8 @@ function initFormHandler() {
         email: email,
         phone: phone,
         market: market,
-        preferred_api: preferredApi,
+        product_type: productType,
+        preferred_api: productType,
         message: message
       })
     })

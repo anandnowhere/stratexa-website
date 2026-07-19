@@ -638,15 +638,12 @@
                 </div>
                 
                 <div class="form-group">
-                  <label for="form-api">Preferred API (Optional)</label>
-                  <select id="form-api">
-                    <option value="none">Not decided yet</option>
-                    <option value="zerodha">Zerodha Kite</option>
-                    <option value="dhan">Dhan API</option>
-                    <option value="angel">Angel One SmartAPI</option>
-                    <option value="mt5">MetaTrader 5</option>
-                    <option value="binance">Delta / Crypto API</option>
-                    <option value="other">Other / Custom</option>
+                  <label for="form-product">Product Type <span class="required">*</span></label>
+                  <select id="form-product" required>
+                    <option value="">Select product...</option>
+                    <option value="strategy-automation">Strategy Automation</option>
+                    <option value="cloud-vps">Cloud VPS Care Plans</option>
+                    <option value="custom-enterprise">Custom Enterprise Solutions</option>
                   </select>
                 </div>
               </div>
