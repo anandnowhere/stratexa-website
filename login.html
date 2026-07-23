@@ -898,8 +898,9 @@
 
       // Check if session exists
       const savedUser = sessionStorage.getItem('client_username');
+      const savedPass = sessionStorage.getItem('client_password');
       if (savedUser) {
-        showDashboard(savedUser);
+        showDashboard(savedUser, savedPass);
       }
 
       form.addEventListener('submit', function(e) {
@@ -910,28 +911,98 @@
         if (clientId.length >= 2) {
           errorBox.classList.remove('active');
           sessionStorage.setItem('client_username', clientId);
-          showDashboard(clientId);
+          if (password) sessionStorage.setItem('client_password', password);
+          showDashboard(clientId, password);
         } else {
           errorText.textContent = "Please enter a valid Username.";
           errorBox.classList.add('active');
         }
       });
 
-      function showDashboard(username) {
+      function showDashboard(username, password) {
         loginView.classList.add('hidden');
         dashboardView.classList.remove('hidden');
         welcomeUser.textContent = `Client ID: ${username.toUpperCase()}-0824`;
 
-        if (CLIENT_MAP[username] && CLIENT_MAP[username] !== '#') {
-          vpsLinkBtn.href = CLIENT_MAP[username];
+        const serverUrl = CLIENT_MAP[username];
+        if (serverUrl && serverUrl !== '#') {
+          vpsLinkBtn.href = serverUrl + (password ? "#auth=" + encodeURIComponent(password) : "");
           vpsLinkBtn.style.display = 'inline-flex';
+          
+          // Attempt Dynamic Live API Syncing
+          syncServerBotData(serverUrl, password);
         } else {
           vpsLinkBtn.style.display = 'none';
         }
       }
 
+      async function syncServerBotData(serverUrl, password) {
+        try {
+          // Attempt Login API to obtain token
+          let token = null;
+          if (password) {
+            const authRes = await fetch(`${serverUrl}api/auth/login`, {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ password })
+            });
+            if (authRes.ok) {
+              const authData = await authRes.json();
+              token = authData.token;
+            }
+          }
+
+          const headers = token ? { 'Authorization': `Bearer ${token}` } : {};
+
+          // 1. Fetch Bot Status
+          const statusRes = await fetch(`${serverUrl}api/bot/status`, { headers });
+          if (statusRes.ok) {
+            const statusData = await statusRes.json();
+            if (statusData.state) {
+              updateDashboardFromApi(statusData);
+            }
+          }
+
+          // 2. Fetch BTC / Strategy Performance
+          const perfRes = await fetch(`${serverUrl}api/btc/performance`, { headers });
+          if (perfRes.ok) {
+            const perfData = await perfRes.json();
+            updateHistoryFromApi(perfData);
+          }
+        } catch (err) {
+          console.log("Server bot API live sync notice:", err);
+        }
+      }
+
+      function updateDashboardFromApi(data) {
+        const state = data.state || {};
+        if (state.total_pnl != null) {
+          const pnlEl = document.querySelector('#content-live .dash-metrics-grid .metric-card:nth-child(1) .metric-value');
+          if (pnlEl) {
+            const formattedPnl = (state.total_pnl >= 0 ? '+₹' : '-₹') + Math.abs(state.total_pnl).toLocaleString('en-IN', { minimumFractionDigits: 2 });
+            pnlEl.textContent = formattedPnl;
+            pnlEl.className = 'metric-value ' + (state.total_pnl >= 0 ? 'pos' : '');
+          }
+        }
+        if (state.win_rate != null) {
+          const winEl = document.querySelector('#content-live .dash-metrics-grid .metric-card:nth-child(2) .metric-value');
+          if (winEl) winEl.textContent = (state.win_rate * 100).toFixed(1) + '%';
+        }
+      }
+
+      function updateHistoryFromApi(perf) {
+        if (perf && perf.total_net_pnl != null) {
+          const histPnlEl = document.querySelector('#content-history .dash-metrics-grid .metric-card:nth-child(1) .metric-value');
+          if (histPnlEl) {
+            const formatted = (perf.total_net_pnl >= 0 ? '+₹' : '-₹') + Math.abs(perf.total_net_pnl).toLocaleString('en-IN', { minimumFractionDigits: 2 });
+            histPnlEl.textContent = formatted;
+          }
+        }
+      }
+
       logoutBtn.addEventListener('click', function() {
         sessionStorage.removeItem('client_username');
+        sessionStorage.removeItem('client_password');
         dashboardView.classList.add('hidden');
         loginView.classList.remove('hidden');
       });
