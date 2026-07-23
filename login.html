@@ -881,6 +881,32 @@
         'demo': '#'
       };
 
+      // CLIENT SPECIFIC PORTFOLIO METRICS MAP
+      const CLIENT_DATA = {
+        'anand': {
+          clientId: 'ANAND-0824',
+          todayPnl: '+₹4,500.00',
+          todaySub: 'Up +1.8% on capital today',
+          winRate: '66.7%',
+          winRateSub: '4 Wins / 2 Exit Losses',
+          margin: '₹2,45,000',
+          freeMargin: 'Available Free Margin: ₹1,55,000',
+          latency: '38 ms',
+          openPosTitle: 'Active Open Position: NIFTY 24300 CE / 24400 CE Bear Call Spread',
+          openPosBadge: 'TRAILING STOP-LOSS LOCKED (+₹2,500 FLOOR)',
+          entryCredit: '₹45.20',
+          cmp: '₹38.80',
+          unrealizedPnl: '+₹3,200.00',
+          targetExit: '₹5.00 (Theta Max)',
+          trades: [
+            { time: '09:16:04 AM', strat: 'AlphaTrend Pro', symbol: 'NIFTY 24350 PE Spread', type: 'SELL CREDIT', typeBadge: 'badge-buy', qty: '600 (12 Lots)', entry: '₹52.40', exit: '₹31.70', pnl: '+₹12,400.00', pnlStyle: 'color: var(--accent-green-bright); font-weight: 800;', status: 'CLOSED (Target)', statusStyle: 'color: var(--accent-green-bright); font-weight: 700;' },
+            { time: '10:45:22 AM', strat: 'AlphaTrend Pro', symbol: 'BANKNIFTY 52200 CE', type: 'BUY CALL', typeBadge: 'badge-sell', qty: '300 (20 Lots)', entry: '₹185.00', exit: '₹137.60', pnl: '-₹14,200.00', pnlStyle: 'color: #ef4444; font-weight: 800;', status: 'CLOSED (SL Hit)', statusStyle: 'color: #ef4444; font-weight: 700;' },
+            { time: '01:15:10 PM', strat: 'AlphaTrend Pro', symbol: 'NIFTY 24400 PE Spread', type: 'SELL CREDIT', typeBadge: 'badge-buy', qty: '600 (12 Lots)', entry: '₹38.90', exit: '₹28.40', pnl: '+₹6,300.00', pnlStyle: 'color: var(--accent-green-bright); font-weight: 800;', status: 'CLOSED (Trailing)', statusStyle: 'color: var(--accent-green-bright); font-weight: 700;' },
+            { time: '02:20:45 PM', strat: 'AlphaTrend Pro', symbol: 'NIFTY 24300 CE Spread', type: 'SELL CREDIT', typeBadge: 'badge-buy', qty: '500 (10 Lots)', entry: '₹45.20', exit: '- (Open)', pnl: '+₹3,200.00', pnlStyle: 'color: var(--accent-cyan); font-weight: 800;', status: 'OPEN RUNNING', statusStyle: 'color: var(--accent-cyan); font-weight: 700;' }
+          ]
+        }
+      };
+
       const loginView = document.getElementById('login-view');
       const dashboardView = document.getElementById('dashboard-view');
       const form = document.getElementById('portal-form');
@@ -920,9 +946,44 @@
       function showDashboard(username) {
         loginView.classList.add('hidden');
         dashboardView.classList.remove('hidden');
+
+        const clientKey = username in CLIENT_DATA ? username : 'anand';
+        const data = CLIENT_DATA[clientKey];
+
         welcomeUser.textContent = `Client ID: ${username.toUpperCase()}-0824`;
 
-        const serverUrl = CLIENT_MAP[username];
+        // Update Today's Realized PnL to +₹4,500.00 for Anand
+        if (data) {
+          const pnlVal = document.querySelector('#content-live .dash-metrics-grid .metric-card:nth-child(1) .metric-value');
+          const pnlSub = document.querySelector('#content-live .dash-metrics-grid .metric-card:nth-child(1) .metric-sub');
+          if (pnlVal) pnlVal.textContent = data.todayPnl;
+          if (pnlSub) pnlSub.innerHTML = `<i class="fa-solid fa-arrow-trend-up" style="color: var(--accent-green-bright);"></i> ${data.todaySub}`;
+
+          const winVal = document.querySelector('#content-live .dash-metrics-grid .metric-card:nth-child(2) .metric-value');
+          const winSub = document.querySelector('#content-live .dash-metrics-grid .metric-card:nth-child(2) .metric-sub');
+          if (winVal) winVal.textContent = data.winRate;
+          if (winSub) winSub.textContent = data.winRateSub;
+
+          // Render Trade Logs Table
+          const tbody = document.querySelector('#content-live .report-table tbody');
+          if (tbody && data.trades) {
+            tbody.innerHTML = data.trades.map(t => `
+              <tr>
+                <td>${t.time}</td>
+                <td>${t.strat}</td>
+                <td>${t.symbol}</td>
+                <td><span class="${t.typeBadge}">${t.type}</span></td>
+                <td>${t.qty}</td>
+                <td>${t.entry}</td>
+                <td>${t.exit}</td>
+                <td style="${t.pnlStyle}">${t.pnl}</td>
+                <td><span style="${t.statusStyle}">${t.status}</span></td>
+              </tr>
+            `).join('');
+          }
+        }
+
+        const serverUrl = CLIENT_MAP[username] || CLIENT_MAP['anand'];
         if (serverUrl && serverUrl !== '#') {
           vpsLinkBtn.href = serverUrl;
           vpsLinkBtn.style.display = 'inline-flex';
