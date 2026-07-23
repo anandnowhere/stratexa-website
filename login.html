@@ -881,28 +881,27 @@
         'demo': '#'
       };
 
-      // CLIENT SPECIFIC PORTFOLIO METRICS MAP
+      // CLIENT SPECIFIC PORTFOLIO METRICS MAP (MATCHING REAL BROKER SNAPSHOT)
       const CLIENT_DATA = {
         'anand': {
           clientId: 'ANAND-0824',
-          todayPnl: '+₹4,500.00',
-          todaySub: 'Up +1.8% on capital today',
-          winRate: '66.7%',
-          winRateSub: '4 Wins / 2 Exit Losses',
+          todayPnl: '+₹4,546.75',
+          todaySub: 'Day\'s MTM (Broker Confirmed)',
+          winRate: '100.0%',
+          winRateSub: '1 Signal Executed / Target Booked',
           margin: '₹2,45,000',
           freeMargin: 'Available Free Margin: ₹1,55,000',
           latency: '38 ms',
-          openPosTitle: 'Active Open Position: NIFTY 24300 CE / 24400 CE Bear Call Spread',
-          openPosBadge: 'TRAILING STOP-LOSS LOCKED (+₹2,500 FLOOR)',
-          entryCredit: '₹45.20',
-          cmp: '₹38.80',
-          unrealizedPnl: '+₹3,200.00',
-          targetExit: '₹5.00 (Theta Max)',
+          openPosTitle: 'Active Open Position: All Positions Closed & Profits Booked',
+          openPosBadge: 'DAY\'S TARGET BOOKED (+₹4,546.75)',
+          entryCredit: '₹0.00',
+          cmp: '₹0.00',
+          unrealizedPnl: '₹0.00',
+          targetExit: 'All Closed (0 Qty)',
           trades: [
-            { time: '09:16:04 AM', strat: 'AlphaTrend Pro', symbol: 'NIFTY 24350 PE Spread', type: 'SELL CREDIT', typeBadge: 'badge-buy', qty: '600 (12 Lots)', entry: '₹52.40', exit: '₹31.70', pnl: '+₹12,400.00', pnlStyle: 'color: var(--accent-green-bright); font-weight: 800;', status: 'CLOSED (Target)', statusStyle: 'color: var(--accent-green-bright); font-weight: 700;' },
-            { time: '10:45:22 AM', strat: 'AlphaTrend Pro', symbol: 'NIFTY 24450 CE Spread', type: 'SELL CREDIT', typeBadge: 'badge-sell', qty: '600 (12 Lots)', entry: '₹42.00', exit: '₹65.50', pnl: '-₹14,100.00', pnlStyle: 'color: #ef4444; font-weight: 800;', status: 'CLOSED (SL Hit)', statusStyle: 'color: #ef4444; font-weight: 700;' },
-            { time: '01:15:10 PM', strat: 'AlphaTrend Pro', symbol: 'NIFTY 24400 PE Spread', type: 'SELL CREDIT', typeBadge: 'badge-buy', qty: '600 (12 Lots)', entry: '₹38.90', exit: '₹28.57', pnl: '+₹6,200.00', pnlStyle: 'color: var(--accent-green-bright); font-weight: 800;', status: 'CLOSED (Trailing)', statusStyle: 'color: var(--accent-green-bright); font-weight: 700;' },
-            { time: '02:20:45 PM', strat: 'AlphaTrend Pro', symbol: 'NIFTY 24300 CE Spread', type: 'SELL CREDIT', typeBadge: 'badge-buy', qty: '500 (10 Lots)', entry: '₹45.20', exit: '- (Open)', pnl: '+₹3,200.00', pnlStyle: 'color: var(--accent-cyan); font-weight: 800;', status: 'OPEN RUNNING', statusStyle: 'color: var(--accent-cyan); font-weight: 700;' }
+            { time: '09:16:15 AM', strat: 'AlphaTrend Pro', symbol: 'NIFTY 28JUL26 23950 PE', type: 'MIS BUY', typeBadge: 'badge-buy', qty: '0 QTY (Closed)', entry: 'Avg 0.00', exit: 'LTP 181.25', pnl: '+₹3,201.25', pnlStyle: 'color: var(--accent-green-bright); font-weight: 800;', status: 'CLOSED (Target)', statusStyle: 'color: var(--accent-green-bright); font-weight: 700;' },
+            { time: '09:16:15 AM', strat: 'AlphaTrend Pro', symbol: 'NIFTY 28JUL26 24050 CE', type: 'MIS BUY', typeBadge: 'badge-buy', qty: '0 QTY (Closed)', entry: 'Avg 0.00', exit: 'LTP 56.05', pnl: '+₹1,664.00', pnlStyle: 'color: var(--accent-green-bright); font-weight: 800;', status: 'CLOSED (Target)', statusStyle: 'color: var(--accent-green-bright); font-weight: 700;' },
+            { time: '09:16:15 AM', strat: 'AlphaTrend Pro', symbol: 'NIFTY 24350 CE', type: 'MIS BUY', typeBadge: 'badge-sell', qty: '0 QTY (Closed)', entry: 'Avg 0.00', exit: 'LTP 13.35', pnl: '-₹318.50', pnlStyle: 'color: #ef4444; font-weight: 800;', status: 'CLOSED (Hedge)', statusStyle: 'color: #ef4444; font-weight: 700;' }
           ]
         }
       };
