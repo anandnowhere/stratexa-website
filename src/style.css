@@ -263,41 +263,50 @@ p {
 }
 
 .logo-text {
-  display: flex;
+  display: inline-flex;
   flex-direction: column;
+  align-items: flex-start;
 }
 
 .brand-name {
   font-family: var(--font-heading);
-  font-size: 1.5rem;
+  font-size: 1.45rem;
   font-weight: 800;
   color: var(--text-primary);
-  letter-spacing: 0.05em;
-  line-height: 1.1;
+  letter-spacing: 0.04em;
+  line-height: 1;
 }
 
 .brand-tagline {
-  font-size: 0.55rem;
-  font-weight: 600;
-  color: var(--accent-green);
-  letter-spacing: 0.22em;
-  margin-top: 2px;
+  font-size: 0.51rem;
+  font-weight: 700;
+  color: var(--accent-green-bright);
+  letter-spacing: 0.132em;
+  margin-top: 4px;
+  text-transform: uppercase;
+  white-space: nowrap;
+  line-height: 1;
+  display: block;
+  width: 100%;
 }
 
 .nav-menu {
   display: flex;
   align-items: center;
-  gap: 20px; /* Reduced from 32px to prevent wrapping on mid-size screens */
+  justify-content: center;
+  gap: 18px;
+  flex: 1;
+  margin: 0 20px;
 }
 
 .nav-link {
   font-family: var(--font-heading);
-  font-size: 0.9rem; /* Slightly reduced from 0.95rem */
+  font-size: 0.9rem;
   font-weight: 500;
   color: var(--text-secondary);
   text-decoration: none;
   transition: color 0.3s ease;
-  white-space: nowrap; /* Prevent menu links from wrapping to multiple lines */
+  white-space: nowrap;
 }
 
 .nav-link:hover {
@@ -305,15 +314,77 @@ p {
 }
 
 .btn-nav {
-  padding: 8px 16px;
+  padding: 8px 18px;
   font-size: 0.85rem;
   white-space: nowrap;
 }
 
+/* --- Special Glowing Strategies Nav Link --- */
+.nav-link-special {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px;
+  background: linear-gradient(135deg, rgba(16, 185, 129, 0.22) 0%, rgba(6, 182, 212, 0.28) 100%);
+  border: 1.5px solid var(--accent-green-bright);
+  border-radius: 20px;
+  color: #ffffff !important;
+  font-weight: 700 !important;
+  text-shadow: 0 0 10px rgba(16, 185, 129, 0.5);
+  box-shadow: 0 0 18px rgba(16, 185, 129, 0.4);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  overflow: hidden;
+  text-decoration: none;
+}
+
+.nav-link-special::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+  animation: shineSweep 3s infinite;
+}
+
+.nav-link-special:hover {
+  transform: translateY(-2px) scale(1.05);
+  box-shadow: 0 0 25px rgba(16, 185, 129, 0.65), 0 0 12px rgba(6, 182, 212, 0.6);
+  border-color: #ffffff;
+}
+
+.nav-badge-hot {
+  background: linear-gradient(135deg, #ef4444 0%, #f59e0b 100%);
+  color: #ffffff;
+  font-size: 0.65rem;
+  font-weight: 800;
+  padding: 2px 6px;
+  border-radius: 8px;
+  letter-spacing: 0.5px;
+  display: inline-flex;
+  align-items: center;
+  box-shadow: 0 2px 8px rgba(239, 68, 68, 0.5);
+  animation: pulseBadge 1.8s infinite alternate ease-in-out;
+}
+
+@keyframes shineSweep {
+  0% { left: -100%; }
+  30% { left: 100%; }
+  100% { left: 100%; }
+}
+
+@keyframes pulseBadge {
+  0% { transform: scale(1); box-shadow: 0 2px 8px rgba(239, 68, 68, 0.5); }
+  100% { transform: scale(1.12); box-shadow: 0 4px 14px rgba(245, 158, 11, 0.85); }
+}
+
 /* Intermediate screen adjustments to prevent nav wrap */
-@media (min-width: 1025px) and (max-width: 1280px) {
+@media (min-width: 1025px) and (max-width: 1360px) {
   .nav-menu {
     gap: 12px;
+    margin: 0 10px;
   }
   .nav-link {
     font-size: 0.82rem;
@@ -1622,6 +1693,16 @@ textarea {
     font-size: 1.05rem;
   }
   
+  .nav-link-special {
+    margin: 8px 0;
+    width: 85%;
+    max-width: 280px;
+    justify-content: center;
+    font-size: 1.05rem;
+    padding: 10px 20px;
+    border-bottom: none !important;
+  }
+  
   /* Form responsiveness */
   .form-row {
     grid-template-columns: 1fr;
@@ -1640,6 +1721,14 @@ textarea {
 }
 
 @media (max-width: 480px) {
+  .brand-name {
+    font-size: 1.2rem;
+  }
+  .brand-tagline {
+    font-size: 0.42rem;
+    letter-spacing: 0.125em;
+  }
+
   .tech-grid {
     grid-template-columns: repeat(2, 1fr);
   }
@@ -2039,6 +2128,324 @@ textarea {
 .theme-light .inclusion-card:hover {
   box-shadow: 0 12px 30px rgba(0, 0, 0, 0.05);
 }
+
+/* --- Social Proof & Testimonials Section Styles --- */
+.testimonials-section {
+  padding: 90px 0;
+  border-top: 1px solid var(--border-color);
+  background: linear-gradient(180deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
+}
+
+.testimonials-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 24px;
+  margin-top: 40px;
+}
+
+.testimonial-card {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  padding: 28px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.testimonial-card:hover {
+  border-color: var(--accent-green);
+  transform: translateY(-4px);
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.25);
+}
+
+.testimonial-stars {
+  color: #f59e0b;
+  font-size: 0.9rem;
+  margin-bottom: 14px;
+  display: flex;
+  gap: 4px;
+}
+
+.testimonial-quote {
+  color: var(--text-primary);
+  font-size: 0.95rem;
+  line-height: 1.65;
+  margin-bottom: 24px;
+  font-style: italic;
+}
+
+.testimonial-user {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  border-top: 1px solid var(--border-color);
+  padding-top: 16px;
+}
+
+.user-avatar-badge {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: rgba(16, 185, 129, 0.12);
+  color: var(--accent-green-bright);
+  border: 1px solid rgba(16, 185, 129, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 0.9rem;
+}
+
+.user-details h5 {
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.user-details span {
+  font-size: 0.78rem;
+  color: var(--text-secondary);
+  display: block;
+}
+
+/* Security Trust Architecture Grid */
+.security-trust-bar {
+  margin-top: 50px;
+  background: var(--bg-tertiary);
+  border: 1px solid var(--border-color-glow);
+  border-radius: 12px;
+  padding: 30px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 24px;
+}
+
+.security-trust-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+}
+
+.security-trust-item i {
+  font-size: 1.5rem;
+  color: var(--accent-green-bright);
+  background: rgba(16, 185, 129, 0.12);
+  padding: 12px;
+  border-radius: 8px;
+}
+
+.security-trust-item h5 {
+  font-size: 0.95rem;
+  margin-bottom: 4px;
+  color: var(--text-primary);
+}
+
+.security-trust-item p {
+  font-size: 0.82rem;
+  color: var(--text-secondary);
+  line-height: 1.4;
+}
+
+/* --- Strategy ROI & Automation Cost Calculator Widget --- */
+.roi-calculator-section {
+  padding: 90px 0;
+  border-top: 1px solid var(--border-color);
+  background: var(--bg-primary);
+}
+
+.calculator-card {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: 16px;
+  padding: 40px;
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 40px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+}
+
+@media (max-width: 991px) {
+  .calculator-card {
+    grid-template-columns: 1fr;
+    padding: 24px;
+  }
+}
+
+.calculator-inputs {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.calc-group label {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 8px;
+}
+
+.calc-select, .calc-range {
+  width: 100%;
+  padding: 12px 16px;
+  background: var(--bg-primary);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  color: var(--text-primary);
+  font-family: var(--font-body);
+  font-size: 0.92rem;
+  outline: none;
+  transition: border-color 0.2s ease;
+}
+
+.calc-select:focus {
+  border-color: var(--accent-green);
+}
+
+.calculator-results {
+  background: linear-gradient(145deg, rgba(16, 185, 129, 0.08) 0%, rgba(6, 182, 212, 0.04) 100%);
+  border: 1px solid rgba(16, 185, 129, 0.25);
+  border-radius: 12px;
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  text-align: center;
+}
+
+.result-box-hero {
+  margin-bottom: 24px;
+}
+
+.result-label {
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--text-secondary);
+  margin-bottom: 6px;
+}
+
+.result-cost-val {
+  font-size: 2.4rem;
+  font-family: var(--font-heading);
+  font-weight: 800;
+  color: var(--accent-green-bright);
+}
+
+.result-stats-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-bottom: 28px;
+}
+
+.result-stat-card {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  padding: 16px 12px;
+}
+
+.result-stat-val {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--accent-cyan);
+}
+
+.result-stat-label {
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+  margin-top: 2px;
+}
+
+.calc-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* --- UPI & Indian Payment Messaging Badges --- */
+.upi-payment-bar {
+  margin-top: 36px;
+  background: rgba(16, 185, 129, 0.05);
+  border: 1px dashed rgba(16, 185, 129, 0.3);
+  border-radius: 12px;
+  padding: 20px 24px;
+  text-align: center;
+}
+
+.upi-payment-header {
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  color: var(--accent-green-bright);
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.payment-methods-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.pm-pill {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: 20px;
+  padding: 6px 14px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.pm-pill i {
+  color: var(--accent-green);
+}
+
+.upi-assurances {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  margin-top: 8px;
+}
+
+.upi-assurances span {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.scope-pill-tag {
+  background: rgba(16, 185, 129, 0.12);
+  color: var(--accent-green-bright);
+  border: 1px solid rgba(16, 185, 129, 0.3);
+  padding: 4px 10px;
+  border-radius: 50px;
+  font-size: 0.72rem;
+  font-weight: 600;
+  margin: 6px 0 12px;
+  display: inline-block;
+}
+
 
 
 

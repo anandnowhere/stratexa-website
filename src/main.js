@@ -5,6 +5,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initFormHandler();
   initLiveChart();
   initStickyCTA();
+  initRoiCalculator();
 });
 
 // --- Navbar Interactivity ---
@@ -113,16 +114,19 @@ function initFormHandler() {
   form.addEventListener('submit', (e) => {
     e.preventDefault();
 
-    // Basic Validation
+    // Validation for simplified 3-field form
     const name = document.querySelector('#form-name').value.trim();
-    const email = document.querySelector('#form-email').value.trim();
     const phone = document.querySelector('#form-phone').value.trim();
-    const market = document.querySelector('#form-market').value;
-    const productType = document.querySelector('#form-product') ? document.querySelector('#form-product').value : 'Not decided';
     const message = document.querySelector('#form-message').value.trim();
+    const emailEl = document.querySelector('#form-email');
+    const email = emailEl ? emailEl.value.trim() : '';
+    const marketEl = document.querySelector('#form-market');
+    const market = marketEl ? marketEl.value : 'Indian Stocks & F&O';
+    const productTypeEl = document.querySelector('#form-product');
+    const productType = productTypeEl ? productTypeEl.value : 'Strategy Automation';
 
-    if (!name || !email || !phone || !market || !message) {
-      alert('Please fill out all required fields.');
+    if (!name || !phone || !message) {
+      alert('Please fill out all required fields (Name, Phone/WhatsApp, and Strategy Idea).');
       return;
     }
 
@@ -498,3 +502,73 @@ function initStickyCTA() {
     }
   });
 }
+
+// --- Strategy ROI & Automation Cost Calculator Interactivity ---
+function initRoiCalculator() {
+  const complexityEl = document.querySelector('#calc-complexity');
+  const brokersEl = document.querySelector('#calc-brokers');
+  const frequencyEl = document.querySelector('#calc-frequency');
+  const hostingEl = document.querySelector('#calc-hosting');
+  
+  const costValEl = document.querySelector('#calc-cost-display');
+  const hoursValEl = document.querySelector('#calc-hours-display');
+  const latencyValEl = document.querySelector('#calc-latency-display');
+  const waBtn = document.querySelector('#calc-wa-btn');
+  const fillFormBtn = document.querySelector('#calc-fill-form-btn');
+
+  if (!complexityEl || !costValEl) return;
+
+  function calculate() {
+    const complexityBase = parseInt(complexityEl.value) || 4999;
+    const brokerCount = parseInt(brokersEl.value) || 1;
+    const frequency = parseInt(frequencyEl.value) || 1;
+    const hostingCost = parseInt(hostingEl.value) || 0;
+
+    let totalCost = complexityBase;
+    if (brokerCount > 1) {
+      totalCost += (brokerCount - 1) * 2500;
+    }
+    totalCost += hostingCost;
+
+    let hoursSaved = 25;
+    if (complexityBase >= 9999) hoursSaved += 15;
+    if (frequency > 1) hoursSaved += frequency * 10;
+
+    let latencyGain = 750;
+    if (frequency >= 2) latencyGain = 1200;
+    if (complexityBase >= 14999) latencyGain = 1800;
+
+    const formattedCost = `₹${totalCost.toLocaleString('en-IN')}`;
+    costValEl.textContent = formattedCost;
+    if (hoursValEl) hoursValEl.textContent = `~${hoursSaved} hrs/mo`;
+    if (latencyValEl) latencyValEl.textContent = `~${latencyGain}ms faster`;
+
+    const complexityText = complexityEl.options[complexityEl.selectedIndex].text;
+    const specSummary = `Hi Stratexa, I estimated my strategy automation cost on your website:\n- Type: ${complexityText}\n- Brokers: ${brokerCount}\n- Frequency: ${frequencyEl.options[frequencyEl.selectedIndex].text}\n- Estimated Cost: ${formattedCost}`;
+
+    if (waBtn) {
+      waBtn.href = `https://wa.me/919150087233?text=${encodeURIComponent(specSummary)}`;
+    }
+
+    if (fillFormBtn) {
+      fillFormBtn.onclick = (e) => {
+        e.preventDefault();
+        const msgField = document.querySelector('#form-message');
+        if (msgField) {
+          msgField.value = `[Calculated Spec] ${complexityText} with ${brokerCount} broker(s). Estimated Budget: ${formattedCost}.`;
+        }
+        const consultSection = document.querySelector('#consultation');
+        if (consultSection) {
+          consultSection.scrollIntoView({ behavior: 'smooth' });
+        }
+      };
+    }
+  }
+
+  [complexityEl, brokersEl, frequencyEl, hostingEl].forEach(el => {
+    if (el) el.addEventListener('change', calculate);
+  });
+
+  calculate();
+}
+
