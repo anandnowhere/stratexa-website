@@ -687,15 +687,15 @@
               </tr>
             </thead>
             <tbody id="history-log-body">
-              <!-- July 2026 Summary Row -->
+                            <!-- July 2026 Summary Row -->
               <tr>
                 <td style="font-weight: 700; color: #ffffff;">July 2026 (MTD)</td>
                 <td>AlphaTrend Pro (NIFTY F&amp;O)</td>
-                <td style="font-family: 'JetBrains Mono', monospace;">28</td>
-                <td style="font-weight: 600; color: var(--accent-green-bright);">78.6%</td>
-                <td class="pnl-plus">+₹34,800.00</td>
-                <td style="color: var(--text-secondary);">₹1,420.00</td>
-                <td class="pnl-plus">+₹33,380.00</td>
+                <td id="sum-jul26-trades" style="font-family: 'JetBrains Mono', monospace;">20</td>
+                <td id="sum-jul26-winrate" style="font-weight: 600; color: var(--accent-green-bright);">60.0%</td>
+                <td id="sum-jul26-gross" class="pnl-plus">+₹14,534.82</td>
+                <td style="color: var(--text-secondary);">₹780.00</td>
+                <td id="sum-jul26-net" class="pnl-plus">+₹13,754.82</td>
                 <td>
                   <button onclick="toggleAccordion('jul26')" class="expand-btn">
                     <span id="acc-btn-jul26">Expand [▼]</span>
@@ -728,15 +728,15 @@
                 </td>
               </tr>
 
-              <!-- June 2026 Summary Row -->
+                            <!-- June 2026 Summary Row -->
               <tr>
                 <td style="font-weight: 700; color: #ffffff;">June 2026</td>
                 <td>AlphaTrend Pro (NIFTY F&amp;O)</td>
-                <td style="font-family: 'JetBrains Mono', monospace;">36</td>
-                <td style="font-weight: 600; color: var(--accent-green-bright);">77.2%</td>
-                <td class="pnl-plus">+₹58,400.00</td>
-                <td style="color: var(--text-secondary);">₹2,100.00</td>
-                <td class="pnl-plus">+₹56,300.00</td>
+                <td id="sum-jun26-trades" style="font-family: 'JetBrains Mono', monospace;">22</td>
+                <td id="sum-jun26-winrate" style="font-weight: 600; color: var(--accent-green-bright);">55.0%</td>
+                <td id="sum-jun26-gross" class="pnl-plus">+₹13,158.45</td>
+                <td style="color: var(--text-secondary);">₹910.00</td>
+                <td id="sum-jun26-net" class="pnl-plus">+₹12,248.45</td>
                 <td>
                   <button onclick="toggleAccordion('jun26')" class="expand-btn">
                     <span id="acc-btn-jun26">Expand [▼]</span>
@@ -769,15 +769,15 @@
                 </td>
               </tr>
 
-              <!-- May 2026 Summary Row -->
+                            <!-- May 2026 Summary Row -->
               <tr>
                 <td style="font-weight: 700; color: #ffffff;">May 2026</td>
                 <td>AlphaTrend Pro (NIFTY F&amp;O)</td>
-                <td style="font-family: 'JetBrains Mono', monospace;">31</td>
-                <td style="font-weight: 600; color: var(--accent-green-bright);">73.7%</td>
-                <td class="pnl-plus">+₹42,100.00</td>
-                <td style="color: var(--text-secondary);">₹1,850.00</td>
-                <td class="pnl-plus">+₹40,250.00</td>
+                <td id="sum-may26-trades" style="font-family: 'JetBrains Mono', monospace;">23</td>
+                <td id="sum-may26-winrate" style="font-weight: 600; color: #f87171;">44.4%</td>
+                <td id="sum-may26-gross" class="pnl-minus">-₹5,550.05</td>
+                <td style="color: var(--text-secondary);">₹980.00</td>
+                <td id="sum-may26-net" class="pnl-minus">-₹6,530.05</td>
                 <td>
                   <button onclick="toggleAccordion('may26')" class="expand-btn">
                     <span id="acc-btn-may26">Expand [▼]</span>
@@ -1153,6 +1153,22 @@
               <td><span class="${d.tagClass}">${d.status}</span></td>
             </tr>
           `).join('');
+        }
+
+        
+        // Update Overview Summary Table Rows dynamically
+        const sJulNet = document.getElementById('sum-jul26-net');
+        const sJunNet = document.getElementById('sum-jun26-net');
+        const sMayNet = document.getElementById('sum-may26-net');
+
+        if (username === 'mohan') {
+          if (sJulNet) { sJulNet.textContent = '+₹19,868.07'; sJulNet.className = 'pnl-plus'; }
+          if (sJunNet) { sJunNet.textContent = '+₹17,692.20'; sJunNet.className = 'pnl-plus'; }
+          if (sMayNet) { sMayNet.textContent = '-₹9,432.30'; sMayNet.className = 'pnl-minus'; }
+        } else {
+          if (sJulNet) { sJulNet.textContent = '+₹13,754.82'; sJulNet.className = 'pnl-plus'; }
+          if (sJunNet) { sJunNet.textContent = '+₹12,248.45'; sJunNet.className = 'pnl-plus'; }
+          if (sMayNet) { sMayNet.textContent = '-₹6,530.05'; sMayNet.className = 'pnl-minus'; }
         }
 
         renderTradeLog(username);
