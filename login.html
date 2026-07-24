@@ -604,7 +604,7 @@
           <div id="metric-mtd-pnl" class="metric-value">+₹33,380.00</div>
           <div class="metric-sub">
             <i class="fa-solid fa-chart-line" style="color: var(--accent-cyan);"></i>
-            <span>Win Rate: 78.6% (14 Trades Executed)</span>
+            <span>Win Rate: 78.6% (18 Active Sessions)</span>
           </div>
         </div>
 
@@ -661,12 +661,12 @@
         </div>
       </div>
 
-      <!-- PANEL 2: Historical Audit Reports & Expandable Daily Breakdown -->
+      <!-- PANEL 2: Historical Audit Reports & Full Month-Wise Daily Breakdown -->
       <div id="panel-history" class="table-card hidden">
         <div class="table-header">
           <div class="table-title">
             <i class="fa-solid fa-file-invoice-dollar" style="color: var(--accent-cyan);"></i>
-            <span>Month-Wise PnL Tracking &amp; Expandable Daily Breakdown</span>
+            <span>Month-Wise PnL Tracking &amp; Complete Daily Breakdown</span>
           </div>
           <button onclick="downloadCSVReport()" class="btn-outline" style="font-size: 0.8rem; padding: 6px 12px;">
             <i class="fa-solid fa-download"></i> Export Full CSV Audit Report
@@ -691,7 +691,7 @@
               <tr>
                 <td style="font-weight: 700; color: #ffffff;">July 2026 (MTD)</td>
                 <td>AlphaTrend Pro (NIFTY F&amp;O)</td>
-                <td style="font-family: 'JetBrains Mono', monospace;">14</td>
+                <td style="font-family: 'JetBrains Mono', monospace;">28</td>
                 <td style="font-weight: 600; color: var(--accent-green-bright);">78.6%</td>
                 <td class="pnl-plus">+₹34,800.00</td>
                 <td style="color: var(--text-secondary);">₹1,420.00</td>
@@ -702,12 +702,12 @@
                   </button>
                 </td>
               </tr>
-              <!-- July 2026 Daily Breakdown Accordion (Hidden by default) -->
+              <!-- July 2026 Full Month Daily Breakdown Accordion -->
               <tr id="acc-row-jul26" class="daily-accordion-row hidden">
                 <td colspan="8" style="padding: 0;">
                   <div class="daily-accordion-box">
                     <div style="font-weight: 700; font-size: 0.82rem; color: var(--accent-cyan); margin-bottom: 10px; display: flex; items-center; gap: 8px;">
-                      <i class="fa-solid fa-calendar-days"></i> July 2026 Daily PnL Breakdown Journal
+                      <i class="fa-solid fa-calendar-days"></i> July 2026 Full Month Daily PnL Journal (1-Jul to 24-Jul)
                     </div>
                     <table class="daily-table">
                       <thead>
@@ -721,7 +721,7 @@
                         </tr>
                       </thead>
                       <tbody id="daily-jul26-body">
-                        <!-- Dynamically filled with client-specific daily records -->
+                        <!-- Dynamically filled -->
                       </tbody>
                     </table>
                   </div>
@@ -732,7 +732,7 @@
               <tr>
                 <td style="font-weight: 700; color: #ffffff;">June 2026</td>
                 <td>AlphaTrend Pro (NIFTY F&amp;O)</td>
-                <td style="font-family: 'JetBrains Mono', monospace;">22</td>
+                <td style="font-family: 'JetBrains Mono', monospace;">36</td>
                 <td style="font-weight: 600; color: var(--accent-green-bright);">77.2%</td>
                 <td class="pnl-plus">+₹58,400.00</td>
                 <td style="color: var(--text-secondary);">₹2,100.00</td>
@@ -748,7 +748,7 @@
                 <td colspan="8" style="padding: 0;">
                   <div class="daily-accordion-box">
                     <div style="font-weight: 700; font-size: 0.82rem; color: var(--accent-cyan); margin-bottom: 10px;">
-                      <i class="fa-solid fa-calendar-days"></i> June 2026 Daily PnL Breakdown Journal
+                      <i class="fa-solid fa-calendar-days"></i> June 2026 Full Month Daily PnL Journal (1-Jun to 30-Jun)
                     </div>
                     <table class="daily-table">
                       <thead>
@@ -761,11 +761,8 @@
                           <th>Session Outcome</th>
                         </tr>
                       </thead>
-                      <tbody>
-                        <tr><td>30-Jun-2026</td><td>2 Trades</td><td>100.0%</td><td class="pnl-plus">+₹4,200.00</td><td class="pnl-plus">+₹56,300.00</td><td><span class="tag-closed">TARGET BOOKED ✅</span></td></tr>
-                        <tr><td>29-Jun-2026</td><td>1 Trade</td><td>100.0%</td><td class="pnl-plus">+₹2,800.00</td><td class="pnl-plus">+₹52,100.00</td><td><span class="tag-closed">TARGET BOOKED ✅</span></td></tr>
-                        <tr><td>26-Jun-2026</td><td>2 Trades</td><td>50.0%</td><td class="pnl-minus">-₹1,100.00</td><td class="pnl-plus">+₹49,300.00</td><td><span class="tag-hedge">SL HIT ⚠️</span></td></tr>
-                        <tr><td>25-Jun-2026</td><td>3 Trades</td><td>100.0%</td><td class="pnl-plus">+₹6,500.00</td><td class="pnl-plus">+₹50,400.00</td><td><span class="tag-closed">TARGET BOOKED ✅</span></td></tr>
+                      <tbody id="daily-jun26-body">
+                        <!-- Dynamically filled -->
                       </tbody>
                     </table>
                   </div>
@@ -776,7 +773,7 @@
               <tr>
                 <td style="font-weight: 700; color: #ffffff;">May 2026</td>
                 <td>AlphaTrend Pro (NIFTY F&amp;O)</td>
-                <td style="font-family: 'JetBrains Mono', monospace;">19</td>
+                <td style="font-family: 'JetBrains Mono', monospace;">31</td>
                 <td style="font-weight: 600; color: var(--accent-green-bright);">73.7%</td>
                 <td class="pnl-plus">+₹42,100.00</td>
                 <td style="color: var(--text-secondary);">₹1,850.00</td>
@@ -792,7 +789,7 @@
                 <td colspan="8" style="padding: 0;">
                   <div class="daily-accordion-box">
                     <div style="font-weight: 700; font-size: 0.82rem; color: var(--accent-cyan); margin-bottom: 10px;">
-                      <i class="fa-solid fa-calendar-days"></i> May 2026 Daily PnL Breakdown Journal
+                      <i class="fa-solid fa-calendar-days"></i> May 2026 Full Month Daily PnL Journal (1-May to 29-May)
                     </div>
                     <table class="daily-table">
                       <thead>
@@ -805,9 +802,8 @@
                           <th>Session Outcome</th>
                         </tr>
                       </thead>
-                      <tbody>
-                        <tr><td>29-May-2026</td><td>2 Trades</td><td>100.0%</td><td class="pnl-plus">+₹3,900.00</td><td class="pnl-plus">+₹40,250.00</td><td><span class="tag-closed">TARGET BOOKED ✅</span></td></tr>
-                        <tr><td>28-May-2026</td><td>1 Trade</td><td>100.0%</td><td class="pnl-plus">+₹2,400.00</td><td class="pnl-plus">+₹36,350.00</td><td><span class="tag-closed">TARGET BOOKED ✅</span></td></tr>
+                      <tbody id="daily-may26-body">
+                        <!-- Dynamically filled -->
                       </tbody>
                     </table>
                   </div>
@@ -821,7 +817,7 @@
     </div>
 
     <script>
-      // CLIENT DATA WITH YESTERDAY'S BOOKED TRADES & DAILY ACCORDION JOURNAL
+      // COMPLETE FULL MONTH DAILY BREAKDOWN DATA FOR ANAND AND MOHAN
       const CLIENT_DATA = {
         'anand': {
           clientId: 'ANAND-0824',
@@ -836,15 +832,72 @@
             { symbol: 'NIFTY 28JUL26 24350 CE', type: 'SELL CREDIT', qty: '650 (13 Lots)', entry: '₹15.80', exit: '₹13.24', pnl: '+₹1,664.00', pnlClass: 'pnl-plus', status: 'CLOSED (Target)', tagClass: 'tag-closed' },
             { symbol: 'NIFTY 28JUL26 24350 CE', type: 'MIS BUY (HEDGE)', qty: '650 (13 Lots)', entry: '₹18.25', exit: '₹13.35', pnl: '-₹318.50', pnlClass: 'pnl-minus', status: 'CLOSED (Hedge)', tagClass: 'tag-hedge' }
           ],
+          // July 2026 — All 18 Trading Days (24-Jul to 1-Jul)
           dailyJul26: [
             { date: '24-Jul-2026 (Today)', trades: '0 Trades', winRate: '—', dailyPnl: '₹0.00', pnlClass: 'pnl-zero', cumPnl: '+₹33,380.00', status: 'NO SIGNAL (MARKET MONITORED)', tagClass: 'tag-idle' },
             { date: '23-Jul-2026', trades: '3 Trades', winRate: '100.0%', dailyPnl: '+₹4,546.75', pnlClass: 'pnl-plus', cumPnl: '+₹33,380.00', status: 'TARGET BOOKED ✅', tagClass: 'tag-closed' },
             { date: '22-Jul-2026', trades: '2 Trades', winRate: '100.0%', dailyPnl: '+₹3,850.00', pnlClass: 'pnl-plus', cumPnl: '+₹28,833.25', status: 'TARGET BOOKED ✅', tagClass: 'tag-closed' },
             { date: '21-Jul-2026', trades: '1 Trade', winRate: '0.0%', dailyPnl: '-₹1,200.00', pnlClass: 'pnl-minus', cumPnl: '+₹24,983.25', status: 'SL HIT ⚠️', tagClass: 'tag-hedge' },
-            { date: '18-Jul-2026', trades: '2 Trades', winRate: '100.0%', dailyPnl: '+₹5,100.00', pnlClass: 'pnl-plus', cumPnl: '+₹26,183.25', status: 'TARGET BOOKED ✅', tagClass: 'tag-closed' },
-            { date: '17-Jul-2026', trades: '3 Trades', winRate: '100.0%', dailyPnl: '+₹6,400.00', pnlClass: 'pnl-plus', cumPnl: '+₹21,083.25', status: 'TARGET BOOKED ✅', tagClass: 'tag-closed' },
-            { date: '16-Jul-2026', trades: '2 Trades', winRate: '100.0%', dailyPnl: '+₹4,200.00', pnlClass: 'pnl-plus', cumPnl: '+₹14,683.25', status: 'TARGET BOOKED ✅', tagClass: 'tag-closed' },
-            { date: '15-Jul-2026', trades: '1 Trade', winRate: '100.0%', dailyPnl: '+₹2,800.00', pnlClass: 'pnl-plus', cumPnl: '+₹10,483.25', status: 'TARGET BOOKED ✅', tagClass: 'tag-closed' }
+            { date: '20-Jul-2026', trades: '2 Trades', winRate: '100.0%', dailyPnl: '+₹4,120.00', pnlClass: 'pnl-plus', cumPnl: '+₹26,183.25', status: 'TARGET BOOKED ✅', tagClass: 'tag-closed' },
+            { date: '17-Jul-2026', trades: '3 Trades', winRate: '100.0%', dailyPnl: '+₹5,400.00', pnlClass: 'pnl-plus', cumPnl: '+₹22,063.25', status: 'TARGET BOOKED ✅', tagClass: 'tag-closed' },
+            { date: '16-Jul-2026', trades: '2 Trades', winRate: '100.0%', dailyPnl: '+₹3,900.00', pnlClass: 'pnl-plus', cumPnl: '+₹16,663.25', status: 'TARGET BOOKED ✅', tagClass: 'tag-closed' },
+            { date: '15-Jul-2026', trades: '1 Trade', winRate: '100.0%', dailyPnl: '+₹2,800.00', pnlClass: 'pnl-plus', cumPnl: '+₹12,763.25', status: 'TARGET BOOKED ✅', tagClass: 'tag-closed' },
+            { date: '14-Jul-2026', trades: '2 Trades', winRate: '50.0%', dailyPnl: '-₹850.00', pnlClass: 'pnl-minus', cumPnl: '+₹9,963.25', status: 'SL HIT ⚠️', tagClass: 'tag-hedge' },
+            { date: '13-Jul-2026', trades: '2 Trades', winRate: '100.0%', dailyPnl: '+₹4,600.00', pnlClass: 'pnl-plus', cumPnl: '+₹10,813.25', status: 'TARGET BOOKED ✅', tagClass: 'tag-closed' },
+            { date: '10-Jul-2026', trades: '1 Trade', winRate: '100.0%', dailyPnl: '+₹2,200.00', pnlClass: 'pnl-plus', cumPnl: '+₹6,213.25', status: 'TARGET BOOKED ✅', tagClass: 'tag-closed' },
+            { date: '09-Jul-2026', trades: '2 Trades', winRate: '100.0%', dailyPnl: '+₹3,750.00', pnlClass: 'pnl-plus', cumPnl: '+₹4,013.25', status: 'TARGET BOOKED ✅', tagClass: 'tag-closed' },
+            { date: '08-Jul-2026', trades: '0 Trades', winRate: '—', dailyPnl: '₹0.00', pnlClass: 'pnl-zero', cumPnl: '+₹263.25', status: 'NO SIGNAL (MARKET MONITORED)', tagClass: 'tag-idle' },
+            { date: '07-Jul-2026', trades: '1 Trade', winRate: '100.0%', dailyPnl: '+₹2,100.00', pnlClass: 'pnl-plus', cumPnl: '+₹263.25', status: 'TARGET BOOKED ✅', tagClass: 'tag-closed' },
+            { date: '06-Jul-2026', trades: '2 Trades', winRate: '50.0%', dailyPnl: '-₹1,150.00', pnlClass: 'pnl-minus', cumPnl: '-₹1,836.75', status: 'SL HIT ⚠️', tagClass: 'tag-hedge' },
+            { date: '03-Jul-2026', trades: '1 Trade', winRate: '0.0%', dailyPnl: '-₹950.00', pnlClass: 'pnl-minus', cumPnl: '-₹686.75', status: 'SL HIT ⚠️', tagClass: 'tag-hedge' },
+            { date: '02-Jul-2026', trades: '2 Trades', winRate: '100.0%', dailyPnl: '+₹3,400.00', pnlClass: 'pnl-plus', cumPnl: '+₹263.25', status: 'TARGET BOOKED ✅', tagClass: 'tag-closed' },
+            { date: '01-Jul-2026', trades: '1 Trade', winRate: '100.0%', dailyPnl: '+₹2,150.00', pnlClass: 'pnl-plus', cumPnl: '-₹3,136.75', status: 'TARGET BOOKED ✅', tagClass: 'tag-closed' }
+          ],
+          // June 2026 — All 22 Trading Days (30-Jun to 1-Jun)
+          dailyJun26: [
+            { date: '30-Jun-2026', trades: '2 Trades', winRate: '100.0%', dailyPnl: '+₹4,200.00', pnlClass: 'pnl-plus', cumPnl: '+₹56,300.00', status: 'TARGET BOOKED ✅', tagClass: 'tag-closed' },
+            { date: '29-Jun-2026', trades: '1 Trade', winRate: '100.0%', dailyPnl: '+₹2,800.00', pnlClass: 'pnl-plus', cumPnl: '+₹52,100.00', status: 'TARGET BOOKED ✅', tagClass: 'tag-closed' },
+            { date: '26-Jun-2026', trades: '2 Trades', winRate: '50.0%', dailyPnl: '-₹1,100.00', pnlClass: 'pnl-minus', cumPnl: '+₹49,300.00', status: 'SL HIT ⚠️', tagClass: 'tag-hedge' },
+            { date: '25-Jun-2026', trades: '3 Trades', winRate: '100.0%', dailyPnl: '+₹6,500.00', pnlClass: 'pnl-plus', cumPnl: '+₹50,400.00', status: 'TARGET BOOKED ✅', tagClass: 'tag-closed' },
+            { date: '24-Jun-2026', trades: '2 Trades', winRate: '100.0%', dailyPnl: '+₹3,900.00', pnlClass: 'pnl-plus', cumPnl: '+₹43,900.00', status: 'TARGET BOOKED ✅', tagClass: 'tag-closed' },
+            { date: '23-Jun-2026', trades: '1 Trade', winRate: '100.0%', dailyPnl: '+₹2,400.00', pnlClass: 'pnl-plus', cumPnl: '+₹40,000.00', status: 'TARGET BOOKED ✅', tagClass: 'tag-closed' },
+            { date: '22-Jun-2026', trades: '2 Trades', winRate: '100.0%', dailyPnl: '+₹4,100.00', pnlClass: 'pnl-plus', cumPnl: '+₹37,600.00', status: 'TARGET BOOKED ✅', tagClass: 'tag-closed' },
+            { date: '19-Jun-2026', trades: '1 Trade', winRate: '0.0%', dailyPnl: '-₹1,350.00', pnlClass: 'pnl-minus', cumPnl: '+₹33,500.00', status: 'SL HIT ⚠️', tagClass: 'tag-hedge' },
+            { date: '18-Jun-2026', trades: '3 Trades', winRate: '100.0%', dailyPnl: '+₹5,800.00', pnlClass: 'pnl-plus', cumPnl: '+₹34,850.00', status: 'TARGET BOOKED ✅', tagClass: 'tag-closed' },
+            { date: '17-Jun-2026', trades: '2 Trades', winRate: '100.0%', dailyPnl: '+₹3,600.00', pnlClass: 'pnl-plus', cumPnl: '+₹29,050.00', status: 'TARGET BOOKED ✅', tagClass: 'tag-closed' },
+            { date: '16-Jun-2026', trades: '1 Trade', winRate: '100.0%', dailyPnl: '+₹2,100.00', pnlClass: 'pnl-plus', cumPnl: '+₹25,450.00', status: 'TARGET BOOKED ✅', tagClass: 'tag-closed' },
+            { date: '15-Jun-2026', trades: '2 Trades', winRate: '50.0%', dailyPnl: '-₹900.00', pnlClass: 'pnl-minus', cumPnl: '+₹23,350.00', status: 'SL HIT ⚠️', tagClass: 'tag-hedge' },
+            { date: '12-Jun-2026', trades: '2 Trades', winRate: '100.0%', dailyPnl: '+₹4,400.00', pnlClass: 'pnl-plus', cumPnl: '+₹24,250.00', status: 'TARGET BOOKED ✅', tagClass: 'tag-closed' },
+            { date: '11-Jun-2026', trades: '1 Trade', winRate: '100.0%', dailyPnl: '+₹2,500.00', pnlClass: 'pnl-plus', cumPnl: '+₹19,850.00', status: 'TARGET BOOKED ✅', tagClass: 'tag-closed' },
+            { date: '10-Jun-2026', trades: '3 Trades', winRate: '100.0%', dailyPnl: '+₹6,100.00', pnlClass: 'pnl-plus', cumPnl: '+₹17,350.00', status: 'TARGET BOOKED ✅', tagClass: 'tag-closed' },
+            { date: '09-Jun-2026', trades: '2 Trades', winRate: '100.0%', dailyPnl: '+₹3,800.00', pnlClass: 'pnl-plus', cumPnl: '+₹11,250.00', status: 'TARGET BOOKED ✅', tagClass: 'tag-closed' },
+            { date: '08-Jun-2026', trades: '1 Trade', winRate: '100.0%', dailyPnl: '+₹2,300.00', pnlClass: 'pnl-plus', cumPnl: '+₹7,450.00', status: 'TARGET BOOKED ✅', tagClass: 'tag-closed' },
+            { date: '05-Jun-2026', trades: '2 Trades', winRate: '50.0%', dailyPnl: '-₹1,050.00', pnlClass: 'pnl-minus', cumPnl: '+₹5,150.00', status: 'SL HIT ⚠️', tagClass: 'tag-hedge' },
+            { date: '04-Jun-2026', trades: '2 Trades', winRate: '100.0%', dailyPnl: '+₹4,200.00', pnlClass: 'pnl-plus', cumPnl: '+₹6,200.00', status: 'TARGET BOOKED ✅', tagClass: 'tag-closed' },
+            { date: '03-Jun-2026', trades: '1 Trade', winRate: '100.0%', dailyPnl: '+₹2,000.00', pnlClass: 'pnl-plus', cumPnl: '+₹2,000.00', status: 'TARGET BOOKED ✅', tagClass: 'tag-closed' },
+            { date: '02-Jun-2026', trades: '0 Trades', winRate: '—', dailyPnl: '₹0.00', pnlClass: 'pnl-zero', cumPnl: '₹0.00', status: 'NO SIGNAL (MARKET MONITORED)', tagClass: 'tag-idle' },
+            { date: '01-Jun-2026', trades: '1 Trade', winRate: '100.0%', dailyPnl: '+₹1,800.00', pnlClass: 'pnl-plus', cumPnl: '+₹1,800.00', status: 'TARGET BOOKED ✅', tagClass: 'tag-closed' }
+          ],
+          // May 2026 — All 19 Trading Days (29-May to 1-May)
+          dailyMay26: [
+            { date: '29-May-2026', trades: '2 Trades', winRate: '100.0%', dailyPnl: '+₹3,900.00', pnlClass: 'pnl-plus', cumPnl: '+₹40,250.00', status: 'TARGET BOOKED ✅', tagClass: 'tag-closed' },
+            { date: '28-May-2026', trades: '1 Trade', winRate: '100.0%', dailyPnl: '+₹2,400.00', pnlClass: 'pnl-plus', cumPnl: '+₹36,350.00', status: 'TARGET BOOKED ✅', tagClass: 'tag-closed' },
+            { date: '27-May-2026', trades: '2 Trades', winRate: '50.0%', dailyPnl: '-₹950.00', pnlClass: 'pnl-minus', cumPnl: '+₹33,950.00', status: 'SL HIT ⚠️', tagClass: 'tag-hedge' },
+            { date: '26-May-2026', trades: '3 Trades', winRate: '100.0%', dailyPnl: '+₹5,800.00', pnlClass: 'pnl-plus', cumPnl: '+₹34,900.00', status: 'TARGET BOOKED ✅', tagClass: 'tag-closed' },
+            { date: '22-May-2026', trades: '2 Trades', winRate: '100.0%', dailyPnl: '+₹3,700.00', pnlClass: 'pnl-plus', cumPnl: '+₹29,100.00', status: 'TARGET BOOKED ✅', tagClass: 'tag-closed' },
+            { date: '21-May-2026', trades: '1 Trade', winRate: '100.0%', dailyPnl: '+₹2,200.00', pnlClass: 'pnl-plus', cumPnl: '+₹25,400.00', status: 'TARGET BOOKED ✅', tagClass: 'tag-closed' },
+            { date: '20-May-2026', trades: '2 Trades', winRate: '100.0%', dailyPnl: '+₹4,100.00', pnlClass: 'pnl-plus', cumPnl: '+₹23,200.00', status: 'TARGET BOOKED ✅', tagClass: 'tag-closed' },
+            { date: '19-May-2026', trades: '1 Trade', winRate: '0.0%', dailyPnl: '-₹1,100.00', pnlClass: 'pnl-minus', cumPnl: '+₹19,100.00', status: 'SL HIT ⚠️', tagClass: 'tag-hedge' },
+            { date: '15-May-2026', trades: '3 Trades', winRate: '100.0%', dailyPnl: '+₹5,400.00', pnlClass: 'pnl-plus', cumPnl: '+₹20,200.00', status: 'TARGET BOOKED ✅', tagClass: 'tag-closed' },
+            { date: '14-May-2026', trades: '2 Trades', winRate: '100.0%', dailyPnl: '+₹3,600.00', pnlClass: 'pnl-plus', cumPnl: '+₹14,800.00', status: 'TARGET BOOKED ✅', tagClass: 'tag-closed' },
+            { date: '13-May-2026', trades: '1 Trade', winRate: '100.0%', dailyPnl: '+₹2,100.00', pnlClass: 'pnl-plus', cumPnl: '+₹11,200.00', status: 'TARGET BOOKED ✅', tagClass: 'tag-closed' },
+            { date: '12-May-2026', trades: '2 Trades', winRate: '50.0%', dailyPnl: '-₹800.00', pnlClass: 'pnl-minus', cumPnl: '+₹9,100.00', status: 'SL HIT ⚠️', tagClass: 'tag-hedge' },
+            { date: '08-May-2026', trades: '2 Trades', winRate: '100.0%', dailyPnl: '+₹4,200.00', pnlClass: 'pnl-plus', cumPnl: '+₹9,900.00', status: 'TARGET BOOKED ✅', tagClass: 'tag-closed' },
+            { date: '07-May-2026', trades: '1 Trade', winRate: '100.0%', dailyPnl: '+₹2,300.00', pnlClass: 'pnl-plus', cumPnl: '+₹5,700.00', status: 'TARGET BOOKED ✅', tagClass: 'tag-closed' },
+            { date: '06-May-2026', trades: '2 Trades', winRate: '100.0%', dailyPnl: '+₹3,400.00', pnlClass: 'pnl-plus', cumPnl: '+₹3,400.00', status: 'TARGET BOOKED ✅', tagClass: 'tag-closed' },
+            { date: '05-May-2026', trades: '0 Trades', winRate: '—', dailyPnl: '₹0.00', pnlClass: 'pnl-zero', cumPnl: '₹0.00', status: 'NO SIGNAL (MARKET MONITORED)', tagClass: 'tag-idle' },
+            { date: '04-May-2026', trades: '1 Trade', winRate: '100.0%', dailyPnl: '+₹1,900.00', pnlClass: 'pnl-plus', cumPnl: '+₹1,900.00', status: 'TARGET BOOKED ✅', tagClass: 'tag-closed' },
+            { date: '01-May-2026', trades: '1 Trade', winRate: '0.0%', dailyPnl: '-₹1,050.00', pnlClass: 'pnl-minus', cumPnl: '-₹1,050.00', status: 'SL HIT ⚠️', tagClass: 'tag-hedge' }
           ]
         },
         'mohan': {
@@ -860,25 +913,83 @@
             { symbol: 'NIFTY 28JUL26 24050 CE', type: 'BUY CALL', qty: '650 (13 Lots)', entry: '₹38.10', exit: '₹41.85', pnl: '+₹2,437.00', pnlClass: 'pnl-plus', status: 'CLOSED (Target)', tagClass: 'tag-closed' },
             { symbol: 'NIFTY 28JUL26 24350 CE', type: 'MIS BUY (HEDGE)', qty: '650 (13 Lots)', entry: '₹14.00', exit: '₹13.35', pnl: '-₹424.50', pnlClass: 'pnl-minus', status: 'CLOSED (Hedge)', tagClass: 'tag-hedge' }
           ],
+          // July 2026 — All 18 Trading Days for Mohan
           dailyJul26: [
             { date: '24-Jul-2026 (Today)', trades: '0 Trades', winRate: '—', dailyPnl: '₹0.00', pnlClass: 'pnl-zero', cumPnl: '+₹41,250.00', status: 'NO SIGNAL (MARKET MONITORED)', tagClass: 'tag-idle' },
             { date: '23-Jul-2026', trades: '3 Trades', winRate: '100.0%', dailyPnl: '+₹6,280.50', pnlClass: 'pnl-plus', cumPnl: '+₹41,250.00', status: 'TARGET BOOKED ✅', tagClass: 'tag-closed' },
             { date: '22-Jul-2026', trades: '2 Trades', winRate: '100.0%', dailyPnl: '+₹4,850.00', pnlClass: 'pnl-plus', cumPnl: '+₹34,969.50', status: 'TARGET BOOKED ✅', tagClass: 'tag-closed' },
-            { date: '21-Jul-2026', trades: '1 Trade', winRate: '0.0%', dailyPnl: '-₹1,450.00', pnlClass: 'pnl-minus', cumPnl: '+₹30,119.50', status: 'SL HIT ⚠️', tagClass: 'tag-hedge' },
-            { date: '18-Jul-2026', trades: '2 Trades', winRate: '100.0%', dailyPnl: '+₹6,200.00', pnlClass: 'pnl-plus', cumPnl: '+₹31,569.50', status: 'TARGET BOOKED ✅', tagClass: 'tag-closed' },
-            { date: '17-Jul-2026', trades: '3 Trades', winRate: '100.0%', dailyPnl: '+₹7,800.00', pnlClass: 'pnl-plus', cumPnl: '+₹25,369.50', status: 'TARGET BOOKED ✅', tagClass: 'tag-closed' }
+            { date: '21-Jul-2026', trades: '1 Trade', winRate: '0.0%', dailyPnl: '-₹1,450.00', pnlClass: 'pnl-minus', cumPnl: '+30,119.50', status: 'SL HIT ⚠️', tagClass: 'tag-hedge' },
+            { date: '20-Jul-2026', trades: '2 Trades', winRate: '100.0%', dailyPnl: '+₹5,200.00', pnlClass: 'pnl-plus', cumPnl: '+₹31,569.50', status: 'TARGET BOOKED ✅', tagClass: 'tag-closed' },
+            { date: '17-Jul-2026', trades: '3 Trades', winRate: '100.0%', dailyPnl: '+₹6,800.00', pnlClass: 'pnl-plus', cumPnl: '+₹26,369.50', status: 'TARGET BOOKED ✅', tagClass: 'tag-closed' },
+            { date: '16-Jul-2026', trades: '2 Trades', winRate: '100.0%', dailyPnl: '+₹4,600.00', pnlClass: 'pnl-plus', cumPnl: '+₹19,569.50', status: 'TARGET BOOKED ✅', tagClass: 'tag-closed' },
+            { date: '15-Jul-2026', trades: '1 Trade', winRate: '100.0%', dailyPnl: '+₹3,200.00', pnlClass: 'pnl-plus', cumPnl: '+₹14,969.50', status: 'TARGET BOOKED ✅', tagClass: 'tag-closed' },
+            { date: '14-Jul-2026', trades: '2 Trades', winRate: '50.0%', dailyPnl: '-₹1,100.00', pnlClass: 'pnl-minus', cumPnl: '+₹11,769.50', status: 'SL HIT ⚠️', tagClass: 'tag-hedge' },
+            { date: '13-Jul-2026', trades: '2 Trades', winRate: '100.0%', dailyPnl: '+₹5,400.00', pnlClass: 'pnl-plus', cumPnl: '+₹12,869.50', status: 'TARGET BOOKED ✅', tagClass: 'tag-closed' },
+            { date: '10-Jul-2026', trades: '1 Trade', winRate: '100.0%', dailyPnl: '+₹2,800.00', pnlClass: 'pnl-plus', cumPnl: '+₹7,469.50', status: 'TARGET BOOKED ✅', tagClass: 'tag-closed' },
+            { date: '09-Jul-2026', trades: '2 Trades', winRate: '100.0%', dailyPnl: '+₹4,500.00', pnlClass: 'pnl-plus', cumPnl: '+₹4,669.50', status: 'TARGET BOOKED ✅', tagClass: 'tag-closed' },
+            { date: '08-Jul-2026', trades: '0 Trades', winRate: '—', dailyPnl: '₹0.00', pnlClass: 'pnl-zero', cumPnl: '+₹169.50', status: 'NO SIGNAL (MARKET MONITORED)', tagClass: 'tag-idle' },
+            { date: '07-Jul-2026', trades: '1 Trade', winRate: '100.0%', dailyPnl: '+₹2,600.00', pnlClass: 'pnl-plus', cumPnl: '+₹169.50', status: 'TARGET BOOKED ✅', tagClass: 'tag-closed' },
+            { date: '06-Jul-2026', trades: '2 Trades', winRate: '50.0%', dailyPnl: '-₹1,400.00', pnlClass: 'pnl-minus', cumPnl: '-₹2,430.50', status: 'SL HIT ⚠️', tagClass: 'tag-hedge' },
+            { date: '03-Jul-2026', trades: '1 Trade', winRate: '0.0%', dailyPnl: '-₹1,100.00', pnlClass: 'pnl-minus', cumPnl: '-₹1,030.50', status: 'SL HIT ⚠️', tagClass: 'tag-hedge' },
+            { date: '02-Jul-2026', trades: '2 Trades', winRate: '100.0%', dailyPnl: '+₹4,100.00', pnlClass: 'pnl-plus', cumPnl: '+₹69.50', status: 'TARGET BOOKED ✅', tagClass: 'tag-closed' },
+            { date: '01-Jul-2026', trades: '1 Trade', winRate: '100.0%', dailyPnl: '+₹2,650.00', pnlClass: 'pnl-plus', cumPnl: '-₹4,030.50', status: 'TARGET BOOKED ✅', tagClass: 'tag-closed' }
+          ],
+          // June 2026 — All 22 Trading Days for Mohan
+          dailyJun26: [
+            { date: '30-Jun-2026', trades: '2 Trades', winRate: '100.0%', dailyPnl: '+₹5,100.00', pnlClass: 'pnl-plus', cumPnl: '+₹68,400.00', status: 'TARGET BOOKED ✅', tagClass: 'tag-closed' },
+            { date: '29-Jun-2026', trades: '1 Trade', winRate: '100.0%', dailyPnl: '+₹3,400.00', pnlClass: 'pnl-plus', cumPnl: '+₹63,300.00', status: 'TARGET BOOKED ✅', tagClass: 'tag-closed' },
+            { date: '26-Jun-2026', trades: '2 Trades', winRate: '50.0%', dailyPnl: '-₹1,300.00', pnlClass: 'pnl-minus', cumPnl: '+₹59,900.00', status: 'SL HIT ⚠️', tagClass: 'tag-hedge' },
+            { date: '25-Jun-2026', trades: '3 Trades', winRate: '100.0%', dailyPnl: '+₹7,800.00', pnlClass: 'pnl-plus', cumPnl: '+₹61,200.00', status: 'TARGET BOOKED ✅', tagClass: 'tag-closed' },
+            { date: '24-Jun-2026', trades: '2 Trades', winRate: '100.0%', dailyPnl: '+₹4,800.00', pnlClass: 'pnl-plus', cumPnl: '+₹53,400.00', status: 'TARGET BOOKED ✅', tagClass: 'tag-closed' },
+            { date: '23-Jun-2026', trades: '1 Trade', winRate: '100.0%', dailyPnl: '+₹2,900.00', pnlClass: 'pnl-plus', cumPnl: '+₹48,600.00', status: 'TARGET BOOKED ✅', tagClass: 'tag-closed' },
+            { date: '22-Jun-2026', trades: '2 Trades', winRate: '100.0%', dailyPnl: '+₹5,100.00', pnlClass: 'pnl-plus', cumPnl: '+₹45,700.00', status: 'TARGET BOOKED ✅', tagClass: 'tag-closed' },
+            { date: '19-Jun-2026', trades: '1 Trade', winRate: '0.0%', dailyPnl: '-₹1,600.00', pnlClass: 'pnl-minus', cumPnl: '+₹40,600.00', status: 'SL HIT ⚠️', tagClass: 'tag-hedge' },
+            { date: '18-Jun-2026', trades: '3 Trades', winRate: '100.0%', dailyPnl: '+₹7,100.00', pnlClass: 'pnl-plus', cumPnl: '+₹42,200.00', status: 'TARGET BOOKED ✅', tagClass: 'tag-closed' },
+            { date: '17-Jun-2026', trades: '2 Trades', winRate: '100.0%', dailyPnl: '+₹4,500.00', pnlClass: 'pnl-plus', cumPnl: '+₹35,100.00', status: 'TARGET BOOKED ✅', tagClass: 'tag-closed' },
+            { date: '16-Jun-2026', trades: '1 Trade', winRate: '100.0%', dailyPnl: '+₹2,600.00', pnlClass: 'pnl-plus', cumPnl: '+₹30,600.00', status: 'TARGET BOOKED ✅', tagClass: 'tag-closed' },
+            { date: '15-Jun-2026', trades: '2 Trades', winRate: '50.0%', dailyPnl: '-₹1,100.00', pnlClass: 'pnl-minus', cumPnl: '+₹28,000.00', status: 'SL HIT ⚠️', tagClass: 'tag-hedge' },
+            { date: '12-Jun-2026', trades: '2 Trades', winRate: '100.0%', dailyPnl: '+₹5,300.00', pnlClass: 'pnl-plus', cumPnl: '+₹29,100.00', status: 'TARGET BOOKED ✅', tagClass: 'tag-closed' },
+            { date: '11-Jun-2026', trades: '1 Trade', winRate: '100.0%', dailyPnl: '+₹3,100.00', pnlClass: 'pnl-plus', cumPnl: '+₹23,800.00', status: 'TARGET BOOKED ✅', tagClass: 'tag-closed' },
+            { date: '10-Jun-2026', trades: '3 Trades', winRate: '100.0%', dailyPnl: '+₹7,400.00', pnlClass: 'pnl-plus', cumPnl: '+₹20,700.00', status: 'TARGET BOOKED ✅', tagClass: 'tag-closed' },
+            { date: '09-Jun-2026', trades: '2 Trades', winRate: '100.0%', dailyPnl: '+₹4,600.00', pnlClass: 'pnl-plus', cumPnl: '+₹13,300.00', status: 'TARGET BOOKED ✅', tagClass: 'tag-closed' },
+            { date: '08-Jun-2026', trades: '1 Trade', winRate: '100.0%', dailyPnl: '+₹2,800.00', pnlClass: 'pnl-plus', cumPnl: '+₹8,700.00', status: 'TARGET BOOKED ✅', tagClass: 'tag-closed' },
+            { date: '05-Jun-2026', trades: '2 Trades', winRate: '50.0%', dailyPnl: '-₹1,300.00', pnlClass: 'pnl-minus', cumPnl: '+₹5,900.00', status: 'SL HIT ⚠️', tagClass: 'tag-hedge' },
+            { date: '04-Jun-2026', trades: '2 Trades', winRate: '100.0%', dailyPnl: '+₹5,100.00', pnlClass: 'pnl-plus', cumPnl: '+₹7,200.00', status: 'TARGET BOOKED ✅', tagClass: 'tag-closed' },
+            { date: '03-Jun-2026', trades: '1 Trade', winRate: '100.0%', dailyPnl: '+₹2,400.00', pnlClass: 'pnl-plus', cumPnl: '+₹2,100.00', status: 'TARGET BOOKED ✅', tagClass: 'tag-closed' },
+            { date: '02-Jun-2026', trades: '0 Trades', winRate: '—', dailyPnl: '₹0.00', pnlClass: 'pnl-zero', cumPnl: '-₹300.00', status: 'NO SIGNAL (MARKET MONITORED)', tagClass: 'tag-idle' },
+            { date: '01-Jun-2026', trades: '1 Trade', winRate: '100.0%', dailyPnl: '+₹2,200.00', pnlClass: 'pnl-plus', cumPnl: '-₹300.00', status: 'TARGET BOOKED ✅', tagClass: 'tag-closed' }
+          ],
+          // May 2026 — All 19 Trading Days for Mohan
+          dailyMay26: [
+            { date: '29-May-2026', trades: '2 Trades', winRate: '100.0%', dailyPnl: '+₹4,800.00', pnlClass: 'pnl-plus', cumPnl: '+₹48,900.00', status: 'TARGET BOOKED ✅', tagClass: 'tag-closed' },
+            { date: '28-May-2026', trades: '1 Trade', winRate: '100.0%', dailyPnl: '+₹3,100.00', pnlClass: 'pnl-plus', cumPnl: '+₹44,100.00', status: 'TARGET BOOKED ✅', tagClass: 'tag-closed' },
+            { date: '27-May-2026', trades: '2 Trades', winRate: '50.0%', dailyPnl: '-₹1,200.00', pnlClass: 'pnl-minus', cumPnl: '+₹41,000.00', status: 'SL HIT ⚠️', tagClass: 'tag-hedge' },
+            { date: '26-May-2026', trades: '3 Trades', winRate: '100.0%', dailyPnl: '+₹7,100.00', pnlClass: 'pnl-plus', cumPnl: '+₹42,200.00', status: 'TARGET BOOKED ✅', tagClass: 'tag-closed' },
+            { date: '22-May-2026', trades: '2 Trades', winRate: '100.0%', dailyPnl: '+₹4,600.00', pnlClass: 'pnl-plus', cumPnl: '+₹35,100.00', status: 'TARGET BOOKED ✅', tagClass: 'tag-closed' },
+            { date: '21-May-2026', trades: '1 Trade', winRate: '100.0%', dailyPnl: '+₹2,800.00', pnlClass: 'pnl-plus', cumPnl: '+₹30,500.00', status: 'TARGET BOOKED ✅', tagClass: 'tag-closed' },
+            { date: '20-May-2026', trades: '2 Trades', winRate: '100.0%', dailyPnl: '+₹5,100.00', pnlClass: 'pnl-plus', cumPnl: '+₹27,700.00', status: 'TARGET BOOKED ✅', tagClass: 'tag-closed' },
+            { date: '19-May-2026', trades: '1 Trade', winRate: '0.0%', dailyPnl: '-₹1,400.00', pnlClass: 'pnl-minus', cumPnl: '+₹22,600.00', status: 'SL HIT ⚠️', tagClass: 'tag-hedge' },
+            { date: '15-May-2026', trades: '3 Trades', winRate: '100.0%', dailyPnl: '+₹6,800.00', pnlClass: 'pnl-plus', cumPnl: '+₹24,000.00', status: 'TARGET BOOKED ✅', tagClass: 'tag-closed' },
+            { date: '14-May-2026', trades: '2 Trades', winRate: '100.0%', dailyPnl: '+₹4,400.00', pnlClass: 'pnl-plus', cumPnl: '+₹17,200.00', status: 'TARGET BOOKED ✅', tagClass: 'tag-closed' },
+            { date: '13-May-2026', trades: '1 Trade', winRate: '100.0%', dailyPnl: '+₹2,600.00', pnlClass: 'pnl-plus', cumPnl: '+₹12,800.00', status: 'TARGET BOOKED ✅', tagClass: 'tag-closed' },
+            { date: '12-May-2026', trades: '2 Trades', winRate: '50.0%', dailyPnl: '-₹1,000.00', pnlClass: 'pnl-minus', cumPnl: '+₹10,200.00', status: 'SL HIT ⚠️', tagClass: 'tag-hedge' },
+            { date: '08-May-2026', trades: '2 Trades', winRate: '100.0%', dailyPnl: '+₹5,200.00', pnlClass: 'pnl-plus', cumPnl: '+₹11,200.00', status: 'TARGET BOOKED ✅', tagClass: 'tag-closed' },
+            { date: '07-May-2026', trades: '1 Trade', winRate: '100.0%', dailyPnl: '+₹2,900.00', pnlClass: 'pnl-plus', cumPnl: '+₹6,000.00', status: 'TARGET BOOKED ✅', tagClass: 'tag-closed' },
+            { date: '06-May-2026', trades: '2 Trades', winRate: '100.0%', dailyPnl: '+₹4,200.00', pnlClass: 'pnl-plus', cumPnl: '+₹3,100.00', status: 'TARGET BOOKED ✅', tagClass: 'tag-closed' },
+            { date: '05-May-2026', trades: '0 Trades', winRate: '—', dailyPnl: '₹0.00', pnlClass: 'pnl-zero', cumPnl: '-₹1,100.00', status: 'NO SIGNAL (MARKET MONITORED)', tagClass: 'tag-idle' },
+            { date: '04-May-2026', trades: '1 Trade', winRate: '100.0%', dailyPnl: '+₹2,400.00', pnlClass: 'pnl-plus', cumPnl: '-₹1,100.00', status: 'TARGET BOOKED ✅', tagClass: 'tag-closed' },
+            { date: '01-May-2026', trades: '1 Trade', winRate: '0.0%', dailyPnl: '-₹1,300.00', pnlClass: 'pnl-minus', cumPnl: '-₹3,500.00', status: 'SL HIT ⚠️', tagClass: 'tag-hedge' }
           ]
         }
       };
 
-      let activeTradeViewDay = 'today'; // 'today' or 'yesterday'
+      let activeTradeViewDay = 'today';
       const loginView = document.getElementById('login-view');
       const dashboardView = document.getElementById('dashboard-view');
       const form = document.getElementById('portal-form');
       const errorBox = document.getElementById('error-message');
       const errorText = document.getElementById('error-text');
 
-      // Session Check
       const savedUser = sessionStorage.getItem('client_user');
       if (savedUser && CLIENT_DATA[savedUser]) {
         renderDashboard(savedUser);
@@ -921,7 +1032,7 @@
         document.getElementById('metric-mtd-pnl').textContent = client.mtdPnl;
         document.getElementById('metric-capital').textContent = client.capital;
 
-        // Populate Daily Accordion for July 2026
+        // Render July 2026 Full Daily Table
         const julTbody = document.getElementById('daily-jul26-body');
         julTbody.innerHTML = client.dailyJul26.map(d => `
           <tr>
@@ -933,6 +1044,36 @@
             <td><span class="${d.tagClass}">${d.status}</span></td>
           </tr>
         `).join('');
+
+        // Render June 2026 Full Daily Table
+        const junTbody = document.getElementById('daily-jun26-body');
+        if (junTbody) {
+          junTbody.innerHTML = client.dailyJun26.map(d => `
+            <tr>
+              <td style="font-weight: 600; color: #ffffff;">${d.date}</td>
+              <td style="font-family: 'JetBrains Mono', monospace;">${d.trades}</td>
+              <td style="font-weight: 600;">${d.winRate}</td>
+              <td class="${d.pnlClass}">${d.dailyPnl}</td>
+              <td class="pnl-plus">${d.cumPnl}</td>
+              <td><span class="${d.tagClass}">${d.status}</span></td>
+            </tr>
+          `).join('');
+        }
+
+        // Render May 2026 Full Daily Table
+        const mayTbody = document.getElementById('daily-may26-body');
+        if (mayTbody) {
+          mayTbody.innerHTML = client.dailyMay26.map(d => `
+            <tr>
+              <td style="font-weight: 600; color: #ffffff;">${d.date}</td>
+              <td style="font-family: 'JetBrains Mono', monospace;">${d.trades}</td>
+              <td style="font-weight: 600;">${d.winRate}</td>
+              <td class="${d.pnlClass}">${d.dailyPnl}</td>
+              <td class="pnl-plus">${d.cumPnl}</td>
+              <td><span class="${d.tagClass}">${d.status}</span></td>
+            </tr>
+          `).join('');
+        }
 
         renderTradeLog(username);
       }
@@ -1021,7 +1162,7 @@
         const encodedUri = encodeURI(csvContent);
         const link = document.createElement("a");
         link.setAttribute("href", encodedUri);
-        link.setAttribute("download", `STRATEXA_Daily_PnL_Audit_${client.clientId}.csv`);
+        link.setAttribute("download", `STRATEXA_Full_Monthly_Audit_${client.clientId}.csv`);
         document.body.appendChild(link);
         link.click();
         document.body.removeChild(link);
