@@ -6,33 +6,26 @@
     <link rel="icon" type="image/png" sizes="32x32" href="/logo.png" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     
-    <!-- Canonical URL -->
     <link rel="canonical" href="https://www.stratexa.in/login.html" />
-
     <title>Stratexa | Client Login</title>
     <meta name="description" content="Secure login to your Stratexa automated trading dashboard.">
     <meta name="author" content="Stratexa" />
 
-    <!-- Open Graph -->
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://www.stratexa.in/login.html" />
     <meta property="og:title" content="Stratexa | Client Login" />
     <meta property="og:description" content="Secure login to your Stratexa automated trading dashboard." />
     <meta property="og:image" content="https://www.stratexa.in/og-image.png" />
 
-    <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image" />
     <meta property="twitter:url" content="https://www.stratexa.in/login.html" />
     <meta property="twitter:title" content="Stratexa | Client Login" />
     <meta property="twitter:description" content="Secure login to your Stratexa automated trading dashboard." />
     <meta property="twitter:image" content="https://www.stratexa.in/og-image.png" />
     
-    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    
-    <!-- FontAwesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
     
     <style>
@@ -44,7 +37,7 @@
         --text-primary: #f3f4f6;
         --text-secondary: #9ca3af;
         --border-color: rgba(255, 255, 255, 0.08);
-        --glass-bg: rgba(17, 24, 39, 0.9);
+        --glass-bg: rgba(17, 24, 39, 0.92);
         --glass-border: rgba(255, 255, 255, 0.1);
         --logo-stroke: #ffffff;
       }
@@ -93,7 +86,6 @@
       }
 
       .official-logo-svg { width: 34px; height: 34px; }
-
       .logo-text { display: flex; flex-direction: column; align-items: center; }
 
       .brand-name {
@@ -198,6 +190,121 @@
         font-size: 0.72rem; color: rgba(156, 163, 175, 0.5);
         line-height: 1.5;
       }
+
+      /* --- Modal Overlay --- */
+      .modal-overlay {
+        display: none;
+        position: fixed;
+        top: 0; left: 0; right: 0; bottom: 0;
+        background: rgba(0, 0, 0, 0.85);
+        backdrop-filter: blur(6px);
+        z-index: 9999;
+        align-items: center;
+        justify-content: center;
+        padding: 16px;
+      }
+
+      .modal-overlay.active { display: flex; }
+
+      .modal-container {
+        width: 100%;
+        max-width: 1100px;
+        height: 85vh;
+        background: #0f1724;
+        border: 1px solid rgba(16, 185, 129, 0.3);
+        border-radius: 14px;
+        overflow: hidden;
+        box-shadow: 0 30px 80px rgba(0, 0, 0, 0.7);
+        display: flex;
+        flex-direction: column;
+        position: relative;
+      }
+
+      .modal-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 12px 20px;
+        background: #0a0f1a;
+        border-bottom: 1px solid var(--border-color);
+        flex-shrink: 0;
+      }
+
+      .modal-header-left {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-family: 'Outfit', sans-serif;
+        font-weight: 700;
+        font-size: 0.9rem;
+      }
+
+      .modal-header-left .status-dot {
+        width: 8px; height: 8px;
+        border-radius: 50%;
+        background: var(--accent-green-bright);
+        box-shadow: 0 0 8px var(--accent-green-bright);
+      }
+
+      .modal-close-btn {
+        background: rgba(239, 68, 68, 0.15);
+        border: 1px solid rgba(239, 68, 68, 0.3);
+        color: #f87171;
+        padding: 6px 14px;
+        border-radius: 6px;
+        font-size: 0.8rem;
+        font-weight: 600;
+        cursor: pointer;
+        font-family: 'Inter', sans-serif;
+        transition: all 0.2s;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+      }
+
+      .modal-close-btn:hover {
+        background: rgba(239, 68, 68, 0.25);
+      }
+
+      .modal-body {
+        flex: 1;
+        overflow: hidden;
+      }
+
+      .modal-body iframe {
+        width: 100%;
+        height: 100%;
+        border: none;
+      }
+
+      .modal-loading {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100%;
+        gap: 16px;
+        color: var(--text-secondary);
+        font-size: 0.9rem;
+      }
+
+      .modal-loading .spinner-lg {
+        width: 36px; height: 36px;
+        border: 3px solid rgba(255,255,255,0.1);
+        border-left-color: var(--accent-green-bright);
+        border-radius: 50%;
+        animation: spin 0.7s linear infinite;
+      }
+
+      @keyframes spin { to { transform: rotate(360deg); } }
+
+      @media (max-width: 768px) {
+        .modal-container {
+          max-width: 100%;
+          height: 92vh;
+          border-radius: 10px;
+        }
+      }
     </style>
   </head>
   <body>
@@ -259,8 +366,29 @@
       </div>
     </div>
 
+    <!-- Terminal Modal Overlay -->
+    <div id="terminal-modal" class="modal-overlay">
+      <div class="modal-container">
+        <div class="modal-header">
+          <div class="modal-header-left">
+            <span class="status-dot"></span>
+            <span id="modal-title">STRATEXA Live Terminal</span>
+          </div>
+          <button class="modal-close-btn" onclick="closeTerminal()">
+            <i class="fa-solid fa-xmark"></i> Close Terminal
+          </button>
+        </div>
+        <div class="modal-body" id="modal-body">
+          <div class="modal-loading" id="modal-loading">
+            <div class="spinner-lg"></div>
+            <span>Connecting to terminal server...</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <script>
-      // Client-to-server mapping (obfuscated — no server details exposed in UI)
+      // Obfuscated client-to-server mapping
       const C = {
         'anand': 'aHR0cDovLzMuMTA4LjE5LjczOjgwODA=',
         'mohan': 'aHR0cDovLzE2NS4yMzIuMTg2LjIyNzo4MDAw'
@@ -271,6 +399,10 @@
       const form = document.getElementById('portal-form');
       const errorBox = document.getElementById('error-message');
       const errorText = document.getElementById('error-text');
+      const modal = document.getElementById('terminal-modal');
+      const modalBody = document.getElementById('modal-body');
+      const modalTitle = document.getElementById('modal-title');
+      const modalLoading = document.getElementById('modal-loading');
 
       form.addEventListener('submit', function(e) {
         e.preventDefault();
@@ -297,8 +429,72 @@
           return;
         }
 
-        // Redirect to the client's dedicated terminal server
-        window.location.href = d(C[username]);
+        // Open terminal in popup window (keeps stratexa.in URL in main tab)
+        const serverUrl = d(C[username]);
+        modalTitle.textContent = `STRATEXA Live Terminal — ${username.charAt(0).toUpperCase() + username.slice(1)}`;
+        
+        // Try iframe first, fallback to popup window
+        openTerminal(serverUrl, username);
+      });
+
+      function openTerminal(serverUrl, username) {
+        // Show modal with loading state
+        modal.classList.add('active');
+        modalLoading.style.display = 'flex';
+
+        // Open in a new popup window (avoids mixed content / CORS)
+        // URL bar is visible but the main stratexa.in tab stays intact
+        const w = screen.width * 0.85;
+        const h = screen.height * 0.85;
+        const left = (screen.width - w) / 2;
+        const top = (screen.height - h) / 2;
+
+        const popup = window.open(
+          serverUrl,
+          'stratexa_terminal',
+          `width=${w},height=${h},left=${left},top=${top},menubar=no,toolbar=no,location=no,status=no,scrollbars=yes,resizable=yes`
+        );
+
+        if (popup) {
+          // Popup opened successfully — close our modal
+          setTimeout(() => {
+            modal.classList.remove('active');
+          }, 1500);
+
+          // Monitor if popup is closed
+          const check = setInterval(() => {
+            if (popup.closed) {
+              clearInterval(check);
+              modal.classList.remove('active');
+            }
+          }, 1000);
+        } else {
+          // Popup blocked — fallback to direct navigation
+          modalLoading.innerHTML = `
+            <i class="fa-solid fa-shield-halved" style="font-size: 2rem; color: var(--accent-green-bright);"></i>
+            <span>Popup blocked by browser.</span>
+            <a href="${serverUrl}" target="_blank" class="btn" style="width: auto; padding: 10px 24px; margin-top: 8px; text-decoration: none;">
+              <i class="fa-solid fa-arrow-up-right-from-square"></i> Open Terminal in New Tab
+            </a>
+          `;
+        }
+      }
+
+      function closeTerminal() {
+        modal.classList.remove('active');
+        // Reset loading state for next open
+        modalLoading.style.display = 'flex';
+        modalLoading.innerHTML = `
+          <div class="spinner-lg"></div>
+          <span>Connecting to terminal server...</span>
+        `;
+      }
+
+      // Close modal on Escape key
+      document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && modal.classList.contains('active')) {
+          closeTerminal();
+        }
       });
     </script>
   </body>
