@@ -287,10 +287,7 @@
           <span id="error-text"></span>
         </div>
 
-        <div id="success-message" class="success-box">
-          <i class="fa-solid fa-circle-check"></i>
-          <span id="success-text"></span>
-        </div>
+
 
         <form id="portal-form">
           <div class="form-group">
@@ -305,16 +302,11 @@
             </div>
           </div>
 
-          <div class="form-group">
-            <label for="client-password">Server Password</label>
-            <div class="input-wrapper">
-              <i class="fa-solid fa-lock"></i>
-              <input type="password" id="client-password" required placeholder="Enter your server password" autocomplete="current-password" />
-            </div>
-          </div>
 
-          <button type="submit" id="submit-btn" class="btn">
-            <span id="btn-text">Access Live Terminal</span>
+
+          <button type="submit" class="btn">
+            <i class="fa-solid fa-arrow-right-to-bracket"></i>
+            <span>Access Live Terminal</span>
           </button>
         </form>
 
@@ -338,18 +330,12 @@
       const form = document.getElementById('portal-form');
       const errorBox = document.getElementById('error-message');
       const errorText = document.getElementById('error-text');
-      const successBox = document.getElementById('success-message');
-      const successText = document.getElementById('success-text');
-      const submitBtn = document.getElementById('submit-btn');
-      const btnText = document.getElementById('btn-text');
 
-      form.addEventListener('submit', async function(e) {
+      form.addEventListener('submit', function(e) {
         e.preventDefault();
         errorBox.classList.remove('active');
-        successBox.classList.remove('active');
 
         const serverKey = document.getElementById('client-server').value;
-        const password = document.getElementById('client-password').value;
 
         if (!serverKey || !CLIENT_MAP[serverKey]) {
           errorText.textContent = 'Please select your server instance.';
@@ -357,45 +343,9 @@
           return;
         }
 
-        const serverUrl = CLIENT_MAP[serverKey];
-
-        // Show loading state
-        submitBtn.disabled = true;
-        btnText.innerHTML = '<span class="spinner"></span> Authenticating...';
-
-        try {
-          // Authenticate against the real server bot API
-          const res = await fetch(`${serverUrl}/api/auth/login`, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ password })
-          });
-
-          if (!res.ok) {
-            const data = await res.json().catch(() => ({}));
-            throw new Error(data.detail || 'Authentication failed');
-          }
-
-          const data = await res.json();
-          const token = data.token;
-
-          // Success — store token in the server's localStorage scope and redirect
-          successText.textContent = 'Authenticated! Redirecting to your live terminal...';
-          successBox.classList.add('active');
-
-          // Small delay so user sees the success message
-          setTimeout(() => {
-            // Redirect to the real server bot dashboard
-            // The server's app.js will pick up the token from the URL hash
-            window.location.href = `${serverUrl}/#token=${encodeURIComponent(token)}`;
-          }, 800);
-
-        } catch (err) {
-          errorText.textContent = err.message || 'Could not connect to server. Please check your password and try again.';
-          errorBox.classList.add('active');
-          submitBtn.disabled = false;
-          btnText.textContent = 'Access Live Terminal';
-        }
+        // Redirect directly to the server bot dashboard
+        // The server has its own login page with real auth
+        window.location.href = CLIENT_MAP[serverKey];
       });
     </script>
   </body>
