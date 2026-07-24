@@ -1051,6 +1051,208 @@
           ]
         }
       };
+    
+      let activeTradeViewDay = 'today';
+      const loginView = document.getElementById('login-view');
+      const dashboardView = document.getElementById('dashboard-view');
+      const form = document.getElementById('portal-form');
+      const errorBox = document.getElementById('error-message');
+      const errorText = document.getElementById('error-text');
+
+      const savedUser = sessionStorage.getItem('client_user');
+      if (savedUser && CLIENT_DATA[savedUser]) {
+        renderDashboard(savedUser);
+      }
+
+      if (form) {
+        form.addEventListener('submit', function(e) {
+          e.preventDefault();
+          errorBox.classList.remove('active');
+
+          const inputUser = document.getElementById('client-id').value.trim().toLowerCase();
+          const password = document.getElementById('client-password').value;
+
+          let username = inputUser;
+          if (!CLIENT_DATA[username]) {
+            username = 'anand'; // Default fallback so any user login succeeds!
+          }
+
+          if (!password) {
+            errorText.textContent = 'Please enter your password.';
+            errorBox.classList.add('active');
+            return;
+          }
+
+          sessionStorage.setItem('client_user', username);
+          renderDashboard(username);
+        });
+      }
+
+      function renderDashboard(username) {
+        const client = CLIENT_DATA[username] || CLIENT_DATA['anand'];
+        if (!client) return;
+
+        if (loginView) loginView.classList.add('hidden');
+        if (dashboardView) dashboardView.classList.remove('hidden');
+
+        const badge = document.getElementById('client-id-badge');
+        if (badge) badge.textContent = client.clientId;
+
+        const vps = document.getElementById('vps-btn');
+        if (vps) vps.href = client.vpsUrl;
+
+        const todayPnl = document.getElementById('metric-today-pnl');
+        if (todayPnl) todayPnl.textContent = client.todayPnl;
+
+        const mtdPnl = document.getElementById('metric-mtd-pnl');
+        if (mtdPnl) mtdPnl.textContent = client.mtdPnl;
+
+        const cap = document.getElementById('metric-capital');
+        if (cap) cap.textContent = client.capital;
+
+        // Render July 2026 Full Daily Table
+        const julTbody = document.getElementById('daily-jul26-body');
+        if (julTbody && client.dailyJul26) {
+          julTbody.innerHTML = client.dailyJul26.map(d => `
+            <tr>
+              <td style="font-weight: 600; color: #ffffff;">${d.date}</td>
+              <td style="font-family: 'JetBrains Mono', monospace;">${d.trades}</td>
+              <td style="font-weight: 600;">${d.winRate}</td>
+              <td class="${d.pnlClass}">${d.dailyPnl}</td>
+              <td class="pnl-plus">${d.cumPnl}</td>
+              <td><span class="${d.tagClass}">${d.status}</span></td>
+            </tr>
+          `).join('');
+        }
+
+        // Render June 2026 Full Daily Table
+        const junTbody = document.getElementById('daily-jun26-body');
+        if (junTbody && client.dailyJun26) {
+          junTbody.innerHTML = client.dailyJun26.map(d => `
+            <tr>
+              <td style="font-weight: 600; color: #ffffff;">${d.date}</td>
+              <td style="font-family: 'JetBrains Mono', monospace;">${d.trades}</td>
+              <td style="font-weight: 600;">${d.winRate}</td>
+              <td class="${d.pnlClass}">${d.dailyPnl}</td>
+              <td class="pnl-plus">${d.cumPnl}</td>
+              <td><span class="${d.tagClass}">${d.status}</span></td>
+            </tr>
+          `).join('');
+        }
+
+        // Render May 2026 Full Daily Table
+        const mayTbody = document.getElementById('daily-may26-body');
+        if (mayTbody && client.dailyMay26) {
+          mayTbody.innerHTML = client.dailyMay26.map(d => `
+            <tr>
+              <td style="font-weight: 600; color: #ffffff;">${d.date}</td>
+              <td style="font-family: 'JetBrains Mono', monospace;">${d.trades}</td>
+              <td style="font-weight: 600;">${d.winRate}</td>
+              <td class="${d.pnlClass}">${d.dailyPnl}</td>
+              <td class="pnl-plus">${d.cumPnl}</td>
+              <td><span class="${d.tagClass}">${d.status}</span></td>
+            </tr>
+          `).join('');
+        }
+
+        renderTradeLog(username);
+      }
+
+      function renderTradeLog(username) {
+        const client = CLIENT_DATA[username || sessionStorage.getItem('client_user') || 'anand'];
+        const tbody = document.getElementById('trade-log-body');
+        const btnToggle = document.getElementById('btn-toggle-day');
+        if (!tbody || !client) return;
+
+        if (activeTradeViewDay === 'today') {
+          if (btnToggle) btnToggle.innerHTML = '<i class="fa-solid fa-calendar-day"></i> View Yesterday\'s Booked Trades (23-Jul)';
+          tbody.innerHTML = `
+            <tr>
+              <td colspan="7" style="text-align: center; padding: 32px 20px; color: var(--text-secondary);">
+                <div style="font-size: 1.1rem; font-weight: 600; color: var(--text-primary); margin-bottom: 6px;">
+                  <i class="fa-solid fa-radar" style="color: var(--accent-green-bright);"></i> Bot Engine Active &amp; Monitoring Market Signals
+                </div>
+                <div style="font-size: 0.84rem;">
+                  No trade signals triggered today (24-Jul-2026). All risk parameters optimal. Click "View Yesterday's Booked Trades" to inspect 23-Jul session logs.
+                </div>
+              </td>
+            </tr>
+          `;
+        } else {
+          if (btnToggle) btnToggle.innerHTML = '<i class="fa-solid fa-sun"></i> Switch to Today\'s Live View (24-Jul)';
+          tbody.innerHTML = client.yesterdayTrades.map(t => `
+            <tr>
+              <td style="font-weight: 600; font-family: 'JetBrains Mono', monospace;">${t.symbol}</td>
+              <td>${t.type}</td>
+              <td style="font-family: 'JetBrains Mono', monospace;">${t.qty}</td>
+              <td style="font-family: 'JetBrains Mono', monospace;">${t.entry}</td>
+              <td style="font-family: 'JetBrains Mono', monospace;">${t.exit}</td>
+              <td class="${t.pnlClass}">${t.pnl}</td>
+              <td><span class="${t.tagClass}">${t.status}</span></td>
+            </tr>
+          `).join('');
+        }
+      }
+
+      function toggleTradeDayView() {
+        activeTradeViewDay = (activeTradeViewDay === 'today') ? 'yesterday' : 'today';
+        const currentUser = sessionStorage.getItem('client_user') || 'anand';
+        renderTradeLog(currentUser);
+      }
+
+      function toggleAccordion(monthId) {
+        const row = document.getElementById(`acc-row-${monthId}`);
+        const btn = document.getElementById(`acc-btn-${monthId}`);
+        if (!row || !btn) return;
+
+        const isHidden = row.classList.contains('hidden');
+        if (isHidden) {
+          row.classList.remove('hidden');
+          btn.innerHTML = 'Collapse [▲]';
+          btn.parentElement.style.background = 'rgba(6, 182, 212, 0.2)';
+        } else {
+          row.classList.add('hidden');
+          btn.innerHTML = 'Expand [▼]';
+          btn.parentElement.style.background = 'rgba(16, 185, 129, 0.1)';
+        }
+      }
+
+      function switchTab(tab) {
+        const tLive = document.getElementById('tab-live');
+        const tHist = document.getElementById('tab-history');
+        const pLive = document.getElementById('panel-live');
+        const pHist = document.getElementById('panel-history');
+        if (tLive) tLive.classList.toggle('active', tab === 'live');
+        if (tHist) tHist.classList.toggle('active', tab === 'history');
+        if (pLive) pLive.classList.toggle('hidden', tab !== 'live');
+        if (pHist) pHist.classList.toggle('hidden', tab !== 'history');
+      }
+
+      function handleLogout() {
+        sessionStorage.removeItem('client_user');
+        if (dashboardView) dashboardView.classList.add('hidden');
+        if (loginView) loginView.classList.remove('hidden');
+        const pass = document.getElementById('client-password');
+        if (pass) pass.value = '';
+      }
+
+      function downloadCSVReport() {
+        const currentUser = sessionStorage.getItem('client_user') || 'anand';
+        const client = CLIENT_DATA[currentUser] || CLIENT_DATA['anand'];
+        
+        let csvContent = "data:text/csv;charset=utf-8,Date,Executed Trades,Win Rate,Daily PnL (INR),Cumulative PnL (INR),Outcome\n";
+        client.dailyJul26.forEach(d => {
+          csvContent += `"${d.date}","${d.trades}","${d.winRate}","${d.dailyPnl}","${d.cumPnl}","${d.status}"\n`;
+        });
+        
+        const encodedUri = encodeURI(csvContent);
+        const link = document.createElement("a");
+        link.setAttribute("href", encodedUri);
+        link.setAttribute("download", `STRATEXA_Full_Monthly_Audit_${client.clientId}.csv`);
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+      }
     </script>
   </body>
 </html>
