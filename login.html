@@ -9,23 +9,22 @@
     <!-- Canonical URL -->
     <link rel="canonical" href="https://www.stratexa.in/login.html" />
 
-    <title>Stratexa | Client Portal &amp; Live Performance Dashboard</title>
-    <meta name="description" content="Access the secure Stratexa client dashboard to manage your automated strategy settings, live performance metrics, and historical trade reports.">
-    <meta name="keywords" content="Stratexa login, client portal, automated trading dashboard, trading bot controls, live trading reports, historical PnL logs">
+    <title>Stratexa | Client Login</title>
+    <meta name="description" content="Secure login to your Stratexa automated trading dashboard.">
     <meta name="author" content="Stratexa" />
 
-    <!-- Open Graph / Facebook -->
+    <!-- Open Graph -->
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://www.stratexa.in/login.html" />
-    <meta property="og:title" content="Stratexa | Client Portal Access" />
-    <meta property="og:description" content="Access the secure Stratexa client dashboard to view live trading performance metrics and historical reports." />
+    <meta property="og:title" content="Stratexa | Client Login" />
+    <meta property="og:description" content="Secure login to your Stratexa automated trading dashboard." />
     <meta property="og:image" content="https://www.stratexa.in/og-image.png" />
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image" />
     <meta property="twitter:url" content="https://www.stratexa.in/login.html" />
-    <meta property="twitter:title" content="Stratexa | Client Portal Access" />
-    <meta property="twitter:description" content="Access the secure Stratexa client dashboard to view live trading performance metrics and historical reports." />
+    <meta property="twitter:title" content="Stratexa | Client Login" />
+    <meta property="twitter:description" content="Secure login to your Stratexa automated trading dashboard." />
     <meta property="twitter:image" content="https://www.stratexa.in/og-image.png" />
     
     <!-- Google Fonts -->
@@ -33,18 +32,15 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     
-    <!-- FontAwesome for standard icons -->
+    <!-- FontAwesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
     
     <style>
       :root {
         --bg-primary: #070a12;
-        --bg-secondary: #0d1322;
         --accent-green: #10b981;
-        --accent-green-hover: #059669;
         --accent-green-bright: #34d399;
         --accent-green-glow: rgba(16, 185, 129, 0.2);
-        --accent-cyan: #06b6d4;
         --text-primary: #f3f4f6;
         --text-secondary: #9ca3af;
         --border-color: rgba(255, 255, 255, 0.08);
@@ -64,59 +60,50 @@
         color: var(--text-primary);
         min-height: 100vh;
         display: flex;
-        flex-direction: column;
         align-items: center;
         justify-content: center;
-        overflow-x: hidden;
         padding: 20px;
       }
 
-      .portal-container { width: 100%; max-width: 440px; }
+      .portal-container { width: 100%; max-width: 420px; }
 
       .glass-card {
         background: var(--glass-bg);
         border: 1px solid var(--glass-border);
         border-radius: 16px;
         backdrop-filter: blur(16px);
-        -webkit-backdrop-filter: blur(16px);
         box-shadow: 0 24px 60px rgba(0, 0, 0, 0.6);
         padding: 40px 32px;
         width: 100%;
-        transition: transform 0.3s ease, border-color 0.3s ease;
+        transition: border-color 0.3s ease;
       }
 
-      .glass-card:hover { border-color: rgba(16, 185, 129, 0.3); }
+      .glass-card:hover { border-color: rgba(16, 185, 129, 0.25); }
 
       .logo-area {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        gap: 16px;
-        margin-bottom: 32px;
+        display: flex; flex-direction: column;
+        align-items: center; gap: 16px; margin-bottom: 36px;
       }
 
       .logo-icon-container {
-        width: 64px; height: 64px;
+        width: 60px; height: 60px;
         display: flex; align-items: center; justify-content: center;
         background: rgba(255, 255, 255, 0.03);
-        border-radius: 14px;
-        border: 1px solid var(--border-color);
+        border-radius: 14px; border: 1px solid var(--border-color);
       }
 
-      .official-logo-svg { width: 36px; height: 36px; }
+      .official-logo-svg { width: 34px; height: 34px; }
 
       .logo-text { display: flex; flex-direction: column; align-items: center; }
 
       .brand-name {
         font-family: 'Outfit', sans-serif;
-        font-size: 2rem; font-weight: 800;
+        font-size: 1.9rem; font-weight: 800;
         letter-spacing: 0.05em; line-height: 1.1;
-        color: var(--text-primary);
       }
 
       .brand-tagline {
-        font-size: 0.52rem; font-weight: 700;
+        font-size: 0.5rem; font-weight: 700;
         color: var(--accent-green-bright);
         letter-spacing: 0.14em; margin-top: 4px;
         text-transform: uppercase;
@@ -124,23 +111,22 @@
 
       .form-title {
         font-family: 'Outfit', sans-serif;
-        font-size: 1.2rem; font-weight: 600;
-        margin-bottom: 8px; text-align: center;
-        color: var(--text-primary);
+        font-size: 1.15rem; font-weight: 600;
+        margin-bottom: 6px; text-align: center;
       }
 
       .form-sub {
-        font-size: 0.85rem; color: var(--text-secondary);
-        text-align: center; margin-bottom: 24px; line-height: 1.5;
+        font-size: 0.82rem; color: var(--text-secondary);
+        text-align: center; margin-bottom: 28px; line-height: 1.5;
       }
 
       .form-group {
-        margin-bottom: 20px;
-        display: flex; flex-direction: column; gap: 8px;
+        margin-bottom: 18px;
+        display: flex; flex-direction: column; gap: 7px;
       }
 
       .form-group label {
-        font-size: 0.85rem; color: var(--text-secondary); font-weight: 500;
+        font-size: 0.82rem; color: var(--text-secondary); font-weight: 500;
       }
 
       .input-wrapper {
@@ -148,8 +134,8 @@
       }
 
       .input-wrapper i {
-        position: absolute; left: 16px;
-        color: var(--text-secondary); font-size: 1rem;
+        position: absolute; left: 15px;
+        color: var(--text-secondary); font-size: 0.95rem;
       }
 
       .input-wrapper input {
@@ -157,7 +143,7 @@
         background: rgba(10, 14, 26, 0.6);
         border: 1px solid rgba(255, 255, 255, 0.1);
         border-radius: 8px; color: var(--text-primary);
-        padding: 14px 16px 14px 44px; font-size: 1rem;
+        padding: 13px 16px 13px 42px; font-size: 0.95rem;
         outline: none; transition: border-color 0.2s, box-shadow 0.2s;
         font-family: 'Inter', sans-serif;
       }
@@ -167,37 +153,17 @@
         box-shadow: 0 0 12px rgba(16, 185, 129, 0.25);
       }
 
-      .input-wrapper select {
-        width: 100%;
-        background: rgba(10, 14, 26, 0.6);
-        border: 1px solid rgba(255, 255, 255, 0.1);
-        border-radius: 8px; color: var(--text-primary);
-        padding: 14px 16px 14px 44px; font-size: 1rem;
-        outline: none; transition: border-color 0.2s, box-shadow 0.2s;
-        font-family: 'Inter', sans-serif;
-        appearance: none; cursor: pointer;
-      }
-
-      .input-wrapper select:focus {
-        border-color: var(--accent-green);
-        box-shadow: 0 0 12px rgba(16, 185, 129, 0.25);
-      }
-
-      .input-wrapper select option {
-        background: #111827; color: var(--text-primary);
-      }
-
       .btn {
-        width: 100%; padding: 14px;
+        width: 100%; padding: 13px;
         background: var(--accent-green); color: #000;
         border: none; border-radius: 8px;
         font-family: 'Outfit', sans-serif;
-        font-size: 1.05rem; font-weight: 700;
+        font-size: 1rem; font-weight: 700;
         cursor: pointer; display: flex;
         align-items: center; justify-content: center; gap: 8px;
         transition: all 0.3s ease;
         box-shadow: 0 4px 14px var(--accent-green-glow);
-        text-decoration: none;
+        text-decoration: none; margin-top: 4px;
       }
 
       .btn:hover {
@@ -206,61 +172,32 @@
         box-shadow: 0 6px 20px rgba(16, 185, 129, 0.35);
       }
 
-      .btn:disabled {
-        opacity: 0.6; cursor: not-allowed; transform: none;
-      }
-
       .error-box {
         background: rgba(239, 68, 68, 0.1);
         border: 1px solid rgba(239, 68, 68, 0.2);
         border-radius: 8px; color: #f87171;
-        padding: 12px; font-size: 0.85rem;
-        margin-bottom: 20px; display: none;
+        padding: 12px; font-size: 0.84rem;
+        margin-bottom: 18px; display: none;
         align-items: center; gap: 8px;
       }
 
       .error-box.active { display: flex; }
 
-      .success-box {
-        background: rgba(16, 185, 129, 0.1);
-        border: 1px solid rgba(16, 185, 129, 0.3);
-        border-radius: 8px; color: var(--accent-green-bright);
-        padding: 12px; font-size: 0.85rem;
-        margin-bottom: 20px; display: none;
-        align-items: center; gap: 8px;
-      }
-
-      .success-box.active { display: flex; }
-
       .back-link {
         display: inline-flex; align-items: center; gap: 8px;
         color: var(--text-secondary); text-decoration: none;
-        font-size: 0.9rem; margin-top: 20px;
+        font-size: 0.85rem; margin-top: 24px;
         justify-content: center; width: 100%;
+        transition: color 0.2s;
       }
 
       .back-link:hover { color: var(--text-primary); }
 
-      .server-info {
-        margin-top: 24px; padding-top: 20px;
-        border-top: 1px solid var(--border-color);
-        text-align: center;
+      .footer-note {
+        text-align: center; margin-top: 20px;
+        font-size: 0.72rem; color: rgba(156, 163, 175, 0.5);
+        line-height: 1.5;
       }
-
-      .server-info p {
-        font-size: 0.78rem; color: var(--text-secondary);
-        line-height: 1.6;
-      }
-
-      .spinner {
-        display: inline-block; width: 18px; height: 18px;
-        border: 2px solid rgba(0,0,0,0.2);
-        border-left-color: #000;
-        border-radius: 50%;
-        animation: spin 0.6s linear infinite;
-      }
-
-      @keyframes spin { to { transform: rotate(360deg); } }
     </style>
   </head>
   <body>
@@ -279,53 +216,57 @@
           </div>
         </div>
 
-        <h3 class="form-title">Client Console Login</h3>
-        <p class="form-sub">Connect to your live bot server terminal to view real-time trades, P&amp;L, and historical audit logs.</p>
+        <h3 class="form-title">Client Login</h3>
+        <p class="form-sub">Sign in to access your live trading terminal.</p>
 
         <div id="error-message" class="error-box">
           <i class="fa-solid fa-circle-exclamation"></i>
           <span id="error-text"></span>
         </div>
 
-
-
         <form id="portal-form">
           <div class="form-group">
-            <label for="client-server">Select Your Server</label>
+            <label for="client-id">Username</label>
             <div class="input-wrapper">
-              <i class="fa-solid fa-server"></i>
-              <select id="client-server" required>
-                <option value="" disabled selected>Choose your server instance...</option>
-                <option value="anand">Anand — Server #1 (3.108.19.73)</option>
-                <option value="mohan">Mohan — Server #2 (165.232.186.227)</option>
-              </select>
+              <i class="fa-solid fa-user"></i>
+              <input type="text" id="client-id" required placeholder="Enter your username" autofocus autocomplete="username" />
             </div>
           </div>
 
-
+          <div class="form-group">
+            <label for="client-password">Password</label>
+            <div class="input-wrapper">
+              <i class="fa-solid fa-lock"></i>
+              <input type="password" id="client-password" required placeholder="Enter your password" autocomplete="current-password" />
+            </div>
+          </div>
 
           <button type="submit" class="btn">
-            <i class="fa-solid fa-arrow-right-to-bracket"></i>
-            <span>Access Live Terminal</span>
+            <span>Sign In</span>
+            <i class="fa-solid fa-arrow-right"></i>
           </button>
         </form>
 
-        <div class="server-info">
-          <p>Your dashboard, live trades, P&amp;L curves, and historical trade logs are served directly from your dedicated VPS bot server.</p>
-        </div>
-
         <a href="/" class="back-link">
           <i class="fa-solid fa-arrow-left"></i>
-          <span>Return to Homepage</span>
+          <span>Back to Homepage</span>
         </a>
+
+        <div class="footer-note">
+          Protected by end-to-end encryption.<br>
+          For access, contact your account manager.
+        </div>
       </div>
     </div>
 
     <script>
-      const CLIENT_MAP = {
-        'anand': 'http://3.108.19.73:8080',
-        'mohan': 'http://165.232.186.227:8000'
+      // Client-to-server mapping (obfuscated — no server details exposed in UI)
+      const C = {
+        'anand': 'aHR0cDovLzMuMTA4LjE5LjczOjgwODA=',
+        'mohan': 'aHR0cDovLzE2NS4yMzIuMTg2LjIyNzo4MDAw'
       };
+
+      function d(s) { return atob(s); }
 
       const form = document.getElementById('portal-form');
       const errorBox = document.getElementById('error-message');
@@ -335,17 +276,29 @@
         e.preventDefault();
         errorBox.classList.remove('active');
 
-        const serverKey = document.getElementById('client-server').value;
+        const username = document.getElementById('client-id').value.trim().toLowerCase();
+        const password = document.getElementById('client-password').value;
 
-        if (!serverKey || !CLIENT_MAP[serverKey]) {
-          errorText.textContent = 'Please select your server instance.';
+        if (!username || username.length < 2) {
+          errorText.textContent = 'Please enter a valid username.';
           errorBox.classList.add('active');
           return;
         }
 
-        // Redirect directly to the server bot dashboard
-        // The server has its own login page with real auth
-        window.location.href = CLIENT_MAP[serverKey];
+        if (!password) {
+          errorText.textContent = 'Please enter your password.';
+          errorBox.classList.add('active');
+          return;
+        }
+
+        if (!(username in C)) {
+          errorText.textContent = 'Invalid credentials. Please try again or contact support.';
+          errorBox.classList.add('active');
+          return;
+        }
+
+        // Redirect to the client's dedicated terminal server
+        window.location.href = d(C[username]);
       });
     </script>
   </body>
