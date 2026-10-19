@@ -17,6 +17,7 @@ export default defineConfig({
         terms: resolve(__dirname, 'terms.html'),
         refund: resolve(__dirname, 'refund.html'),
         cookie: resolve(__dirname, 'cookie.html'),
+        cookies: resolve(__dirname, 'cookies.html'),
         strategy: resolve(__dirname, 'trend-following-options-strategy.html'),
         login: resolve(__dirname, 'login.html'),
       }

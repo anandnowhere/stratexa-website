@@ -142,7 +142,7 @@
         "name": "Which brokers and markets are supported?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "We support Indian markets (Zerodha, Dhan, Angel One via APIs), Cryptocurrency (Delta Exchange, Binance, Bybit), and Forex (MT5, Interactive Brokers)."
+          "text": "We support Indian markets (Zerodha, Dhan, Angel One via APIs), Exchange Currency Derivatives, Cryptocurrency (Delta Exchange, Binance), and Global Accounts via Interactive Brokers."
         }
       },
       {
@@ -215,7 +215,7 @@
         <a href="/pricing.html" class="nav-link">Pricing</a>
         <a href="/about.html" class="nav-link">About</a>
         <a href="/faq.html" class="nav-link active">FAQ</a>
-        <a href="/login.html" class="nav-link"><i class="fa-solid fa-user-lock" style="margin-right: 4px;"></i> Client Login</a>
+        <a href="/login.html" class="nav-link"><i class="fa-solid fa-desktop" style="margin-right: 4px;"></i> Live Demo</a>
         <a href="/#consultation" class="btn btn-primary btn-nav">Book Free Consultation</a>
       </nav>
       
@@ -258,7 +258,19 @@
       <details class="faq-item">
         <summary>Which brokers and markets are supported?</summary>
         <div class="faq-content">
-          <p>We support <strong>any broker with an accessible API</strong>. Whether you trade Indian Markets (Equity, Futures &amp; Options), Cryptocurrency, or Forex &mdash; and whether your style is Intraday or Positional &mdash; our custom Python engine connects directly to your chosen broker account.</p>
+          <p>We support <strong>any broker with an accessible REST or WebSocket API</strong>. This includes Indian Market Equities, Futures &amp; Options, and Exchange-Traded Currency Derivatives (Zerodha, Dhan, Angel One, Upstox, Shoonya), Cryptocurrency (Delta Exchange, Binance, Bybit), and Global Multi-Asset accounts via Interactive Brokers.</p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary>How does Stratexa comply with SEBI's Algorithmic Trading regulations (Static IP &amp; Rate Limits)?</summary>
+        <div class="faq-content">
+          <p>We take regulatory compliance and account safety seriously. Under SEBI and exchange mandates (including circulars on retail algorithmic trading):</p>
+          <ul>
+            <li><strong>Dedicated Static IPv4:</strong> Every client cloud instance deployed via our Cloud VPS setup receives a dedicated, fixed static IP address, which you whitelist directly in your broker's API console.</li>
+            <li><strong>Order Rate-Limit Protection:</strong> Our Python execution engines implement hardcoded rate clamps keeping order request bursts safely below exchange thresholds (&lt;10 orders/sec) to prevent broker API bans.</li>
+            <li><strong>100% White-Box Client Isolation:</strong> All API keys, tokens, and TOTP seeds reside strictly on your dedicated private VPS instance. Stratexa never stores or pools client credentials on central multi-tenant servers.</li>
+          </ul>
         </div>
       </details>
 
