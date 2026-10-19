@@ -407,10 +407,97 @@
       <!-- Pre-defined Strategies Section -->
       <section class="strategies-showcase-section" id="strategies-showcase" style="border-top: 1px solid var(--border-color); padding: 80px 0;">
         <div class="container">
-          <div class="section-header">
-            <span class="badge">Plug &amp; Play Trading</span>
-            <h2 class="section-title">Pre-Defined Trading Strategies</h2>
-            <p class="section-subtitle">Battle-tested, production-ready strategy packages. Pick one, deploy in 48 hours, own the code forever. Every strategy &mdash; same flat fee.</p>
+          
+          <!-- FEATURED HERO: BRING YOUR OWN STRATEGY (OUR CORE MODEL) -->
+          <div style="background: linear-gradient(135deg, rgba(16,185,129,0.14) 0%, rgba(6,182,212,0.1) 50%, rgba(17,23,38,0.95) 100%); border: 2px solid var(--accent-green); border-radius: 20px; padding: clamp(1.75rem, 4vw, 3rem); box-shadow: 0 20px 50px -10px rgba(16,185,129,0.25); position: relative; overflow: hidden; margin-bottom: 3.5rem;">
+            <div style="position: absolute; top: -50px; right: -50px; width: 220px; height: 220px; background: radial-gradient(circle, rgba(16,185,129,0.2) 0%, transparent 70%); pointer-events: none;"></div>
+
+            <div style="display: flex; flex-wrap: wrap; gap: 2rem; align-items: center; justify-content: space-between; position: relative; z-index: 1;">
+              <div style="flex: 1 1 500px; max-width: 680px;">
+                <span class="badge" style="background: rgba(16,185,129,0.2); color: var(--accent-green-bright); border: 1px solid var(--accent-green); font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; padding: 0.3rem 0.9rem; border-radius: 50px; display: inline-block; margin-bottom: 1rem;">
+                  <i class="fa-solid fa-star" style="margin-right: 5px;"></i> OUR CORE MODEL &middot; 100% CUSTOM AUTOMATION
+                </span>
+                
+                <h2 style="font-family: var(--font-heading); font-size: clamp(1.8rem, 3.5vw, 2.5rem); font-weight: 800; color: var(--text-primary); line-height: 1.2; margin-bottom: 1rem;">
+                  Bring Your Own Strategy<br>
+                  <span style="color: var(--accent-green-bright); font-size: clamp(1.3rem, 2.5vw, 1.8rem); font-weight: 700;">We Code &amp; Deploy Your Exact Rules</span>
+                </h2>
+                
+                <p style="color: var(--text-secondary); font-size: 1.05rem; line-height: 1.7; margin-bottom: 1.5rem;">
+                  Already have your own trading setup, TradingView alerts, Pine Script, Excel models, or discretionary chart rules? <strong style="color: var(--text-primary);">That is the core model of Stratexa.</strong> We engineer your exact rules into a high-performance Python execution bot deployed to your broker within 48 hours.
+                </p>
+
+                <!-- 4 Value Points -->
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 0.85rem; margin-bottom: 2rem;">
+                  <div style="background: rgba(17,23,38,0.7); border: 1px solid var(--border-color); border-radius: 10px; padding: 0.75rem 1rem; display: flex; align-items: center; gap: 10px;">
+                    <i class="fa-solid fa-globe" style="color: #06b6d4; font-size: 1.1rem; flex-shrink: 0;"></i>
+                    <div>
+                      <div style="font-size: 0.7rem; color: var(--text-muted); text-transform: uppercase;">Any Market</div>
+                      <div style="font-size: 0.85rem; font-weight: 600; color: var(--text-primary);">Crypto &middot; Forex &middot; Indian F&amp;O &amp; Equity</div>
+                    </div>
+                  </div>
+
+                  <div style="background: rgba(17,23,38,0.7); border: 1px solid var(--border-color); border-radius: 10px; padding: 0.75rem 1rem; display: flex; align-items: center; gap: 10px;">
+                    <i class="fa-solid fa-clock-rotate-left" style="color: #f59e0b; font-size: 1.1rem; flex-shrink: 0;"></i>
+                    <div>
+                      <div style="font-size: 0.7rem; color: var(--text-muted); text-transform: uppercase;">Any Timeframe</div>
+                      <div style="font-size: 0.85rem; font-weight: 600; color: var(--text-primary);">Intraday or Positional</div>
+                    </div>
+                  </div>
+
+                  <div style="background: rgba(17,23,38,0.7); border: 1px solid var(--border-color); border-radius: 10px; padding: 0.75rem 1rem; display: flex; align-items: center; gap: 10px;">
+                    <i class="fa-solid fa-plug" style="color: #10b981; font-size: 1.1rem; flex-shrink: 0;"></i>
+                    <div>
+                      <div style="font-size: 0.7rem; color: var(--text-muted); text-transform: uppercase;">Universal Access</div>
+                      <div style="font-size: 0.85rem; font-weight: 600; color: var(--text-primary);">Works with Any Broker API</div>
+                    </div>
+                  </div>
+
+                  <div style="background: rgba(17,23,38,0.7); border: 1px solid var(--border-color); border-radius: 10px; padding: 0.75rem 1rem; display: flex; align-items: center; gap: 10px;">
+                    <i class="fa-solid fa-user-shield" style="color: #8b5cf6; font-size: 1.1rem; flex-shrink: 0;"></i>
+                    <div>
+                      <div style="font-size: 0.7rem; color: var(--text-muted); text-transform: uppercase;">100% Protected</div>
+                      <div style="font-size: 0.85rem; font-weight: 600; color: var(--text-primary);">Mutual NDA &middot; Code Ownership</div>
+                    </div>
+                  </div>
+                </div>
+
+                <div style="display: flex; flex-wrap: wrap; gap: 1rem; align-items: center;">
+                  <a href="https://wa.me/919150087233?text=Hi%20Stratexa%2C%20I%20have%20my%20own%20trading%20strategy%20rules%20that%20I%20want%20to%20automate%20for%20%E2%82%B95%2C000.%20Let%27s%20discuss%20my%20requirements." target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-lg" style="box-shadow: 0 10px 25px -5px rgba(16,185,129,0.4);">
+                    <i class="fa-brands fa-whatsapp" style="margin-right: 8px; font-size: 1.2rem;"></i> Discuss My Strategy on WhatsApp
+                  </a>
+                  <a href="#consultation" class="btn btn-secondary btn-lg">
+                    <i class="fa-solid fa-calendar-check" style="margin-right: 6px;"></i> Book Free Consultation
+                  </a>
+                </div>
+              </div>
+
+              <!-- Price & Deliverables Box -->
+              <div style="flex: 1 1 280px; max-width: 360px; background: var(--bg-card); border: 1.5px solid rgba(16,185,129,0.3); border-radius: 16px; padding: 2rem; text-align: center; box-shadow: 0 15px 35px rgba(0,0,0,0.4);">
+                <span style="font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.8px; font-weight: 600;">Custom Strategy Pricing</span>
+                <div style="font-family: var(--font-heading); font-size: 2.8rem; font-weight: 800; color: #10b981; margin: 0.2rem 0;">&#8377;5,000</div>
+                <span style="background: rgba(16,185,129,0.1); color: #10b981; border: 1px solid rgba(16,185,129,0.25); padding: 0.25rem 0.85rem; border-radius: 50px; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; display: inline-block; margin-bottom: 1.25rem;">Flat One-Time Setup Fee</span>
+                
+                <ul style="list-style: none; padding: 0; text-align: left; color: var(--text-secondary); font-size: 0.88rem; margin-bottom: 1.5rem;">
+                  <li style="margin-bottom: 0.6rem; display: flex; align-items: flex-start; gap: 8px;"><i class="fa-solid fa-check" style="color: #10b981; margin-top: 3px;"></i> Requirement scoping &amp; feasibility audit</li>
+                  <li style="margin-bottom: 0.6rem; display: flex; align-items: flex-start; gap: 8px;"><i class="fa-solid fa-check" style="color: #10b981; margin-top: 3px;"></i> Custom Python bot development</li>
+                  <li style="margin-bottom: 0.6rem; display: flex; align-items: flex-start; gap: 8px;"><i class="fa-solid fa-check" style="color: #10b981; margin-top: 3px;"></i> Paper trading &amp; logic verification</li>
+                  <li style="margin-bottom: 0.6rem; display: flex; align-items: flex-start; gap: 8px;"><i class="fa-solid fa-check" style="color: #10b981; margin-top: 3px;"></i> Full source code handed to you</li>
+                  <li style="display: flex; align-items: flex-start; gap: 8px;"><i class="fa-solid fa-check" style="color: #10b981; margin-top: 3px;"></i> Zero profit sharing &middot; 100% yours</li>
+                </ul>
+
+                <div style="font-size: 0.78rem; color: var(--text-muted); border-top: 1px solid var(--border-color); padding-top: 0.85rem;">
+                  <i class="fa-solid fa-lock" style="color: var(--accent-green); margin-right: 4px;"></i> Protected by Mutual NDA before code begins
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Section Sub-Header for Pre-Built Library -->
+          <div class="section-header" style="text-align: center; margin-bottom: 2rem;">
+            <span class="badge">READY TO DEPLOY</span>
+            <h2 class="section-title">Or Choose from Our Pre-Built Strategy Library</h2>
+            <p class="section-subtitle">Battle-tested strategy templates ready to link to your account. Crypto, Forex, Indian F&amp;O and Equity &mdash; Intraday or Positional.</p>
           </div>
 
           <!-- Mini Strategy Cards Grid -->
@@ -421,24 +508,26 @@
                 <div style="width:38px; height:38px; border-radius:8px; background:rgba(16,185,129,0.15); color:#10b981; display:flex; align-items:center; justify-content:center; font-size:1rem; flex-shrink:0;"><i class="fa-solid fa-arrow-trend-up"></i></div>
                 <div><div style="font-size:0.65rem; color:var(--text-muted); text-transform:uppercase; letter-spacing:0.8px; font-weight:600;">Trend-Following</div><h4 style="font-size:0.95rem; font-weight:700; color:var(--text-primary); margin:0;">Supertrend Strategy</h4></div>
               </div>
-              <p style="color:var(--text-secondary); font-size:0.83rem; line-height:1.5; margin:0;">ATR-based automated trend flips with trailing stop-loss. Best for Nifty, BankNifty &amp; high-beta equities.</p>
+              <p style="color:var(--text-secondary); font-size:0.83rem; line-height:1.5; margin:0;">ATR-based automated trend flips with trailing stop-loss. Works across Crypto, Forex, Indian F&amp;O and Equities.</p>
               <div style="display:flex; gap:0.4rem; flex-wrap:wrap;">
-                <span style="font-size:0.68rem; padding:0.18rem 0.55rem; border-radius:50px; background:var(--bg-tertiary); color:var(--text-secondary); border:1px solid var(--border-color);">Intraday &amp; Positional</span>
-                <span style="font-size:0.68rem; padding:0.18rem 0.55rem; border-radius:50px; background:var(--bg-tertiary); color:var(--text-secondary); border:1px solid var(--border-color);">Min &#8377;50K capital</span>
+                <span style="font-size:0.68rem; padding:0.18rem 0.55rem; border-radius:50px; background:var(--bg-tertiary); color:var(--text-secondary); border:1px solid var(--border-color);">Crypto &middot; Forex &middot; F&amp;O &middot; Equity</span>
+                <span style="font-size:0.68rem; padding:0.18rem 0.55rem; border-radius:50px; background:var(--bg-tertiary); color:var(--text-secondary); border:1px solid var(--border-color);">Intraday or Positional</span>
               </div>
             </div>
+
             <!-- 9:20 Straddle -->
             <div style="background: var(--bg-secondary); border: 1.5px solid rgba(245,158,11,0.4); border-radius: 12px; padding: 1.5rem; display: flex; flex-direction: column; gap: 0.75rem;">
               <div style="display:flex; align-items:center; gap:0.75rem;">
                 <div style="width:38px; height:38px; border-radius:8px; background:rgba(245,158,11,0.15); color:#f59e0b; display:flex; align-items:center; justify-content:center; font-size:1rem; flex-shrink:0;"><i class="fa-solid fa-arrows-left-right"></i></div>
                 <div><div style="font-size:0.65rem; color:var(--text-muted); text-transform:uppercase; letter-spacing:0.8px; font-weight:600;">Theta Decay</div><h4 style="font-size:0.95rem; font-weight:700; color:var(--text-primary); margin:0;">9:20 AM Straddle / Strangle</h4></div>
               </div>
-              <p style="color:var(--text-secondary); font-size:0.83rem; line-height:1.5; margin:0;">Automated ATM CE+PE entry at 9:20 AM with individual leg SL, trailing stop &amp; MTM target. India's benchmark intraday options strategy.</p>
+              <p style="color:var(--text-secondary); font-size:0.83rem; line-height:1.5; margin:0;">Automated ATM CE+PE entry at 9:20 AM with individual leg SL, trailing stop &amp; MTM target. Benchmark options theta decay.</p>
               <div style="display:flex; gap:0.4rem; flex-wrap:wrap;">
-                <span style="font-size:0.68rem; padding:0.18rem 0.55rem; border-radius:50px; background:var(--bg-tertiary); color:var(--text-secondary); border:1px solid var(--border-color);">Intraday Only</span>
-                <span style="font-size:0.68rem; padding:0.18rem 0.55rem; border-radius:50px; background:var(--bg-tertiary); color:var(--text-secondary); border:1px solid var(--border-color);">Min &#8377;1.5L capital</span>
+                <span style="font-size:0.68rem; padding:0.18rem 0.55rem; border-radius:50px; background:var(--bg-tertiary); color:var(--text-secondary); border:1px solid var(--border-color);">Index &middot; Stock &middot; Crypto Options</span>
+                <span style="font-size:0.68rem; padding:0.18rem 0.55rem; border-radius:50px; background:var(--bg-tertiary); color:var(--text-secondary); border:1px solid var(--border-color);">Intraday Execution</span>
               </div>
             </div>
+
             <!-- Card 3: Server-Side SL & Target Engine -->
             <div style="background: var(--bg-secondary); border: 1.5px solid rgba(239,68,68,0.4); border-radius: 12px; padding: 1.5rem; display: flex; flex-direction: column; gap: 0.75rem;">
               <div style="display:flex; align-items:center; gap:0.75rem;">
@@ -448,7 +537,7 @@
               <p style="color:var(--text-secondary); font-size:0.83rem; line-height:1.5; margin:0;">Monitors prices in-memory on your VPS. Hides SL from broker books, protects against terminal freeze, and executes instant IOC exits.</p>
               <div style="display:flex; gap:0.4rem; flex-wrap:wrap;">
                 <span style="font-size:0.68rem; padding:0.18rem 0.55rem; border-radius:50px; background:var(--bg-tertiary); color:var(--text-secondary); border:1px solid var(--border-color);">All Markets</span>
-                <span style="font-size:0.68rem; padding:0.18rem 0.55rem; border-radius:50px; background:var(--bg-tertiary); color:var(--text-secondary); border:1px solid var(--border-color);">Zero Freeze Risk</span>
+                <span style="font-size:0.68rem; padding:0.18rem 0.55rem; border-radius:50px; background:var(--bg-tertiary); color:var(--text-secondary); border:1px solid var(--border-color);">Intraday or Positional</span>
               </div>
             </div>
           </div><!-- /mini cards -->
@@ -458,14 +547,14 @@
             <div>
               <div style="font-size:0.75rem; color:var(--text-muted); text-transform:uppercase; letter-spacing:0.8px; font-weight:600; margin-bottom:0.4rem;">Transparent Flat Pricing</div>
               <div style="font-family: var(--font-heading); font-size: 1.5rem; font-weight: 800; color: var(--text-primary);">
-                &#8377;5,000 <span style="font-size:0.9rem; font-weight:400; color:var(--text-secondary);">Strategy</span>
+                &#8377;5,000 <span style="font-size:0.9rem; font-weight:400; color:var(--text-secondary);">Strategy Setup</span>
                 &nbsp;+&nbsp; &#8377;999 <span style="font-size:0.9rem; font-weight:400; color:var(--text-secondary);">Onboarding</span>
                 &nbsp;+&nbsp; &#8377;1,499<span style="font-size:0.9rem; font-weight:400; color:var(--text-secondary);">/mo Care</span>
               </div>
             </div>
             <div style="display:flex; gap:0.75rem; flex-wrap:wrap;">
-              <a href="/strategies.html" class="btn btn-primary">Browse All Strategies &rarr;</a>
-              <a href="https://wa.me/919150087233?text=Hi%20Stratexa%2C%20I%20want%20to%20deploy%20a%20pre-defined%20strategy%20for%20%E2%82%B95%2C000." target="_blank" rel="noopener noreferrer" class="btn btn-secondary"><i class="fa-brands fa-whatsapp" style="margin-right:6px;"></i> Deploy Now</a>
+              <a href="/strategies.html" class="btn btn-primary">Browse All 7 Strategies &rarr;</a>
+              <a href="https://wa.me/919150087233?text=Hi%20Stratexa%2C%20I%20want%20to%20automate%20my%20trading%20strategy%20for%20%E2%82%B95%2C000." target="_blank" rel="noopener noreferrer" class="btn btn-secondary"><i class="fa-brands fa-whatsapp" style="margin-right:6px;"></i> Deploy Now</a>
             </div>
           </div>
 
@@ -482,7 +571,7 @@
               <div style="background: var(--bg-tertiary); border: 1px solid var(--border-color); border-radius: 10px; padding: 1rem;">
                 <div style="color: #10b981; font-size: 1.1rem; margin-bottom: 0.35rem;"><i class="fa-solid fa-plug-circle-check"></i></div>
                 <div style="font-weight: 700; font-size: 0.88rem; color: var(--text-primary); margin-bottom: 0.2rem;">Direct Broker APIs</div>
-                <div style="font-size: 0.78rem; color: var(--text-secondary);">Native REST &amp; WebSocket connectors for Zerodha, Dhan, Angel One &amp; Shoonya.</div>
+                <div style="font-size: 0.78rem; color: var(--text-secondary);">Native REST &amp; WebSocket connectors for any broker with automated authentication.</div>
               </div>
               <div style="background: var(--bg-tertiary); border: 1px solid var(--border-color); border-radius: 10px; padding: 1rem;">
                 <div style="color: #06b6d4; font-size: 1.1rem; margin-bottom: 0.35rem;"><i class="fa-solid fa-bolt"></i></div>

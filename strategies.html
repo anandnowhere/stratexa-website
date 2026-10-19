@@ -358,59 +358,158 @@
   </header>
 
   <main style="padding-top: 100px;">
-    <!-- Hero -->
+    <!-- Hero Section -->
     <section class="strategies-hero">
       <div class="container">
-        <span class="badge" style="background: var(--accent-green-glow); color: var(--accent-green-bright); padding: 0.5rem 1.1rem; border-radius: 50px; font-weight: 600; font-size: 0.82rem; text-transform: uppercase; letter-spacing: 1px; border: 1px solid var(--border-color-glow); display: inline-block; margin-bottom: 1.5rem;">PLUG &amp; PLAY TRADING</span>
-        <h1>Pre-Defined Trading<br><span class="text-glow-green">Strategy Library</span></h1>
-        <p>Battle-tested, production-ready automation strategies. Pick one, pay once, go live within 48 hours on your preferred broker. No profit share. No lock-in. Full code ownership.</p>
+        <span class="badge" style="background: var(--accent-green-glow); color: var(--accent-green-bright); padding: 0.5rem 1.1rem; border-radius: 50px; font-weight: 600; font-size: 0.82rem; text-transform: uppercase; letter-spacing: 1px; border: 1px solid var(--border-color-glow); display: inline-block; margin-bottom: 1.5rem;">ALGO TRADING AUTOMATION</span>
+        <h1>Automate Your Strategy.<br><span class="text-glow-green">Deploy in 48 Hours.</span></h1>
+        <p>Bring your own custom strategy rules or select from our pre-built library. One flat fee of &#8377;5,000. Full Python source code ownership. Zero profit share. 100% confidential.</p>
 
         <!-- 3-Pillar Pricing Strip -->
         <div class="pricing-strip">
           <div class="ps-pillar">
             <span class="ps-label">Strategy Setup</span>
-            <span class="ps-amount" style="color: #10b981;">₹5,000</span>
-            <span class="ps-sublabel">One-time · All strategies</span>
+            <span class="ps-amount" style="color: #10b981;">&#8377;5,000</span>
+            <span class="ps-sublabel">One-time &middot; Custom or Pre-Built</span>
           </div>
           <div class="ps-plus">+</div>
           <div class="ps-pillar">
             <span class="ps-label">Onboarding &amp; Deployment</span>
-            <span class="ps-amount" style="color: #06b6d4;">₹999</span>
-            <span class="ps-sublabel">One-time · Broker API + VPS setup</span>
+            <span class="ps-amount" style="color: #06b6d4;">&#8377;999</span>
+            <span class="ps-sublabel">One-time &middot; Broker API + Cloud VPS</span>
           </div>
           <div class="ps-plus">+</div>
           <div class="ps-pillar">
             <span class="ps-label">Pro Care Plan</span>
-            <span class="ps-amount" style="color: #f59e0b;">₹1,499</span>
-            <span class="ps-sublabel">Per month · 24/7 managed hosting</span>
+            <span class="ps-amount" style="color: #f59e0b;">&#8377;1,499</span>
+            <span class="ps-sublabel">Per month &middot; 24/7 managed hosting</span>
           </div>
         </div>
 
         <a href="/pricing.html" style="font-size:0.85rem; color: var(--accent-green-bright); text-decoration: none;">
-          <i class="fa-solid fa-circle-info" style="margin-right:4px;"></i> See full pricing breakdown →
+          <i class="fa-solid fa-circle-info" style="margin-right:4px;"></i> See full pricing breakdown &rarr;
         </a>
       </div>
     </section>
 
-    <!-- Strategy Cards -->
-    <section style="padding: 0 0 2rem;">
+    <!-- 1. FEATURED HERO: BRING YOUR OWN STRATEGY (OUR CORE MODEL) -->
+    <section style="padding: 3rem 0 1rem;">
       <div class="container">
-        <div class="strategies-grid">
+        <div style="background: linear-gradient(135deg, rgba(16,185,129,0.14) 0%, rgba(6,182,212,0.1) 50%, rgba(17,23,38,0.95) 100%); border: 2px solid var(--accent-green); border-radius: 20px; padding: clamp(1.75rem, 4vw, 3rem); box-shadow: 0 20px 50px -10px rgba(16,185,129,0.25); position: relative; overflow: hidden;">
+          
+          <div style="position: absolute; top: -50px; right: -50px; width: 220px; height: 220px; background: radial-gradient(circle, rgba(16,185,129,0.2) 0%, transparent 70%); pointer-events: none;"></div>
+
+          <div style="display: flex; flex-wrap: wrap; gap: 2rem; align-items: center; justify-content: space-between; position: relative; z-index: 1;">
+            
+            <div style="flex: 1 1 500px; max-width: 680px;">
+              <span class="badge" style="background: rgba(16,185,129,0.2); color: var(--accent-green-bright); border: 1px solid var(--accent-green); font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; padding: 0.3rem 0.9rem; border-radius: 50px; display: inline-block; margin-bottom: 1rem;">
+                <i class="fa-solid fa-star" style="margin-right: 5px;"></i> CORE SERVICE &middot; 100% CUSTOM AUTOMATION
+              </span>
+              
+              <h2 style="font-family: var(--font-heading); font-size: clamp(1.8rem, 3.5vw, 2.5rem); font-weight: 800; color: var(--text-primary); line-height: 1.2; margin-bottom: 1rem;">
+                Bring Your Own Strategy<br>
+                <span style="color: var(--accent-green-bright); font-size: clamp(1.3rem, 2.5vw, 1.8rem); font-weight: 700;">That's What Stratexa Does Best</span>
+              </h2>
+              
+              <p style="color: var(--text-secondary); font-size: 1.05rem; line-height: 1.7; margin-bottom: 1.5rem;">
+                Have your own proprietary chart patterns, TradingView Pine Script alerts, Excel rulebooks, or discretionary trading rules? <strong style="color: var(--text-primary);">This is the core model of Stratexa.</strong> We engineer your exact rules into an institutional-grade, low-latency Python bot tailored to your account.
+              </p>
+
+              <!-- 4 Value Badges -->
+              <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 0.85rem; margin-bottom: 2rem;">
+                <div style="background: rgba(17,23,38,0.7); border: 1px solid var(--border-color); border-radius: 10px; padding: 0.75rem 1rem; display: flex; align-items: center; gap: 10px;">
+                  <i class="fa-solid fa-globe" style="color: #06b6d4; font-size: 1.1rem; flex-shrink: 0;"></i>
+                  <div>
+                    <div style="font-size: 0.7rem; color: var(--text-muted); text-transform: uppercase;">Any Market</div>
+                    <div style="font-size: 0.85rem; font-weight: 600; color: var(--text-primary);">Crypto &middot; Forex &middot; Indian F&amp;O &amp; Equity</div>
+                  </div>
+                </div>
+
+                <div style="background: rgba(17,23,38,0.7); border: 1px solid var(--border-color); border-radius: 10px; padding: 0.75rem 1rem; display: flex; align-items: center; gap: 10px;">
+                  <i class="fa-solid fa-clock-rotate-left" style="color: #f59e0b; font-size: 1.1rem; flex-shrink: 0;"></i>
+                  <div>
+                    <div style="font-size: 0.7rem; color: var(--text-muted); text-transform: uppercase;">Any Timeframe</div>
+                    <div style="font-size: 0.85rem; font-weight: 600; color: var(--text-primary);">Intraday or Positional</div>
+                  </div>
+                </div>
+
+                <div style="background: rgba(17,23,38,0.7); border: 1px solid var(--border-color); border-radius: 10px; padding: 0.75rem 1rem; display: flex; align-items: center; gap: 10px;">
+                  <i class="fa-solid fa-plug" style="color: #10b981; font-size: 1.1rem; flex-shrink: 0;"></i>
+                  <div>
+                    <div style="font-size: 0.7rem; color: var(--text-muted); text-transform: uppercase;">Universal Access</div>
+                    <div style="font-size: 0.85rem; font-weight: 600; color: var(--text-primary);">Works with Any Broker API</div>
+                  </div>
+                </div>
+
+                <div style="background: rgba(17,23,38,0.7); border: 1px solid var(--border-color); border-radius: 10px; padding: 0.75rem 1rem; display: flex; align-items: center; gap: 10px;">
+                  <i class="fa-solid fa-user-shield" style="color: #8b5cf6; font-size: 1.1rem; flex-shrink: 0;"></i>
+                  <div>
+                    <div style="font-size: 0.7rem; color: var(--text-muted); text-transform: uppercase;">100% Protected</div>
+                    <div style="font-size: 0.85rem; font-weight: 600; color: var(--text-primary);">Mutual NDA &middot; Code Ownership</div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Buttons -->
+              <div style="display: flex; flex-wrap: wrap; gap: 1rem; align-items: center;">
+                <a href="https://wa.me/919150087233?text=Hi%20Stratexa%2C%20I%20have%20my%20own%20trading%20strategy%20rules%20that%20I%20want%20to%20automate%20for%20%E2%82%B95%2C000.%20Let%27s%20discuss%20my%20requirements." target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-lg" style="box-shadow: 0 10px 25px -5px rgba(16,185,129,0.4);">
+                  <i class="fa-brands fa-whatsapp" style="margin-right: 8px; font-size: 1.2rem;"></i> Discuss My Strategy on WhatsApp
+                </a>
+                <a href="/#consultation" class="btn btn-secondary btn-lg">
+                  <i class="fa-solid fa-calendar-check" style="margin-right: 6px;"></i> Book Free Consultation
+                </a>
+              </div>
+            </div>
+
+            <!-- Price & Milestone Card -->
+            <div style="flex: 1 1 280px; max-width: 360px; background: var(--bg-card); border: 1.5px solid rgba(16,185,129,0.3); border-radius: 16px; padding: 2rem; text-align: center; box-shadow: 0 15px 35px rgba(0,0,0,0.4);">
+              <span style="font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.8px; font-weight: 600;">Custom Strategy Pricing</span>
+              <div style="font-family: var(--font-heading); font-size: 2.8rem; font-weight: 800; color: #10b981; margin: 0.2rem 0;">&#8377;5,000</div>
+              <span style="background: rgba(16,185,129,0.1); color: #10b981; border: 1px solid rgba(16,185,129,0.25); padding: 0.25rem 0.85rem; border-radius: 50px; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; display: inline-block; margin-bottom: 1.25rem;">Flat One-Time Setup Fee</span>
+              
+              <ul style="list-style: none; padding: 0; text-align: left; color: var(--text-secondary); font-size: 0.88rem; margin-bottom: 1.5rem;">
+                <li style="margin-bottom: 0.6rem; display: flex; align-items: flex-start; gap: 8px;"><i class="fa-solid fa-check" style="color: #10b981; margin-top: 3px;"></i> Requirement scoping &amp; feasibility audit</li>
+                <li style="margin-bottom: 0.6rem; display: flex; align-items: flex-start; gap: 8px;"><i class="fa-solid fa-check" style="color: #10b981; margin-top: 3px;"></i> Custom Python bot development</li>
+                <li style="margin-bottom: 0.6rem; display: flex; align-items: flex-start; gap: 8px;"><i class="fa-solid fa-check" style="color: #10b981; margin-top: 3px;"></i> Paper trading &amp; logic verification</li>
+                <li style="margin-bottom: 0.6rem; display: flex; align-items: flex-start; gap: 8px;"><i class="fa-solid fa-check" style="color: #10b981; margin-top: 3px;"></i> Full source code handed to you</li>
+                <li style="display: flex; align-items: flex-start; gap: 8px;"><i class="fa-solid fa-check" style="color: #10b981; margin-top: 3px;"></i> Zero profit sharing &middot; 100% yours</li>
+              </ul>
+
+              <div style="font-size: 0.78rem; color: var(--text-muted); border-top: 1px solid var(--border-color); padding-top: 0.85rem;">
+                <i class="fa-solid fa-lock" style="color: var(--accent-green); margin-right: 4px;"></i> Protected by Mutual NDA before code begins
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. PRE-BUILT STRATEGY LIBRARY SECTION -->
+    <section style="padding: 3rem 0 2rem;">
+      <div class="container">
+        <div class="section-header" style="text-align: center; margin-bottom: 2.5rem;">
+          <span class="badge" style="background: var(--accent-green-glow); color: var(--accent-green-bright); padding: 0.4rem 0.9rem; border-radius: 50px; font-weight: 600; font-size: 0.78rem; text-transform: uppercase; letter-spacing: 1px; border: 1px solid var(--border-color-glow); display: inline-block; margin-bottom: 1rem;">PLUG &amp; PLAY OPTIONS</span>
+          <h2 style="font-family: var(--font-heading); font-size: 2.2rem; font-weight: 800; color: var(--text-primary); margin-bottom: 0.5rem;">Pre-Built Strategy Library</h2>
+          <p style="color: var(--text-secondary); font-size: 1.05rem; max-width: 680px; margin: 0 auto;">Don't have your own rules yet? Choose from our proven, production-ready strategy templates. Works across Crypto, Forex, Indian F&amp;O and Equities &mdash; Intraday or Positional.</p>
+        </div>
+
+        <div class="strategies-grid" style="padding-top: 0;">
 
           <!-- 1. Supertrend -->
           <div class="strategy-card featured" style="border-color: #10b981;">
-            <span class="featured-tag">⭐ Most Popular</span>
+            <span class="featured-tag">&#x2B50; Most Popular</span>
             <div class="strategy-badge-row">
               <div class="strategy-icon icon-green"><i class="fa-solid fa-arrow-trend-up"></i></div>
               <span class="strategy-type-badge badge-trend">Trend-Following</span>
             </div>
             <h3>Supertrend Automated Strategy</h3>
-            <p class="strategy-desc">Automated long/short execution triggered by Supertrend flips on Nifty, Bank Nifty, or any high-beta equity. Customizable ATR period and multiplier. Built-in ATR trailing stop-loss that locks in profits as the trend extends.</p>
+            <p class="strategy-desc">Automated long/short trend-following execution triggered by Supertrend flips. Customizable ATR period and multiplier. Features dynamic trailing stop-loss that locks in profits as trends accelerate.</p>
             <div class="strategy-meta">
-              <span class="meta-pill"><i class="fa-solid fa-chart-bar"></i> Nifty / BankNifty / Equities</span>
-              <span class="meta-pill"><i class="fa-solid fa-clock"></i> Intraday &amp; Positional</span>
-              <span class="meta-pill"><i class="fa-solid fa-indian-rupee-sign"></i> Min ₹50,000 capital</span>
-              <span class="meta-pill"><i class="fa-solid fa-gear"></i> Zerodha / Dhan / Angel</span>
+              <span class="meta-pill"><i class="fa-solid fa-chart-line"></i> Crypto &middot; Forex &middot; Indian F&amp;O &amp; Equity</span>
+              <span class="meta-pill"><i class="fa-solid fa-clock"></i> Intraday or Positional</span>
+              <span class="meta-pill"><i class="fa-solid fa-sliders"></i> ATR Trailing Stop</span>
+              <span class="meta-pill"><i class="fa-solid fa-coins"></i> Flexible Capital</span>
             </div>
             <a href="https://wa.me/919150087233?text=Hi%20Stratexa%2C%20I%20want%20to%20deploy%20the%20Supertrend%20Automated%20Strategy%20for%20%E2%82%B95%2C000.%20Please%20guide%20me%20on%20next%20steps." target="_blank" rel="noopener noreferrer" class="deploy-btn deploy-btn-green">
               <i class="fa-brands fa-whatsapp"></i> Deploy This Strategy
@@ -424,12 +523,12 @@
               <span class="strategy-type-badge badge-momentum">Momentum Filter</span>
             </div>
             <h3>ADX Slope &amp; Momentum Strategy</h3>
-            <p class="strategy-desc">Evaluates the ADX slope (rate of change) combined with DI crossover to trade only when momentum is genuinely accelerating (ADX &gt; 25 rising). Eliminates the whipsaw losses that destroy moving average strategies in sideways markets.</p>
+            <p class="strategy-desc">Evaluates the ADX slope (rate of change) combined with directional movement (+DI/-DI) to execute entries only when true trend momentum is accelerating (ADX &gt; 25 rising). Eliminates choppy sideways whipsaws.</p>
             <div class="strategy-meta">
-              <span class="meta-pill"><i class="fa-solid fa-chart-bar"></i> Futures &amp; Options</span>
-              <span class="meta-pill"><i class="fa-solid fa-clock"></i> Intraday</span>
-              <span class="meta-pill"><i class="fa-solid fa-indian-rupee-sign"></i> Min ₹75,000 capital</span>
-              <span class="meta-pill"><i class="fa-solid fa-gear"></i> Any Indian Broker</span>
+              <span class="meta-pill"><i class="fa-solid fa-chart-line"></i> Crypto &middot; Forex &middot; Futures &amp; Options</span>
+              <span class="meta-pill"><i class="fa-solid fa-clock"></i> Intraday or Positional</span>
+              <span class="meta-pill"><i class="fa-solid fa-filter"></i> Whipsaw Filter (ADX &gt; 25)</span>
+              <span class="meta-pill"><i class="fa-solid fa-coins"></i> Flexible Capital</span>
             </div>
             <a href="https://wa.me/919150087233?text=Hi%20Stratexa%2C%20I%20want%20to%20deploy%20the%20ADX%20Slope%20%26%20Momentum%20Strategy%20for%20%E2%82%B95%2C000.%20Please%20guide%20me." target="_blank" rel="noopener noreferrer" class="deploy-btn deploy-btn-cyan">
               <i class="fa-brands fa-whatsapp"></i> Deploy This Strategy
@@ -443,12 +542,12 @@
               <span class="strategy-type-badge badge-theta">Theta Decay</span>
             </div>
             <h3>Call-Only Systematic Sell Strategy</h3>
-            <p class="strategy-desc">Systematically writes OTM or ATM Call options on intraday resistance rejections or bearish regime shifts. Tracks delta-based stop-loss and enforces strict 3:15 PM forced exit — maximising theta collection in bearish and neutral markets.</p>
+            <p class="strategy-desc">Systematically writes OTM or ATM Call options on resistance rejections or bearish regime shifts. Tracks delta-based stop-loss and enforces disciplined exit rules to steadily harvest options theta decay.</p>
             <div class="strategy-meta">
-              <span class="meta-pill"><i class="fa-solid fa-chart-bar"></i> Nifty / BankNifty Options</span>
-              <span class="meta-pill"><i class="fa-solid fa-clock"></i> Intraday Only</span>
-              <span class="meta-pill"><i class="fa-solid fa-indian-rupee-sign"></i> Min ₹1,00,000 capital</span>
-              <span class="meta-pill"><i class="fa-solid fa-gear"></i> Zerodha / Dhan</span>
+              <span class="meta-pill"><i class="fa-solid fa-chart-line"></i> Index &amp; Stock Options &middot; Crypto Options</span>
+              <span class="meta-pill"><i class="fa-solid fa-clock"></i> Intraday or Positional</span>
+              <span class="meta-pill"><i class="fa-solid fa-shield-halved"></i> Delta-Based Stop Loss</span>
+              <span class="meta-pill"><i class="fa-solid fa-coins"></i> Flexible Capital</span>
             </div>
             <a href="https://wa.me/919150087233?text=Hi%20Stratexa%2C%20I%20want%20to%20deploy%20the%20Call-Only%20Systematic%20Sell%20Strategy%20for%20%E2%82%B95%2C000.%20Please%20guide%20me." target="_blank" rel="noopener noreferrer" class="deploy-btn deploy-btn-amber">
               <i class="fa-brands fa-whatsapp"></i> Deploy This Strategy
@@ -462,12 +561,12 @@
               <span class="strategy-type-badge badge-server">Risk Protection</span>
             </div>
             <h3>Server-Side Stop Loss &amp; Target Engine</h3>
-            <p class="strategy-desc">SL and Target levels are held in-memory on your Cloud VPS — never posted to the broker's order book. When market price touches your threshold, a lightning-fast IOC Market Exit fires via API. Bypasses broker terminal freezes, avoids stop-hunting, and survives API disconnects.</p>
+            <p class="strategy-desc">SL and Target levels are held in-memory on your Cloud VPS &mdash; never posted to the broker order book. When market price touches your threshold, a lightning-fast IOC Market Exit fires via API. Bypasses broker terminal freezes and eliminates stop-hunting.</p>
             <div class="strategy-meta">
-              <span class="meta-pill"><i class="fa-solid fa-chart-bar"></i> Any Instrument</span>
-              <span class="meta-pill"><i class="fa-solid fa-clock"></i> Intraday &amp; Positional</span>
-              <span class="meta-pill"><i class="fa-solid fa-indian-rupee-sign"></i> No capital min</span>
-              <span class="meta-pill"><i class="fa-solid fa-gear"></i> All Brokers</span>
+              <span class="meta-pill"><i class="fa-solid fa-chart-line"></i> Crypto &middot; Forex &middot; Indian F&amp;O &amp; Equity</span>
+              <span class="meta-pill"><i class="fa-solid fa-clock"></i> Intraday or Positional</span>
+              <span class="meta-pill"><i class="fa-solid fa-eye-slash"></i> Hides SL from Books</span>
+              <span class="meta-pill"><i class="fa-solid fa-bolt"></i> Zero Terminal Freeze</span>
             </div>
             <a href="https://wa.me/919150087233?text=Hi%20Stratexa%2C%20I%20want%20to%20deploy%20the%20Server-Side%20Stop%20Loss%20%26%20Target%20Engine%20for%20%E2%82%B95%2C000.%20Please%20guide%20me." target="_blank" rel="noopener noreferrer" class="deploy-btn deploy-btn-red">
               <i class="fa-brands fa-whatsapp"></i> Deploy This Strategy
@@ -479,15 +578,15 @@
             <div class="strategy-badge-row">
               <div class="strategy-icon icon-amber"><i class="fa-solid fa-arrows-left-right"></i></div>
               <span class="strategy-type-badge badge-theta">Theta Decay</span>
-              <span class="strategy-type-badge badge-trend" style="color: #10b981; background: rgba(16,185,129,0.1);">India Benchmark</span>
+              <span class="strategy-type-badge badge-trend" style="color: #10b981; background: rgba(16,185,129,0.1);">Benchmark Logic</span>
             </div>
             <h3>9:20 AM Short Straddle / Strangle</h3>
-            <p class="strategy-desc">Automatically enters ATM or OTM CE + PE simultaneously at 9:20 AM. Includes individual leg stop-loss (25% or 30% configurable), trailing stop-loss on the winning leg, and MTM-based target booking. The most battle-tested mechanical intraday options strategy in India.</p>
+            <p class="strategy-desc">Automatically enters ATM or OTM CE + PE simultaneously at 9:20 AM. Includes individual leg stop-loss (25% or 30% configurable), profit trailing on the winning leg, and MTM-based target booking. Battle-tested mechanical theta decay strategy.</p>
             <div class="strategy-meta">
-              <span class="meta-pill"><i class="fa-solid fa-chart-bar"></i> Nifty / BankNifty</span>
+              <span class="meta-pill"><i class="fa-solid fa-chart-line"></i> Index Options &middot; Crypto Options</span>
               <span class="meta-pill"><i class="fa-solid fa-clock"></i> Intraday Only</span>
-              <span class="meta-pill"><i class="fa-solid fa-indian-rupee-sign"></i> Min ₹1,50,000 capital</span>
-              <span class="meta-pill"><i class="fa-solid fa-gear"></i> Zerodha / Dhan</span>
+              <span class="meta-pill"><i class="fa-solid fa-sliders"></i> Individual Leg SL (25-30%)</span>
+              <span class="meta-pill"><i class="fa-solid fa-coins"></i> Flexible Capital</span>
             </div>
             <a href="https://wa.me/919150087233?text=Hi%20Stratexa%2C%20I%20want%20to%20deploy%20the%209%3A20%20AM%20Short%20Straddle%20%2F%20Strangle%20Strategy%20for%20%E2%82%B95%2C000.%20Please%20guide%20me." target="_blank" rel="noopener noreferrer" class="deploy-btn deploy-btn-amber">
               <i class="fa-brands fa-whatsapp"></i> Deploy This Strategy
@@ -501,12 +600,12 @@
               <span class="strategy-type-badge badge-breakout">Breakout</span>
             </div>
             <h3>Opening Range Breakout (ORB 15/30 Min)</h3>
-            <p class="strategy-desc">Calculates the high/low of the opening 15-minute or 30-minute candle. Enters on volume-backed breakout above the range high, or breakdown below the range low, with an ATR trailing stop-loss. Works across equities, Nifty futures, and Bank Nifty futures.</p>
+            <p class="strategy-desc">Calculates the high and low of the opening 15-minute or 30-minute session range. Enters on volume-confirmed breakout above range high, or breakdown below range low, with an ATR trailing stop-loss.</p>
             <div class="strategy-meta">
-              <span class="meta-pill"><i class="fa-solid fa-chart-bar"></i> Equities &amp; Index Futures</span>
-              <span class="meta-pill"><i class="fa-solid fa-clock"></i> Intraday Only</span>
-              <span class="meta-pill"><i class="fa-solid fa-indian-rupee-sign"></i> Min ₹50,000 capital</span>
-              <span class="meta-pill"><i class="fa-solid fa-gear"></i> Any Indian Broker</span>
+              <span class="meta-pill"><i class="fa-solid fa-chart-line"></i> Equities &middot; Futures &middot; Crypto &middot; Forex</span>
+              <span class="meta-pill"><i class="fa-solid fa-clock"></i> Intraday or Positional</span>
+              <span class="meta-pill"><i class="fa-solid fa-arrows-up-down"></i> Range High/Low Break</span>
+              <span class="meta-pill"><i class="fa-solid fa-coins"></i> Flexible Capital</span>
             </div>
             <a href="https://wa.me/919150087233?text=Hi%20Stratexa%2C%20I%20want%20to%20deploy%20the%20Opening%20Range%20Breakout%20(ORB)%20Strategy%20for%20%E2%82%B95%2C000.%20Please%20guide%20me." target="_blank" rel="noopener noreferrer" class="deploy-btn deploy-btn-purple">
               <i class="fa-brands fa-whatsapp"></i> Deploy This Strategy
@@ -515,7 +614,6 @@
 
           <!-- 7. Multi-EMA Trend Rider -->
           <div class="strategy-card featured" style="border-color: #10b981;">
-            <span class="featured-tag">📈 Trend Following</span>
             <div class="strategy-badge-row">
               <div class="strategy-icon icon-green"><i class="fa-solid fa-chart-line"></i></div>
               <span class="strategy-type-badge badge-trend">EMA Pullback</span>
@@ -523,47 +621,28 @@
             <h3>Multi-EMA Trend Rider (9/21/50 EMA)</h3>
             <p class="strategy-desc">Identifies confirmed trends using the 50 EMA filter, and executes precision pullback entries on 9 and 21 EMA retests. Features ATR-based dynamic trailing stop-loss to ride extended multi-day trends while strictly capping risk on false breaks.</p>
             <div class="strategy-meta">
-              <span class="meta-pill"><i class="fa-solid fa-chart-bar"></i> Equities, Futures &amp; ETFs</span>
-              <span class="meta-pill"><i class="fa-solid fa-clock"></i> Intraday &amp; Positional</span>
-              <span class="meta-pill"><i class="fa-solid fa-indian-rupee-sign"></i> Min ₹50,000 capital</span>
-              <span class="meta-pill"><i class="fa-solid fa-gear"></i> Any Indian Broker</span>
+              <span class="meta-pill"><i class="fa-solid fa-chart-line"></i> Equities &middot; Futures &middot; Crypto &middot; Forex</span>
+              <span class="meta-pill"><i class="fa-solid fa-clock"></i> Intraday or Positional</span>
+              <span class="meta-pill"><i class="fa-solid fa-arrow-trend-up"></i> 50 EMA Filter &middot; 9/21 Pullback</span>
+              <span class="meta-pill"><i class="fa-solid fa-coins"></i> Flexible Capital</span>
             </div>
             <a href="https://wa.me/919150087233?text=Hi%20Stratexa%2C%20I%20want%20to%20deploy%20the%20Multi-EMA%20Trend%20Rider%20Strategy%20for%20%E2%82%B95%2C000.%20Please%20guide%20me." target="_blank" rel="noopener noreferrer" class="deploy-btn deploy-btn-green">
               <i class="fa-brands fa-whatsapp"></i> Deploy This Strategy
             </a>
           </div>
 
-          <!-- 8. BYOS Custom -->
-          <div class="strategy-card custom">
-            <div class="strategy-badge-row">
-              <div class="strategy-icon icon-gray"><i class="fa-solid fa-code"></i></div>
-              <span class="strategy-type-badge badge-custom">Bring Your Own</span>
-            </div>
-            <h3>Custom Strategy Automation</h3>
-            <p class="strategy-desc">Have your own strategy rules, TradingView Pine Script alerts, or an existing system you want automated? We code it into production-grade Python and deploy it to your broker. Covers EMA crossovers, RSI-based systems, VWAP logic, multi-timeframe rules, and more.</p>
-            <div class="strategy-meta">
-              <span class="meta-pill"><i class="fa-solid fa-chart-bar"></i> Any Market / Instrument</span>
-              <span class="meta-pill"><i class="fa-solid fa-clock"></i> Any Timeframe</span>
-              <span class="meta-pill"><i class="fa-solid fa-gear"></i> Any Indian Broker</span>
-              <span class="meta-pill"><i class="fa-solid fa-comments"></i> Free Consultation</span>
-            </div>
-            <a href="https://wa.me/919150087233?text=Hi%20Stratexa%2C%20I%20have%20a%20custom%20trading%20strategy%20I%20want%20to%20automate.%20Can%20we%20discuss%20my%20requirements?" target="_blank" rel="noopener noreferrer" class="deploy-btn deploy-btn-gray">
-              <i class="fa-brands fa-whatsapp"></i> Discuss My Custom Strategy
-            </a>
-          </div>
-
         </div><!-- /strategies-grid -->
 
-        <!-- Bottom CTA -->
-        <div class="strategies-cta-strip">
-          <h2>Not sure which strategy is right for you?</h2>
-          <p>Book a free 30-minute consultation. We'll analyze your trading style, market preference, and capital — and recommend the best strategy to automate.</p>
+        <!-- Bottom Consultation Strip -->
+        <div class="strategies-cta-strip" style="margin-top: 2rem;">
+          <h2>Have questions or need a custom strategy setup?</h2>
+          <p>Book a free 30-minute consultation. We'll analyze your trading strategy rules, instrument choice, and risk profile &mdash; and get your bot production-ready.</p>
           <div class="cta-btn-row">
-            <a href="https://wa.me/919150087233?text=Hi%20Stratexa%2C%20I%27d%20like%20to%20book%20a%20free%20consultation%20to%20choose%20the%20right%20trading%20strategy." target="_blank" rel="noopener noreferrer" class="btn btn-primary">
-              <i class="fa-brands fa-whatsapp" style="margin-right:6px;"></i> Book Free Consultation
+            <a href="https://wa.me/919150087233?text=Hi%20Stratexa%2C%20I%27d%20like%20to%20book%20a%20free%20consultation%20to%20automate%20my%20trading%20strategy." target="_blank" rel="noopener noreferrer" class="btn btn-primary">
+              <i class="fa-brands fa-whatsapp" style="margin-right:6px;"></i> Book Free Consultation via WhatsApp
             </a>
             <a href="/pricing.html" class="btn btn-secondary">
-              <i class="fa-solid fa-tag" style="margin-right:6px;"></i> See Full Pricing
+              <i class="fa-solid fa-tag" style="margin-right:6px;"></i> View Transparent Pricing
             </a>
           </div>
         </div>
