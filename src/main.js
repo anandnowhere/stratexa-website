@@ -529,23 +529,37 @@ function initRoiCalculator() {
 
     const totalCost = strategyBase + onboardingCost + extraBrokerCost;
 
-    // Time saved estimates
-    const frequency = parseInt(frequencyEl ? frequencyEl.value : 1) || 1;
-    let hoursSaved = 30;
-    if (frequency > 1) hoursSaved += frequency * 8;
+    // Time saved estimates based on market / trading horizon
+    const horizonType = parseInt(frequencyEl ? frequencyEl.value : 1) || 1;
+    let hoursSaved = 35;
+    if (horizonType === 1) hoursSaved = 45; // Intraday high frequency
+    if (horizonType === 2) hoursSaved = 25; // Positional swing
+    if (horizonType === 3) hoursSaved = 50; // 24/7 Crypto
+    if (horizonType === 4) hoursSaved = 45; // 24/7 Forex
 
-    let latencyGain = 750;
-    if (frequency >= 2) latencyGain = 1100;
-    if (frequency >= 3) latencyGain = 1600;
+    let latencyGain = 850;
+    if (horizonType === 1) latencyGain = 1200;
+    if (horizonType === 3 || horizonType === 4) latencyGain = 1400;
 
     const formattedCost = `₹${totalCost.toLocaleString('en-IN')}`;
     const strategyName = complexityEl.options[complexityEl.selectedIndex].text;
+    const horizonName = frequencyEl ? frequencyEl.options[frequencyEl.selectedIndex].text : 'Standard';
+    const brokerName = brokersEl ? brokersEl.options[brokersEl.selectedIndex].text : '1 Broker';
+    const onboardingName = hostingEl && hostingEl.value === "999" ? "Managed VPS Onboarding (+₹999)" : "Self-Hosted (₹0)";
 
     costValEl.textContent = formattedCost;
     if (hoursValEl) hoursValEl.textContent = `~${hoursSaved} hrs/mo`;
     if (latencyValEl) latencyValEl.textContent = `~${latencyGain}ms faster`;
 
-    const specSummary = `Hi Stratexa, I estimated my strategy deployment cost on your website:\n- Strategy: ${strategyName}\n- Broker Accounts: ${brokerCount}\n- Trade Frequency: ${frequencyEl ? frequencyEl.options[frequencyEl.selectedIndex].text : 'N/A'}\n- Estimated One-Time Cost: ${formattedCost}\n- Monthly Pro Care: ₹1,499/month\n\nPlease help me get started!`;
+    const specSummary = `Hi Stratexa, I estimated my bot deployment cost on your website:
+• Strategy/Tier: ${strategyName}
+• Market & Horizon: ${horizonName}
+• Broker Setup: ${brokerName}
+• Onboarding Option: ${onboardingName}
+• Estimated Upfront Total: ${formattedCost}
+• Monthly Pro Care: ₹1,499/mo (1st month free)
+
+I'd like to discuss and get started!`;
 
     if (waBtn) {
       waBtn.href = `https://wa.me/919150087233?text=${encodeURIComponent(specSummary)}`;
@@ -553,10 +567,9 @@ function initRoiCalculator() {
 
     if (fillFormBtn) {
       fillFormBtn.onclick = (e) => {
-        e.preventDefault();
         const msgField = document.querySelector('#form-message');
         if (msgField) {
-          msgField.value = `[Calculated Spec] ${complexityText} with ${brokerCount} broker(s). Estimated Budget: ${formattedCost}.`;
+          msgField.value = `[Spec Estimate] ${strategyName} | ${horizonName} | ${brokerName} | Budget: ${formattedCost}.`;
         }
         const consultSection = document.querySelector('#consultation');
         if (consultSection) {

@@ -322,70 +322,92 @@
     </div>
 
     <!-- Strategy ROI & Cost Calculator Section -->
+    <!-- Strategy ROI & Cost Calculator Section -->
     <section class="roi-calculator-section" id="roi-calculator">
       <div class="container">
         <div class="section-header">
           <span class="badge">INTERACTIVE ESTIMATOR</span>
           <h2 class="section-title">Estimate Your Total Deployment Cost</h2>
-          <p class="section-subtitle">All pre-defined strategies are priced the same. Add onboarding and Pro Care to see your total first-month investment.</p>
+          <p class="section-subtitle">Transparent milestone pricing. Select a pre-built strategy or custom automation tier, plus your onboarding preference.</p>
         </div>
 
         <div class="calculator-card">
           <div class="calculator-inputs">
+            
+            <!-- 1. Strategy & Complexity Dropdown -->
             <div class="calc-group">
               <label for="calc-complexity">
-                <span>Select Pre-Defined Strategy</span>
-                <i class="fa-solid fa-circle-info" title="Select your signal logic complexity"></i>
+                <span>Strategy Type &amp; Complexity</span>
+                <i class="fa-solid fa-code" title="Choose pre-built or custom complexity tier"></i>
               </label>
               <select id="calc-complexity" class="calc-select">
-                <option value="4999" selected>Starter — Single Indicator / Simple Condition (EMA Crossover, RSI)</option>
-                <option value="9999">Professional — Multi-Indicator &amp; F&amp;O Risk Logic (Multi-Timeframe, Trailing SL)</option>
-                <option value="14999">Options Advanced — Multi-Leg Spreads &amp; Greek Hedging (Delta Neutral, Straddles)</option>
-                <option value="19999">Enterprise — HFT Engine, Multi-Strategy Portfolio &amp; Custom Web Dashboard</option>
+                <optgroup label="⚡ Pre-Built Strategies (Flat ₹5,000 Setup)">
+                  <option value="5000" selected>Supertrend Strategy — Trend-Following (Flat &#8377;5,000)</option>
+                  <option value="5000">9:20 AM Short Straddle / Strangle — Theta Decay (Flat &#8377;5,000)</option>
+                  <option value="5000">ADX Slope &amp; Momentum Strategy (Flat &#8377;5,000)</option>
+                  <option value="5000">Server-Side Stop Loss &amp; Target Engine (Flat &#8377;5,000)</option>
+                  <option value="5000">Opening Range Breakout (ORB 15/30 Min) (Flat &#8377;5,000)</option>
+                  <option value="5000">Call-Only Systematic Sell Strategy (Flat &#8377;5,000)</option>
+                  <option value="5000">Multi-EMA Trend Rider (9/21/50 EMA) (Flat &#8377;5,000)</option>
+                </optgroup>
+                <optgroup label="🛠️ Bring Your Own Strategy (Custom Rules)">
+                  <option value="5000">Custom Simple — Single Indicator / Webhook Alert (&#8377;5,000)</option>
+                  <option value="8000">Custom Medium — Multi-Indicator / Trailing SL / Filters (&#8377;8,000 &ndash; &#8377;10,000)</option>
+                  <option value="12000">Custom Advanced — Multi-Leg Options &amp; Dynamic Hedging (&#8377;12,000 &ndash; &#8377;15,000+)</option>
+                  <option value="15000">Custom Institutional — Portfolio Router &amp; Mirroring (&#8377;15,000+)</option>
+                </optgroup>
               </select>
             </div>
 
-            <div class="calc-group">
-              <label for="calc-brokers">
-                <span>Target Broker Connections</span>
-                <i class="fa-solid fa-plug" title="Number of broker accounts linked"></i>
-              </label>
-              <select id="calc-brokers" class="calc-select">
-                <option value="1" selected>1 Broker Account (Zerodha / Dhan / Angel One / Delta)</option>
-                <option value="2">2 Broker Accounts (Multi-Account Order Mirroring)</option>
-                <option value="3">3+ Broker Accounts (Institutional Multi-Broker Router)</option>
-              </select>
-            </div>
-
+            <!-- 2. Target Market & Trading Horizon Dropdown -->
             <div class="calc-group">
               <label for="calc-frequency">
-                <span>Daily Execution Frequency</span>
-                <i class="fa-solid fa-arrows-rotate" title="Estimated signals per day"></i>
+                <span>Target Market &amp; Horizon</span>
+                <i class="fa-solid fa-chart-line" title="Market and execution style"></i>
               </label>
               <select id="calc-frequency" class="calc-select">
-                <option value="1" selected>Low Frequency (1 – 5 trades / day)</option>
-                <option value="2">Medium Frequency (5 – 20 trades / day)</option>
-                <option value="3">High Frequency (20+ automated orders / day)</option>
+                <option value="1" selected>Indian Equities / F&amp;O — Intraday (High Speed, 5–15 trades/day)</option>
+                <option value="2">Indian Equities / F&amp;O — Positional / Swing (1–3 trades/day)</option>
+                <option value="3">24x7 Cryptocurrency Trading (Futures &amp; Spot)</option>
+                <option value="4">Forex Trading (Continuous Execution)</option>
               </select>
             </div>
 
+            <!-- 3. Broker Connections Dropdown -->
             <div class="calc-group">
-              <label for="calc-hosting">
-                <span>Onboarding Option</span>
-                <i class="fa-solid fa-server" title="Choose server management"></i>
+              <label for="calc-brokers">
+                <span>Broker Account Connections (Any Broker API)</span>
+                <i class="fa-solid fa-plug" title="Number of broker accounts to connect"></i>
               </label>
-              <select id="calc-hosting" class="calc-select">
-                <option value="0" selected>Self-Hosted on Your PC / Laptop (Free setup script included)</option>
-                <option value="999">Stratexa Cloud VPS Managed Care (+₹999/mo, 24/7 uptime)</option>
+              <select id="calc-brokers" class="calc-select">
+                <option value="1" selected>Single Broker Account (Standard Setup)</option>
+                <option value="2">2 Broker Accounts (+&#8377;2,000 &middot; Multi-Account Mirroring)</option>
+                <option value="3">3+ Broker Accounts (+&#8377;4,000 &middot; Institutional Multi-Broker Router)</option>
               </select>
             </div>
+
+            <!-- 4. Onboarding & Hosting Deployment Dropdown -->
+            <div class="calc-group">
+              <label for="calc-hosting">
+                <span>Onboarding &amp; Cloud VPS Deployment</span>
+                <i class="fa-solid fa-server" title="Server deployment options"></i>
+              </label>
+              <select id="calc-hosting" class="calc-select">
+                <option value="999" selected>Managed Onboarding &amp; Cloud VPS Setup (+&#8377;999 One-time &middot; Recommended)</option>
+                <option value="0">Self-Hosted Setup on Your Own PC / Server (&#8377;0 One-time)</option>
+              </select>
+            </div>
+
           </div>
 
           <div class="calculator-results">
             <div class="result-box-hero">
-              <div class="result-label">Estimated Total Deployment Cost</div>
-              <div class="result-cost-val" id="calc-cost-display">₹4,999</div>
-              <span class="badge" style="background: rgba(16, 185, 129, 0.1); color: var(--accent-green-bright); border: 1px solid rgba(16, 185, 129, 0.3); font-size: 0.72rem; margin-top: 6px; display: inline-block;">Strategy Setup + Onboarding</span>
+              <div class="result-label">Estimated Total to Go Live (One-Time)</div>
+              <div class="result-cost-val" id="calc-cost-display">&#8377;5,999</div>
+              <span class="badge" style="background: rgba(16, 185, 129, 0.1); color: var(--accent-green-bright); border: 1px solid rgba(16, 185, 129, 0.3); font-size: 0.72rem; margin-top: 6px; display: inline-block;">Strategy Setup + Onboarding &middot; 100% Code Ownership</span>
+              <div style="font-size: 0.78rem; color: var(--text-muted); margin-top: 8px;">
+                <i class="fa-solid fa-shield-halved" style="color: #f59e0b; margin-right: 4px;"></i> Optional Pro Care: &#8377;1,499/mo (First month free with managed setup)
+              </div>
             </div>
 
             <div class="result-stats-row">
@@ -404,7 +426,7 @@
                 <i class="fa-brands fa-whatsapp" style="margin-right: 6px;"></i> Send Spec via WhatsApp
               </a>
               <a href="/#consultation" class="btn btn-secondary btn-block">
-                <i class="fa-solid fa-sliders" style="margin-right: 6px;"></i> Book Consultation for This Spec
+                <i class="fa-solid fa-calendar-check" style="margin-right: 6px;"></i> Book Free Consultation for This Spec
               </a>
             </div>
           </div>
