@@ -519,8 +519,8 @@ function initRoiCalculator() {
   if (!complexityEl || !costValEl) return;
 
   function calculate() {
-    // All pre-defined strategies = flat ₹5,000
-    const strategyBase = 5000;
+    // Base setup cost based on selected complexity or flat pre-built fee
+    const strategyBase = parseInt(complexityEl ? complexityEl.value : 5000) || 5000;
     // Onboarding: ₹999 one-time or 0 if self-configured
     const onboardingCost = parseInt(hostingEl ? hostingEl.value : 0) || 0;
     // Extra brokers (multi-account)

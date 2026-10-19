@@ -157,8 +157,8 @@
               <h3 style="color: var(--text-primary); font-size: 1.1rem; font-weight: 700; margin: 0;">Strategy Setup</h3>
             </div>
           </div>
-          <div style="font-size: 2.5rem; font-weight: 800; color: #10b981; margin-bottom: 0.2rem; font-family: var(--font-heading);">&#8377;5,000</div>
-          <span style="background: rgba(16,185,129,0.1); color: #10b981; border: 1px solid rgba(16,185,129,0.25); padding: 0.2rem 0.75rem; border-radius: 50px; font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; display: inline-block; margin-bottom: 1.25rem;">One-time &middot; Bring Your Own or Pre-Built</span>
+          <div style="font-family: var(--font-heading); font-size: 2.5rem; font-weight: 800; color: #10b981; margin-bottom: 0.2rem;">From &#8377;5,000</div>
+          <span style="background: rgba(16,185,129,0.1); color: #10b981; border: 1px solid rgba(16,185,129,0.25); padding: 0.2rem 0.75rem; border-radius: 50px; font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; display: inline-block; margin-bottom: 1.25rem;">Pre-Built Flat &#8377;5k &middot; Custom from &#8377;5k</span>
           <ul style="list-style:none; padding:0; color: var(--text-secondary); font-size: 0.88rem; margin-bottom: 1.5rem; flex-grow:1;">
             <li style="margin-bottom:0.55rem; display:flex; align-items:flex-start; gap:8px;"><i class="fa-solid fa-check" style="color:#10b981; margin-top:2px; flex-shrink:0;"></i> <strong>Bring Your Own Strategy</strong> (TradingView, Pine Script, custom rules)</li>
             <li style="margin-bottom:0.55rem; display:flex; align-items:flex-start; gap:8px;"><i class="fa-solid fa-check" style="color:#10b981; margin-top:2px; flex-shrink:0;"></i> Or choose from our free pre-built strategy library</li>
@@ -228,13 +228,72 @@
       </div><!-- /pillar cards row -->
 
       <!-- Total Cost Callout -->
-      <div style="max-width: 780px; margin: 0 auto 1rem; background: var(--bg-tertiary); border: 1px solid var(--border-color); border-radius: 12px; padding: 1.25rem 2rem; display: flex; flex-wrap: wrap; gap: 1rem; align-items: center; justify-content: space-between;">
+      <div style="max-width: 860px; margin: 0 auto 2.5rem; background: var(--bg-tertiary); border: 1px solid var(--border-color); border-radius: 12px; padding: 1.25rem 2rem; display: flex; flex-wrap: wrap; gap: 1rem; align-items: center; justify-content: space-between;">
         <div style="font-size: 0.9rem; color: var(--text-secondary); line-height: 1.6;">
-          <strong style="color: var(--text-primary); font-size: 1rem;">Total to go live:</strong><br>
-          &#8377;5,000 (Strategy) + &#8377;999 (Onboarding) + &#8377;1,499 (Month 1 Care) = <strong style="color: var(--accent-green-bright); font-size: 1.1rem;">&#8377;7,498</strong>
+          <strong style="color: var(--text-primary); font-size: 1rem;">Example Total to Go Live:</strong><br>
+          &#8377;5,000 (Strategy Setup) + &#8377;999 (Onboarding) + &#8377;1,499 (Month 1 Pro Care) = <strong style="color: var(--accent-green-bright); font-size: 1.1rem;">&#8377;7,498</strong>
         </div>
-        <div style="font-size: 0.82rem; color: var(--text-muted);">
-          <i class="fa-solid fa-circle-info" style="margin-right:4px;"></i> First month Pro Care is free with new deployments. Monthly &#8377;1,499 starts from Month 2.
+        <div style="font-size: 0.82rem; color: var(--text-muted); max-width: 380px;">
+          <i class="fa-solid fa-circle-info" style="margin-right:4px; color: var(--accent-green);"></i> First month Pro Care is free with all new deployments. Custom projects quoted upfront based on technical complexity.
+        </div>
+      </div>
+
+      <!-- Dedicated Custom Strategy Complexity Guide -->
+      <div style="max-width: 1100px; margin: 0 auto 3rem; background: var(--bg-secondary); border: 1.5px solid var(--border-color); border-radius: 16px; padding: clamp(1.5rem, 3vw, 2.5rem);">
+        <div style="text-align: center; margin-bottom: 2rem;">
+          <span class="badge" style="background: rgba(16,185,129,0.15); color: var(--accent-green-bright); border: 1px solid rgba(16,185,129,0.3); font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.8px; padding: 0.25rem 0.85rem; border-radius: 50px; display: inline-block; margin-bottom: 0.75rem;">CUSTOM BOT SCOPE GUIDE</span>
+          <h3 style="font-family: var(--font-heading); font-size: 1.75rem; font-weight: 800; color: var(--text-primary); margin: 0 0 0.5rem;">Custom Strategy Complexity Tiers</h3>
+          <p style="color: var(--text-secondary); font-size: 0.95rem; max-width: 650px; margin: 0 auto;">Every proprietary strategy is unique. We evaluate your rules during your free 30-minute consultation and provide a fixed-milestone quote before writing a single line of code.</p>
+        </div>
+
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.25rem;">
+          
+          <!-- Tier 1 -->
+          <div style="background: var(--bg-tertiary); border: 1px solid rgba(16,185,129,0.3); border-radius: 12px; padding: 1.5rem; display: flex; flex-direction: column;">
+            <div style="font-size: 0.72rem; color: var(--text-muted); text-transform: uppercase; font-weight: 700; letter-spacing: 0.5px;">Level 1 &middot; Simple</div>
+            <h4 style="color: var(--text-primary); font-size: 1.15rem; font-weight: 700; margin: 0.35rem 0 0.5rem;">Simple Trigger Bot</h4>
+            <div style="font-family: var(--font-heading); font-size: 1.9rem; font-weight: 800; color: #10b981; margin-bottom: 0.75rem;">&#8377;5,000</div>
+            <p style="color: var(--text-secondary); font-size: 0.83rem; line-height: 1.5; margin-bottom: 1rem; flex-grow: 1;">Ideal for clean single-indicator triggers, TradingView webhook web-alerts, or automated crossover systems on a single instrument.</p>
+            <ul style="list-style: none; padding: 0; font-size: 0.8rem; color: var(--text-secondary); margin-bottom: 1.25rem;">
+              <li style="margin-bottom: 0.45rem;"><i class="fa-solid fa-check" style="color: #10b981; margin-right: 6px;"></i> Single indicator (Supertrend, EMA, RSI)</li>
+              <li style="margin-bottom: 0.45rem;"><i class="fa-solid fa-check" style="color: #10b981; margin-right: 6px;"></i> TradingView webhook integration</li>
+              <li style="margin-bottom: 0.45rem;"><i class="fa-solid fa-check" style="color: #10b981; margin-right: 6px;"></i> Standard fixed SL &amp; Target</li>
+              <li><i class="fa-solid fa-check" style="color: #10b981; margin-right: 6px;"></i> Pre-delivery paper test validation</li>
+            </ul>
+            <a href="https://wa.me/919150087233?text=Hi%20Stratexa%2C%20I%20have%20a%20simple%20strategy%20trigger%20bot%20to%20automate%20for%20%E2%82%B95%2C000." target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-block" style="border-color: #10b981; color: #10b981; text-align: center; font-size: 0.85rem;">Discuss Simple Scope</a>
+          </div>
+
+          <!-- Tier 2 -->
+          <div style="background: var(--bg-tertiary); border: 1.5px solid #f59e0b; border-radius: 12px; padding: 1.5rem; display: flex; flex-direction: column; position: relative;">
+            <span style="position: absolute; top: -10px; right: 15px; background: #f59e0b; color: #000; font-size: 0.6rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.8px; padding: 0.15rem 0.65rem; border-radius: 50px;">MOST POPULAR</span>
+            <div style="font-size: 0.72rem; color: var(--text-muted); text-transform: uppercase; font-weight: 700; letter-spacing: 0.5px;">Level 2 &middot; Medium</div>
+            <h4 style="color: var(--text-primary); font-size: 1.15rem; font-weight: 700; margin: 0.35rem 0 0.5rem;">Multi-Rule &amp; Risk Logic</h4>
+            <div style="font-family: var(--font-heading); font-size: 1.9rem; font-weight: 800; color: #f59e0b; margin-bottom: 0.75rem;">&#8377;8,000 &ndash; &#8377;10,000</div>
+            <p style="color: var(--text-secondary); font-size: 0.83rem; line-height: 1.5; margin-bottom: 1rem; flex-grow: 1;">For active traders requiring multi-indicator confirmation, trailing stop-losses, multi-timeframe regime filters, and Telegram alert telemetry.</p>
+            <ul style="list-style: none; padding: 0; font-size: 0.8rem; color: var(--text-secondary); margin-bottom: 1.25rem;">
+              <li style="margin-bottom: 0.45rem;"><i class="fa-solid fa-check" style="color: #f59e0b; margin-right: 6px;"></i> Multi-indicator confirmation logic</li>
+              <li style="margin-bottom: 0.45rem;"><i class="fa-solid fa-check" style="color: #f59e0b; margin-right: 6px;"></i> Dynamic ATR trailing SL &amp; partial profit lock</li>
+              <li style="margin-bottom: 0.45rem;"><i class="fa-solid fa-check" style="color: #f59e0b; margin-right: 6px;"></i> Multi-timeframe trend filters (e.g. 15m + 3m)</li>
+              <li><i class="fa-solid fa-check" style="color: #f59e0b; margin-right: 6px;"></i> Real-time Telegram alert telemetry</li>
+            </ul>
+            <a href="https://wa.me/919150087233?text=Hi%20Stratexa%2C%20I%20have%20a%20medium-complexity%20multi-rule%20strategy%20to%20automate." target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-block" style="border-color: #f59e0b; color: #f59e0b; text-align: center; font-size: 0.85rem;">Discuss Medium Scope</a>
+          </div>
+
+          <!-- Tier 3 -->
+          <div style="background: var(--bg-tertiary); border: 1px solid rgba(139,92,246,0.3); border-radius: 12px; padding: 1.5rem; display: flex; flex-direction: column;">
+            <div style="font-size: 0.72rem; color: var(--text-muted); text-transform: uppercase; font-weight: 700; letter-spacing: 0.5px;">Level 3 &middot; Advanced</div>
+            <h4 style="color: var(--text-primary); font-size: 1.15rem; font-weight: 700; margin: 0.35rem 0 0.5rem;">Options &amp; Institutional</h4>
+            <div style="font-family: var(--font-heading); font-size: 1.9rem; font-weight: 800; color: #8b5cf6; margin-bottom: 0.75rem;">&#8377;12,000 &ndash; &#8377;15,000+</div>
+            <p style="color: var(--text-secondary); font-size: 0.83rem; line-height: 1.5; margin-bottom: 1rem; flex-grow: 1;">For complex multi-leg options execution, dynamic delta/Greek hedging, multi-account order mirroring, custom databases &amp; web monitoring.</p>
+            <ul style="list-style: none; padding: 0; font-size: 0.8rem; color: var(--text-secondary); margin-bottom: 1.25rem;">
+              <li style="margin-bottom: 0.45rem;"><i class="fa-solid fa-check" style="color: #8b5cf6; margin-right: 6px;"></i> Multi-leg options (Straddles, Spreads, Condors)</li>
+              <li style="margin-bottom: 0.45rem;"><i class="fa-solid fa-check" style="color: #8b5cf6; margin-right: 6px;"></i> Dynamic Greek adjustments &amp; delta rebalancing</li>
+              <li style="margin-bottom: 0.45rem;"><i class="fa-solid fa-check" style="color: #8b5cf6; margin-right: 6px;"></i> Multi-account order mirroring &amp; master router</li>
+              <li><i class="fa-solid fa-check" style="color: #8b5cf6; margin-right: 6px;"></i> Custom database logging &amp; web dashboard</li>
+            </ul>
+            <a href="https://wa.me/919150087233?text=Hi%20Stratexa%2C%20I%20have%20an%20advanced%20options%20or%20multi-account%20system%20to%20automate." target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-block" style="border-color: #8b5cf6; color: #8b5cf6; text-align: center; font-size: 0.85rem;">Discuss Advanced Scope</a>
+          </div>
+
         </div>
       </div>
 
