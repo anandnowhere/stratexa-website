@@ -519,32 +519,33 @@ function initRoiCalculator() {
   if (!complexityEl || !costValEl) return;
 
   function calculate() {
-    const complexityBase = parseInt(complexityEl.value) || 4999;
-    const brokerCount = parseInt(brokersEl.value) || 1;
-    const frequency = parseInt(frequencyEl.value) || 1;
-    const hostingCost = parseInt(hostingEl.value) || 0;
+    // All pre-defined strategies = flat ₹5,000
+    const strategyBase = 5000;
+    // Onboarding: ₹999 one-time or 0 if self-configured
+    const onboardingCost = parseInt(hostingEl ? hostingEl.value : 0) || 0;
+    // Extra brokers (multi-account)
+    const brokerCount = parseInt(brokersEl ? brokersEl.value : 1) || 1;
+    const extraBrokerCost = brokerCount > 1 ? (brokerCount - 1) * 2000 : 0;
 
-    let totalCost = complexityBase;
-    if (brokerCount > 1) {
-      totalCost += (brokerCount - 1) * 2500;
-    }
-    totalCost += hostingCost;
+    const totalCost = strategyBase + onboardingCost + extraBrokerCost;
 
-    let hoursSaved = 25;
-    if (complexityBase >= 9999) hoursSaved += 15;
-    if (frequency > 1) hoursSaved += frequency * 10;
+    // Time saved estimates
+    const frequency = parseInt(frequencyEl ? frequencyEl.value : 1) || 1;
+    let hoursSaved = 30;
+    if (frequency > 1) hoursSaved += frequency * 8;
 
     let latencyGain = 750;
-    if (frequency >= 2) latencyGain = 1200;
-    if (complexityBase >= 14999) latencyGain = 1800;
+    if (frequency >= 2) latencyGain = 1100;
+    if (frequency >= 3) latencyGain = 1600;
 
     const formattedCost = `₹${totalCost.toLocaleString('en-IN')}`;
+    const strategyName = complexityEl.options[complexityEl.selectedIndex].text;
+
     costValEl.textContent = formattedCost;
     if (hoursValEl) hoursValEl.textContent = `~${hoursSaved} hrs/mo`;
     if (latencyValEl) latencyValEl.textContent = `~${latencyGain}ms faster`;
 
-    const complexityText = complexityEl.options[complexityEl.selectedIndex].text;
-    const specSummary = `Hi Stratexa, I estimated my strategy automation cost on your website:\n- Type: ${complexityText}\n- Brokers: ${brokerCount}\n- Frequency: ${frequencyEl.options[frequencyEl.selectedIndex].text}\n- Estimated Cost: ${formattedCost}`;
+    const specSummary = `Hi Stratexa, I estimated my strategy deployment cost on your website:\n- Strategy: ${strategyName}\n- Broker Accounts: ${brokerCount}\n- Trade Frequency: ${frequencyEl ? frequencyEl.options[frequencyEl.selectedIndex].text : 'N/A'}\n- Estimated One-Time Cost: ${formattedCost}\n- Monthly Pro Care: ₹1,499/month\n\nPlease help me get started!`;
 
     if (waBtn) {
       waBtn.href = `https://wa.me/919150087233?text=${encodeURIComponent(specSummary)}`;

@@ -12,6 +12,7 @@ export default defineConfig({
         about: resolve(__dirname, 'about.html'),
         pricing: resolve(__dirname, 'pricing.html'),
         faq: resolve(__dirname, 'faq.html'),
+        strategies: resolve(__dirname, 'strategies.html'),
         privacy: resolve(__dirname, 'privacy.html'),
         terms: resolve(__dirname, 'terms.html'),
         refund: resolve(__dirname, 'refund.html'),

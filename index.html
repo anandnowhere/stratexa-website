@@ -109,7 +109,7 @@
           <a href="#services" class="nav-link">Services</a>
           <a href="#process" class="nav-link">Our Process</a>
           <a href="#markets" class="nav-link">Markets</a>
-          <a href="/trend-following-options-strategy.html" class="nav-link nav-link-special"><i class="fa-solid fa-chart-line"></i> Strategies <span class="nav-badge-hot">HOT 🔥</span></a>
+          <a href="/strategies.html" class="nav-link nav-link-special"><i class="fa-solid fa-chart-line"></i> Strategies <span class="nav-badge-hot">HOT 🔥</span></a>
           <a href="#tech" class="nav-link">Tech Stack</a>
           <a href="#why-us" class="nav-link">Why Choose Us</a>
           <a href="/pricing.html" class="nav-link">Pricing</a>
@@ -410,54 +410,79 @@
           <div class="section-header">
             <span class="badge">Plug &amp; Play Trading</span>
             <h2 class="section-title">Pre-Defined Trading Strategies</h2>
-            <p class="section-subtitle">Fully backtested, production-ready strategy packages ready to link to your broker account.</p>
+            <p class="section-subtitle">Battle-tested, production-ready strategy packages. Pick one, deploy in 48 hours, own the code forever. Every strategy &mdash; same flat fee.</p>
           </div>
-          
-          <div class="featured-strategy-card">
-            <div>
-              <span class="badge" style="background: var(--accent-green-glow); color: var(--accent-green-bright); border-color: var(--accent-green);">Featured Product</span>
-              <h3 class="featured-strategy-title">Stratexa AlphaTrend Pro</h3>
-              <p style="color: var(--text-secondary); line-height: 1.6; margin-bottom: 24px;">
-                An institutional-grade index options trading model that matches macro momentum with daily price boundary reversal thresholds. Built strictly as credit spreads to maximize theta decay while keeping drawdowns mathematically capped. <br>
-                <span style="font-size: 0.8rem; color: var(--accent-green-bright); font-weight: 500;">*Performance compiled through June 2026, updated monthly.*</span>
-              </p>
-              
-              <div class="featured-metrics-grid">
-                <div class="featured-metric-box">
-                  <div class="featured-metric-value highlight">55.32%</div>
-                  <div class="featured-metric-label">Win Rate</div>
-                </div>
-                <div class="featured-metric-box">
-                  <div class="featured-metric-value">7.09</div>
-                  <div class="featured-metric-label">Sharpe Ratio</div>
-                </div>
-                <div class="featured-metric-box">
-                  <div class="featured-metric-value highlight">+₹5.09L</div>
-                  <div class="featured-metric-label">5-Year Return</div>
-                </div>
-              </div>
 
-              <div class="featured-buttons-container">
-                <a href="/trend-following-options-strategy.html" class="btn btn-primary">View Strategy Details</a>
-                 <a href="https://wa.me/919150087233?text=Hi%20Stratexa%2C%20please%20add%20me%20to%20the%20WhatsApp%20group%20for%20live%20daily%20performance%20updates%20of%20AlphaTrend%20Pro." target="_blank" rel="noopener noreferrer" class="btn btn-secondary"><i class="fa-brands fa-whatsapp" style="margin-right: 6px;"></i> Join WhatsApp Group</a>
+          <!-- Mini Strategy Cards Grid -->
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.25rem; margin-bottom: 2.5rem;">
+            <!-- Supertrend -->
+            <div style="background: var(--bg-secondary); border: 1.5px solid rgba(16,185,129,0.4); border-radius: 12px; padding: 1.5rem; display: flex; flex-direction: column; gap: 0.75rem;">
+              <div style="display:flex; align-items:center; gap:0.75rem;">
+                <div style="width:38px; height:38px; border-radius:8px; background:rgba(16,185,129,0.15); color:#10b981; display:flex; align-items:center; justify-content:center; font-size:1rem; flex-shrink:0;"><i class="fa-solid fa-arrow-trend-up"></i></div>
+                <div><div style="font-size:0.65rem; color:var(--text-muted); text-transform:uppercase; letter-spacing:0.8px; font-weight:600;">Trend-Following</div><h4 style="font-size:0.95rem; font-weight:700; color:var(--text-primary); margin:0;">Supertrend Strategy</h4></div>
+              </div>
+              <p style="color:var(--text-secondary); font-size:0.83rem; line-height:1.5; margin:0;">ATR-based automated trend flips with trailing stop-loss. Best for Nifty, BankNifty &amp; high-beta equities.</p>
+              <div style="display:flex; gap:0.4rem; flex-wrap:wrap;">
+                <span style="font-size:0.68rem; padding:0.18rem 0.55rem; border-radius:50px; background:var(--bg-tertiary); color:var(--text-secondary); border:1px solid var(--border-color);">Intraday &amp; Positional</span>
+                <span style="font-size:0.68rem; padding:0.18rem 0.55rem; border-radius:50px; background:var(--bg-tertiary); color:var(--text-secondary); border:1px solid var(--border-color);">Min &#8377;50K capital</span>
               </div>
             </div>
-            
-            <div style="position: relative; display: flex; justify-content: center; width: 100%;">
-              <!-- Beautiful preview visual representing the strategy -->
-              <div class="featured-chart-card">
-                <div class="featured-chart-header">
-                  <span class="featured-chart-title"><i class="fa-solid fa-chart-line"></i> EQUITY CURVE</span>
-                  <span style="color: var(--accent-green-bright); font-size: 0.8rem; font-weight: 600;"><i class="fa-solid fa-arrow-trend-up"></i> STABLE GROWTH</span>
-                </div>
-                <img src="cumulative_pnl_5year.png" alt="Equity Curve Preview" style="width: 100%; height: auto; border-radius: 4px; filter: saturate(1.2);">
+            <!-- 9:20 Straddle -->
+            <div style="background: var(--bg-secondary); border: 1.5px solid rgba(245,158,11,0.4); border-radius: 12px; padding: 1.5rem; display: flex; flex-direction: column; gap: 0.75rem;">
+              <div style="display:flex; align-items:center; gap:0.75rem;">
+                <div style="width:38px; height:38px; border-radius:8px; background:rgba(245,158,11,0.15); color:#f59e0b; display:flex; align-items:center; justify-content:center; font-size:1rem; flex-shrink:0;"><i class="fa-solid fa-arrows-left-right"></i></div>
+                <div><div style="font-size:0.65rem; color:var(--text-muted); text-transform:uppercase; letter-spacing:0.8px; font-weight:600;">Theta Decay</div><h4 style="font-size:0.95rem; font-weight:700; color:var(--text-primary); margin:0;">9:20 AM Straddle / Strangle</h4></div>
               </div>
+              <p style="color:var(--text-secondary); font-size:0.83rem; line-height:1.5; margin:0;">Automated ATM CE+PE entry at 9:20 AM with individual leg SL, trailing stop &amp; MTM target. India's benchmark intraday options strategy.</p>
+              <div style="display:flex; gap:0.4rem; flex-wrap:wrap;">
+                <span style="font-size:0.68rem; padding:0.18rem 0.55rem; border-radius:50px; background:var(--bg-tertiary); color:var(--text-secondary); border:1px solid var(--border-color);">Intraday Only</span>
+                <span style="font-size:0.68rem; padding:0.18rem 0.55rem; border-radius:50px; background:var(--bg-tertiary); color:var(--text-secondary); border:1px solid var(--border-color);">Min &#8377;1.5L capital</span>
+              </div>
+            </div>
+            <!-- AlphaTrend Pro -->
+            <div style="background: var(--bg-secondary); border: 1.5px solid rgba(16,185,129,0.6); border-radius: 12px; padding: 1.5rem; display: flex; flex-direction: column; gap: 0.75rem; position: relative;">
+              <span style="position:absolute; top:-10px; left:16px; background:#10b981; color:#000; font-size:0.6rem; font-weight:800; text-transform:uppercase; letter-spacing:0.8px; padding:0.12rem 0.65rem; border-radius:50px;">&#x1F4CA; 5-Year Backtest</span>
+              <div style="display:flex; align-items:center; gap:0.75rem; margin-top:4px;">
+                <div style="width:38px; height:38px; border-radius:8px; background:rgba(16,185,129,0.15); color:#10b981; display:flex; align-items:center; justify-content:center; font-size:1rem; flex-shrink:0;"><i class="fa-solid fa-chart-line"></i></div>
+                <div><div style="font-size:0.65rem; color:var(--text-muted); text-transform:uppercase; letter-spacing:0.8px; font-weight:600;">Options Credit Spread</div><h4 style="font-size:0.95rem; font-weight:700; color:var(--text-primary); margin:0;">AlphaTrend Pro</h4></div>
+              </div>
+              <p style="color:var(--text-secondary); font-size:0.83rem; line-height:1.5; margin:0;">Institutional-grade Nifty credit spread model. 5-year verified: <strong style="color:var(--accent-green-bright);">+&#8377;5.09L return</strong>, 55.32% win rate, 7.09 Sharpe.</p>
+              <div style="display:flex; gap:0.4rem; flex-wrap:wrap;">
+                <span style="font-size:0.68rem; padding:0.18rem 0.55rem; border-radius:50px; background:var(--bg-tertiary); color:var(--text-secondary); border:1px solid var(--border-color);">Index Options</span>
+                <span style="font-size:0.68rem; padding:0.18rem 0.55rem; border-radius:50px; background:var(--bg-tertiary); color:var(--text-secondary); border:1px solid var(--border-color);">Min &#8377;1L capital</span>
+              </div>
+            </div>
+          </div><!-- /mini cards -->
+
+          <!-- Pricing Callout + CTA -->
+          <div style="background: linear-gradient(135deg, rgba(16,185,129,0.07) 0%, rgba(6,182,212,0.05) 100%); border: 1px solid rgba(16,185,129,0.2); border-radius: 14px; padding: 2rem; display: flex; flex-wrap: wrap; gap: 1.5rem; align-items: center; justify-content: space-between; margin-bottom: 1.5rem;">
+            <div>
+              <div style="font-size:0.75rem; color:var(--text-muted); text-transform:uppercase; letter-spacing:0.8px; font-weight:600; margin-bottom:0.4rem;">Same price for every strategy</div>
+              <div style="font-family: var(--font-heading); font-size: 1.5rem; font-weight: 800; color: var(--text-primary);">
+                &#8377;5,000 <span style="font-size:0.9rem; font-weight:400; color:var(--text-secondary);">Setup</span>
+                &nbsp;+&nbsp; &#8377;999 <span style="font-size:0.9rem; font-weight:400; color:var(--text-secondary);">Onboarding</span>
+                &nbsp;+&nbsp; &#8377;1,499<span style="font-size:0.9rem; font-weight:400; color:var(--text-secondary);">/mo Care</span>
+              </div>
+            </div>
+            <div style="display:flex; gap:0.75rem; flex-wrap:wrap;">
+              <a href="/strategies.html" class="btn btn-primary">Browse All 6 Strategies &rarr;</a>
+              <a href="https://wa.me/919150087233?text=Hi%20Stratexa%2C%20I%20want%20to%20deploy%20a%20pre-defined%20strategy%20for%20%E2%82%B95%2C000." target="_blank" rel="noopener noreferrer" class="btn btn-secondary"><i class="fa-brands fa-whatsapp" style="margin-right:6px;"></i> Deploy Now</a>
             </div>
           </div>
+
+          <!-- AlphaTrend Equity Curve -->
+          <div style="border: 1px solid var(--border-color); border-radius: 12px; overflow: hidden; max-width: 720px; margin: 0 auto;">
+            <div style="background: var(--bg-secondary); padding: 0.75rem 1rem; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border-color);">
+              <span style="font-size: 0.78rem; font-weight: 600; color: var(--text-secondary);"><i class="fa-solid fa-chart-line" style="color:var(--accent-green-bright); margin-right:5px;"></i> AlphaTrend Pro &mdash; 5-Year Equity Curve</span>
+              <span style="font-size: 0.72rem; color: var(--accent-green-bright); font-weight: 600;"><i class="fa-solid fa-arrow-trend-up"></i> STABLE GROWTH</span>
+            </div>
+            <img src="cumulative_pnl_5year.png" alt="AlphaTrend Pro 5-Year Equity Curve" style="width: 100%; height: auto; display: block; filter: saturate(1.2);">
+          </div>
+
         </div>
       </section>
 
-      <!-- Technologies We Work With -->
+            <!-- Technologies We Work With -->
       <section class="tech-section" id="tech">
         <div class="container">
           <div class="section-header">
@@ -655,15 +680,15 @@
         <div class="container">
           <div class="section-header">
             <span class="badge">INTERACTIVE ESTIMATOR</span>
-            <h2 class="section-title">Estimate Your Strategy Automation Cost</h2>
-            <p class="section-subtitle">Calculate development cost, monthly time savings, and speed improvements tailored to your strategy complexity.</p>
+            <h2 class="section-title">Estimate Your Total Deployment Cost</h2>
+            <p class="section-subtitle">All pre-defined strategies are priced the same. Configure onboarding and care plan to see your total investment.</p>
           </div>
 
           <div class="calculator-card">
             <div class="calculator-inputs">
               <div class="calc-group">
                 <label for="calc-complexity">
-                  <span>Strategy Complexity &amp; Indicators</span>
+                  <span>Select Pre-Defined Strategy</span>
                   <i class="fa-solid fa-circle-info" title="Select your signal logic complexity"></i>
                 </label>
                 <select id="calc-complexity" class="calc-select">
@@ -700,7 +725,7 @@
 
               <div class="calc-group">
                 <label for="calc-hosting">
-                  <span>Deployment &amp; Hosting Option</span>
+                  <span>Onboarding Option</span>
                   <i class="fa-solid fa-server" title="Choose server management"></i>
                 </label>
                 <select id="calc-hosting" class="calc-select">
@@ -712,9 +737,9 @@
 
             <div class="calculator-results">
               <div class="result-box-hero">
-                <div class="result-label">Estimated Development Cost</div>
+                <div class="result-label">Estimated Total to Go Live</div>
                 <div class="result-cost-val" id="calc-cost-display">₹4,999</div>
-                <span class="badge" style="background: rgba(16, 185, 129, 0.1); color: var(--accent-green-bright); border: 1px solid rgba(16, 185, 129, 0.3); font-size: 0.72rem; margin-top: 6px; display: inline-block;">One-time Fixed Milestone Fee</span>
+                <span class="badge" style="background: rgba(16, 185, 129, 0.1); color: var(--accent-green-bright); border: 1px solid rgba(16, 185, 129, 0.3); font-size: 0.72rem; margin-top: 6px; display: inline-block;">Strategy Setup + Onboarding</span>
               </div>
 
               <div class="result-stats-row">
@@ -746,12 +771,56 @@
         <div class="container">
           <div class="section-header">
             <span class="badge">TRANSPARENT PRICING</span>
-            <h2 class="section-title">Automation Packages &amp; Pricing Tiers</h2>
-            <p class="section-subtitle">100% transparent milestone pricing with full source code ownership and zero profit share.</p>
+            <h2 class="section-title">Simple, Transparent Pricing</h2>
+            <p class="section-subtitle">One flat fee to deploy. One monthly subscription to keep it running. No hidden charges, no profit share, no complexity.</p>
           </div>
 
-          <div style="display: flex; flex-wrap: wrap; gap: 2rem; justify-content: center; align-items: stretch; margin-top: 30px;">
-            <!-- Starter Tier -->
+          <!-- 3-Pillar Summary -->
+          <div style="display: flex; flex-wrap: wrap; gap: 1.25rem; justify-content: center; align-items: stretch; margin-top: 2rem; margin-bottom: 1rem;">
+            <!-- Pillar 1 -->
+            <div style="flex: 1 1 240px; max-width: 340px; background: var(--bg-secondary); border: 2px solid #10b981; border-radius: 12px; padding: 1.75rem; text-align: center;">
+              <div style="width:46px; height:46px; border-radius:10px; background:rgba(16,185,129,0.15); color:#10b981; display:flex; align-items:center; justify-content:center; font-size:1.3rem; margin: 0 auto 1rem;"><i class="fa-solid fa-code"></i></div>
+              <div style="font-size:0.7rem; text-transform:uppercase; letter-spacing:0.8px; color:var(--text-muted); font-weight:600; margin-bottom:0.5rem;">Step 1</div>
+              <h3 style="color:var(--text-primary); font-size:1rem; font-weight:700; margin-bottom:0.4rem;">Strategy Setup</h3>
+              <p style="font-family:var(--font-heading); font-size:2rem; font-weight:800; color:#10b981; margin:0 0 0.3rem;">&#8377;5,000</p>
+              <span style="font-size:0.72rem; color:var(--text-secondary);">One-time &middot; All strategies same price</span>
+            </div>
+            <!-- Plus -->
+            <div style="display:flex; align-items:center; color:var(--text-muted); font-size:1.5rem; font-weight:300; flex-shrink:0;">+</div>
+            <!-- Pillar 2 -->
+            <div style="flex: 1 1 240px; max-width: 340px; background: var(--bg-secondary); border: 2px solid #06b6d4; border-radius: 12px; padding: 1.75rem; text-align: center;">
+              <div style="width:46px; height:46px; border-radius:10px; background:rgba(6,182,212,0.15); color:#06b6d4; display:flex; align-items:center; justify-content:center; font-size:1.3rem; margin: 0 auto 1rem;"><i class="fa-solid fa-rocket"></i></div>
+              <div style="font-size:0.7rem; text-transform:uppercase; letter-spacing:0.8px; color:var(--text-muted); font-weight:600; margin-bottom:0.5rem;">Step 2</div>
+              <h3 style="color:var(--text-primary); font-size:1rem; font-weight:700; margin-bottom:0.4rem;">Onboarding &amp; Deployment</h3>
+              <p style="font-family:var(--font-heading); font-size:2rem; font-weight:800; color:#06b6d4; margin:0 0 0.3rem;">&#8377;999</p>
+              <span style="font-size:0.72rem; color:var(--text-secondary);">One-time &middot; Broker API + VPS + Telegram</span>
+            </div>
+            <!-- Plus -->
+            <div style="display:flex; align-items:center; color:var(--text-muted); font-size:1.5rem; font-weight:300; flex-shrink:0;">+</div>
+            <!-- Pillar 3 -->
+            <div style="flex: 1 1 240px; max-width: 340px; background: var(--bg-secondary); border: 2px solid #f59e0b; border-radius: 12px; padding: 1.75rem; text-align: center; position: relative;">
+              <span style="position:absolute; top:-11px; left:50%; transform:translateX(-50%); background:#f59e0b; color:#000; font-size:0.62rem; font-weight:800; text-transform:uppercase; letter-spacing:0.6px; padding:0.12rem 0.8rem; border-radius:50px; white-space:nowrap;">RECOMMENDED</span>
+              <div style="width:46px; height:46px; border-radius:10px; background:rgba(245,158,11,0.15); color:#f59e0b; display:flex; align-items:center; justify-content:center; font-size:1.3rem; margin: 0.5rem auto 1rem;"><i class="fa-solid fa-shield-halved"></i></div>
+              <div style="font-size:0.7rem; text-transform:uppercase; letter-spacing:0.8px; color:var(--text-muted); font-weight:600; margin-bottom:0.5rem;">Step 3 — Monthly</div>
+              <h3 style="color:var(--text-primary); font-size:1rem; font-weight:700; margin-bottom:0.4rem;">Pro Care Plan</h3>
+              <p style="font-family:var(--font-heading); font-size:2rem; font-weight:800; color:#f59e0b; margin:0 0 0.3rem;">&#8377;1,499<span style="font-size:0.9rem; font-weight:400;">/mo</span></p>
+              <span style="font-size:0.72rem; color:var(--text-secondary);">Cancel anytime &middot; 24/7 managed hosting</span>
+            </div>
+          </div><!-- /3 pillars -->
+
+          <!-- Total callout -->
+          <div style="max-width:700px; margin: 1.25rem auto; background: var(--bg-tertiary); border: 1px solid var(--border-color); border-radius: 10px; padding: 1rem 1.5rem; text-align: center; font-size: 0.9rem; color: var(--text-secondary);">
+            Total first-month investment: <strong style="color:var(--accent-green-bright); font-size:1.05rem;">&#8377;7,498</strong>
+            &nbsp;&middot;&nbsp; <i class="fa-solid fa-circle-info" style="color:var(--accent-green);"></i> First month Pro Care is free with all new deployments
+          </div>
+
+          <div style="display: flex; flex-wrap: wrap; gap: 1rem; justify-content: center; margin-top: 1.5rem; margin-bottom: 1rem;">
+            <a href="/strategies.html" class="btn btn-primary"><i class="fa-solid fa-grid-2" style="margin-right:6px;"></i> Browse Strategy Library</a>
+            <a href="/pricing.html" class="btn btn-secondary"><i class="fa-solid fa-tag" style="margin-right:6px;"></i> Full Pricing Details</a>
+          </div>
+
+          <!-- DUMMY placeholder div so the old code finds end correctly -->
+          <div style="display:none;"><!-- Starter Tier -->
             <div style="flex: 1 1 300px; background: var(--bg-secondary); border: 2px solid #10b981; border-radius: 12px; padding: 2rem; text-align: center; color: var(--text-primary); display: flex; flex-direction: column; align-items: center;">
               <h3 style="color: var(--text-primary);">Starter Automation</h3>
               <span class="scope-pill-tag">Single-Condition Indicator Bots Only</span>
@@ -937,6 +1006,7 @@
           <a href="#services">Services</a>
           <a href="#process">Our Process</a>
           <a href="#markets">Markets</a>
+          <a href="/strategies.html">Strategies</a>
           <a href="/about.html">About Us</a>
           <a href="/pricing.html">Pricing &amp; Care</a>
           <a href="/faq.html">FAQ</a>

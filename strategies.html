@@ -1,0 +1,633 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-M3LCVRSQTK"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-M3LCVRSQTK');
+  </script>
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-KW55NS8N');</script>
+  <!-- End Google Tag Manager -->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/logo.png" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+  <link rel="canonical" href="https://www.stratexa.in/strategies.html" />
+  <title>Pre-Defined Trading Strategies – Stratexa | Deploy in 48 Hours</title>
+  <meta name="description" content="Choose from Stratexa's library of battle-tested pre-defined algo trading strategies — Supertrend, ADX Slope, 9:20 Straddle, ORB, and more. Deploy on any broker for ₹5,000 one-time." />
+  <meta name="keywords" content="Supertrend algo trading, ADX slope strategy, 9:20 straddle bot, options sell strategy bot India, pre-defined trading bot, Stratexa strategy, algo trading India" />
+  <meta name="author" content="Stratexa" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://www.stratexa.in/strategies.html" />
+  <meta property="og:title" content="Pre-Defined Trading Strategies – Stratexa" />
+  <meta property="og:description" content="Choose from Stratexa's library of battle-tested pre-defined algo trading strategies. Deploy on any Indian broker for ₹5,000 one-time setup." />
+  <meta property="og:image" content="https://www.stratexa.in/og-image.png" />
+
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image" />
+  <meta property="twitter:url" content="https://www.stratexa.in/strategies.html" />
+  <meta property="twitter:title" content="Pre-Defined Trading Strategies – Stratexa" />
+  <meta property="twitter:description" content="Choose from Stratexa's library of battle-tested pre-defined algo trading strategies. Deploy on any Indian broker for ₹5,000 one-time setup." />
+  <meta property="twitter:image" content="https://www.stratexa.in/og-image.png" />
+
+  <!-- JSON-LD Schema -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "Pre-Defined Trading Strategies – Stratexa",
+    "description": "Library of pre-built, battle-tested algo trading strategies available for deployment on Indian brokers.",
+    "url": "https://www.stratexa.in/strategies.html"
+  }
+  </script>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- FontAwesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+
+  <link rel="stylesheet" href="/src/style.css" />
+  <style>
+    .strategies-hero {
+      background: linear-gradient(135deg, var(--bg-secondary) 0%, var(--bg-primary) 100%);
+      border-bottom: 1px solid var(--border-color);
+      padding: 5rem 0 4rem;
+      text-align: center;
+    }
+    .strategies-hero h1 {
+      font-family: var(--font-heading);
+      font-size: clamp(2rem, 5vw, 3.4rem);
+      font-weight: 800;
+      line-height: 1.15;
+      margin-bottom: 1.25rem;
+    }
+    .strategies-hero p {
+      color: var(--text-secondary);
+      font-size: 1.15rem;
+      max-width: 680px;
+      margin: 0 auto 2rem;
+      line-height: 1.7;
+    }
+    /* Pricing Callout Strip */
+    .pricing-strip {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0;
+      justify-content: center;
+      align-items: stretch;
+      background: var(--bg-secondary);
+      border: 1px solid var(--border-color);
+      border-radius: 14px;
+      overflow: hidden;
+      max-width: 860px;
+      margin: 0 auto 2.5rem;
+    }
+    .ps-pillar {
+      flex: 1 1 200px;
+      padding: 1.4rem 1.5rem;
+      text-align: center;
+      border-right: 1px solid var(--border-color);
+    }
+    .ps-pillar:last-child { border-right: none; }
+    .ps-pillar .ps-amount {
+      font-family: var(--font-heading);
+      font-size: 1.7rem;
+      font-weight: 800;
+      display: block;
+      margin-bottom: 2px;
+    }
+    .ps-pillar .ps-label {
+      font-size: 0.78rem;
+      color: var(--text-secondary);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      display: block;
+      margin-bottom: 4px;
+    }
+    .ps-pillar .ps-sublabel {
+      font-size: 0.72rem;
+      color: var(--text-muted);
+      display: block;
+    }
+    .ps-plus {
+      display: flex;
+      align-items: center;
+      padding: 0 0.5rem;
+      color: var(--text-muted);
+      font-size: 1.2rem;
+      font-weight: 300;
+    }
+    /* Strategy Cards */
+    .strategies-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 1.75rem;
+      padding: 4rem 0;
+    }
+    .strategy-card {
+      background: var(--bg-secondary);
+      border: 1.5px solid var(--border-color);
+      border-radius: 14px;
+      padding: 1.75rem;
+      display: flex;
+      flex-direction: column;
+      transition: border-color 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
+      position: relative;
+    }
+    .strategy-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.25);
+    }
+    .strategy-card.featured {
+      border-color: #10b981;
+      box-shadow: 0 0 0 1px rgba(16, 185, 129, 0.15);
+    }
+    .strategy-card.theta { border-color: rgba(245, 158, 11, 0.5); }
+    .strategy-card.breakout { border-color: rgba(139, 92, 246, 0.5); }
+    .strategy-card.momentum { border-color: rgba(6, 182, 212, 0.5); }
+    .strategy-card.protection { border-color: rgba(239, 68, 68, 0.5); }
+    .strategy-card.custom { border-color: rgba(156, 163, 175, 0.4); border-style: dashed; }
+    .strategy-badge-row {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-bottom: 1rem;
+      flex-wrap: wrap;
+    }
+    .strategy-type-badge {
+      font-size: 0.68rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      padding: 0.2rem 0.6rem;
+      border-radius: 50px;
+      border: 1px solid currentColor;
+    }
+    .badge-trend   { color: #10b981; background: rgba(16,185,129,0.1); }
+    .badge-theta   { color: #f59e0b; background: rgba(245,158,11,0.1); }
+    .badge-breakout{ color: #8b5cf6; background: rgba(139,92,246,0.1); }
+    .badge-momentum{ color: #06b6d4; background: rgba(6,182,212,0.1); }
+    .badge-server  { color: #ef4444; background: rgba(239,68,68,0.1); }
+    .badge-custom  { color: #9ca3af; background: rgba(156,163,175,0.1); }
+    .strategy-icon {
+      width: 46px;
+      height: 46px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.3rem;
+      margin-bottom: 1rem;
+      flex-shrink: 0;
+    }
+    .icon-green  { background: rgba(16,185,129,0.15);  color: #10b981; }
+    .icon-amber  { background: rgba(245,158,11,0.15);  color: #f59e0b; }
+    .icon-purple { background: rgba(139,92,246,0.15);  color: #8b5cf6; }
+    .icon-cyan   { background: rgba(6,182,212,0.15);   color: #06b6d4; }
+    .icon-red    { background: rgba(239,68,68,0.15);   color: #ef4444; }
+    .icon-gray   { background: rgba(156,163,175,0.12); color: #9ca3af; }
+
+    .strategy-card h3 {
+      font-family: var(--font-heading);
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 0.5rem;
+      line-height: 1.3;
+    }
+    .strategy-card .strategy-desc {
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+      line-height: 1.6;
+      margin-bottom: 1.25rem;
+      flex-grow: 1;
+    }
+    .strategy-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-bottom: 1.25rem;
+    }
+    .meta-pill {
+      font-size: 0.72rem;
+      padding: 0.22rem 0.65rem;
+      border-radius: 50px;
+      background: var(--bg-tertiary);
+      color: var(--text-secondary);
+      border: 1px solid var(--border-color);
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+    .strategy-card .deploy-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 0.7rem 1.25rem;
+      border-radius: 8px;
+      font-size: 0.88rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.2s ease;
+      width: 100%;
+      margin-top: auto;
+    }
+    .deploy-btn-green  { background: rgba(16,185,129,0.12); color: #10b981; border: 1.5px solid rgba(16,185,129,0.4); }
+    .deploy-btn-amber  { background: rgba(245,158,11,0.12); color: #f59e0b; border: 1.5px solid rgba(245,158,11,0.4); }
+    .deploy-btn-purple { background: rgba(139,92,246,0.12); color: #8b5cf6; border: 1.5px solid rgba(139,92,246,0.4); }
+    .deploy-btn-cyan   { background: rgba(6,182,212,0.12);  color: #06b6d4; border: 1.5px solid rgba(6,182,212,0.4); }
+    .deploy-btn-red    { background: rgba(239,68,68,0.12);  color: #ef4444; border: 1.5px solid rgba(239,68,68,0.4); }
+    .deploy-btn-gray   { background: rgba(156,163,175,0.1); color: var(--text-secondary); border: 1.5px solid var(--border-color); }
+    .deploy-btn:hover  { filter: brightness(1.15); transform: translateY(-1px); }
+
+    .featured-tag {
+      position: absolute;
+      top: -11px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #10b981;
+      color: #000;
+      font-size: 0.65rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      padding: 0.15rem 0.75rem;
+      border-radius: 50px;
+      white-space: nowrap;
+    }
+    /* Bottom CTA */
+    .strategies-cta-strip {
+      background: linear-gradient(135deg, rgba(16,185,129,0.08) 0%, rgba(6,182,212,0.06) 100%);
+      border: 1px solid rgba(16,185,129,0.2);
+      border-radius: 16px;
+      padding: 3rem 2rem;
+      text-align: center;
+      margin-bottom: 4rem;
+    }
+    .strategies-cta-strip h2 {
+      font-family: var(--font-heading);
+      font-size: 1.75rem;
+      font-weight: 700;
+      margin-bottom: 0.75rem;
+    }
+    .strategies-cta-strip p {
+      color: var(--text-secondary);
+      max-width: 560px;
+      margin: 0 auto 1.75rem;
+      line-height: 1.6;
+    }
+    .cta-btn-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      justify-content: center;
+    }
+
+    @media (max-width: 600px) {
+      .pricing-strip { border-radius: 10px; }
+      .ps-plus { display: none; }
+      .ps-pillar { border-right: none; border-bottom: 1px solid var(--border-color); }
+      .ps-pillar:last-child { border-bottom: none; }
+    }
+  </style>
+  <!-- Inline Theme Script to prevent flash -->
+  <script>
+    (function() {
+      const theme = localStorage.getItem('theme') || 'dark';
+      document.documentElement.setAttribute('data-theme', theme);
+    })();
+  </script>
+</head>
+<body>
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KW55NS8N"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
+
+  <header class="navbar" id="main-header">
+    <div class="nav-container">
+      <a href="/" class="nav-logo" id="nav-logo-link">
+        <div class="logo-icon">
+          <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M25 75L75 25M75 25H45M75 25V55" stroke="#10b981" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M25 45V75H55" stroke="var(--logo-stroke)" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <div class="logo-text"><span class="brand-name">STRATEXA.IN</span><span class="brand-tagline">AUTOMATE. EXECUTE. ELEVATE.</span></div>
+      </a>
+      <nav class="nav-menu" id="nav-menu">
+        <a href="/" class="nav-link">Home</a>
+        <a href="/#services" class="nav-link">Services</a>
+        <a href="/#process" class="nav-link">Our Process</a>
+        <a href="/#markets" class="nav-link">Markets</a>
+        <a href="/strategies.html" class="nav-link nav-link-special active"><i class="fa-solid fa-chart-line"></i> Strategies <span class="nav-badge-hot">HOT 🔥</span></a>
+        <a href="/#tech" class="nav-link">Tech Stack</a>
+        <a href="/#why-us" class="nav-link">Why Choose Us</a>
+        <a href="/pricing.html" class="nav-link">Pricing</a>
+        <a href="/about.html" class="nav-link">About</a>
+        <a href="/faq.html" class="nav-link">FAQ</a>
+        <a href="/login.html" class="nav-link"><i class="fa-solid fa-user-lock" style="margin-right: 4px;"></i> Client Login</a>
+        <a href="/#consultation" class="btn btn-primary btn-nav">Book Free Consultation</a>
+      </nav>
+      <div class="nav-actions">
+        <button class="theme-toggle-btn" id="theme-toggle-btn" aria-label="Toggle theme">
+          <i class="fa-regular fa-moon"></i>
+        </button>
+        <button class="nav-toggle" id="nav-toggle" aria-label="Toggle menu">
+          <span class="bar"></span>
+          <span class="bar"></span>
+          <span class="bar"></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main style="padding-top: 100px;">
+    <!-- Hero -->
+    <section class="strategies-hero">
+      <div class="container">
+        <span class="badge" style="background: var(--accent-green-glow); color: var(--accent-green-bright); padding: 0.5rem 1.1rem; border-radius: 50px; font-weight: 600; font-size: 0.82rem; text-transform: uppercase; letter-spacing: 1px; border: 1px solid var(--border-color-glow); display: inline-block; margin-bottom: 1.5rem;">PLUG &amp; PLAY TRADING</span>
+        <h1>Pre-Defined Trading<br><span class="text-glow-green">Strategy Library</span></h1>
+        <p>Battle-tested, production-ready automation strategies. Pick one, pay once, go live within 48 hours on your preferred broker. No profit share. No lock-in. Full code ownership.</p>
+
+        <!-- 3-Pillar Pricing Strip -->
+        <div class="pricing-strip">
+          <div class="ps-pillar">
+            <span class="ps-label">Strategy Setup</span>
+            <span class="ps-amount" style="color: #10b981;">₹5,000</span>
+            <span class="ps-sublabel">One-time · All strategies</span>
+          </div>
+          <div class="ps-plus">+</div>
+          <div class="ps-pillar">
+            <span class="ps-label">Onboarding &amp; Deployment</span>
+            <span class="ps-amount" style="color: #06b6d4;">₹999</span>
+            <span class="ps-sublabel">One-time · Broker API + VPS setup</span>
+          </div>
+          <div class="ps-plus">+</div>
+          <div class="ps-pillar">
+            <span class="ps-label">Pro Care Plan</span>
+            <span class="ps-amount" style="color: #f59e0b;">₹1,499</span>
+            <span class="ps-sublabel">Per month · 24/7 managed hosting</span>
+          </div>
+        </div>
+
+        <a href="/pricing.html" style="font-size:0.85rem; color: var(--accent-green-bright); text-decoration: none;">
+          <i class="fa-solid fa-circle-info" style="margin-right:4px;"></i> See full pricing breakdown →
+        </a>
+      </div>
+    </section>
+
+    <!-- Strategy Cards -->
+    <section style="padding: 0 0 2rem;">
+      <div class="container">
+        <div class="strategies-grid">
+
+          <!-- 1. Supertrend -->
+          <div class="strategy-card featured" style="border-color: #10b981;">
+            <span class="featured-tag">⭐ Most Popular</span>
+            <div class="strategy-badge-row">
+              <div class="strategy-icon icon-green"><i class="fa-solid fa-arrow-trend-up"></i></div>
+              <span class="strategy-type-badge badge-trend">Trend-Following</span>
+            </div>
+            <h3>Supertrend Automated Strategy</h3>
+            <p class="strategy-desc">Automated long/short execution triggered by Supertrend flips on Nifty, Bank Nifty, or any high-beta equity. Customizable ATR period and multiplier. Built-in ATR trailing stop-loss that locks in profits as the trend extends.</p>
+            <div class="strategy-meta">
+              <span class="meta-pill"><i class="fa-solid fa-chart-bar"></i> Nifty / BankNifty / Equities</span>
+              <span class="meta-pill"><i class="fa-solid fa-clock"></i> Intraday &amp; Positional</span>
+              <span class="meta-pill"><i class="fa-solid fa-indian-rupee-sign"></i> Min ₹50,000 capital</span>
+              <span class="meta-pill"><i class="fa-solid fa-gear"></i> Zerodha / Dhan / Angel</span>
+            </div>
+            <a href="https://wa.me/919150087233?text=Hi%20Stratexa%2C%20I%20want%20to%20deploy%20the%20Supertrend%20Automated%20Strategy%20for%20%E2%82%B95%2C000.%20Please%20guide%20me%20on%20next%20steps." target="_blank" rel="noopener noreferrer" class="deploy-btn deploy-btn-green">
+              <i class="fa-brands fa-whatsapp"></i> Deploy This Strategy
+            </a>
+          </div>
+
+          <!-- 2. ADX Slope -->
+          <div class="strategy-card momentum">
+            <div class="strategy-badge-row">
+              <div class="strategy-icon icon-cyan"><i class="fa-solid fa-wave-square"></i></div>
+              <span class="strategy-type-badge badge-momentum">Momentum Filter</span>
+            </div>
+            <h3>ADX Slope &amp; Momentum Strategy</h3>
+            <p class="strategy-desc">Evaluates the ADX slope (rate of change) combined with DI crossover to trade only when momentum is genuinely accelerating (ADX &gt; 25 rising). Eliminates the whipsaw losses that destroy moving average strategies in sideways markets.</p>
+            <div class="strategy-meta">
+              <span class="meta-pill"><i class="fa-solid fa-chart-bar"></i> Futures &amp; Options</span>
+              <span class="meta-pill"><i class="fa-solid fa-clock"></i> Intraday</span>
+              <span class="meta-pill"><i class="fa-solid fa-indian-rupee-sign"></i> Min ₹75,000 capital</span>
+              <span class="meta-pill"><i class="fa-solid fa-gear"></i> Any Indian Broker</span>
+            </div>
+            <a href="https://wa.me/919150087233?text=Hi%20Stratexa%2C%20I%20want%20to%20deploy%20the%20ADX%20Slope%20%26%20Momentum%20Strategy%20for%20%E2%82%B95%2C000.%20Please%20guide%20me." target="_blank" rel="noopener noreferrer" class="deploy-btn deploy-btn-cyan">
+              <i class="fa-brands fa-whatsapp"></i> Deploy This Strategy
+            </a>
+          </div>
+
+          <!-- 3. Call Only Sell -->
+          <div class="strategy-card theta">
+            <div class="strategy-badge-row">
+              <div class="strategy-icon icon-amber"><i class="fa-solid fa-hand-holding-dollar"></i></div>
+              <span class="strategy-type-badge badge-theta">Theta Decay</span>
+            </div>
+            <h3>Call-Only Systematic Sell Strategy</h3>
+            <p class="strategy-desc">Systematically writes OTM or ATM Call options on intraday resistance rejections or bearish regime shifts. Tracks delta-based stop-loss and enforces strict 3:15 PM forced exit — maximising theta collection in bearish and neutral markets.</p>
+            <div class="strategy-meta">
+              <span class="meta-pill"><i class="fa-solid fa-chart-bar"></i> Nifty / BankNifty Options</span>
+              <span class="meta-pill"><i class="fa-solid fa-clock"></i> Intraday Only</span>
+              <span class="meta-pill"><i class="fa-solid fa-indian-rupee-sign"></i> Min ₹1,00,000 capital</span>
+              <span class="meta-pill"><i class="fa-solid fa-gear"></i> Zerodha / Dhan</span>
+            </div>
+            <a href="https://wa.me/919150087233?text=Hi%20Stratexa%2C%20I%20want%20to%20deploy%20the%20Call-Only%20Systematic%20Sell%20Strategy%20for%20%E2%82%B95%2C000.%20Please%20guide%20me." target="_blank" rel="noopener noreferrer" class="deploy-btn deploy-btn-amber">
+              <i class="fa-brands fa-whatsapp"></i> Deploy This Strategy
+            </a>
+          </div>
+
+          <!-- 4. Server-Side SL/TP -->
+          <div class="strategy-card protection">
+            <div class="strategy-badge-row">
+              <div class="strategy-icon icon-red"><i class="fa-solid fa-shield-halved"></i></div>
+              <span class="strategy-type-badge badge-server">Risk Protection</span>
+            </div>
+            <h3>Server-Side Stop Loss &amp; Target Engine</h3>
+            <p class="strategy-desc">SL and Target levels are held in-memory on your Cloud VPS — never posted to the broker's order book. When market price touches your threshold, a lightning-fast IOC Market Exit fires via API. Bypasses broker terminal freezes, avoids stop-hunting, and survives API disconnects.</p>
+            <div class="strategy-meta">
+              <span class="meta-pill"><i class="fa-solid fa-chart-bar"></i> Any Instrument</span>
+              <span class="meta-pill"><i class="fa-solid fa-clock"></i> Intraday &amp; Positional</span>
+              <span class="meta-pill"><i class="fa-solid fa-indian-rupee-sign"></i> No capital min</span>
+              <span class="meta-pill"><i class="fa-solid fa-gear"></i> All Brokers</span>
+            </div>
+            <a href="https://wa.me/919150087233?text=Hi%20Stratexa%2C%20I%20want%20to%20deploy%20the%20Server-Side%20Stop%20Loss%20%26%20Target%20Engine%20for%20%E2%82%B95%2C000.%20Please%20guide%20me." target="_blank" rel="noopener noreferrer" class="deploy-btn deploy-btn-red">
+              <i class="fa-brands fa-whatsapp"></i> Deploy This Strategy
+            </a>
+          </div>
+
+          <!-- 5. 9:20 Straddle -->
+          <div class="strategy-card theta" style="border-color: rgba(245,158,11,0.6);">
+            <div class="strategy-badge-row">
+              <div class="strategy-icon icon-amber"><i class="fa-solid fa-arrows-left-right"></i></div>
+              <span class="strategy-type-badge badge-theta">Theta Decay</span>
+              <span class="strategy-type-badge badge-trend" style="color: #10b981; background: rgba(16,185,129,0.1);">India Benchmark</span>
+            </div>
+            <h3>9:20 AM Short Straddle / Strangle</h3>
+            <p class="strategy-desc">Automatically enters ATM or OTM CE + PE simultaneously at 9:20 AM. Includes individual leg stop-loss (25% or 30% configurable), trailing stop-loss on the winning leg, and MTM-based target booking. The most battle-tested mechanical intraday options strategy in India.</p>
+            <div class="strategy-meta">
+              <span class="meta-pill"><i class="fa-solid fa-chart-bar"></i> Nifty / BankNifty</span>
+              <span class="meta-pill"><i class="fa-solid fa-clock"></i> Intraday Only</span>
+              <span class="meta-pill"><i class="fa-solid fa-indian-rupee-sign"></i> Min ₹1,50,000 capital</span>
+              <span class="meta-pill"><i class="fa-solid fa-gear"></i> Zerodha / Dhan</span>
+            </div>
+            <a href="https://wa.me/919150087233?text=Hi%20Stratexa%2C%20I%20want%20to%20deploy%20the%209%3A20%20AM%20Short%20Straddle%20%2F%20Strangle%20Strategy%20for%20%E2%82%B95%2C000.%20Please%20guide%20me." target="_blank" rel="noopener noreferrer" class="deploy-btn deploy-btn-amber">
+              <i class="fa-brands fa-whatsapp"></i> Deploy This Strategy
+            </a>
+          </div>
+
+          <!-- 6. ORB -->
+          <div class="strategy-card breakout">
+            <div class="strategy-badge-row">
+              <div class="strategy-icon icon-purple"><i class="fa-solid fa-bolt"></i></div>
+              <span class="strategy-type-badge badge-breakout">Breakout</span>
+            </div>
+            <h3>Opening Range Breakout (ORB 15/30 Min)</h3>
+            <p class="strategy-desc">Calculates the high/low of the opening 15-minute or 30-minute candle. Enters on volume-backed breakout above the range high, or breakdown below the range low, with an ATR trailing stop-loss. Works across equities, Nifty futures, and Bank Nifty futures.</p>
+            <div class="strategy-meta">
+              <span class="meta-pill"><i class="fa-solid fa-chart-bar"></i> Equities &amp; Index Futures</span>
+              <span class="meta-pill"><i class="fa-solid fa-clock"></i> Intraday Only</span>
+              <span class="meta-pill"><i class="fa-solid fa-indian-rupee-sign"></i> Min ₹50,000 capital</span>
+              <span class="meta-pill"><i class="fa-solid fa-gear"></i> Any Indian Broker</span>
+            </div>
+            <a href="https://wa.me/919150087233?text=Hi%20Stratexa%2C%20I%20want%20to%20deploy%20the%20Opening%20Range%20Breakout%20(ORB)%20Strategy%20for%20%E2%82%B95%2C000.%20Please%20guide%20me." target="_blank" rel="noopener noreferrer" class="deploy-btn deploy-btn-purple">
+              <i class="fa-brands fa-whatsapp"></i> Deploy This Strategy
+            </a>
+          </div>
+
+          <!-- 7. AlphaTrend Pro (Featured existing strategy) -->
+          <div class="strategy-card featured" style="border-color: #10b981;">
+            <span class="featured-tag">📊 Backtested 5 Years</span>
+            <div class="strategy-badge-row">
+              <div class="strategy-icon icon-green"><i class="fa-solid fa-chart-line"></i></div>
+              <span class="strategy-type-badge badge-trend">Trend-Following</span>
+              <span class="strategy-type-badge badge-theta">Options Credit Spread</span>
+            </div>
+            <h3>Stratexa AlphaTrend Pro</h3>
+            <p class="strategy-desc">Institutional-grade index options model matching macro momentum with daily price boundary reversal thresholds. Built strictly as credit spreads to maximise theta decay while keeping drawdowns mathematically capped. 5-year backtest: +₹5.09L / 55.32% win rate / 7.09 Sharpe Ratio.</p>
+            <div class="strategy-meta">
+              <span class="meta-pill"><i class="fa-solid fa-chart-bar"></i> Nifty Index Options</span>
+              <span class="meta-pill"><i class="fa-solid fa-clock"></i> Intraday</span>
+              <span class="meta-pill"><i class="fa-solid fa-indian-rupee-sign"></i> Min ₹1,00,000 capital</span>
+              <span class="meta-pill"><i class="fa-solid fa-star" style="color:#f59e0b;"></i> 7.09 Sharpe</span>
+            </div>
+            <div style="display:flex; gap:0.6rem; flex-wrap:wrap;">
+              <a href="/trend-following-options-strategy.html" class="deploy-btn deploy-btn-green" style="flex:1 1 140px;">
+                <i class="fa-solid fa-eye"></i> View Backtest Details
+              </a>
+              <a href="https://wa.me/919150087233?text=Hi%20Stratexa%2C%20I%20want%20to%20deploy%20the%20AlphaTrend%20Pro%20Strategy%20for%20%E2%82%B95%2C000.%20Please%20guide%20me." target="_blank" rel="noopener noreferrer" class="deploy-btn deploy-btn-green" style="flex:1 1 140px;">
+                <i class="fa-brands fa-whatsapp"></i> Deploy Now
+              </a>
+            </div>
+          </div>
+
+          <!-- 8. BYOS Custom -->
+          <div class="strategy-card custom">
+            <div class="strategy-badge-row">
+              <div class="strategy-icon icon-gray"><i class="fa-solid fa-code"></i></div>
+              <span class="strategy-type-badge badge-custom">Bring Your Own</span>
+            </div>
+            <h3>Custom Strategy Automation</h3>
+            <p class="strategy-desc">Have your own strategy rules, TradingView Pine Script alerts, or an existing system you want automated? We code it into production-grade Python and deploy it to your broker. Covers EMA crossovers, RSI-based systems, VWAP logic, multi-timeframe rules, and more.</p>
+            <div class="strategy-meta">
+              <span class="meta-pill"><i class="fa-solid fa-chart-bar"></i> Any Market / Instrument</span>
+              <span class="meta-pill"><i class="fa-solid fa-clock"></i> Any Timeframe</span>
+              <span class="meta-pill"><i class="fa-solid fa-gear"></i> Any Indian Broker</span>
+              <span class="meta-pill"><i class="fa-solid fa-comments"></i> Free Consultation</span>
+            </div>
+            <a href="https://wa.me/919150087233?text=Hi%20Stratexa%2C%20I%20have%20a%20custom%20trading%20strategy%20I%20want%20to%20automate.%20Can%20we%20discuss%20my%20requirements?" target="_blank" rel="noopener noreferrer" class="deploy-btn deploy-btn-gray">
+              <i class="fa-brands fa-whatsapp"></i> Discuss My Custom Strategy
+            </a>
+          </div>
+
+        </div><!-- /strategies-grid -->
+
+        <!-- Bottom CTA -->
+        <div class="strategies-cta-strip">
+          <h2>Not sure which strategy is right for you?</h2>
+          <p>Book a free 30-minute consultation. We'll analyze your trading style, market preference, and capital — and recommend the best strategy to automate.</p>
+          <div class="cta-btn-row">
+            <a href="https://wa.me/919150087233?text=Hi%20Stratexa%2C%20I%27d%20like%20to%20book%20a%20free%20consultation%20to%20choose%20the%20right%20trading%20strategy." target="_blank" rel="noopener noreferrer" class="btn btn-primary">
+              <i class="fa-brands fa-whatsapp" style="margin-right:6px;"></i> Book Free Consultation
+            </a>
+            <a href="/pricing.html" class="btn btn-secondary">
+              <i class="fa-solid fa-tag" style="margin-right:6px;"></i> See Full Pricing
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-content">
+      <div class="footer-brand">
+        <div class="footer-logo">
+          <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" class="footer-logo-svg">
+            <path d="M25 75L75 25M75 25H45M75 25V55" stroke="#10b981" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M25 45V75H55" stroke="#ffffff" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <span class="footer-brand-name">STRATEXA.IN</span>
+        </div>
+        <p class="footer-description">We build secure, low-latency, automated execution software for retail and institutional traders globally. Transform your trading rules into standard Python-driven machines.</p>
+      </div>
+      <div class="footer-links">
+        <h4>Navigation</h4>
+        <a href="/#services">Services</a>
+        <a href="/#process">Our Process</a>
+        <a href="/#markets">Markets</a>
+        <a href="/strategies.html">Strategies</a>
+        <a href="/about.html">About Us</a>
+        <a href="/pricing.html">Pricing &amp; Care</a>
+        <a href="/faq.html">FAQ</a>
+      </div>
+      <div class="footer-links">
+        <h4>Legal &amp; Support</h4>
+        <a href="/privacy.html">Privacy Policy</a>
+        <a href="/terms.html">Terms &amp; Conditions</a>
+        <a href="/refund.html">Refund Policy</a>
+        <a href="/cookie.html">Cookie Policy</a>
+      </div>
+      <div class="footer-disclaimer">
+        <h4>Disclaimer</h4>
+        <p>STRATEXA is a technology and software development company. We do not provide financial advice, trading signals, recommendation packages, or management services. All automated trading strategies coded are built strictly based on customer specifications. Backtested performance results are historical and do not guarantee future profitability. Algorithmic trading carries significant financial risk.</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="container footer-bottom-container">
+        <p>&copy; 2026 STRATEXA. All rights reserved. Registered address: Chennai, TN, India (Remote-First Engineering Team).</p>
+        <div class="social-links">
+          <a href="https://github.com" target="_blank" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+          <a href="mailto:hello@stratexa.in" aria-label="Email"><i class="fa-regular fa-envelope"></i></a>
+          <a href="tel:+919150087233" aria-label="Phone"><i class="fa-solid fa-phone"></i></a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <a href="/#consultation" id="sticky-consultation" class="sticky-cta">
+    <i class="fa-regular fa-calendar-check icon-spacing"></i> Book Consultation
+  </a>
+
+  <script type="module" src="/src/main.js"></script>
+</body>
+</html>
