@@ -147,6 +147,19 @@ function initFormHandler() {
       <i class="fa-solid fa-circle-notch fa-spin btn-icon"></i>
     `;
 
+    // Capture UTM source & campaign parameters
+    const currentParams = new URLSearchParams(window.location.search);
+    const utmSource = currentParams.get('utm_source');
+    const utmMedium = currentParams.get('utm_medium');
+    const utmCampaign = currentParams.get('utm_campaign');
+
+    let leadSource = 'Website Direct';
+    if (utmSource) {
+      leadSource = utmSource;
+      if (utmMedium) leadSource += ` (${utmMedium})`;
+      if (utmCampaign) leadSource += ` [${utmCampaign}]`;
+    }
+
     // Send data to Google Sheets via Apps Script Web App
     fetch(GOOGLE_SHEET_SCRIPT_URL, {
       method: 'POST',
@@ -155,6 +168,7 @@ function initFormHandler() {
         'Content-Type': 'text/plain' // Use text/plain to avoid CORS preflight issues with Apps Script
       },
       body: JSON.stringify({
+        source: leadSource,
         name: name,
         email: email,
         phone: phone,
