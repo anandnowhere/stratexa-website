@@ -1,4 +1,5 @@
 User-agent: *
 Allow: /
+Disallow: /trend-following-options-strategy.html
 
 Sitemap: https://www.stratexa.in/sitemap.xml

@@ -106,15 +106,11 @@
         </a>
         
         <nav class="nav-menu" id="nav-menu">
-          <a href="#services" class="nav-link">Services</a>
-          <a href="#process" class="nav-link">Our Process</a>
-          <a href="#markets" class="nav-link">Markets</a>
-          <a href="/strategies.html" class="nav-link nav-link-special"><i class="fa-solid fa-chart-line"></i> Strategies <span class="nav-badge-hot">HOT 🔥</span></a>
-          <a href="#tech" class="nav-link">Tech Stack</a>
-          <a href="#why-us" class="nav-link">Why Choose Us</a>
+          <a href="#services" class="nav-link">Solutions</a>
+          <a href="/strategies.html" class="nav-link">Strategies</a>
           <a href="/pricing.html" class="nav-link">Pricing</a>
-          <a href="/about.html" class="nav-link">About</a>
           <a href="/faq.html" class="nav-link">FAQ</a>
+          <a href="/about.html" class="nav-link">About</a>
           <a href="/login.html" class="nav-link"><i class="fa-solid fa-desktop" style="margin-right: 4px;"></i> Live Demo</a>
           <a href="#consultation" class="btn btn-primary btn-nav">Book Free Consultation</a>
         </nav>
@@ -187,12 +183,13 @@
         </div>
       </section>
 
-      <!-- Core Services Section -->
+      <!-- Core Services / Solutions Section -->
       <section class="services-section" id="services">
         <div class="container">
           <div class="section-header">
+            <span class="badge">CUSTOM ALGORITHMIC ENGINEERING</span>
             <h2 class="section-title">Our Solutions</h2>
-            <p class="section-subtitle">We design, build, and support robust systems to run your strategies autonomously.</p>
+            <p class="section-subtitle">We design, build, and deploy robust Python systems to run your trading strategies autonomously.</p>
           </div>
           <div class="services-grid">
             <!-- Card 1 -->
@@ -216,196 +213,73 @@
               <div class="service-icon">
                 <i class="fa-solid fa-chart-line"></i>
               </div>
-              <h3>Backtesting & Validation</h3>
+              <h3>Backtesting &amp; Validation</h3>
               <p>Rigorous verification using historical market data to eliminate lookahead bias and optimize parameters before live deployment.</p>
             </div>
             <!-- Card 4 -->
             <div class="service-card">
               <div class="service-icon">
-                <i class="fa-solid fa-cloud-arrow-up"></i>
+                <i class="fa-solid fa-server"></i>
               </div>
-              <h3>Cloud Deployment</h3>
-              <p>Managed deployment on high-speed dedicated trading servers for robust 24x7 operations, low-latency execution, and failsafe auto-restarts.</p>
+              <h3>Managed Server Deployment</h3>
+              <p>Managed deployment on high-speed dedicated trading servers with static IP whitelisting for 24x7 operations and failsafe watchdogs.</p>
             </div>
             <!-- Card 5 -->
             <div class="service-card">
               <div class="service-icon">
                 <i class="fa-solid fa-headset"></i>
               </div>
-              <h3>Ongoing Support</h3>
+              <h3>Ongoing Support &amp; Care</h3>
               <p>Continuous monitoring, API schema update maintenance, and technical updates to ensure long-term bot stability.</p>
             </div>
           </div>
-        </div>
-      </section>
 
-      <!-- Our Process Section -->
-      <section class="process-section" id="process">
-        <div class="container">
-          <div class="section-header">
-            <h2 class="section-title">Our Process</h2>
-            <p class="section-subtitle">A structured, end-to-end framework turning ideas into execution bots.</p>
-          </div>
-          <div class="timeline" id="process-timeline">
-            <!-- Step 1 -->
-            <div class="timeline-item" id="step-1">
-              <div class="timeline-number">1</div>
-              <div class="timeline-content">
-                <div class="timeline-header-block">
-                  <span class="timeline-icon-box"><i class="fa-regular fa-comments"></i></span>
-                  <h3>Consult</h3>
-                </div>
-                <p>We work closely with you to understand your specific trading criteria, risk tolerances, and business goals.</p>
+          <!-- 3 Core Trust & Security Badges -->
+          <div class="security-trust-bar">
+            <div class="security-trust-item">
+              <i class="fa-solid fa-user-shield"></i>
+              <div>
+                <h5>Bank-Grade API Token Isolation</h5>
+                <p>Zero credential or secret key storage on cloud servers. Your API tokens stay encrypted locally on your dedicated instance.</p>
               </div>
             </div>
-            <!-- Step 2 -->
-            <div class="timeline-item" id="step-2">
-              <div class="timeline-number">2</div>
-              <div class="timeline-content">
-                <div class="timeline-header-block">
-                  <span class="timeline-icon-box"><i class="fa-solid fa-pencil"></i></span>
-                  <h3>Design</h3>
-                </div>
-                <p>Create a scalable automation architecture, select API channels, and construct a logical execution blueprint.</p>
+            <div class="security-trust-item">
+              <i class="fa-solid fa-bolt-lightning"></i>
+              <div>
+                <h5>Sub-150ms Execution Latency</h5>
+                <p>Direct REST &amp; WebSocket socket bindings on dedicated servers ensure instantaneous execution during market opens.</p>
               </div>
             </div>
-            <!-- Step 3 -->
-            <div class="timeline-item" id="step-3">
-              <div class="timeline-number">3</div>
-              <div class="timeline-content">
-                <div class="timeline-header-block">
-                  <span class="timeline-icon-box"><i class="fa-solid fa-laptop-code"></i></span>
-                  <h3>Develop</h3>
-                </div>
-                <p>Code your strategy using structured Python standards, integrating broker APIs and execution logic.</p>
-              </div>
-            </div>
-            <!-- Step 4 -->
-            <div class="timeline-item" id="step-4">
-              <div class="timeline-number">4</div>
-              <div class="timeline-content">
-                <div class="timeline-header-block">
-                  <span class="timeline-icon-box"><i class="fa-solid fa-arrow-rotate-left"></i></span>
-                  <h3>Backtest</h3>
-                </div>
-                <p>Validate the performance criteria against historical tick or minute candles to evaluate parameters and drawdown metrics.</p>
-              </div>
-            </div>
-            <!-- Step 5 -->
-            <div class="timeline-item" id="step-5">
-              <div class="timeline-number">5</div>
-              <div class="timeline-content">
-                <div class="timeline-header-block">
-                  <span class="timeline-icon-box"><i class="fa-solid fa-server"></i></span>
-                  <h3>Deploy</h3>
-                </div>
-                <p>Deploy on high-availability dedicated servers, configure persistent background watchdogs, and complete paper-trading trials.</p>
-              </div>
-            </div>
-            <!-- Step 6 -->
-            <div class="timeline-item" id="step-6">
-              <div class="timeline-number">6</div>
-              <div class="timeline-content">
-                <div class="timeline-header-block">
-                  <span class="timeline-icon-box"><i class="fa-solid fa-screwdriver-wrench"></i></span>
-                  <h3>Support</h3>
-                </div>
-                <p>Real-time status updates, error notifications, API changes maintenance, and general code updates.</p>
+            <div class="security-trust-item">
+              <i class="fa-solid fa-file-code"></i>
+              <div>
+                <h5>100% Source Code Ownership</h5>
+                <p>Complete un-obfuscated Python codebase delivered to you. No vendor lock-in or recurring strategy royalties.</p>
               </div>
             </div>
           </div>
-          
-          <div class="process-callout">
-            <span class="quote-symbol">“</span> We engineer trading automation—not trading advice. <span class="quote-symbol">”</span>
-          </div>
-        </div>
-      </section>
 
-      <!-- Trading Markets We Automate -->
-      <section class="markets-section" id="markets">
-        <div class="container">
-          <div class="section-header">
-            <h2 class="section-title">Trading Markets We Automate</h2>
-            <p class="section-subtitle">Tailored connectivity across multiple liquid markets and exchanges globally.</p>
-          </div>
-          <div class="markets-grid">
-            <!-- Market 1 -->
-            <div class="market-card">
-              <div class="market-header">
-                <img src="https://flagcdn.com/w80/in.png" alt="Indian Flag" class="market-flag" />
-                <h3>Indian Stock Market</h3>
-              </div>
-              <ul class="market-features">
-                <li><i class="fa-solid fa-check"></i> Equity (Cash segment)</li>
-                <li><i class="fa-solid fa-check"></i> Futures & Options (F&O)</li>
-                <li><i class="fa-solid fa-check"></i> Commodity Trading (MCX)</li>
-                <li><i class="fa-solid fa-check"></i> Index Trading (Nifty, BankNifty)</li>
-              </ul>
-              <div class="market-visual">
-                <svg viewBox="0 0 200 120" class="market-svg">
-                  <!-- Bull / Stock graph illustration -->
-                  <path d="M10 100 L50 80 L90 90 L130 50 L170 20" stroke="#10b981" stroke-width="4" stroke-linecap="round" fill="none"/>
-                  <circle cx="170" cy="20" r="6" fill="#10b981" class="pulsing-glow"/>
-                  <rect x="25" y="70" width="10" height="30" fill="#1e293b" rx="2" />
-                  <rect x="65" y="60" width="10" height="40" fill="#1e293b" rx="2" />
-                  <rect x="105" y="45" width="10" height="55" fill="#1e293b" rx="2" />
-                  <rect x="145" y="25" width="10" height="75" fill="#10b981" rx="2" />
-                </svg>
-              </div>
+          <!-- Supported Brokers & Platforms Strip -->
+          <div class="broker-strip-wrapper">
+            <div class="broker-strip-title">
+              <i class="fa-solid fa-plug-circle-check" style="color: var(--accent-green);"></i>
+              <span>Supported Brokers &amp; Platforms</span>
             </div>
-            
-            <!-- Market 2 -->
-            <div class="market-card">
-              <div class="market-header">
-                <span class="crypto-icon-box"><i class="fa-brands fa-btc"></i></span>
-                <h3>Cryptocurrency</h3>
-              </div>
-              <ul class="market-features">
-                <li><i class="fa-solid fa-check"></i> Spot Market trading</li>
-                <li><i class="fa-solid fa-check"></i> Perpetual Futures contracts</li>
-                <li><i class="fa-solid fa-check"></i> Options configurations</li>
-                <li><i class="fa-solid fa-check"></i> 24x7 continuous strategy runs</li>
-              </ul>
-              <div class="market-visual">
-                <svg viewBox="0 0 200 120" class="market-svg">
-                  <path d="M10 80 L40 90 L70 50 L100 70 L130 30 L160 40 L190 10" stroke="#f59e0b" stroke-width="4" stroke-linecap="round" fill="none"/>
-                  <circle cx="190" cy="10" r="6" fill="#f59e0b"/>
-                  <!-- Candles representation -->
-                  <line x1="40" y1="70" x2="40" y2="105" stroke="#ef4444" stroke-width="2" />
-                  <rect x="35" y="80" width="10" height="15" fill="#ef4444" />
-                  <line x1="130" y1="20" x2="130" y2="90" stroke="#10b981" stroke-width="2" />
-                  <rect x="125" y="30" width="10" height="40" fill="#10b981" />
-                </svg>
-              </div>
-            </div>
-
-            <!-- Market 3: Currency & Multi-Asset -->
-            <div class="market-card">
-              <div class="market-header">
-                <span class="forex-icon-box"><i class="fa-solid fa-coins"></i></span>
-                <h3>Currency &amp; Global Assets</h3>
-              </div>
-              <ul class="market-features">
-                <li><i class="fa-solid fa-check"></i> Exchange Currency Derivatives (NSE/BSE)</li>
-                <li><i class="fa-solid fa-check"></i> USDINR, EURINR &amp; GBPINR Futures</li>
-                <li><i class="fa-solid fa-check"></i> Interactive Brokers &amp; Global APIs</li>
-                <li><i class="fa-solid fa-check"></i> TradingView Webhook Integrations</li>
-              </ul>
-              <div class="market-visual">
-                <div class="currency-badges">
-                  <span class="curr-pill"><i class="fa-solid fa-indian-rupee-sign"></i></span>
-                  <span class="curr-pill"><i class="fa-solid fa-dollar-sign"></i></span>
-                  <span class="curr-pill"><i class="fa-solid fa-euro-sign"></i></span>
-                  <span class="curr-pill"><i class="fa-solid fa-yen-sign"></i></span>
-                </div>
-              </div>
+            <div class="broker-pill-group">
+              <span class="broker-pill"><i class="fa-solid fa-k" style="color: #ea580c;"></i> Zerodha Kite</span>
+              <span class="broker-pill"><i class="fa-solid fa-d" style="color: #2563eb;"></i> Dhan API</span>
+              <span class="broker-pill"><i class="fa-solid fa-square-root-variable" style="color: #ef4444;"></i> Angel One SmartAPI</span>
+              <span class="broker-pill"><i class="fa-solid fa-f" style="color: #06b6d4;"></i> Fyers API</span>
+              <span class="broker-pill"><i class="fa-solid fa-building-columns" style="color: #8b5cf6;"></i> Interactive Brokers</span>
+              <span class="broker-pill"><i class="fa-solid fa-delta" style="color: #f59e0b;"></i> Delta Exchange</span>
+              <span class="broker-pill"><i class="fa-solid fa-chart-line" style="color: #2962ff;"></i> TradingView Webhooks</span>
             </div>
           </div>
         </div>
       </section>
 
-      <!-- Pre-defined Strategies Section -->
-      <section class="strategies-showcase-section" id="strategies-showcase" style="border-top: 1px solid var(--border-color); padding: 80px 0;">
+      <!-- Section 3: Featured Strategies (Bring Your Own Strategy + Pre-Built Library) -->
+      <section class="strategies-showcase-section" id="strategies-showcase" style="border-top: 1px solid var(--border-color); padding: 80px 0 60px;">
         <div class="container">
           
           <!-- FEATURED HERO: BRING YOUR OWN STRATEGY (OUR CORE MODEL) -->
@@ -433,7 +307,7 @@
                     <i class="fa-solid fa-globe" style="color: #06b6d4; font-size: 1.1rem; flex-shrink: 0;"></i>
                     <div>
                       <div style="font-size: 0.7rem; color: var(--text-muted); text-transform: uppercase;">Any Market</div>
-                      <div style="font-size: 0.85rem; font-weight: 600; color: var(--text-primary);">Indian Equities &amp; F&amp;O &middot; Currency Derivatives &middot; Crypto</div>
+                      <div style="font-size: 0.85rem; font-weight: 600; color: var(--text-primary);">Indian Equities, F&amp;O, Currency &amp; Crypto</div>
                     </div>
                   </div>
 
@@ -525,11 +399,16 @@
           <!-- Section Sub-Header for Pre-Built Library -->
           <div class="section-header" style="text-align: center; margin-bottom: 2rem;">
             <span class="badge">READY TO DEPLOY</span>
-            <h2 class="section-title">Or Choose from Our Pre-Built Strategy Library</h2>
-            <p class="section-subtitle">Battle-tested strategy templates ready to link to your account. Indian Equities, F&amp;O, Currency Derivatives and Crypto &mdash; Intraday or Positional.</p>
+            <h2 class="section-title">Featured Pre-Built Strategy Library</h2>
+            <p class="section-subtitle">Production-ready strategy templates ready to link to your account. Indian Equities, F&amp;O, Currency Derivatives and Crypto &mdash; Intraday or Positional.</p>
+            
+            <div style="background: rgba(16,185,129,0.08); border: 1px solid rgba(16,185,129,0.25); border-radius: 8px; padding: 0.65rem 1.25rem; max-width: 820px; margin: 1.25rem auto 0; font-size: 0.85rem; color: var(--accent-green-bright); line-height: 1.5;">
+              <i class="fa-solid fa-code" style="margin-right: 6px;"></i>
+              <strong>User-Configured White-Box Templates:</strong> All pre-built strategies are delivered as 100% white-box Python source code templates where the client configures all trading parameters (strike selection, lot size, and stop-loss).
+            </div>
           </div>
 
-          <!-- Mini Strategy Cards Grid -->
+          <!-- 3 Featured Strategy Cards Grid -->
           <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.25rem; margin-bottom: 2.5rem;">
             <!-- Supertrend -->
             <div style="background: var(--bg-secondary); border: 1.5px solid rgba(16,185,129,0.4); border-radius: 12px; padding: 1.5rem; display: flex; flex-direction: column; gap: 0.75rem;">
@@ -569,258 +448,69 @@
                 <span style="font-size:0.68rem; padding:0.18rem 0.55rem; border-radius:50px; background:var(--bg-tertiary); color:var(--text-secondary); border:1px solid var(--border-color);">Intraday or Positional</span>
               </div>
             </div>
-          </div><!-- /mini cards -->
+          </div>
 
           <!-- Pricing Callout + CTA -->
-          <div style="background: linear-gradient(135deg, rgba(16,185,129,0.07) 0%, rgba(6,182,212,0.05) 100%); border: 1px solid rgba(16,185,129,0.2); border-radius: 14px; padding: 2rem; display: flex; flex-wrap: wrap; gap: 1.5rem; align-items: center; justify-content: space-between; margin-bottom: 2rem;">
+          <div style="background: linear-gradient(135deg, rgba(16,185,129,0.07) 0%, rgba(6,182,212,0.05) 100%); border: 1px solid rgba(16,185,129,0.2); border-radius: 14px; padding: 1.75rem 2rem; display: flex; flex-wrap: wrap; gap: 1.5rem; align-items: center; justify-content: space-between;">
             <div>
               <div style="font-size:0.75rem; color:var(--text-muted); text-transform:uppercase; letter-spacing:0.8px; font-weight:600; margin-bottom:0.4rem;">Transparent Flat Pricing</div>
-              <div style="font-family: var(--font-heading); font-size: 1.5rem; font-weight: 800; color: var(--text-primary);">
-                &#8377;5,000 <span style="font-size:0.9rem; font-weight:400; color:var(--text-secondary);">Strategy Setup</span>
-                &nbsp;+&nbsp; &#8377;999 <span style="font-size:0.9rem; font-weight:400; color:var(--text-secondary);">Onboarding</span>
-                &nbsp;+&nbsp; &#8377;1,499<span style="font-size:0.9rem; font-weight:400; color:var(--text-secondary);">/mo Care</span>
+              <div style="font-family: var(--font-heading); font-size: 1.4rem; font-weight: 800; color: var(--text-primary);">
+                &#8377;5,000 <span style="font-size:0.85rem; font-weight:400; color:var(--text-secondary);">Strategy Setup</span>
+                &nbsp;+&nbsp; &#8377;999 <span style="font-size:0.85rem; font-weight:400; color:var(--text-secondary);">Onboarding</span>
+                &nbsp;+&nbsp; &#8377;1,499<span style="font-size:0.85rem; font-weight:400; color:var(--text-secondary);">/mo Care</span>
               </div>
             </div>
             <div style="display:flex; gap:0.75rem; flex-wrap:wrap;">
-              <a href="/strategies.html" class="btn btn-primary">Browse All 7 Strategies &rarr;</a>
-              <a href="https://wa.me/919150087233?text=Hi%20Stratexa%2C%20I%20want%20to%20automate%20my%20trading%20strategy%20for%20%E2%82%B95%2C000." target="_blank" rel="noopener noreferrer" class="btn btn-secondary"><i class="fa-brands fa-whatsapp" style="margin-right:6px;"></i> Deploy Now</a>
-            </div>
-          </div>
-
-          <!-- Production Infrastructure Showcase (Honest & Clean) -->
-          <div style="border: 1px solid var(--border-color); border-radius: 14px; background: var(--bg-secondary); padding: 1.75rem 2rem; max-width: 860px; margin: 0 auto;">
-            <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom: 1.25rem; flex-wrap:wrap; gap:0.75rem;">
-              <div style="display:flex; align-items:center; gap:8px;">
-                <span class="pulse-dot"></span>
-                <span style="font-size:0.82rem; font-weight:700; color:var(--text-primary); text-transform:uppercase; letter-spacing:0.8px;">Client Bot Execution Architecture</span>
-              </div>
-              <span style="font-size:0.75rem; color:var(--accent-green-bright); background:rgba(16,185,129,0.1); border:1px solid rgba(16,185,129,0.25); padding:0.2rem 0.65rem; border-radius:50px; font-weight:600;"><i class="fa-solid fa-server"></i> 24x7 Dedicated Server Monitored</span>
-            </div>
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1rem; text-align: left;">
-              <div style="background: var(--bg-tertiary); border: 1px solid var(--border-color); border-radius: 10px; padding: 1rem;">
-                <div style="color: #10b981; font-size: 1.1rem; margin-bottom: 0.35rem;"><i class="fa-solid fa-plug-circle-check"></i></div>
-                <div style="font-weight: 700; font-size: 0.88rem; color: var(--text-primary); margin-bottom: 0.2rem;">Direct Broker APIs</div>
-                <div style="font-size: 0.78rem; color: var(--text-secondary);">Native REST &amp; WebSocket connectors for any broker with automated authentication.</div>
-              </div>
-              <div style="background: var(--bg-tertiary); border: 1px solid var(--border-color); border-radius: 10px; padding: 1rem;">
-                <div style="color: #06b6d4; font-size: 1.1rem; margin-bottom: 0.35rem;"><i class="fa-solid fa-bolt"></i></div>
-                <div style="font-weight: 700; font-size: 0.88rem; color: var(--text-primary); margin-bottom: 0.2rem;">Sub-Second Execution</div>
-                <div style="font-size: 0.78rem; color: var(--text-secondary);">High-speed dedicated server execution eliminates human delay, emotional hesitation, and broadband drops.</div>
-              </div>
-              <div style="background: var(--bg-tertiary); border: 1px solid var(--border-color); border-radius: 10px; padding: 1rem;">
-                <div style="color: #f59e0b; font-size: 1.1rem; margin-bottom: 0.35rem;"><i class="fa-brands fa-telegram"></i></div>
-                <div style="font-weight: 700; font-size: 0.88rem; color: var(--text-primary); margin-bottom: 0.2rem;">Instant Telegram Alerts</div>
-                <div style="font-size: 0.78rem; color: var(--text-secondary);">Real-time alerts sent to your phone on every signal trigger, order execution, and exit.</div>
-              </div>
-              <div style="background: var(--bg-tertiary); border: 1px solid var(--border-color); border-radius: 10px; padding: 1rem;">
-                <div style="color: #8b5cf6; font-size: 1.1rem; margin-bottom: 0.35rem;"><i class="fa-solid fa-code"></i></div>
-                <div style="font-weight: 700; font-size: 0.88rem; color: var(--text-primary); margin-bottom: 0.2rem;">Full Code Ownership</div>
-                <div style="font-size: 0.78rem; color: var(--text-secondary);">You own the complete Python script with 100% control, zero lock-in, and no profit share.</div>
-              </div>
+              <a href="/strategies.html" class="btn btn-primary">Browse All 7 Pre-Built Strategies &rarr;</a>
+              <a href="https://wa.me/919150087233?text=Hi%20Stratexa%2C%20I%20want%20to%20automate%20my%20trading%20strategy%20for%20%E2%82%B95%2C000." target="_blank" rel="noopener noreferrer" class="btn btn-secondary"><i class="fa-brands fa-whatsapp" style="margin-right:6px;"></i> Deploy on WhatsApp</a>
             </div>
           </div>
 
         </div>
       </section>
 
-            <!-- Technologies We Work With -->
-      <section class="tech-section" id="tech">
+      <!-- Section 4: Compact 4-Step Process -->
+      <section class="process-section" id="process" style="padding: 80px 0;">
         <div class="container">
-          <div class="section-header">
-            <h2 class="section-title">Technologies We Work With</h2>
-            <p class="section-subtitle">Integration across elite platforms, brokers, APIs, and modern engineering tools.</p>
+          <div class="section-header" style="text-align: center;">
+            <span class="badge">HOW WE WORK</span>
+            <h2 class="section-title">Our Process</h2>
+            <p class="section-subtitle">A streamlined, 4-step engineering lifecycle from confidential logic to live market execution.</p>
           </div>
-          <div class="tech-grid">
-            <div class="tech-item"><i class="fa-brands fa-python color-python"></i> <span>Python</span></div>
-            <div class="tech-item"><i class="fa-solid fa-chart-line color-tv"></i> <span>TradingView</span></div>
-            <div class="tech-item"><i class="fa-solid fa-k color-kite"></i> <span>Zerodha Kite</span></div>
-            <div class="tech-item"><i class="fa-solid fa-d color-dhan"></i> <span>Dhan API</span></div>
-            <div class="tech-item"><i class="fa-solid fa-square-root-variable color-smart"></i> <span>Angel One SmartAPI</span></div>
-            <div class="tech-item"><i class="fa-solid fa-delta color-delta"></i> <span>Delta Exchange</span></div>
-            <div class="tech-item"><i class="fa-solid fa-chart-line" style="color: #2962ff;"></i> <span>TradingView (Pine)</span></div>
-            <div class="tech-item"><i class="fa-brands fa-aws color-aws"></i> <span>AWS</span></div>
-            <div class="tech-item"><i class="fa-brands fa-microsoft color-azure"></i> <span>Azure</span></div>
-            <div class="tech-item"><i class="fa-brands fa-docker color-docker"></i> <span>Docker</span></div>
-            <div class="tech-item"><i class="fa-brands fa-github color-github"></i> <span>GitHub</span></div>
-            <div class="tech-item"><i class="fa-solid fa-database color-postgres"></i> <span>PostgreSQL</span></div>
-            <div class="tech-item"><i class="fa-solid fa-server color-nginx"></i> <span>Nginx</span></div>
-            <div class="tech-item"><i class="fa-brands fa-linux color-linux"></i> <span>Linux</span></div>
-            <div class="tech-item"><i class="fa-brands fa-slack color-slack"></i> <span>Slack</span></div>
+          
+          <div class="process-grid-4">
+            <div class="process-step-card">
+              <div class="step-badge-number">1</div>
+              <h3>Specify Logic &amp; NDA</h3>
+              <p>Sign a mutual NDA and share your exact indicators, entry/exit rules, and risk criteria in complete confidentiality.</p>
+            </div>
+            <div class="process-step-card">
+              <div class="step-badge-number">2</div>
+              <h3>Python Build &amp; Backtest</h3>
+              <p>Clean, modular Python engineering with historical tick validation to eliminate lookahead bias and optimize parameters.</p>
+            </div>
+            <div class="process-step-card">
+              <div class="step-badge-number">3</div>
+              <h3>Static-IP Server Deploy</h3>
+              <p>Deploy on high-availability dedicated servers with broker static IP whitelisting, watchdog auto-restarts &amp; paper testing.</p>
+            </div>
+            <div class="process-step-card">
+              <div class="step-badge-number">4</div>
+              <h3>24/7 Managed Care</h3>
+              <p>Continuous heartbeat monitoring, automated API token management, and instant execution alerts to your Telegram.</p>
+            </div>
+          </div>
+          
+          <div class="process-callout" style="margin-top: 2.5rem;">
+            <span class="quote-symbol">“</span> We engineer trading automation—not trading advice. <span class="quote-symbol">”</span>
           </div>
         </div>
       </section>
 
-      <!-- Why Choose Stratexa? -->
-      <section class="why-us-section" id="why-us">
+      <!-- Section 5: Interactive Cost Estimator & Client Testimonials -->
+      <section class="roi-calculator-section" id="roi-calculator" style="padding: 80px 0 60px; border-top: 1px solid var(--border-color);">
         <div class="container">
-          <div class="section-header">
-            <h2 class="section-title">Why Choose STRATEXA?</h2>
-            <p class="section-subtitle">Engineered for durability, speed, and precision.</p>
-          </div>
-          <div class="why-grid">
-            <div class="why-item">
-              <i class="fa-solid fa-screwdriver-wrench"></i>
-              <div>
-                <h4>Custom-built Solutions</h4>
-                <p>Every strategy is built specifically to your requirements—no generic setups.</p>
-              </div>
-            </div>
-            <div class="why-item">
-              <i class="fa-solid fa-code-commit"></i>
-              <div>
-                <h4>Professional Python Development</h4>
-                <p>Clean code architecture separating data retrieval, logical triggers, and execution layers.</p>
-              </div>
-            </div>
-            <div class="why-item">
-              <i class="fa-solid fa-shield-halved"></i>
-              <div>
-                <h4>Secure Cloud Deployment</h4>
-                <p>Deployment with robust systemd processes, automated API token managers, and alerts.</p>
-              </div>
-            </div>
-            <div class="why-item">
-              <i class="fa-solid fa-network-wired"></i>
-              <div>
-                <h4>Multi-broker & Exchange API Integration</h4>
-                <p>Unified connection handlers that bridge logic to the broker of your preference.</p>
-              </div>
-            </div>
-            <div class="why-item">
-              <i class="fa-solid fa-vial-circle-check"></i>
-              <div>
-                <h4>Strategy Validation & Backtesting</h4>
-                <p>Eliminate lookahead errors and perform rigorous performance checks before running capital.</p>
-              </div>
-            </div>
-            <div class="why-item">
-              <i class="fa-solid fa-display"></i>
-              <div>
-                <h4>Continuous Monitoring & Support</h4>
-                <p>We check for socket failures, authorization re-challenges, and schema changes.</p>
-              </div>
-            </div>
-            <div class="why-item">
-              <i class="fa-solid fa-tags"></i>
-              <div>
-                <h4>Transparent Pricing</h4>
-                <p>Fixed milestones and transparent scope metrics, ensuring you know exactly what is delivered.</p>
-              </div>
-            </div>
-            <div class="why-item">
-              <i class="fa-solid fa-gears"></i>
-              <div>
-                <h4>Reliable & Scalable Automation</h4>
-                <p>Engineered for high uptime, multi-threading safety, and instant order routing.</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- Client Testimonials & Trust Section -->
-      <section class="testimonials-section" id="testimonials">
-        <div class="container">
-          <div class="section-header">
-            <span class="badge">PROVEN TRUST &amp; IMPACT</span>
-            <h2 class="section-title">Built for Tech &amp; Finance Professionals</h2>
-            <p class="section-subtitle">Real feedback from IT engineers, option traders, and portfolio managers automated by STRATEXA.</p>
-          </div>
-
-          <div class="testimonials-grid">
-            <!-- Testimonial 1 -->
-            <div class="testimonial-card">
-              <div class="testimonial-stars">
-                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
-              </div>
-              <p class="testimonial-quote">"Automated my Nifty directional options strategy in 8 days. Execution fires within 850ms of signal confirmation. As a full-time tech lead, it completely freed me from manual terminal monitoring."</p>
-              <div class="testimonial-user">
-                <div class="user-avatar-badge" style="background: rgba(16,185,129,0.2); color: #10b981; font-weight:700;"><i class="fa-solid fa-user-tie"></i></div>
-                <div class="user-details">
-                  <h5>K. Ramanathan</h5>
-                  <span>Enterprise Software Architect &middot; Chennai</span>
-                </div>
-              </div>
-            </div>
-
-            <!-- Testimonial 2 -->
-            <div class="testimonial-card">
-              <div class="testimonial-stars">
-                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
-              </div>
-              <p class="testimonial-quote">"Hands-down the cleanest execution architecture. Hosting on Stratexa's dedicated server with static IP whitelisting means my bot runs 24/7 without me needing to leave my laptop running all day."</p>
-              <div class="testimonial-user">
-                <div class="user-avatar-badge" style="background: rgba(6,182,212,0.2); color: #06b6d4; font-weight:700;"><i class="fa-solid fa-code"></i></div>
-                <div class="user-details">
-                  <h5>Arun S.</h5>
-                  <span>Senior Cloud Engineer &amp; Algo Trader &middot; Bengaluru</span>
-                </div>
-              </div>
-            </div>
-
-            <!-- Testimonial 3 -->
-            <div class="testimonial-card">
-              <div class="testimonial-stars">
-                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
-              </div>
-              <p class="testimonial-quote">"Their server-side stop-loss and retry architecture saved me from severe broker terminal freezes on major volatility days. Fast, disciplined execution with immediate Telegram confirmation."</p>
-              <div class="testimonial-user">
-                <div class="user-avatar-badge" style="background: rgba(245,158,11,0.2); color: #f59e0b; font-weight:700;"><i class="fa-solid fa-chart-line"></i></div>
-                <div class="user-details">
-                  <h5>Vikramaditya P.</h5>
-                  <span>Full-Time Options Trader &amp; Founder &middot; Mumbai</span>
-                </div>
-              </div>
-            </div>
-
-            <!-- Testimonial 4 -->
-            <div class="testimonial-card">
-              <div class="testimonial-stars">
-                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
-              </div>
-              <p class="testimonial-quote">"I trade mechanical 9:20 straddles while managing corporate responsibilities. Stratexa's dedicated server watchdog monitors individual leg SLs without fail. Zero emotional hesitation."</p>
-              <div class="testimonial-user">
-                <div class="user-avatar-badge" style="background: rgba(139,92,246,0.2); color: #8b5cf6; font-weight:700;"><i class="fa-solid fa-laptop-code"></i></div>
-                <div class="user-details">
-                  <h5>S. Narayanan</h5>
-                  <span>VP Engineering &amp; HNI Trader &middot; Hyderabad</span>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Trust Architecture Grid -->
-          <div class="security-trust-bar">
-            <div class="security-trust-item">
-              <i class="fa-solid fa-user-shield"></i>
-              <div>
-                <h5>Bank-Grade API Token Isolation</h5>
-                <p>Zero credential or secret key storage on cloud servers. Your API tokens stay encrypted locally on your instance.</p>
-              </div>
-            </div>
-            <div class="security-trust-item">
-              <i class="fa-solid fa-bolt-lightning"></i>
-              <div>
-                <h5>Sub-150ms Execution Latency</h5>
-                <p>Direct REST &amp; WebSocket socket bindings ensuring maximum order execution speed during market opens.</p>
-              </div>
-            </div>
-            <div class="security-trust-item">
-              <i class="fa-solid fa-file-code"></i>
-              <div>
-                <h5>100% Source Code Ownership</h5>
-                <p>Complete un-obfuscated Python codebase delivered to you. No vendor lock-in or recurring strategy royalties.</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- Strategy ROI & Cost Calculator Section -->
-      <!-- Strategy ROI & Cost Calculator Section -->
-      <section class="roi-calculator-section" id="roi-calculator">
-        <div class="container">
-          <div class="section-header">
+          <div class="section-header" style="text-align: center;">
             <span class="badge">INTERACTIVE ESTIMATOR</span>
             <h2 class="section-title">Estimate Your Total Deployment Cost</h2>
             <p class="section-subtitle">Transparent milestone pricing. Select a pre-built strategy or custom automation tier, plus your onboarding preference.</p>
@@ -926,123 +616,88 @@
               </div>
             </div>
           </div>
+
+          <div style="text-align: center; margin-top: 2rem;">
+            <a href="/pricing.html" class="btn btn-secondary" style="font-size: 0.9rem;">
+              <i class="fa-solid fa-tags" style="margin-right: 8px;"></i> View Full Pricing &amp; Milestone Scope Details &rarr;
+            </a>
+          </div>
         </div>
       </section>
 
-      <!-- Pricing Section -->
-      <section class="pricing-section" id="pricing" style="padding: 90px 0; border-top: 1px solid var(--border-color);">
+      <!-- Client Testimonials & Social Proof -->
+      <section class="testimonials-section" id="testimonials" style="padding: 70px 0 80px; border-top: 1px solid var(--border-color);">
         <div class="container">
-          <div class="section-header">
-            <span class="badge">TRANSPARENT PRICING</span>
-            <h2 class="section-title">Simple, Transparent Pricing</h2>
-            <p class="section-subtitle">One flat fee to deploy. One monthly subscription to keep it running. No hidden charges, no profit share, no complexity.</p>
+          <div class="section-header" style="text-align: center;">
+            <span class="badge">PROVEN TRUST &amp; IMPACT</span>
+            <h2 class="section-title">Built for Tech &amp; Finance Professionals</h2>
+            <p class="section-subtitle">Real feedback from IT engineers, option traders, and portfolio managers automated by STRATEXA.</p>
           </div>
 
-          <!-- 3-Pillar Summary -->
-          <div style="display: flex; flex-wrap: wrap; gap: 1.25rem; justify-content: center; align-items: stretch; margin-top: 2rem; margin-bottom: 1rem;">
-            <!-- Pillar 1 -->
-            <div style="flex: 1 1 240px; max-width: 340px; background: var(--bg-secondary); border: 2px solid #10b981; border-radius: 12px; padding: 1.75rem; text-align: center;">
-              <div style="width:46px; height:46px; border-radius:10px; background:rgba(16,185,129,0.15); color:#10b981; display:flex; align-items:center; justify-content:center; font-size:1.3rem; margin: 0 auto 1rem;"><i class="fa-solid fa-code"></i></div>
-              <div style="font-size:0.7rem; text-transform:uppercase; letter-spacing:0.8px; color:var(--text-muted); font-weight:600; margin-bottom:0.5rem;">Step 1</div>
-              <h3 style="color:var(--text-primary); font-size:1rem; font-weight:700; margin-bottom:0.4rem;">Strategy Setup</h3>
-              <p style="font-family:var(--font-heading); font-size:2rem; font-weight:800; color:#10b981; margin:0 0 0.3rem;">From &#8377;5,000</p>
-              <span style="font-size:0.72rem; color:var(--text-secondary);">Pre-Built &#8377;5k &middot; Custom from &#8377;5k</span>
-            </div>
-            <!-- Plus -->
-            <div style="display:flex; align-items:center; color:var(--text-muted); font-size:1.5rem; font-weight:300; flex-shrink:0;">+</div>
-            <!-- Pillar 2 -->
-            <div style="flex: 1 1 240px; max-width: 340px; background: var(--bg-secondary); border: 2px solid #06b6d4; border-radius: 12px; padding: 1.75rem; text-align: center;">
-              <div style="width:46px; height:46px; border-radius:10px; background:rgba(6,182,212,0.15); color:#06b6d4; display:flex; align-items:center; justify-content:center; font-size:1.3rem; margin: 0 auto 1rem;"><i class="fa-solid fa-rocket"></i></div>
-              <div style="font-size:0.7rem; text-transform:uppercase; letter-spacing:0.8px; color:var(--text-muted); font-weight:600; margin-bottom:0.5rem;">Step 2</div>
-              <h3 style="color:var(--text-primary); font-size:1rem; font-weight:700; margin-bottom:0.4rem;">Onboarding &amp; Deployment</h3>
-              <p style="font-family:var(--font-heading); font-size:2rem; font-weight:800; color:#06b6d4; margin:0 0 0.3rem;">&#8377;999</p>
-              <span style="font-size:0.72rem; color:var(--text-secondary);">One-time &middot; Broker API + Dedicated Server + Telegram</span>
-            </div>
-            <!-- Plus -->
-            <div style="display:flex; align-items:center; color:var(--text-muted); font-size:1.5rem; font-weight:300; flex-shrink:0;">+</div>
-            <!-- Pillar 3 -->
-            <div style="flex: 1 1 240px; max-width: 340px; background: var(--bg-secondary); border: 2px solid #f59e0b; border-radius: 12px; padding: 1.75rem; text-align: center; position: relative;">
-              <span style="position:absolute; top:-11px; left:50%; transform:translateX(-50%); background:#f59e0b; color:#000; font-size:0.62rem; font-weight:800; text-transform:uppercase; letter-spacing:0.6px; padding:0.12rem 0.8rem; border-radius:50px; white-space:nowrap;">RECOMMENDED</span>
-              <div style="width:46px; height:46px; border-radius:10px; background:rgba(245,158,11,0.15); color:#f59e0b; display:flex; align-items:center; justify-content:center; font-size:1.3rem; margin: 0.5rem auto 1rem;"><i class="fa-solid fa-shield-halved"></i></div>
-              <div style="font-size:0.7rem; text-transform:uppercase; letter-spacing:0.8px; color:var(--text-muted); font-weight:600; margin-bottom:0.5rem;">Step 3 — Monthly</div>
-              <h3 style="color:var(--text-primary); font-size:1rem; font-weight:700; margin-bottom:0.4rem;">Pro Care Plan</h3>
-              <p style="font-family:var(--font-heading); font-size:2rem; font-weight:800; color:#f59e0b; margin:0 0 0.3rem;">&#8377;1,499<span style="font-size:0.9rem; font-weight:400;">/mo</span></p>
-              <span style="font-size:0.72rem; color:var(--text-secondary);">Cancel anytime &middot; 24/7 managed hosting</span>
-            </div>
-          </div><!-- /3 pillars -->
-
-          <!-- Total callout -->
-          <div style="max-width:700px; margin: 1.25rem auto; background: var(--bg-tertiary); border: 1px solid var(--border-color); border-radius: 10px; padding: 1rem 1.5rem; text-align: center; font-size: 0.9rem; color: var(--text-secondary);">
-            Total first-month investment: <strong style="color:var(--accent-green-bright); font-size:1.05rem;">&#8377;7,498</strong>
-            &nbsp;&middot;&nbsp; <i class="fa-solid fa-circle-info" style="color:var(--accent-green);"></i> First month Pro Care is free with all new deployments
-          </div>
-
-          <div style="display: flex; flex-wrap: wrap; gap: 1rem; justify-content: center; margin-top: 1.5rem; margin-bottom: 1rem;">
-            <a href="/strategies.html" class="btn btn-primary"><i class="fa-solid fa-grid-2" style="margin-right:6px;"></i> Browse Strategy Library</a>
-            <a href="/pricing.html" class="btn btn-secondary"><i class="fa-solid fa-tag" style="margin-right:6px;"></i> Full Pricing Details</a>
-          </div>
-
-          <!-- DUMMY placeholder div so the old code finds end correctly -->
-          <div style="display:none;"><!-- Starter Tier -->
-            <div style="flex: 1 1 300px; background: var(--bg-secondary); border: 2px solid #10b981; border-radius: 12px; padding: 2rem; text-align: center; color: var(--text-primary); display: flex; flex-direction: column; align-items: center;">
-              <h3 style="color: var(--text-primary);">Starter Automation</h3>
-              <span class="scope-pill-tag">Single-Condition Indicator Bots Only</span>
-              <span style="font-size: 0.8rem; color: var(--text-secondary); display: block; text-transform: uppercase; letter-spacing: 0.5px;">Starting from</span>
-              <p class="price" style="font-size: 2.2rem; font-weight: 800; color: #10b981; margin: 0 0 0.2rem;">₹4,999</p>
-              <span class="badge" style="background: rgba(16, 185, 129, 0.1); color: #10b981; border: 1px solid rgba(16, 185, 129, 0.2); padding: 0.2rem 0.75rem; border-radius: 50px; font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 1rem; display: inline-block;">One-time charge</span>
-              <p style="color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 1.5rem;">For simple single-rule indicator triggers (EMA Crossover, RSI Threshold).</p>
-              <ul style="list-style: none; padding: 0; text-align: left; color: var(--text-secondary); width: 100%; margin-bottom: 2rem; font-size: 0.9rem;">
-                <li style="margin-bottom: 0.5rem;">✅ Single trading indicator rule</li>
-                <li style="margin-bottom: 0.5rem;">✅ 1 Broker API Connector (Zerodha/Dhan/Angel)</li>
-                <li style="margin-bottom: 0.5rem;">✅ Python automated script</li>
-                <li style="margin-bottom: 0.5rem;">✅ Pre-delivery paper testing</li>
-                <li style="margin-bottom: 0.5rem;">✅ Complete source code ownership</li>
-                <li style="margin-bottom: 0.5rem;">✅ 7-day post-delivery support</li>
-              </ul>
-              <a href="#consultation" class="btn btn-secondary btn-block" style="margin-top: auto; width: 100%; border-color: #10b981; color: #10b981;">Choose Starter</a>
+          <div class="testimonials-grid">
+            <!-- Testimonial 1 -->
+            <div class="testimonial-card">
+              <div class="testimonial-stars">
+                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+              </div>
+              <p class="testimonial-quote">"Automated my Nifty directional options strategy in 8 days. Execution fires within 850ms of signal confirmation. As a full-time tech lead, it completely freed me from manual terminal monitoring."</p>
+              <div class="testimonial-user">
+                <div class="user-avatar-badge" style="background: rgba(16,185,129,0.2); color: #10b981; font-weight:700;"><i class="fa-solid fa-user-tie"></i></div>
+                <div class="user-details">
+                  <h5>K. Ramanathan</h5>
+                  <span>Enterprise Software Architect &middot; Chennai</span>
+                </div>
+              </div>
             </div>
 
-            <!-- Professional Tier -->
-            <div style="flex: 1 1 300px; background: var(--bg-secondary); border: 2px solid #f59e0b; border-radius: 12px; padding: 2rem; text-align: center; color: var(--text-primary); display: flex; flex-direction: column; align-items: center; position: relative;">
-              <span class="badge" style="position: absolute; top: -12px; background: #f59e0b; color: #000; font-weight: 700;">MOST POPULAR</span>
-              <h3 style="color: var(--text-primary); margin-top: 8px;">Professional Automation</h3>
-              <span class="scope-pill-tag" style="background: rgba(245, 158, 11, 0.12); color: #f59e0b; border-color: rgba(245, 158, 11, 0.3);">Multi-Condition &amp; F&amp;O Strategies</span>
-              <span style="font-size: 0.8rem; color: var(--text-secondary); display: block; text-transform: uppercase; letter-spacing: 0.5px;">Starting from</span>
-              <p class="price" style="font-size: 2.2rem; font-weight: 800; color: #f59e0b; margin: 0 0 0.2rem;">₹9,999</p>
-              <span class="badge" style="background: rgba(245, 158, 11, 0.1); color: #f59e0b; border: 1px solid rgba(245, 158, 11, 0.2); padding: 0.2rem 0.75rem; border-radius: 50px; font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 1rem; display: inline-block;">One-time charge</span>
-              <p style="color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 1.5rem;">For active traders requiring complex risk management &amp; multi-leg execution.</p>
-              <ul style="list-style: none; padding: 0; text-align: left; color: var(--text-secondary); width: 100%; margin-bottom: 2rem; font-size: 0.9rem;">
-                <li style="margin-bottom: 0.5rem;">✅ Everything in Starter</li>
-                <li style="margin-bottom: 0.5rem;">✅ Multi-indicator &amp; multi-timeframe rules</li>
-                <li style="margin-bottom: 0.5rem;">✅ Multi-leg options spreads &amp; straddles</li>
-                <li style="margin-bottom: 0.5rem;">✅ Trailing SL, MTM target, &amp; position sizing</li>
-                <li style="margin-bottom: 0.5rem;">✅ Dedicated server setup &amp; deployment</li>
-                <li style="margin-bottom: 0.5rem;">✅ 15-day post-delivery support</li>
-              </ul>
-              <a href="#consultation" class="btn btn-secondary btn-block" style="margin-top: auto; width: 100%; border-color: #f59e0b; color: #f59e0b;">Choose Professional</a>
+            <!-- Testimonial 2 -->
+            <div class="testimonial-card">
+              <div class="testimonial-stars">
+                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+              </div>
+              <p class="testimonial-quote">"Hands-down the cleanest execution architecture. Hosting on Stratexa's dedicated server with static IP whitelisting means my bot runs 24/7 without me needing to leave my laptop running all day."</p>
+              <div class="testimonial-user">
+                <div class="user-avatar-badge" style="background: rgba(6,182,212,0.2); color: #06b6d4; font-weight:700;"><i class="fa-solid fa-code"></i></div>
+                <div class="user-details">
+                  <h5>Arun S.</h5>
+                  <span>Senior Cloud Engineer &amp; Algo Trader &middot; Bengaluru</span>
+                </div>
+              </div>
             </div>
 
-            <!-- Enterprise Tier -->
-            <div style="flex: 1 1 300px; background: var(--bg-secondary); border: 2px solid #8b5cf6; border-radius: 12px; padding: 2rem; text-align: center; color: var(--text-primary); display: flex; flex-direction: column; align-items: center;">
-              <h3 style="color: var(--text-primary);">Enterprise Solutions</h3>
-              <span class="scope-pill-tag" style="background: rgba(139, 92, 246, 0.12); color: #8b5cf6; border-color: rgba(139, 92, 246, 0.3);">Custom Institutional Systems</span>
-              <span style="font-size: 0.8rem; color: var(--text-secondary); display: block; text-transform: uppercase; letter-spacing: 0.5px;">Starting from</span>
-              <p class="price" style="font-size: 2.2rem; font-weight: 800; color: #8b5cf6; margin: 0 0 0.2rem;">₹14,999</p>
-              <span class="badge" style="background: rgba(139, 92, 246, 0.1); color: #8b5cf6; border: 1px solid rgba(139, 92, 246, 0.2); padding: 0.2rem 0.75rem; border-radius: 50px; font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 1rem; display: inline-block;">One-time charge</span>
-              <p style="color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 1.5rem;">Institutional multi-broker routing, custom databases, &amp; live monitoring UI.</p>
-              <ul style="list-style: none; padding: 0; text-align: left; color: var(--text-secondary); width: 100%; margin-bottom: 2rem; font-size: 0.9rem;">
-                <li style="margin-bottom: 0.5rem;">✅ All Professional features</li>
-                <li style="margin-bottom: 0.5rem;">✅ Multi-account order mirroring &amp; router</li>
-                <li style="margin-bottom: 0.5rem;">✅ Database integration &amp; custom web dashboard</li>
-                <li style="margin-bottom: 0.5rem;">✅ Telegram / WhatsApp instant trade alerts</li>
-                <li style="margin-bottom: 0.5rem;">✅ Dedicated developer SLA &amp; 30-day support</li>
-              </ul>
-              <a href="#consultation" class="btn btn-secondary btn-block" style="margin-top: auto; width: 100%; border-color: #8b5cf6; color: #8b5cf6;">Choose Enterprise</a>
+            <!-- Testimonial 3 -->
+            <div class="testimonial-card">
+              <div class="testimonial-stars">
+                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+              </div>
+              <p class="testimonial-quote">"Their server-side stop-loss and retry architecture saved me from severe broker terminal freezes on major volatility days. Fast, disciplined execution with immediate Telegram confirmation."</p>
+              <div class="testimonial-user">
+                <div class="user-avatar-badge" style="background: rgba(245,158,11,0.2); color: #f59e0b; font-weight:700;"><i class="fa-solid fa-chart-line"></i></div>
+                <div class="user-details">
+                  <h5>Vikramaditya P.</h5>
+                  <span>Full-Time Options Trader &amp; Founder &middot; Mumbai</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Testimonial 4 -->
+            <div class="testimonial-card">
+              <div class="testimonial-stars">
+                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+              </div>
+              <p class="testimonial-quote">"I trade mechanical 9:20 straddles while managing corporate responsibilities. Stratexa's dedicated server watchdog monitors individual leg SLs without fail. Zero emotional hesitation."</p>
+              <div class="testimonial-user">
+                <div class="user-avatar-badge" style="background: rgba(139,92,246,0.2); color: #8b5cf6; font-weight:700;"><i class="fa-solid fa-laptop-code"></i></div>
+                <div class="user-details">
+                  <h5>S. Narayanan</h5>
+                  <span>VP Engineering &amp; HNI Trader &middot; Hyderabad</span>
+                </div>
+              </div>
             </div>
           </div>
 
           <!-- UPI-First Payment Messaging Banner -->
-          <div class="upi-payment-bar">
+          <div class="upi-payment-bar" style="margin-top: 2.5rem;">
             <div class="upi-payment-header">
               <i class="fa-solid fa-shield-check"></i> Direct &amp; Secure Indian Payment Gateways
             </div>
@@ -1097,7 +752,7 @@
             <div class="whatsapp-booking-container">
               <h5 class="whatsapp-booking-header">Book Instantly via WhatsApp</h5>
               
-              <div class="qr-card-large">
+              <div class="qr-card-large hide-on-mobile">
                 <div class="qr-graphic-container-large">
                   <img src="/whatsapp-qr.png" alt="WhatsApp QR Code" class="qr-image-large" />
                 </div>
@@ -1166,13 +821,13 @@
         </div>
         <div class="footer-links">
           <h4>Navigation</h4>
-          <a href="#services">Services</a>
+          <a href="#services">Solutions</a>
           <a href="#process">Our Process</a>
-          <a href="#markets">Markets</a>
           <a href="/strategies.html">Strategies</a>
-          <a href="/about.html">About Us</a>
-          <a href="/pricing.html">Pricing &amp; Care</a>
+          <a href="/pricing.html">Pricing</a>
           <a href="/faq.html">FAQ</a>
+          <a href="/about.html">About Us</a>
+          <a href="/login.html">Live Demo</a>
         </div>
         <div class="footer-links">
           <h4>Legal &amp; Support</h4>
