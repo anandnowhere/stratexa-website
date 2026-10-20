@@ -150,7 +150,7 @@
         "name": "Do you host the bot, or do I need my own server?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "We can host it for you via our Monthly Care Plans on secure VPS environments. Alternatively, we can assist you in deploying the code on your own cloud infrastructure (AWS, Azure, or private VPS)."
+          "text": "We provide fully managed hosting on our secure, high-availability dedicated trading servers via our Pro Care Plan. This ensures 24/7 uptime, automated watchdog restarts, and broker static-IP whitelisting without you managing server infrastructure. Alternatively, because you receive 100% full Python source code, you are free to execute the bot locally on your own personal PC or laptop."
         }
       },
       {
@@ -267,17 +267,18 @@
         <div class="faq-content">
           <p>We take regulatory compliance and account safety seriously. Under SEBI and exchange mandates (including circulars on retail algorithmic trading):</p>
           <ul>
-            <li><strong>Dedicated Static IPv4:</strong> Every client cloud instance deployed via our Cloud VPS setup receives a dedicated, fixed static IP address, which you whitelist directly in your broker's API console.</li>
+            <li><strong>Dedicated Static IPv4:</strong> Every client bot hosted on our dedicated server infrastructure is allocated a fixed, dedicated static IPv4 address, which is whitelisted directly in your broker's API console for seamless regulatory compliance.</li>
             <li><strong>Order Rate-Limit Protection:</strong> Our Python execution engines implement hardcoded rate clamps keeping order request bursts safely below exchange thresholds (&lt;10 orders/sec) to prevent broker API bans.</li>
-            <li><strong>100% White-Box Client Isolation:</strong> All API keys, tokens, and TOTP seeds reside strictly on your dedicated private VPS instance. Stratexa never stores or pools client credentials on central multi-tenant servers.</li>
+            <li><strong>100% White-Box Client Isolation:</strong> All API keys, tokens, and TOTP secrets are encrypted and isolated within dedicated, sandboxed execution environments. Stratexa never stores or pools client credentials in central databases.</li>
           </ul>
         </div>
       </details>
 
       <details class="faq-item">
-        <summary>Do you host the bot, or do I need my own server?</summary>
+        <summary>Do you host the bot, or do I run it on my own machine?</summary>
         <div class="faq-content">
-          <p>We can host it for you via our Monthly Care Plans on secure VPS environments. Alternatively, we can assist you in deploying the code on your own cloud infrastructure (AWS, Azure, or private VPS).</p>
+          <p>We provide <strong>fully managed hosting on our high-availability dedicated trading servers</strong> via our Pro Care Plan (&#8377;1,499/month, first month included free with onboarding). This guarantees 24x7 execution, automated watchdog error restarts, dedicated static IP whitelisting, and zero dependency on your home computer or Wi-Fi.</p>
+          <p>Alternatively, because you receive 100% full Python source code ownership, you are completely free to run the bot locally on your personal PC or laptop without any hosting subscription.</p>
         </div>
       </details>
 
@@ -312,7 +313,7 @@
       <details class="faq-item">
         <summary>What does the ₹999 Onboarding &amp; Deployment fee cover?</summary>
         <div class="faq-content">
-          <p>The ₹999 one-time onboarding fee covers the complete technical go-live process: securely configuring your broker API keys on a dedicated Cloud VPS, encrypting credentials, deploying the strategy as a background service, setting up your Telegram notification alerts, running live paper trades to verify everything works, and a final sign-off verification before real capital is used. Think of it as your first-time launch service.</p>
+          <p>The ₹999 one-time onboarding fee covers the complete technical go-live process: securely configuring and encrypting your broker API credentials on our dedicated trading server, setting up background execution watchdogs, setting up your Telegram notification alerts, running live paper trades to verify everything works, and a final sign-off verification before real capital is used. Think of it as your first-time launch service.</p>
         </div>
       </details>
 
@@ -326,7 +327,8 @@
       <details class="faq-item">
         <summary>Can I run the strategy on my own PC without the Pro Care Plan?</summary>
         <div class="faq-content">
-          <p>Yes. The strategy code runs on standard Python and can be executed on any computer or VPS. However, running it on your own PC means the bot stops whenever your machine shuts down or loses internet. We strongly recommend the Pro Care Plan for 24/7 hands-free operation — it ensures the bot keeps running even on trading holidays, weekends, and during power or internet outages at your location.</p>
+          <p>Yes, absolutely. Because you receive 100% open Python source code, you can execute the bot directly on your personal computer or laptop with zero monthly fees.</p>
+          <p>However, running locally requires keeping your machine powered on, preventing laptop sleep mode, maintaining stable broadband, and manually restarting after system updates. Most traders choose our <strong>Managed Dedicated Server (Pro Care Plan at &#8377;1,499/mo)</strong> because it provides uninterrupted 24x7 execution on cloud infrastructure with static IP broker whitelisting, automatic error recovery, and instant Telegram trade alerts without keeping your PC running.</p>
         </div>
       </details>
 

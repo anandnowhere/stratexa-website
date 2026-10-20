@@ -187,8 +187,8 @@
           <span style="background: rgba(6,182,212,0.1); color: #06b6d4; border: 1px solid rgba(6,182,212,0.25); padding: 0.2rem 0.75rem; border-radius: 50px; font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; display: inline-block; margin-bottom: 1.25rem;">One-time &middot; Paid after strategy is ready</span>
           <ul style="list-style:none; padding:0; color: var(--text-secondary); font-size: 0.88rem; margin-bottom: 1.5rem; flex-grow:1;">
             <li style="margin-bottom:0.55rem; display:flex; align-items:flex-start; gap:8px;"><i class="fa-solid fa-check" style="color:#06b6d4; margin-top:2px; flex-shrink:0;"></i> Broker API configuration &amp; credential setup</li>
-            <li style="margin-bottom:0.55rem; display:flex; align-items:flex-start; gap:8px;"><i class="fa-solid fa-check" style="color:#06b6d4; margin-top:2px; flex-shrink:0;"></i> Secure API key encryption on Cloud VPS</li>
-            <li style="margin-bottom:0.55rem; display:flex; align-items:flex-start; gap:8px;"><i class="fa-solid fa-check" style="color:#06b6d4; margin-top:2px; flex-shrink:0;"></i> Cloud VPS deployment (first month hosted free)</li>
+            <li style="margin-bottom:0.55rem; display:flex; align-items:flex-start; gap:8px;"><i class="fa-solid fa-check" style="color:#06b6d4; margin-top:2px; flex-shrink:0;"></i> Secure API key encryption &amp; sandboxed execution</li>
+            <li style="margin-bottom:0.55rem; display:flex; align-items:flex-start; gap:8px;"><i class="fa-solid fa-check" style="color:#06b6d4; margin-top:2px; flex-shrink:0;"></i> Dedicated server deployment (first month hosted free)</li>
             <li style="margin-bottom:0.55rem; display:flex; align-items:flex-start; gap:8px;"><i class="fa-solid fa-check" style="color:#06b6d4; margin-top:2px; flex-shrink:0;"></i> Telegram notification alert configuration</li>
             <li style="margin-bottom:0.55rem; display:flex; align-items:flex-start; gap:8px;"><i class="fa-solid fa-check" style="color:#06b6d4; margin-top:2px; flex-shrink:0;"></i> Live paper trading test before go-live</li>
             <li style="margin-bottom:0.55rem; display:flex; align-items:flex-start; gap:8px;"><i class="fa-solid fa-check" style="color:#06b6d4; margin-top:2px; flex-shrink:0;"></i> Final verification &amp; sign-off before live capital</li>
@@ -212,7 +212,7 @@
           <div style="font-size: 2.5rem; font-weight: 800; color: #f59e0b; margin-bottom: 0.2rem; font-family: var(--font-heading);">&#8377;1,499</div>
           <span style="background: rgba(245,158,11,0.1); color: #f59e0b; border: 1px solid rgba(245,158,11,0.25); padding: 0.2rem 0.75rem; border-radius: 50px; font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; display: inline-block; margin-bottom: 1.25rem;">Per Month &middot; Cancel Anytime</span>
           <ul style="list-style:none; padding:0; color: var(--text-secondary); font-size: 0.88rem; margin-bottom: 1.5rem; flex-grow:1;">
-            <li style="margin-bottom:0.55rem; display:flex; align-items:flex-start; gap:8px;"><i class="fa-solid fa-check" style="color:#f59e0b; margin-top:2px; flex-shrink:0;"></i> Secure cloud VPS hosting (dedicated instance)</li>
+            <li style="margin-bottom:0.55rem; display:flex; align-items:flex-start; gap:8px;"><i class="fa-solid fa-check" style="color:#f59e0b; margin-top:2px; flex-shrink:0;"></i> High-speed dedicated server hosting &amp; continuous execution</li>
             <li style="margin-bottom:0.55rem; display:flex; align-items:flex-start; gap:8px;"><i class="fa-solid fa-check" style="color:#f59e0b; margin-top:2px; flex-shrink:0;"></i> 24x7 bot execution monitoring</li>
             <li style="margin-bottom:0.55rem; display:flex; align-items:flex-start; gap:8px;"><i class="fa-solid fa-check" style="color:#f59e0b; margin-top:2px; flex-shrink:0;"></i> Auto-restarts &amp; error recovery</li>
             <li style="margin-bottom:0.55rem; display:flex; align-items:flex-start; gap:8px;"><i class="fa-solid fa-check" style="color:#f59e0b; margin-top:2px; flex-shrink:0;"></i> Python package &amp; dependency updates</li>
@@ -386,15 +386,15 @@
               </select>
             </div>
 
-            <!-- 4. Onboarding & Hosting Deployment Dropdown -->
+            <!-- 4. Deployment & Hosting Setup Dropdown -->
             <div class="calc-group">
               <label for="calc-hosting">
-                <span>Onboarding &amp; Cloud VPS Deployment</span>
-                <i class="fa-solid fa-server" title="Server deployment options"></i>
+                <span>Deployment &amp; Hosting Setup</span>
+                <i class="fa-solid fa-server" title="Choose server hosting or local execution"></i>
               </label>
               <select id="calc-hosting" class="calc-select">
-                <option value="999" selected>Managed Onboarding &amp; Cloud VPS Setup (+&#8377;999 One-time &middot; Recommended)</option>
-                <option value="0">Self-Hosted Setup on Your Own PC / Server (&#8377;0 One-time)</option>
+                <option value="999" selected>Stratexa Managed Dedicated Server Hosting (+&#8377;999 Onboarding &middot; Recommended)</option>
+                <option value="0">Run Locally on Personal PC / Laptop (Free &middot; You run the source code)</option>
               </select>
             </div>
 

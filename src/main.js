@@ -545,7 +545,7 @@ function initRoiCalculator() {
     const strategyName = complexityEl.options[complexityEl.selectedIndex].text;
     const horizonName = frequencyEl ? frequencyEl.options[frequencyEl.selectedIndex].text : 'Standard';
     const brokerName = brokersEl ? brokersEl.options[brokersEl.selectedIndex].text : '1 Broker';
-    const onboardingName = hostingEl && hostingEl.value === "999" ? "Managed VPS Onboarding (+₹999)" : "Self-Hosted (₹0)";
+    const onboardingName = hostingEl && hostingEl.value === "999" ? "Stratexa Managed Dedicated Server (+₹999)" : "Run on Personal PC (₹0)";
 
     costValEl.textContent = formattedCost;
     if (hoursValEl) hoursValEl.textContent = `~${hoursSaved} hrs/mo`;
