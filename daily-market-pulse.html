@@ -444,6 +444,66 @@
     .widget-title i {
       color: #10b981;
     }
+
+    /* Smudge/Blurred Backdrop Modal */
+    .lead-modal-backdrop {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(15, 23, 42, 0.65);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 10000;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.3s ease, visibility 0.3s ease;
+      padding: 1.25rem;
+    }
+    .lead-modal-backdrop.active {
+      opacity: 1;
+      visibility: visible;
+    }
+    .lead-modal-card {
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      border-radius: 20px;
+      max-width: 500px;
+      width: 100%;
+      padding: 2.25rem 2rem;
+      position: relative;
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.35);
+      transform: translateY(20px) scale(0.96);
+      transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .lead-modal-backdrop.active .lead-modal-card {
+      transform: translateY(0) scale(1);
+    }
+    .lead-modal-close {
+      position: absolute;
+      top: 14px;
+      right: 16px;
+      background: #f1f5f9;
+      border: none;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      font-size: 1.25rem;
+      color: #64748b;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .lead-modal-close:hover {
+      background: #e2e8f0;
+      color: #0f172a;
+    }
   </style>
 
   <script>
@@ -855,47 +915,36 @@
     </div>
     
 
-        <!-- High-Value Quant Resource & Lead Magnet Hub -->
-        <div class="lead-magnet-card" style="background: linear-gradient(145deg, #f8fafc 0%, #f1f5f9 100%); border: 1.5px solid #cbd5e1; border-radius: 16px; padding: 2.25rem 2rem; margin: 3.5rem 0 2rem; box-shadow: 0 10px 25px -5px rgba(15, 23, 42, 0.05);">
-          <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; margin-bottom: 1rem; border-bottom: 1px solid #e2e8f0; padding-bottom: 1rem;">
+        <!-- 5-Year Backtest Sheet Resource Box -->
+        <div class="lead-magnet-card" style="background: linear-gradient(145deg, #f8fafc 0%, #f1f5f9 100%); border: 1.5px solid #cbd5e1; border-radius: 16px; padding: 2rem; margin: 3.5rem 0 2rem; box-shadow: 0 10px 25px -5px rgba(15, 23, 42, 0.05);">
+          <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; margin-bottom: 0.85rem; border-bottom: 1px solid #e2e8f0; padding-bottom: 0.85rem;">
             <div style="display: flex; align-items: center; gap: 10px;">
               <span style="background: #0284c7; color: #ffffff; width: 34px; height: 34px; border-radius: 8px; display: inline-flex; align-items: center; justify-content: center; font-size: 1rem;">
-                <i class="fa-solid fa-code"></i>
+                <i class="fa-solid fa-table"></i>
               </span>
               <div>
-                <span style="font-size: 0.72rem; font-weight: 700; color: #0284c7; text-transform: uppercase; letter-spacing: 0.5px;">Institutional Quant Toolkit</span>
-                <h3 style="margin: 0; font-family: 'Outfit', sans-serif; font-size: 1.35rem; color: #0f172a; font-weight: 700;">Download Python Strategy Code & 5-Year Backtest Sheet</h3>
+                <span style="font-size: 0.72rem; font-weight: 700; color: #0284c7; text-transform: uppercase; letter-spacing: 0.5px;">Institutional Performance Model</span>
+                <h3 style="margin: 0; font-family: 'Outfit', sans-serif; font-size: 1.3rem; color: #0f172a; font-weight: 700;">Download the 5-Year Nifty Backtest Sheet</h3>
               </div>
             </div>
             <span style="background: #dcfce7; color: #15803d; font-size: 0.75rem; font-weight: 700; padding: 4px 10px; border-radius: 9999px;">
-              <i class="fa-solid fa-check"></i> Free Download
+              <i class="fa-solid fa-check"></i> Free Excel Sheet
             </span>
           </div>
 
-          <p style="color: #475569; font-size: 0.95rem; line-height: 1.6; margin-bottom: 1.5rem;">
-            Get instant access to the complete <strong>Python execution script</strong> for today's CPR & moving average trend filters, plus the 5-year historical drawdown dataset (Excel) and tomorrow's calculated pivot cheat sheet.
+          <p style="color: #475569; font-size: 0.95rem; line-height: 1.6; margin-bottom: 1.25rem;">
+            Inspect the complete 1,200-session quantitative performance model (Excel / CSV) with verified win rates, max drawdowns, Sharpe ratios, and monthly returns.
           </p>
 
-          <div style="display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 0.75fr); gap: 20px; align-items: center;">
-            <div>
-              <form id="lead-magnet-form" style="display: flex; gap: 8px;">
-                <input type="email" id="lead-magnet-email" class="newsletter-input" placeholder="Enter your email to receive files" style="background: #ffffff; border-color: #94a3b8;" required />
-                <button type="submit" id="lead-magnet-btn" class="newsletter-submit-btn" style="background: #0284c7; white-space: nowrap;">
-                  <i class="fa-solid fa-download" style="margin-right: 6px;"></i> Send Me Code
-                </button>
-              </form>
-              <div id="lead-magnet-success" style="display: none; color: #0284c7; font-weight: 600; margin-top: 10px; font-size: 0.9rem;">
-                <i class="fa-solid fa-circle-check"></i> Code download & daily levels sent to your inbox!
-              </div>
-            </div>
-
-            <div style="border-left: 1px solid #cbd5e1; padding-left: 20px;">
-              <span style="font-size: 0.75rem; color: #64748b; font-weight: 600; display: block; margin-bottom: 6px;">Or prefer instant delivery on phone?</span>
-              <a href="https://wa.me/919150087233?text=Hi%20Stratexa%2C%20please%20send%20me%20today%27s%20Python%20Strategy%20Code%20and%205-Year%20Backtest%20Dataset." target="_blank" rel="noopener noreferrer" style="background: #25d366; color: #ffffff; padding: 10px 14px; border-radius: 8px; font-weight: 700; text-decoration: none; display: inline-flex; align-items: center; gap: 8px; font-size: 0.88rem; box-shadow: 0 4px 10px rgba(37,211,102,0.25);">
-                <i class="fa-brands fa-whatsapp" style="font-size: 1.1rem;"></i>
-                <span>Get Code via WhatsApp</span>
-              </a>
-            </div>
+          <div style="display: flex; flex-wrap: wrap; gap: 12px; align-items: center;">
+            <button type="button" id="open-modal-btn" class="newsletter-submit-btn" style="background: #0284c7; font-weight: 700; display: inline-flex; align-items: center; gap: 8px; cursor: pointer;">
+              <i class="fa-solid fa-download"></i>
+              <span>Get 5-Year Backtest Sheet (Excel)</span>
+            </button>
+            <a href="https://wa.me/919150087233?text=Hi%20Stratexa%2C%20please%20send%20me%20the%205-Year%20Strategy%20Backtest%20Excel%20Sheet." target="_blank" rel="noopener noreferrer" style="background: #25d366; color: #ffffff; padding: 12px 18px; border-radius: 8px; font-weight: 700; text-decoration: none; display: inline-flex; align-items: center; gap: 8px; font-size: 0.92rem; box-shadow: 0 4px 10px rgba(37,211,102,0.25);">
+              <i class="fa-brands fa-whatsapp" style="font-size: 1.1rem;"></i>
+              <span>Get via WhatsApp</span>
+            </a>
           </div>
         </div>
 
@@ -1040,48 +1089,147 @@
     </div>
   </footer>
 
+  <!-- Smudge/Blurred Backdrop Modal -->
+  <div class="lead-modal-backdrop" id="backtest-modal-backdrop">
+    <div class="lead-modal-card">
+      <button class="lead-modal-close" id="modal-close-btn" aria-label="Close modal">&times;</button>
+      
+      <div style="display: inline-flex; align-items: center; gap: 6px; background: #e0f2fe; color: #0369a1; padding: 4px 10px; border-radius: 9999px; font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 0.75rem;">
+        <i class="fa-solid fa-table"></i> Free Quantitative Dataset
+      </div>
+
+      <h3 style="font-family: 'Outfit', sans-serif; font-size: 1.4rem; font-weight: 800; color: #0f172a; line-height: 1.3; margin: 0 0 0.5rem;">
+        Download 5-Year Strategy Backtest Sheet
+      </h3>
+      
+      <p style="color: #475569; font-size: 0.9rem; line-height: 1.55; margin: 0 0 1.25rem;">
+        Get the verified 1,200-session performance model in Excel / CSV. Trade-by-trade metrics, Sharpe ratios, win rates, and maximum drawdown breakdowns.
+      </p>
+
+      <form id="modal-download-form" style="display: flex; flex-direction: column; gap: 10px; margin-bottom: 1rem;">
+        <input type="email" id="modal-download-email" class="newsletter-input" placeholder="Enter your email address" style="padding: 12px; border: 1.5px solid #cbd5e1; border-radius: 8px; font-size: 0.95rem; width: 100%; box-sizing: border-box;" required />
+        <button type="submit" id="modal-download-btn" class="newsletter-submit-btn" style="background: #0284c7; padding: 12px; font-weight: 700; border-radius: 8px; font-size: 0.95rem; width: 100%;">
+          <i class="fa-solid fa-download" style="margin-right: 6px;"></i> Send Me Excel Backtest Sheet
+        </button>
+      </form>
+      <div id="modal-download-success" style="display: none; background: #f0fdf4; border: 1px solid #86efac; color: #166534; padding: 12px; border-radius: 8px; font-size: 0.9rem; font-weight: 600; text-align: center; margin-bottom: 1rem;">
+        <i class="fa-solid fa-circle-check"></i> Backtest sheet sent to your email!
+      </div>
+
+      <div style="display: flex; align-items: center; gap: 12px; margin: 1rem 0;">
+        <div style="flex: 1; height: 1px; background: #e2e8f0;"></div>
+        <span style="font-size: 0.72rem; font-weight: 700; color: #94a3b8; text-transform: uppercase;">Or Instant Delivery On Phone</span>
+        <div style="flex: 1; height: 1px; background: #e2e8f0;"></div>
+      </div>
+
+      <a href="https://wa.me/919150087233?text=Hi%20Stratexa%2C%20please%20send%20me%20the%205-Year%20Strategy%20Backtest%20Excel%20Sheet." target="_blank" rel="noopener noreferrer" style="background: #25d366; color: #ffffff; padding: 11px 16px; border-radius: 8px; font-weight: 700; text-decoration: none; display: flex; align-items: center; justify-content: center; gap: 8px; font-size: 0.92rem; box-shadow: 0 4px 12px rgba(37, 211, 102, 0.2);">
+        <i class="fa-brands fa-whatsapp" style="font-size: 1.15rem;"></i>
+        <span>Get Backtest Sheet via WhatsApp</span>
+      </a>
+
+      <div style="text-align: center; margin-top: 1.25rem;">
+        <button type="button" id="modal-continue-reading-btn" style="background: none; border: none; color: #64748b; font-size: 0.82rem; cursor: pointer; text-decoration: underline;">
+          Continue reading article without downloading &rarr;
+        </button>
+      </div>
+    </div>
+  </div>
+
   <script type="module" src="/src/main.js"></script>
 
-  <!-- Lead Magnet & Quant Resources Script -->
+  <!-- Smudge Modal & Lead Magnet Script -->
   <script>
     document.addEventListener('DOMContentLoaded', () => {
       const GOOGLE_SHEET_URL = "https://script.google.com/macros/s/AKfycbxp4utuxkTKfW2VNY9PqZBKVfSD-n_s3bYQ81JbpJqcK4d-o9RQiswUPbZ2Vu7wHup8xw/exec";
 
-      const leadForm = document.querySelector('#lead-magnet-form');
-      if (leadForm) {
-        leadForm.addEventListener('submit', (e) => {
+      const modal = document.querySelector('#backtest-modal-backdrop');
+      const closeBtn = document.querySelector('#modal-close-btn');
+      const continueBtn = document.querySelector('#modal-continue-reading-btn');
+      const openModalBtn = document.querySelector('#open-modal-btn');
+      const modalForm = document.querySelector('#modal-download-form');
+
+      function closeModal() {
+        if (modal) {
+          modal.classList.remove('active');
+          sessionStorage.setItem('stratexa_backtest_modal_dismissed', 'true');
+        }
+      }
+
+      function openModal() {
+        if (modal) {
+          modal.classList.add('active');
+        }
+      }
+
+      if (openModalBtn) {
+        openModalBtn.addEventListener('click', openModal);
+      }
+
+      if (closeBtn) {
+        closeBtn.addEventListener('click', closeModal);
+      }
+
+      if (continueBtn) {
+        continueBtn.addEventListener('click', closeModal);
+      }
+
+      if (modal) {
+        modal.addEventListener('click', (e) => {
+          if (e.target === modal) {
+            closeModal();
+          }
+        });
+      }
+
+      // Show modal on scroll past 50% if not previously dismissed
+      if (modal && !sessionStorage.getItem('stratexa_backtest_modal_dismissed')) {
+        let triggered = false;
+        window.addEventListener('scroll', () => {
+          const scrollPct = (window.scrollY + window.innerHeight) / document.documentElement.scrollHeight;
+          if (scrollPct > 0.50 && !triggered) {
+            triggered = true;
+            openModal();
+          }
+        });
+      }
+
+      // Handle Modal Download Form Submission
+      if (modalForm) {
+        modalForm.addEventListener('submit', (e) => {
           e.preventDefault();
-          const emailInput = document.querySelector('#lead-magnet-email');
-          const btn = document.querySelector('#lead-magnet-btn');
-          const success = document.querySelector('#lead-magnet-success');
+          const emailInput = document.querySelector('#modal-download-email');
+          const btn = document.querySelector('#modal-download-btn');
+          const success = document.querySelector('#modal-download-success');
           const email = emailInput.value.trim();
 
           btn.disabled = true;
-          btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Preparing Files...';
+          btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Preparing Download...';
 
           fetch(GOOGLE_SHEET_URL, {
             method: 'POST',
             mode: 'cors',
             headers: { 'Content-Type': 'text/plain' },
             body: JSON.stringify({
-              source: 'Lead Magnet [Daily Pulse Python Code]',
-              name: 'Trader',
+              source: 'Lead Magnet [5-Year Backtest Sheet]',
+              name: 'Backtest Requester',
               email: email,
               phone: 'N/A',
               market: 'Indian Equity / F&O',
-              product_type: 'Lead Magnet Download',
-              message: 'Requested Python Strategy Code & 5-Year Backtest Dataset for Daily Market Pulse'
+              product_type: 'Backtest Download',
+              message: 'Requested 5-Year Strategy Backtest Dataset (Excel)'
             })
           })
           .then(() => {
-            leadForm.style.display = 'none';
+            modalForm.style.display = 'none';
             success.style.display = 'block';
+            sessionStorage.setItem('stratexa_backtest_modal_dismissed', 'true');
+            setTimeout(() => { closeModal(); }, 3500);
           })
           .catch(err => {
             console.error(err);
             alert('Submission error. Please check your connection or contact us on WhatsApp.');
             btn.disabled = false;
-            btn.innerHTML = '<i class="fa-solid fa-download" style="margin-right: 6px;"></i> Send Me Code';
+            btn.innerHTML = '<i class="fa-solid fa-download" style="margin-right: 6px;"></i> Send Me Excel Backtest Sheet';
           });
         });
       }
