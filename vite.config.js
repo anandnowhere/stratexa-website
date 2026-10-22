@@ -21,6 +21,11 @@ export default defineConfig({
         strategy: resolve(__dirname, 'trend-following-options-strategy.html'),
         blogs: resolve(__dirname, 'blogs.html'),
         market_pulse: resolve(__dirname, 'daily-market-pulse.html'),
+        supertrend_backtest: resolve(__dirname, 'supertrend-vs-ema-nifty-backtest.html'),
+        retail_latency: resolve(__dirname, 'why-retail-traders-lose-execution-latency.html'),
+        broker_architecture: resolve(__dirname, 'zerodha-kite-angel-one-python-bot-architecture.html'),
+        straddle_guide: resolve(__dirname, '920-straddle-automated-trailing-sl-guide.html'),
+        server_execution: resolve(__dirname, 'server-side-execution-vs-browser-terminal-freezes.html'),
         login: resolve(__dirname, 'login.html'),
       }
     }
