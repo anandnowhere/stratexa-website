@@ -320,10 +320,11 @@
       const openModalBtn = document.querySelector('#open-modal-btn');
       const modalForm = document.querySelector('#modal-download-form');
 
+      sessionStorage.removeItem('stratexa_backtest_modal_dismissed');
+
       function closeModal() {
         if (modal) {
           modal.classList.remove('active');
-          sessionStorage.setItem('stratexa_backtest_modal_dismissed', 'true');
         }
       }
 
@@ -353,7 +354,15 @@
         });
       }
 
-      if (modal && !sessionStorage.getItem('stratexa_backtest_modal_dismissed')) {
+      const modalWhatsapp = document.querySelector('#backtest-modal-backdrop a[href*="wa.me"]');
+      if (modalWhatsapp) {
+        modalWhatsapp.addEventListener('click', () => {
+          localStorage.setItem('stratexa_backtest_subscribed', 'true');
+        });
+      }
+
+      const hasSubscribed = localStorage.getItem('stratexa_backtest_subscribed');
+      if (modal && !hasSubscribed) {
         let triggered = false;
         window.addEventListener('scroll', () => {
           const scrollPct = (window.scrollY + window.innerHeight) / document.documentElement.scrollHeight;
@@ -392,7 +401,7 @@
           .then(() => {
             modalForm.style.display = 'none';
             success.style.display = 'block';
-            sessionStorage.setItem('stratexa_backtest_modal_dismissed', 'true');
+            localStorage.setItem('stratexa_backtest_subscribed', 'true');
             setTimeout(() => { closeModal(); }, 3500);
           })
           .catch(err => {
