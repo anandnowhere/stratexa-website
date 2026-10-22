@@ -444,37 +444,6 @@
     .widget-title i {
       color: #10b981;
     }
-
-    /* Slide-Up Popup Subscription Widget */
-    .slideup-popup {
-      position: fixed;
-      bottom: -300px;
-      right: 24px;
-      width: 360px;
-      background: #ffffff;
-      border: 1.5px solid #10b981;
-      border-radius: 16px;
-      box-shadow: 0 20px 40px rgba(0,0,0,0.2);
-      padding: 1.5rem;
-      z-index: 9999;
-      transition: bottom 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-    }
-    .slideup-popup.active {
-      bottom: 24px;
-    }
-    .popup-close-btn {
-      position: absolute;
-      top: 12px;
-      right: 14px;
-      background: none;
-      border: none;
-      font-size: 1.25rem;
-      cursor: pointer;
-      color: #94a3b8;
-    }
-    .popup-close-btn:hover {
-      color: #0f172a;
-    }
   </style>
 
   <script>
@@ -886,16 +855,47 @@
     </div>
     
 
-        <!-- Inline Newsletter Subscription Card -->
-        <div class="inline-newsletter-card">
-          <h3><i class="fa-regular fa-envelope" style="margin-right: 8px;"></i> Get the Daily Market Pulse in Your Inbox</h3>
-          <p>Join active Indian stock and options traders receiving our 4:00 PM quantitative market wrap daily.</p>
-          <form class="newsletter-form-row" id="inline-newsletter-form">
-            <input type="email" class="newsletter-input" id="inline-newsletter-email" placeholder="Enter your email address" required />
-            <button type="submit" class="newsletter-submit-btn" id="inline-newsletter-btn">Subscribe Free</button>
-          </form>
-          <div id="inline-newsletter-success" style="display: none; color: #065f46; font-weight: 600; margin-top: 12px;">
-            <i class="fa-solid fa-circle-check"></i> Thank you! You've been subscribed to the Daily Market Pulse.
+        <!-- High-Value Quant Resource & Lead Magnet Hub -->
+        <div class="lead-magnet-card" style="background: linear-gradient(145deg, #f8fafc 0%, #f1f5f9 100%); border: 1.5px solid #cbd5e1; border-radius: 16px; padding: 2.25rem 2rem; margin: 3.5rem 0 2rem; box-shadow: 0 10px 25px -5px rgba(15, 23, 42, 0.05);">
+          <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; margin-bottom: 1rem; border-bottom: 1px solid #e2e8f0; padding-bottom: 1rem;">
+            <div style="display: flex; align-items: center; gap: 10px;">
+              <span style="background: #0284c7; color: #ffffff; width: 34px; height: 34px; border-radius: 8px; display: inline-flex; align-items: center; justify-content: center; font-size: 1rem;">
+                <i class="fa-solid fa-code"></i>
+              </span>
+              <div>
+                <span style="font-size: 0.72rem; font-weight: 700; color: #0284c7; text-transform: uppercase; letter-spacing: 0.5px;">Institutional Quant Toolkit</span>
+                <h3 style="margin: 0; font-family: 'Outfit', sans-serif; font-size: 1.35rem; color: #0f172a; font-weight: 700;">Download Python Strategy Code & 5-Year Backtest Sheet</h3>
+              </div>
+            </div>
+            <span style="background: #dcfce7; color: #15803d; font-size: 0.75rem; font-weight: 700; padding: 4px 10px; border-radius: 9999px;">
+              <i class="fa-solid fa-check"></i> Free Download
+            </span>
+          </div>
+
+          <p style="color: #475569; font-size: 0.95rem; line-height: 1.6; margin-bottom: 1.5rem;">
+            Get instant access to the complete <strong>Python execution script</strong> for today's CPR & moving average trend filters, plus the 5-year historical drawdown dataset (Excel) and tomorrow's calculated pivot cheat sheet.
+          </p>
+
+          <div style="display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 0.75fr); gap: 20px; align-items: center;">
+            <div>
+              <form id="lead-magnet-form" style="display: flex; gap: 8px;">
+                <input type="email" id="lead-magnet-email" class="newsletter-input" placeholder="Enter your email to receive files" style="background: #ffffff; border-color: #94a3b8;" required />
+                <button type="submit" id="lead-magnet-btn" class="newsletter-submit-btn" style="background: #0284c7; white-space: nowrap;">
+                  <i class="fa-solid fa-download" style="margin-right: 6px;"></i> Send Me Code
+                </button>
+              </form>
+              <div id="lead-magnet-success" style="display: none; color: #0284c7; font-weight: 600; margin-top: 10px; font-size: 0.9rem;">
+                <i class="fa-solid fa-circle-check"></i> Code download & daily levels sent to your inbox!
+              </div>
+            </div>
+
+            <div style="border-left: 1px solid #cbd5e1; padding-left: 20px;">
+              <span style="font-size: 0.75rem; color: #64748b; font-weight: 600; display: block; margin-bottom: 6px;">Or prefer instant delivery on phone?</span>
+              <a href="https://wa.me/919150087233?text=Hi%20Stratexa%2C%20please%20send%20me%20today%27s%20Python%20Strategy%20Code%20and%205-Year%20Backtest%20Dataset." target="_blank" rel="noopener noreferrer" style="background: #25d366; color: #ffffff; padding: 10px 14px; border-radius: 8px; font-weight: 700; text-decoration: none; display: inline-flex; align-items: center; gap: 8px; font-size: 0.88rem; box-shadow: 0 4px 10px rgba(37,211,102,0.25);">
+                <i class="fa-brands fa-whatsapp" style="font-size: 1.1rem;"></i>
+                <span>Get Code via WhatsApp</span>
+              </a>
+            </div>
           </div>
         </div>
 
@@ -920,17 +920,24 @@
       <!-- Sticky Right Sidebar (30%) -->
       <aside class="sticky-sidebar">
         
-        <!-- Sidebar Widget: Newsletter Subscribe -->
-        <div class="sidebar-widget" style="background: #f0fdf4; border-color: #86efac;">
-          <h4 class="widget-title" style="color: #065f46;"><i class="fa-regular fa-envelope"></i> Daily Market Brief</h4>
-          <p style="font-size: 0.88rem; color: #047857; margin-bottom: 12px; line-height: 1.5;">Get today's key levels, FII/DII data, and technical setups emailed at 4:00 PM daily.</p>
-          <form id="sidebar-newsletter-form" style="display: flex; flex-direction: column; gap: 8px;">
-            <input type="email" id="sidebar-newsletter-email" class="newsletter-input" placeholder="Your email address" style="padding: 10px;" required />
-            <button type="submit" id="sidebar-newsletter-btn" class="newsletter-submit-btn" style="padding: 10px; width: 100%;">Subscribe Free</button>
-          </form>
-          <div id="sidebar-newsletter-success" style="display: none; color: #065f46; font-size: 0.82rem; font-weight: 600; margin-top: 8px;">
-            <i class="fa-solid fa-circle-check"></i> Subscribed successfully!
+        <!-- Sidebar Widget: 1-Click WhatsApp Broadcast -->
+        <div class="sidebar-widget" style="background: linear-gradient(145deg, #f0fdf4 0%, #ecfdf5 100%); border: 1.5px solid #86efac; border-radius: 14px; padding: 1.4rem;">
+          <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 8px;">
+            <div style="width: 36px; height: 36px; border-radius: 50%; background: #25d366; display: flex; align-items: center; justify-content: center; color: #fff; font-size: 1.25rem;">
+              <i class="fa-brands fa-whatsapp"></i>
+            </div>
+            <div>
+              <h4 style="margin: 0; font-family: 'Outfit', sans-serif; font-size: 1.05rem; color: #065f46; font-weight: 700;">Daily 4 PM WhatsApp Pulse</h4>
+              <span style="font-size: 0.72rem; color: #047857; font-weight: 600; text-transform: uppercase;">Zero Spam &middot; 1 Update/Day</span>
+            </div>
           </div>
+          <p style="font-size: 0.85rem; color: #047857; margin-bottom: 12px; line-height: 1.5;">
+            Get today's closing CPR levels, FII/DII net flows, and key pivot alerts sent straight to your WhatsApp at market close.
+          </p>
+          <a href="https://wa.me/919150087233?text=Hi%20Stratexa%2C%20please%20add%20me%20to%20the%20Daily%204%3A00%20PM%20Market%20Pulse%20Broadcast." target="_blank" rel="noopener noreferrer" style="background: #25d366; color: #ffffff; padding: 10px 14px; border-radius: 8px; font-weight: 700; text-decoration: none; display: flex; align-items: center; justify-content: center; gap: 8px; font-size: 0.88rem; box-shadow: 0 4px 12px rgba(37, 211, 102, 0.2);">
+            <i class="fa-brands fa-whatsapp" style="font-size: 1.05rem;"></i>
+            <span>Join 4 PM Broadcast</span>
+          </a>
         </div>
 
         <!-- Sidebar Widget: Related Research -->
@@ -985,27 +992,6 @@
     </div>
   </div>
 
-  <!-- Slide-Up Newsletter Subscription Popup -->
-  <div class="slideup-popup" id="slideup-newsletter-popup">
-    <button class="popup-close-btn" id="popup-close-btn" aria-label="Close">&times;</button>
-    <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 8px;">
-      <span style="background: #10b981; color: #000; width: 24px; height: 24px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.75rem;">
-        <i class="fa-regular fa-envelope"></i>
-      </span>
-      <strong style="color: #0f172a; font-size: 1rem;">Daily Market Pulse</strong>
-    </div>
-    <p style="font-size: 0.85rem; color: #475569; margin: 0 0 12px; line-height: 1.4;">
-      Get today's key technical levels and derivatives wrap delivered at 4:00 PM IST daily.
-    </p>
-    <form id="slideup-newsletter-form" style="display: flex; flex-direction: column; gap: 8px;">
-      <input type="email" id="slideup-newsletter-email" class="newsletter-input" placeholder="Your email address" style="padding: 10px; font-size: 0.88rem;" required />
-      <button type="submit" id="slideup-newsletter-btn" class="newsletter-submit-btn" style="padding: 10px; font-size: 0.88rem;">Subscribe Free</button>
-    </form>
-    <div id="slideup-newsletter-success" style="display: none; color: #065f46; font-size: 0.85rem; font-weight: 600; margin-top: 8px;">
-      <i class="fa-solid fa-circle-check"></i> Subscribed! Thank you.
-    </div>
-  </div>
-
   <footer class="footer">
     <div class="container footer-content">
       <div class="footer-brand">
@@ -1056,98 +1042,48 @@
 
   <script type="module" src="/src/main.js"></script>
 
-  <!-- Newsletter Google Sheet Integration & Slide-Up Popup Script -->
+  <!-- Lead Magnet & Quant Resources Script -->
   <script>
     document.addEventListener('DOMContentLoaded', () => {
       const GOOGLE_SHEET_URL = "https://script.google.com/macros/s/AKfycbxp4utuxkTKfW2VNY9PqZBKVfSD-n_s3bYQ81JbpJqcK4d-o9RQiswUPbZ2Vu7wHup8xw/exec";
 
-      function handleSubscribe(email, source, formEl, btnEl, successEl) {
-        btnEl.disabled = true;
-        btnEl.innerText = "Subscribing...";
+      const leadForm = document.querySelector('#lead-magnet-form');
+      if (leadForm) {
+        leadForm.addEventListener('submit', (e) => {
+          e.preventDefault();
+          const emailInput = document.querySelector('#lead-magnet-email');
+          const btn = document.querySelector('#lead-magnet-btn');
+          const success = document.querySelector('#lead-magnet-success');
+          const email = emailInput.value.trim();
 
-        fetch(GOOGLE_SHEET_URL, {
-          method: 'POST',
-          mode: 'cors',
-          headers: { 'Content-Type': 'text/plain' },
-          body: JSON.stringify({
-            source: source,
-            name: 'Newsletter Subscriber',
-            email: email,
-            phone: 'N/A',
-            market: 'Newsletter',
-            product_type: 'Daily Market Pulse Subscriber',
-            message: 'Subscribed to 4:00 PM Daily Market Wrap'
+          btn.disabled = true;
+          btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Preparing Files...';
+
+          fetch(GOOGLE_SHEET_URL, {
+            method: 'POST',
+            mode: 'cors',
+            headers: { 'Content-Type': 'text/plain' },
+            body: JSON.stringify({
+              source: 'Lead Magnet [Daily Pulse Python Code]',
+              name: 'Trader',
+              email: email,
+              phone: 'N/A',
+              market: 'Indian Equity / F&O',
+              product_type: 'Lead Magnet Download',
+              message: 'Requested Python Strategy Code & 5-Year Backtest Dataset for Daily Market Pulse'
+            })
           })
-        })
-        .then(() => {
-          formEl.style.display = 'none';
-          successEl.style.display = 'block';
-          localStorage.setItem('stratexa_subscribed', 'true');
-        })
-        .catch(err => {
-          console.error(err);
-          alert('Subscription failed. Please check your network connection.');
-          btnEl.disabled = false;
-          btnEl.innerText = "Subscribe Free";
-        });
-      }
-
-      // 1. Inline Form
-      const inlineForm = document.querySelector('#inline-newsletter-form');
-      if (inlineForm) {
-        inlineForm.addEventListener('submit', (e) => {
-          e.preventDefault();
-          const email = document.querySelector('#inline-newsletter-email').value.trim();
-          const btn = document.querySelector('#inline-newsletter-btn');
-          const success = document.querySelector('#inline-newsletter-success');
-          handleSubscribe(email, 'Newsletter [Inline Blog]', inlineForm, btn, success);
-        });
-      }
-
-      // 2. Sidebar Form
-      const sidebarForm = document.querySelector('#sidebar-newsletter-form');
-      if (sidebarForm) {
-        sidebarForm.addEventListener('submit', (e) => {
-          e.preventDefault();
-          const email = document.querySelector('#sidebar-newsletter-email').value.trim();
-          const btn = document.querySelector('#sidebar-newsletter-btn');
-          const success = document.querySelector('#sidebar-newsletter-success');
-          handleSubscribe(email, 'Newsletter [Sidebar]', sidebarForm, btn, success);
-        });
-      }
-
-      // 3. Slide-Up Popup Trigger
-      const popup = document.querySelector('#slideup-newsletter-popup');
-      const closeBtn = document.querySelector('#popup-close-btn');
-      const slideupForm = document.querySelector('#slideup-newsletter-form');
-
-      if (popup && !localStorage.getItem('stratexa_subscribed') && !sessionStorage.getItem('stratexa_popup_dismissed')) {
-        let shown = false;
-        window.addEventListener('scroll', () => {
-          const scrollPct = (window.scrollY + window.innerHeight) / document.documentElement.scrollHeight;
-          if (scrollPct > 0.45 && !shown) {
-            shown = true;
-            popup.classList.add('active');
-          }
-        });
-
-        if (closeBtn) {
-          closeBtn.addEventListener('click', () => {
-            popup.classList.remove('active');
-            sessionStorage.setItem('stratexa_popup_dismissed', 'true');
+          .then(() => {
+            leadForm.style.display = 'none';
+            success.style.display = 'block';
+          })
+          .catch(err => {
+            console.error(err);
+            alert('Submission error. Please check your connection or contact us on WhatsApp.');
+            btn.disabled = false;
+            btn.innerHTML = '<i class="fa-solid fa-download" style="margin-right: 6px;"></i> Send Me Code';
           });
-        }
-
-        if (slideupForm) {
-          slideupForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            const email = document.querySelector('#slideup-newsletter-email').value.trim();
-            const btn = document.querySelector('#slideup-newsletter-btn');
-            const success = document.querySelector('#slideup-newsletter-success');
-            handleSubscribe(email, 'Newsletter [Slide-Up Popup]', slideupForm, btn, success);
-            setTimeout(() => { popup.classList.remove('active'); }, 3000);
-          });
-        }
+        });
       }
     });
   </script>
