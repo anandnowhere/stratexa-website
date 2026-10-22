@@ -19,6 +19,7 @@ export default defineConfig({
         cookie: resolve(__dirname, 'cookie.html'),
         cookies: resolve(__dirname, 'cookies.html'),
         strategy: resolve(__dirname, 'trend-following-options-strategy.html'),
+        blogs: resolve(__dirname, 'blogs.html'),
         market_pulse: resolve(__dirname, 'daily-market-pulse.html'),
         login: resolve(__dirname, 'login.html'),
       }

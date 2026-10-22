@@ -1,0 +1,465 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-M3LCVRSQTK"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-M3LCVRSQTK');
+  </script>
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-KW55NS8N');</script>
+  <!-- End Google Tag Manager -->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/logo.png" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  
+  <link rel="canonical" href="https://www.stratexa.in/blogs.html" />
+  <title>Insights & Quantitative Research – Stratexa | Algorithmic Trading Blog</title>
+  <meta name="description" content="Daily Indian stock market quant wraps, backtested trading strategy breakdowns, and automation guides for Zerodha, Angel One, and Tradetron." />
+  <meta name="keywords" content="algo trading blog India, Nifty daily market pulse, trading bot backtesting, Tradetron developer, Zerodha API Python, Stratexa research" />
+  <meta name="author" content="Stratexa" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://www.stratexa.in/blogs.html" />
+  <meta property="og:title" content="Insights & Quantitative Research – Stratexa" />
+  <meta property="og:description" content="Daily Indian stock market quant wraps, strategy breakdowns, and automation guides for retail and institutional traders." />
+  <meta property="og:image" content="https://www.stratexa.in/og-image.png" />
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- FontAwesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <link rel="stylesheet" href="/src/style.css" />
+
+  <style>
+    .blogs-hero {
+      background: linear-gradient(135deg, var(--bg-secondary) 0%, var(--bg-primary) 100%);
+      border-bottom: 1px solid var(--border-color);
+      padding: 5rem 0 3.5rem;
+      text-align: center;
+    }
+    .blogs-hero h1 {
+      font-family: var(--font-heading);
+      font-size: clamp(2.2rem, 5vw, 3.5rem);
+      font-weight: 800;
+      line-height: 1.15;
+      margin-bottom: 1rem;
+    }
+    .blogs-hero p {
+      color: var(--text-secondary);
+      font-size: 1.15rem;
+      max-width: 680px;
+      margin: 0 auto 2rem;
+      line-height: 1.7;
+    }
+
+    /* Category Filter Tabs */
+    .category-tabs-container {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin: 0 auto 3rem;
+      max-width: 900px;
+    }
+    .category-tab-btn {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border-color);
+      color: var(--text-secondary);
+      padding: 8px 18px;
+      border-radius: 50px;
+      font-size: 0.88rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .category-tab-btn:hover {
+      border-color: #10b981;
+      color: var(--text-primary);
+    }
+    .category-tab-btn.active {
+      background: #10b981;
+      border-color: #10b981;
+      color: #000000;
+      font-weight: 700;
+    }
+
+    /* Featured Article Hero Card */
+    .featured-article-card {
+      background: linear-gradient(135deg, rgba(16, 185, 129, 0.12) 0%, rgba(6, 182, 212, 0.08) 50%, var(--bg-card) 100%);
+      border: 1.5px solid rgba(16, 185, 129, 0.35);
+      border-radius: 20px;
+      padding: clamp(1.75rem, 4vw, 3rem);
+      margin-bottom: 3.5rem;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+    }
+    .featured-badge {
+      background: #10b981;
+      color: #000000;
+      font-size: 0.72rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      padding: 4px 12px;
+      border-radius: 50px;
+      display: inline-block;
+      margin-bottom: 1rem;
+    }
+    .featured-article-card h2 {
+      font-family: var(--font-heading);
+      font-size: clamp(1.6rem, 3vw, 2.2rem);
+      font-weight: 800;
+      color: var(--text-primary);
+      margin-bottom: 1rem;
+      line-height: 1.25;
+    }
+    .featured-article-card p {
+      color: var(--text-secondary);
+      font-size: 1.05rem;
+      line-height: 1.7;
+      max-width: 800px;
+      margin-bottom: 1.5rem;
+    }
+
+    /* Articles Grid */
+    .articles-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+      gap: 2rem;
+      margin-bottom: 5rem;
+    }
+    .article-card {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border-color);
+      border-radius: 16px;
+      padding: 1.75rem;
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.25s, border-color 0.25s, box-shadow 0.25s;
+      text-decoration: none;
+      color: inherit;
+    }
+    .article-card:hover {
+      transform: translateY(-4px);
+      border-color: #10b981;
+      box-shadow: 0 15px 35px rgba(0,0,0,0.25);
+    }
+    .article-meta-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1rem;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+    .article-cat-tag {
+      font-weight: 700;
+      text-transform: uppercase;
+      font-size: 0.72rem;
+      padding: 3px 8px;
+      border-radius: 4px;
+    }
+    .tag-pulse { background: rgba(16,185,129,0.15); color: #10b981; }
+    .tag-teardown { background: rgba(6,182,212,0.15); color: #06b6d4; }
+    .tag-edge { background: rgba(139,92,246,0.15); color: #8b5cf6; }
+    .tag-guide { background: rgba(245,158,11,0.15); color: #f59e0b; }
+
+    .article-card h3 {
+      font-family: var(--font-heading);
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 0.75rem;
+      line-height: 1.35;
+    }
+    .article-card p {
+      color: var(--text-secondary);
+      font-size: 0.92rem;
+      line-height: 1.6;
+      margin-bottom: 1.5rem;
+      flex-grow: 1;
+    }
+    .article-card-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-top: 1px solid var(--border-color);
+      padding-top: 1rem;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: #10b981;
+    }
+  </style>
+
+  <script>
+    (function() {
+      const theme = localStorage.getItem('theme') || 'dark';
+      document.documentElement.setAttribute('data-theme', theme);
+    })();
+  </script>
+</head>
+<body>
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KW55NS8N"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+  <header class="navbar" id="main-header">
+    <div class="nav-container">
+      <a href="/" class="nav-logo" id="nav-logo-link">
+        <div class="logo-icon">
+          <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M25 75L75 25M75 25H45M75 25V55" stroke="#10b981" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M25 45V75H55" stroke="var(--logo-stroke)" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <div class="logo-text"><span class="brand-name">STRATEXA.IN</span><span class="brand-tagline">AUTOMATE. EXECUTE. ELEVATE.</span></div>
+      </a>
+      <nav class="nav-menu" id="nav-menu">
+        <a href="/#services" class="nav-link">Solutions</a>
+        <a href="/strategies.html" class="nav-link">Strategies</a>
+        <a href="/pricing.html" class="nav-link">Pricing</a>
+        <a href="/faq.html" class="nav-link">FAQ</a>
+        <a href="/about.html" class="nav-link">About</a>
+        <a href="/blogs.html" class="nav-link active">Blogs</a>
+        <a href="/login.html" class="nav-link"><i class="fa-solid fa-desktop" style="margin-right: 4px;"></i> Live Demo</a>
+        <a href="/#consultation" class="btn btn-primary btn-nav">Book Free Consultation</a>
+      </nav>
+    </div>
+  </header>
+
+  <main style="padding-top: 80px;">
+    <!-- Hero Section -->
+    <section class="blogs-hero">
+      <div class="container">
+        <span class="badge" style="background: var(--accent-green-glow); color: var(--accent-green-bright); padding: 0.4rem 0.9rem; border-radius: 50px; font-weight: 600; font-size: 0.78rem; text-transform: uppercase; letter-spacing: 1px; border: 1px solid var(--border-color-glow); display: inline-block; margin-bottom: 1rem;">
+          QUANTITATIVE RESEARCH & MARKET INSIGHTS
+        </span>
+        <h1>Stratexa Insights & Quant Desk</h1>
+        <p>Daily mathematical autopsies of Indian market regimes, backtested trading strategy teardowns, and actionable automation playbooks for disciplined traders.</p>
+        
+        <!-- Category Filter Tabs -->
+        <div class="category-tabs-container">
+          <button class="category-tab-btn active" data-filter="all">All Articles</button>
+          <button class="category-tab-btn" data-filter="daily-pulse">Daily Market Pulse</button>
+          <button class="category-tab-btn" data-filter="strategy-teardowns">Strategy Teardowns</button>
+          <button class="category-tab-btn" data-filter="algo-edge">The Algorithmic Edge</button>
+          <button class="category-tab-btn" data-filter="broker-guides">Broker & API Guides</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Content Container -->
+    <section style="padding: 3rem 0;">
+      <div class="container">
+        
+        <!-- Featured Article Hero Banner -->
+        <div class="featured-article-card" data-category="daily-pulse">
+          <span class="featured-badge"><i class="fa-solid fa-bolt"></i> Today's Featured Quant Wrap</span>
+          <h2>Daily Market Pulse: Volatility Spike & The Algorithmic Execution Edge</h2>
+          <p>
+            An institutional autopsy of today's Indian equity session: NIFTY 50 (-1.06%), India VIX surging +9.78%, CPR Wide breakdown execution, and why vega expansion crushed unhedged option sellers while algorithmic trailing stop-losses locked peak returns.
+          </p>
+          <div style="display: flex; gap: 16px; align-items: center; flex-wrap: wrap;">
+            <a href="/daily-market-pulse.html" class="btn btn-primary" style="padding: 12px 28px; border-radius: 50px; text-decoration: none; font-weight: 600; display: inline-flex; align-items: center; gap: 8px;">
+              <span>Read Full Quant Analysis</span>
+              <i class="fa-solid fa-arrow-right"></i>
+            </a>
+            <span style="color: var(--text-muted); font-size: 0.88rem;"><i class="fa-regular fa-clock" style="margin-right: 4px;"></i> 6 min read &middot; October 22, 2026</span>
+          </div>
+        </div>
+
+        <!-- Articles Grid -->
+        <div class="articles-grid">
+          
+          <!-- Card 1: Today's Daily Pulse -->
+          <a href="/daily-market-pulse.html" class="article-card" data-category="daily-pulse">
+            <div class="article-meta-row">
+              <span class="article-cat-tag tag-pulse">Daily Pulse</span>
+              <span>October 22, 2026</span>
+            </div>
+            <h3>Daily Market Pulse: Volatility Spike & The Algorithmic Execution Edge</h3>
+            <p>CPR breakdown, 9/21 EMA slope filters, and why automated bots executed in under 200 ms while discretionary traders hesitated on the gap-down.</p>
+            <div class="article-card-footer">
+              <span>Read Edition &rarr;</span>
+              <span style="color: var(--text-muted); font-weight: 400;">6 min read</span>
+            </div>
+          </a>
+
+          <!-- Card 2: Strategy Teardown -->
+          <a href="/strategies.html" class="article-card" data-category="strategy-teardowns">
+            <div class="article-meta-row">
+              <span class="article-cat-tag tag-teardown">Strategy Teardown</span>
+              <span>October 20, 2026</span>
+            </div>
+            <h3>Supertrend vs 9/21 EMA: Which Trend Strategy Survived 5 Years of Nifty Volatility?</h3>
+            <p>A rigorous backtest comparison across 1,200 trading sessions analyzing maximum drawdown, Sharpe ratio, and ATR trailing stop mechanics.</p>
+            <div class="article-card-footer">
+              <span>Read Backtest &rarr;</span>
+              <span style="color: var(--text-muted); font-weight: 400;">8 min read</span>
+            </div>
+          </a>
+
+          <!-- Card 3: The Algorithmic Edge -->
+          <a href="/about.html" class="article-card" data-category="algo-edge">
+            <div class="article-meta-row">
+              <span class="article-cat-tag tag-edge">The Algorithmic Edge</span>
+              <span>October 18, 2026</span>
+            </div>
+            <h3>Why 93% of Discretionary F&O Traders Lose Money: The Execution Latency Trap</h3>
+            <p>SEBI's data reveals retail losses aren't caused by bad indicators, but by emotional friction, moving stop-losses, and office hour distractions.</p>
+            <div class="article-card-footer">
+              <span>Read Research &rarr;</span>
+              <span style="color: var(--text-muted); font-weight: 400;">5 min read</span>
+            </div>
+          </a>
+
+          <!-- Card 4: Broker & API Guides -->
+          <a href="/#services" class="article-card" data-category="broker-guides">
+            <div class="article-meta-row">
+              <span class="article-cat-tag tag-guide">Broker Guide</span>
+              <span>October 15, 2026</span>
+            </div>
+            <h3>Complete Architecture for Connecting Zerodha Kite & Angel One to Cloud Python Bots</h3>
+            <p>WebSocket streaming, order throttling limits, and how server-side execution on AWS prevents stop-loss hunting.</p>
+            <div class="article-card-footer">
+              <span>Read Guide &rarr;</span>
+              <span style="color: var(--text-muted); font-weight: 400;">7 min read</span>
+            </div>
+          </a>
+
+          <!-- Card 5: Strategy Teardowns -->
+          <a href="/strategies.html" class="article-card" data-category="strategy-teardowns">
+            <div class="article-meta-row">
+              <span class="article-cat-tag tag-teardown">Strategy Teardown</span>
+              <span>October 12, 2026</span>
+            </div>
+            <h3>9:20 AM Short Straddles: Why Automated Trailing Stop Loss is Non-Negotiable</h3>
+            <p>Delta-neutral option selling produces consistent theta decay until a sudden gamma expansion occurs. Here is how code eliminates blowups.</p>
+            <div class="article-card-footer">
+              <span>Read Teardown &rarr;</span>
+              <span style="color: var(--text-muted); font-weight: 400;">6 min read</span>
+            </div>
+          </a>
+
+          <!-- Card 6: The Algorithmic Edge -->
+          <a href="/pricing.html" class="article-card" data-category="algo-edge">
+            <div class="article-meta-row">
+              <span class="article-cat-tag tag-edge">The Algorithmic Edge</span>
+              <span>October 09, 2026</span>
+            </div>
+            <h3>Server-Side Execution vs Browser Terminals: Bypassing Broker Terminal Freezes</h3>
+            <p>Why holding your stop-loss in cloud memory on AWS protects your orders when broker mobile apps freeze on budget or RBI policy days.</p>
+            <div class="article-card-footer">
+              <span>Read Blueprint &rarr;</span>
+              <span style="color: var(--text-muted); font-weight: 400;">5 min read</span>
+            </div>
+          </a>
+
+        </div>
+
+        <!-- Strategy Conversion Strip -->
+        <div style="background: linear-gradient(135deg, rgba(16,185,129,0.12) 0%, rgba(6,182,212,0.1) 100%); border: 1.5px solid var(--accent-green); border-radius: 20px; padding: 3rem 2rem; text-align: center; margin-bottom: 4rem;">
+          <h2 style="font-family: var(--font-heading); font-size: 2rem; font-weight: 800; color: var(--text-primary); margin-bottom: 0.75rem;">
+            Ready to Automate Your Personal Trading Strategy?
+          </h2>
+          <p style="color: var(--text-secondary); max-width: 600px; margin: 0 auto 1.75rem; font-size: 1.05rem; line-height: 1.6;">
+            We engineer your exact indicator rules, chart patterns, or Pine Script alerts into production-grade Python bots for Zerodha, Angel One, and Tradetron for one flat fee of &#8377;5,000.
+          </p>
+          <a href="/?utm_source=blogs_hub&utm_medium=banner&utm_campaign=first_client#consultation" class="btn btn-primary btn-lg" style="padding: 14px 34px; border-radius: 50px;">
+            Book Free Strategy Feasibility Call &rarr;
+          </a>
+        </div>
+
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-content">
+      <div class="footer-brand">
+        <div class="footer-logo">
+          <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" class="footer-logo-svg">
+            <path d="M25 75L75 25M75 25H45M75 25V55" stroke="#10b981" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M25 45V75H55" stroke="#ffffff" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <span class="footer-brand-name">STRATEXA.IN</span>
+        </div>
+        <p class="footer-description">We build secure, low-latency, automated execution software for retail and institutional traders globally. Transform your trading rules into standard Python-driven machines.</p>
+      </div>
+      <div class="footer-links">
+        <h4>Navigation</h4>
+        <a href="/#services">Solutions</a>
+        <a href="/strategies.html">Strategies</a>
+        <a href="/pricing.html">Pricing</a>
+        <a href="/faq.html">FAQ</a>
+        <a href="/about.html">About Us</a>
+        <a href="/blogs.html">Blogs</a>
+        <a href="/login.html">Live Demo</a>
+      </div>
+      <div class="footer-links">
+        <h4>Legal & Support</h4>
+        <a href="/privacy.html">Privacy Policy</a>
+        <a href="/terms.html">Terms & Conditions</a>
+        <a href="/refund.html">Refund Policy</a>
+        <a href="/cookie.html">Cookie Policy</a>
+      </div>
+
+      <div class="footer-disclaimer">
+        <h4>Disclaimer</h4>
+        <p>STRATEXA is a technology and software development company. We do not provide financial advice, trading signals, recommendation packages, or management services. All automated trading strategies coded are built strictly based on customer specifications. Backtested performance results are historical and do not guarantee future profitability. Algorithmic trading carries significant financial risk.</p>
+      </div>
+    </div>
+    
+    <div class="footer-bottom">
+      <div class="container footer-bottom-container">
+        <p>&copy; 2026 STRATEXA. All rights reserved. Registered address: Chennai, TN, India (Remote-First Engineering Team).</p>
+        <div class="social-links">
+          <a href="https://github.com" target="_blank" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+          <a href="mailto:hello@stratexa.in" aria-label="Email"><i class="fa-regular fa-envelope"></i></a>
+          <a href="tel:+919150087233" aria-label="Phone"><i class="fa-solid fa-phone"></i></a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script type="module" src="/src/main.js"></script>
+
+  <!-- Interactive Category Tab Filter -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const tabs = document.querySelectorAll('.category-tab-btn');
+      const cards = document.querySelectorAll('.article-card, .featured-article-card');
+
+      tabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+          tabs.forEach(t => t.classList.remove('active'));
+          tab.classList.add('active');
+
+          const filter = tab.getAttribute('data-filter');
+          cards.forEach(card => {
+            if (filter === 'all' || card.getAttribute('data-category') === filter) {
+              card.style.display = '';
+            } else {
+              card.style.display = 'none';
+            }
+          });
+        });
+      });
+    });
+  </script>
+</body>
+</html>
