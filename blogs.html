@@ -203,6 +203,40 @@
       font-weight: 600;
       color: #10b981;
     }
+
+    /* Mobile & Tablet Responsive Enhancements */
+    @media (max-width: 768px) {
+      .blogs-hero {
+        padding: 3.5rem 1rem 2.5rem;
+      }
+      .blogs-hero p {
+        font-size: 1rem;
+      }
+      .category-tabs-container {
+        gap: 8px;
+        margin-bottom: 2rem;
+      }
+      .category-tab-btn {
+        padding: 6px 14px;
+        font-size: 0.8rem;
+      }
+      .featured-article-card {
+        padding: 1.5rem 1.25rem;
+        margin-bottom: 2rem;
+        border-radius: 16px;
+      }
+      .featured-article-card p {
+        font-size: 0.95rem;
+      }
+      .articles-grid {
+        grid-template-columns: 1fr;
+        gap: 1.25rem;
+        margin-bottom: 3rem;
+      }
+      .article-card {
+        padding: 1.25rem;
+      }
+    }
   </style>
 
   <script>
@@ -238,6 +272,16 @@
         <a href="/login.html" class="nav-link"><i class="fa-solid fa-desktop" style="margin-right: 4px;"></i> Live Demo</a>
         <a href="/#consultation" class="btn btn-primary btn-nav">Book Free Consultation</a>
       </nav>
+      <div class="nav-actions">
+        <button class="theme-toggle-btn" id="theme-toggle-btn" aria-label="Toggle theme">
+          <i class="fa-regular fa-moon"></i>
+        </button>
+        <button class="nav-toggle" id="nav-toggle" aria-label="Toggle menu">
+          <span class="bar"></span>
+          <span class="bar"></span>
+          <span class="bar"></span>
+        </button>
+      </div>
     </div>
   </header>
 

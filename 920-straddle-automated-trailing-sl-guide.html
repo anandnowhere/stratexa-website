@@ -42,6 +42,23 @@
     .blog-content ul { margin: 1.25rem 0 1.75rem 1.75rem; }
     .blog-content li { color: #1e293b; margin-bottom: 0.75rem; line-height: 1.75; }
     .blog-content strong { color: #0f172a; font-weight: 700; }
+    .data-table,
+    .blog-content table {
+      display: block;
+      width: 100%;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      border-collapse: collapse;
+      margin: 1.5rem 0 2rem;
+      font-size: 0.95rem;
+    }
+    .data-table th, .data-table td,
+    .blog-content table th, .blog-content table td {
+      border: 1px solid #e2e8f0;
+      padding: 12px 16px;
+      text-align: left;
+      white-space: nowrap;
+    }
     .sticky-sidebar { position: sticky; top: 100px; display: flex; flex-direction: column; gap: 24px; }
     .sidebar-widget { background: #ffffff; border: 1px solid #e2e8f0; border-radius: 14px; padding: 1.5rem; }
     .newsletter-input { flex: 1; padding: 10px; border: 1px solid #cbd5e1; border-radius: 8px; font-size: 0.9rem; outline: none; }
@@ -52,6 +69,59 @@
     .nav-card-sub { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; color: #64748b; }
     .nav-card-title { font-family: 'Outfit', sans-serif; font-size: 0.95rem; font-weight: 600; color: #0f172a; margin-top: 2px; }
     .hub-center-btn { padding: 10px 18px; border-radius: 8px; border: 1px solid #cbd5e1; background: #ffffff; color: #0f172a; font-weight: 600; text-decoration: none; }
+
+    /* Mobile & Tablet Responsive Enhancements */
+    @media (max-width: 768px) {
+      .blog-header-banner {
+        padding: 2.5rem 1rem 2rem;
+      }
+      .blog-layout-container {
+        padding: 1.25rem 1rem 3.5rem;
+        gap: 2rem;
+      }
+      .editorial-canvas {
+        padding: 1.25rem 1rem;
+        border-radius: 12px;
+      }
+      .blog-content {
+        font-size: 1rem;
+        line-height: 1.75;
+      }
+      .blog-content h3 {
+        font-size: 1.35rem;
+        margin: 1.75rem 0 0.75rem;
+      }
+      .blog-content h4 {
+        font-size: 1.15rem;
+        margin: 1.5rem 0 0.5rem;
+      }
+      .lead-magnet-card {
+        padding: 1.25rem 1rem !important;
+        margin: 2rem 0 !important;
+      }
+      .lead-magnet-card button,
+      .lead-magnet-card a {
+        width: 100% !important;
+        justify-content: center !important;
+      }
+      .article-bottom-nav {
+        grid-template-columns: 1fr;
+        gap: 12px;
+        margin-top: 2rem;
+        padding-top: 1.5rem;
+      }
+      .hub-center-btn {
+        order: -1;
+        justify-content: center;
+      }
+      .nav-card-btn.next {
+        text-align: left;
+      }
+      .lead-modal-card {
+        padding: 1.75rem 1.25rem;
+        border-radius: 16px;
+      }
+    }
     /* Smudge/Blurred Backdrop Modal */
     .lead-modal-backdrop {
       position: fixed;
@@ -135,6 +205,16 @@
         <a href="/login.html" class="nav-link"><i class="fa-solid fa-desktop" style="margin-right: 4px;"></i> Live Demo</a>
         <a href="/#consultation" class="btn btn-primary btn-nav">Book Free Consultation</a>
       </nav>
+      <div class="nav-actions">
+        <button class="theme-toggle-btn" id="theme-toggle-btn" aria-label="Toggle theme">
+          <i class="fa-regular fa-moon"></i>
+        </button>
+        <button class="nav-toggle" id="nav-toggle" aria-label="Toggle menu">
+          <span class="bar"></span>
+          <span class="bar"></span>
+          <span class="bar"></span>
+        </button>
+      </div>
     </div>
   </header>
 

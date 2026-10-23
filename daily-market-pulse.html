@@ -180,17 +180,24 @@
     }
 
     /* Financial Data Tables */
+    .table-responsive,
     .blog-content table {
+      display: block;
       width: 100%;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
       border-collapse: separate;
       border-spacing: 0;
       margin: 2rem 0;
       background: #ffffff;
       border: 1px solid #e2e8f0;
       border-radius: 12px;
-      overflow: hidden;
       box-shadow: 0 4px 15px -2px rgba(15, 23, 42, 0.04);
       font-size: 0.95rem;
+    }
+    .blog-content table th,
+    .blog-content table td {
+      white-space: nowrap;
     }
     .blog-content th {
       background: #0f172a;
@@ -547,6 +554,83 @@
       background: #e2e8f0;
       color: #0f172a;
     }
+
+    /* Mobile & Tablet Responsive Enhancements */
+    @media (max-width: 768px) {
+      .blog-header-banner {
+        padding: 2.5rem 1rem 2rem;
+      }
+      .blog-layout-container {
+        padding: 1.25rem 1rem 3.5rem;
+        gap: 2rem;
+      }
+      .editorial-canvas {
+        padding: 1.25rem 1rem;
+        border-radius: 12px;
+      }
+      .blog-content {
+        font-size: 1rem;
+        line-height: 1.75;
+      }
+      .blog-content h3 {
+        font-size: 1.35rem;
+        margin: 1.75rem 0 0.75rem;
+      }
+      .blog-content h4 {
+        font-size: 1.15rem;
+        margin: 1.5rem 0 0.5rem;
+      }
+      .metric-strip-editorial {
+        grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+        gap: 10px;
+      }
+      .metric-card-editorial {
+        padding: 0.75rem 1rem;
+      }
+      .metric-val {
+        font-size: 1.2rem;
+      }
+      .chart-container {
+        padding: 14px 10px !important;
+        border-radius: 12px !important;
+        margin: 1.25rem 0 !important;
+      }
+      .systematic-observation-box {
+        padding: 1.25rem 1rem;
+        margin: 2rem 0;
+        border-radius: 12px;
+      }
+      .obs-grid {
+        grid-template-columns: 1fr;
+        gap: 12px;
+      }
+      .lead-magnet-card {
+        padding: 1.25rem 1rem !important;
+        margin: 2rem 0 !important;
+      }
+      .lead-magnet-card button,
+      .lead-magnet-card a {
+        width: 100% !important;
+        justify-content: center !important;
+      }
+      .article-bottom-nav {
+        grid-template-columns: 1fr;
+        gap: 12px;
+        margin-top: 2rem;
+        padding-top: 1.5rem;
+      }
+      .hub-center-btn {
+        order: -1;
+        justify-content: center;
+      }
+      .nav-card-btn.next {
+        text-align: left;
+      }
+      .lead-modal-card {
+        padding: 1.75rem 1.25rem;
+        border-radius: 16px;
+      }
+    }
   </style>
 
   <script>
@@ -582,6 +666,16 @@
         <a href="/login.html" class="nav-link"><i class="fa-solid fa-desktop" style="margin-right: 4px;"></i> Live Demo</a>
         <a href="/#consultation" class="btn btn-primary btn-nav">Book Free Consultation</a>
       </nav>
+      <div class="nav-actions">
+        <button class="theme-toggle-btn" id="theme-toggle-btn" aria-label="Toggle theme">
+          <i class="fa-regular fa-moon"></i>
+        </button>
+        <button class="nav-toggle" id="nav-toggle" aria-label="Toggle menu">
+          <span class="bar"></span>
+          <span class="bar"></span>
+          <span class="bar"></span>
+        </button>
+      </div>
     </div>
   </header>
 
