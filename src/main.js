@@ -1,4 +1,5 @@
 // --- Stratexa Main JS Interactivity ---
+import './analytics.js';
 
 document.addEventListener('DOMContentLoaded', () => {
   initNavbar();

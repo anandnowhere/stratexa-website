@@ -27,6 +27,7 @@ export default defineConfig({
         straddle_guide: resolve(__dirname, '920-straddle-automated-trailing-sl-guide.html'),
         server_execution: resolve(__dirname, 'server-side-execution-vs-browser-terminal-freezes.html'),
         login: resolve(__dirname, 'login.html'),
+        analytics_dashboard: resolve(__dirname, 'analytics-dashboard.html'),
       }
     }
   }
