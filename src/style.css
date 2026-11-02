@@ -3,6 +3,7 @@
   --bg-primary: #0a0e1a;
   --bg-secondary: #111726;
   --bg-tertiary: #192138;
+  --bg-card: #111726;
   
   --accent-green: #10b981;
   --accent-green-hover: #059669;
@@ -35,6 +36,13 @@
   --process-bg: rgba(17, 23, 38, 0.35);
   --tech-bg: rgba(10, 14, 26, 0.8);
   --chart-bg: rgba(10, 14, 26, 0.4);
+
+  --byos-gradient: linear-gradient(135deg, rgba(16,185,129,0.14) 0%, rgba(6,182,212,0.1) 50%, rgba(17,23,38,0.95) 100%);
+  --byos-pill-bg: rgba(17,23,38,0.7);
+  --byos-pill-border: var(--border-color);
+  --byos-card-bg: #111726;
+  --byos-subcard-bg: rgba(17,23,38,0.6);
+  --byos-card-shadow: 0 15px 35px rgba(0,0,0,0.4);
   
   scroll-behavior: smooth;
 }
@@ -43,6 +51,9 @@
   --bg-primary: #faf8f2;
   --bg-secondary: #ffffff;
   --bg-tertiary: #f3efe6;
+  --bg-card: #ffffff;
+
+  --accent-green-bright: #059669;
   
   --text-primary: #0f172a;
   --text-secondary: #475569;
@@ -64,6 +75,13 @@
   --process-bg: rgba(243, 239, 230, 0.5);
   --tech-bg: rgba(243, 239, 230, 0.8);
   --chart-bg: rgba(87, 83, 78, 0.04);
+
+  --byos-gradient: linear-gradient(135deg, rgba(16,185,129,0.12) 0%, rgba(6,182,212,0.08) 50%, rgba(255,255,255,0.95) 100%);
+  --byos-pill-bg: #ffffff;
+  --byos-pill-border: rgba(87, 83, 78, 0.12);
+  --byos-card-bg: #ffffff;
+  --byos-subcard-bg: #f8fafc;
+  --byos-card-shadow: 0 15px 35px rgba(15,23,42,0.08);
 }
 
 /* --- Base Resets & Global Styles --- */
