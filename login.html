@@ -512,10 +512,10 @@
 
         <div style="background: rgba(6, 182, 212, 0.12); border: 1px solid rgba(6, 182, 212, 0.35); border-radius: 8px; padding: 0.65rem 0.85rem; margin-bottom: 1.25rem; text-align: center; font-size: 0.78rem; color: #06b6d4; line-height: 1.45;">
           <i class="fa-solid fa-flask" style="margin-right: 5px;"></i>
-          <strong>Interactive Demo Sandbox</strong> &middot; Explore sample live telemetry, trade logs &amp; performance metrics. Enter any sample credentials to view.
+          <strong>Client &amp; Demo Terminal Access</strong> &middot; Use username <code>demo</code> &amp; password <code>demo</code> for sandbox preview. Registered clients enter their credentials for dedicated live feeds.
         </div>
-        <h3 class="form-title">Live Terminal Demo</h3>
-        <p class="form-sub">Experience how your automated strategy logs trades, monitors VPS health &amp; tracks PnL in real-time.</p>
+        <h3 class="form-title">Strategy Terminal Sign-In</h3>
+        <p class="form-sub">Sign in to access your dedicated VPS strategy monitor, live telemetry &amp; execution logs.</p>
 
         <div id="error-message" class="error-box">
           <i class="fa-solid fa-circle-exclamation"></i>
@@ -559,13 +559,13 @@
 
     <!-- DASHBOARD VIEW -->
     <div id="dashboard-view" class="dashboard-container hidden">
-      <!-- Interactive Demo Sandbox Banner -->
-      <div style="background: rgba(245, 158, 11, 0.12); border: 1px solid rgba(245, 158, 11, 0.3); border-radius: 10px; padding: 0.65rem 1.25rem; margin-bottom: 1.5rem; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px; font-size: 0.82rem; color: #f59e0b;">
-        <div>
+      <!-- Interactive Demo / Live Client Banner -->
+      <div id="demo-banner" style="background: rgba(245, 158, 11, 0.12); border: 1px solid rgba(245, 158, 11, 0.3); border-radius: 10px; padding: 0.65rem 1.25rem; margin-bottom: 1.5rem; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px; font-size: 0.82rem; color: #f59e0b;">
+        <div id="banner-text">
           <i class="fa-solid fa-triangle-exclamation" style="margin-right: 6px;"></i>
           <strong>Interactive Demo Sandbox</strong> &mdash; Displaying simulated client telemetry and live execution data.
         </div>
-        <a href="https://wa.me/919150087233?text=Hi%20Stratexa%2C%20I%20viewed%20your%20Live%20Terminal%20Demo%20and%20want%20to%20deploy%20my%20own%20bot." target="_blank" rel="noopener noreferrer" style="color: #10b981; font-weight: 700; text-decoration: none;">Deploy Your Own Bot &rarr;</a>
+        <a id="banner-link" href="https://wa.me/919150087233?text=Hi%20Stratexa%2C%20I%20viewed%20your%20Live%20Terminal%20Demo%20and%20want%20to%20deploy%20my%20own%20bot." target="_blank" rel="noopener noreferrer" style="color: #10b981; font-weight: 700; text-decoration: none;">Deploy Your Own Bot &rarr;</a>
       </div>
 
       <!-- Top Header -->
@@ -604,7 +604,7 @@
       <!-- Key Performance Metrics Cards -->
       <div class="metrics-grid">
         <div class="metric-card">
-          <div class="metric-label">Today's Realized PnL (24-Jul-2026)</div>
+          <div id="metric-today-label" class="metric-label">Today's Realized PnL (24-Jul-2026)</div>
           <div id="metric-today-pnl" class="metric-value">₹0.00</div>
           <div id="metric-today-sub" class="metric-sub">
             <i class="fa-solid fa-circle-check" style="color: var(--accent-green-bright);"></i>
@@ -613,9 +613,9 @@
         </div>
 
         <div class="metric-card">
-          <div class="metric-label">July 2026 MTD PnL</div>
+          <div id="metric-mtd-label" class="metric-label">July 2026 MTD PnL</div>
           <div id="metric-mtd-pnl" class="metric-value">+₹33,380.00</div>
-          <div class="metric-sub">
+          <div id="metric-mtd-sub" class="metric-sub">
             <i class="fa-solid fa-chart-line" style="color: var(--accent-cyan);"></i>
             <span>Win Rate: 78.6% (18 Active Sessions)</span>
           </div>
@@ -624,7 +624,7 @@
         <div class="metric-card">
           <div class="metric-label">Active Deploy Capital</div>
           <div id="metric-capital" class="metric-value">₹2,50,000.00</div>
-          <div class="metric-sub">
+          <div id="metric-cap-sub" class="metric-sub">
             <i class="fa-solid fa-shield-halved" style="color: var(--accent-green-bright);"></i>
             <span>Margin Available: 100% (Flat / Awaiting Signal)</span>
           </div>
@@ -646,7 +646,7 @@
         <div class="table-header">
           <div class="table-title">
             <i class="fa-solid fa-list-check" style="color: var(--accent-green-bright);"></i>
-            <span>Today's Executed Options Trade Log (24-Jul-2026)</span>
+            <span id="trade-log-title">Today's Executed Options Trade Log (24-Jul-2026)</span>
           </div>
           <div style="display: flex; align-items: center; gap: 10px;">
             <button id="btn-toggle-day" onclick="toggleTradeDayView()" class="btn-outline" style="font-size: 0.78rem; padding: 6px 12px;">
@@ -830,8 +830,54 @@
     </div>
 
     <script>
-      // COMPLETE FULL MONTH DAILY BREAKDOWN DATA FOR ANAND AND MOHAN
+      // COMPLETE FULL MONTH DAILY BREAKDOWN DATA FOR CLIENTS AND DEMO
       const CLIENT_DATA = {
+        'demo': {
+          isDemo: true,
+          clientId: 'DEMO-SANDBOX',
+          vpsUrl: '#',
+          capital: '₹2,50,000.00',
+          todayPnl: '₹0.00',
+          todaySub: 'No trade signals triggered today (Market Monitored)',
+          mtdPnl: '+₹13,754.82',
+          yesterdayPnl: '+₹4,546.75',
+          yesterdayTrades: [
+            { symbol: 'NIFTY 28JUL26 24350 PE', type: 'SELL CREDIT', qty: '650 (13 Lots)', entry: '₹45.20', exit: '₹31.70', pnl: '+₹3,201.25', pnlClass: 'pnl-plus', status: 'CLOSED (Target)', tagClass: 'tag-closed' },
+            { symbol: 'NIFTY 28JUL26 24350 CE', type: 'SELL CREDIT', qty: '650 (13 Lots)', entry: '₹15.80', exit: '₹13.24', pnl: '+₹1,664.00', pnlClass: 'pnl-plus', status: 'CLOSED (Target)', tagClass: 'tag-closed' },
+            { symbol: 'NIFTY 28JUL26 24350 CE', type: 'MIS BUY (HEDGE)', qty: '650 (13 Lots)', entry: '₹18.25', exit: '₹13.35', pnl: '-₹318.50', pnlClass: 'pnl-minus', status: 'CLOSED (Hedge)', tagClass: 'tag-hedge' }
+          ],
+          dailyJul26: [],
+          dailyJun26: [],
+          dailyMay26: []
+        },
+        'sandip': {
+          isLive: true,
+          isSandip: true,
+          clientId: 'FN246011',
+          clientName: 'Mr. Sandip Chandrakant',
+          vpsUrl: 'http://139.59.43.98:8000',
+          capital: '₹1,00,000.00',
+          todayPnl: '₹0.00',
+          todaySub: '9:20 AM & 10:00 AM Short Straddles Active (Shoonya Paper Mode)',
+          mtdPnl: '₹0.00',
+          yesterdayPnl: '₹0.00',
+          yesterdayTrades: [],
+          dailyJul26: []
+        },
+        'fn246011': {
+          isLive: true,
+          isSandip: true,
+          clientId: 'FN246011',
+          clientName: 'Mr. Sandip Chandrakant',
+          vpsUrl: 'http://139.59.43.98:8000',
+          capital: '₹1,00,000.00',
+          todayPnl: '₹0.00',
+          todaySub: '9:20 AM & 10:00 AM Short Straddles Active (Shoonya Paper Mode)',
+          mtdPnl: '₹0.00',
+          yesterdayPnl: '₹0.00',
+          yesterdayTrades: [],
+          dailyJul26: []
+        },
         'anand': {
           clientId: 'ANAND-0824',
           vpsUrl: 'http://3.108.19.73:8080',
@@ -1064,6 +1110,13 @@
           ]
         }
       };
+
+      // Link sample audit backtest data for demo sandbox user
+      if (CLIENT_DATA['demo'] && CLIENT_DATA['anand']) {
+        CLIENT_DATA['demo'].dailyJul26 = CLIENT_DATA['anand'].dailyJul26;
+        CLIENT_DATA['demo'].dailyJun26 = CLIENT_DATA['anand'].dailyJun26;
+        CLIENT_DATA['demo'].dailyMay26 = CLIENT_DATA['anand'].dailyMay26;
+      }
     
       let activeTradeViewDay = 'today';
       const loginView = document.getElementById('login-view');
@@ -1071,6 +1124,10 @@
       const form = document.getElementById('portal-form');
       const errorBox = document.getElementById('error-message');
       const errorText = document.getElementById('error-text');
+
+      // Preserve sample historical breakdown template for demo sandbox view
+      const demoHistoryTbodyEl = document.getElementById('history-log-body');
+      const demoHistoricalHtml = demoHistoryTbodyEl ? demoHistoryTbodyEl.innerHTML : '';
 
       const savedUser = sessionStorage.getItem('client_user');
       if (savedUser && CLIENT_DATA[savedUser]) {
@@ -1083,36 +1140,117 @@
           errorBox.classList.remove('active');
 
           const inputUser = document.getElementById('client-id').value.trim().toLowerCase();
-          const password = document.getElementById('client-password').value;
+          const password = document.getElementById('client-password').value.trim();
 
-          let username = inputUser;
-          if (!CLIENT_DATA[username]) {
-            username = 'anand'; // Default fallback so any user login succeeds!
-          }
-
-          if (!password) {
-            errorText.textContent = 'Please enter your password.';
+          if (!inputUser || !password) {
+            errorText.textContent = 'Please enter both username and password.';
             errorBox.classList.add('active');
             return;
           }
 
-          sessionStorage.setItem('client_user', username);
-          renderDashboard(username);
+          // 1. DEMO LOGIN: User demo, Pass demo
+          if (inputUser === 'demo') {
+            if (password.toLowerCase() !== 'demo') {
+              errorText.textContent = 'Invalid password. For demo sandbox access, use password "demo".';
+              errorBox.classList.add('active');
+              return;
+            }
+            sessionStorage.setItem('client_user', 'demo');
+            renderDashboard('demo');
+            return;
+          }
+
+          // 2. LIVE CLIENT LOGIN: Sandip Chandrakant (FN246011)
+          if (inputUser === 'sandip' || inputUser === 'fn246011') {
+            if (password !== 'Santro@2020' && password.toLowerCase() !== 'santro@2020') {
+              errorText.textContent = 'Invalid password for client FN246011.';
+              errorBox.classList.add('active');
+              return;
+            }
+            sessionStorage.setItem('client_user', 'sandip');
+            renderDashboard('sandip');
+            return;
+          }
+
+          // 3. Other accounts
+          if (CLIENT_DATA[inputUser]) {
+            sessionStorage.setItem('client_user', inputUser);
+            renderDashboard(inputUser);
+            return;
+          }
+
+          // 4. Fallback for unrecognized credentials
+          errorText.innerHTML = 'Invalid account credentials. Enter registered client ID or use <strong>demo</strong> / <strong>demo</strong> for sandbox.';
+          errorBox.classList.add('active');
         });
       }
 
       function renderDashboard(username) {
-        const client = CLIENT_DATA[username] || CLIENT_DATA['anand'];
+        const client = CLIENT_DATA[username] || CLIENT_DATA['demo'];
         if (!client) return;
 
         if (loginView) loginView.classList.add('hidden');
         if (dashboardView) dashboardView.classList.remove('hidden');
+
+        // Banner customization: Live Client vs Demo Sandbox
+        const banner = document.getElementById('demo-banner');
+        if (banner) {
+          if (client.isSandip) {
+            banner.style.background = 'rgba(16, 185, 129, 0.12)';
+            banner.style.border = '1px solid rgba(16, 185, 129, 0.35)';
+            banner.style.color = '#34d399';
+            banner.innerHTML = `
+              <div style="display: flex; align-items: center; gap: 8px;">
+                <i class="fa-solid fa-circle-check" style="color: #10b981; font-size: 1.1rem;"></i>
+                <span><strong>🟢 Live Client Terminal</strong> &mdash; Mr. Sandip Chandrakant (Client ID: <strong>FN246011</strong>) &bull; Strategy: <strong>9:20 AM &amp; 10:00 AM Short Straddle</strong> &bull; Mode: <strong>Paper Trade (Shoonya Terminal Routed)</strong></span>
+              </div>
+              <a href="http://139.59.43.98:8000" target="_blank" style="background: #10b981; color: #070a12; font-weight: 700; padding: 6px 14px; border-radius: 6px; text-decoration: none; display: inline-flex; align-items: center; gap: 6px;">
+                <i class="fa-solid fa-gauge-high"></i> Open Live VPS Terminal &rarr;
+              </a>
+            `;
+          } else {
+            banner.style.background = 'rgba(245, 158, 11, 0.12)';
+            banner.style.border = '1px solid rgba(245, 158, 11, 0.3)';
+            banner.style.color = '#f59e0b';
+            banner.innerHTML = `
+              <div>
+                <i class="fa-solid fa-triangle-exclamation" style="margin-right: 6px;"></i>
+                <strong>Interactive Demo Sandbox</strong> &mdash; Displaying simulated client telemetry and live execution data.
+              </div>
+              <a href="https://wa.me/919150087233?text=Hi%20Stratexa%2C%20I%20viewed%20your%20Live%20Terminal%20Demo%20and%20want%20to%20deploy%20my%20own%20bot." target="_blank" rel="noopener noreferrer" style="color: #10b981; font-weight: 700; text-decoration: none;">Deploy Your Own Bot &rarr;</a>
+            `;
+          }
+        }
 
         const badge = document.getElementById('client-id-badge');
         if (badge) badge.textContent = client.clientId;
 
         const vps = document.getElementById('vps-btn');
         if (vps) vps.href = client.vpsUrl;
+
+        const todayLabel = document.getElementById('metric-today-label');
+        if (todayLabel) todayLabel.textContent = client.isSandip ? "Today's Realized PnL (06-Nov-2026)" : "Today's Realized PnL (24-Jul-2026)";
+
+        const mtdLabel = document.getElementById('metric-mtd-label');
+        if (mtdLabel) mtdLabel.textContent = client.isSandip ? "November 2026 MTD PnL" : "July 2026 MTD PnL";
+
+        const todaySub = document.getElementById('metric-today-sub');
+        if (todaySub) {
+          if (client.isSandip) {
+            todaySub.innerHTML = `<i class="fa-solid fa-circle-check" style="color: var(--accent-green-bright);"></i> <span>9:20 AM &amp; 10:00 AM Short Straddles Active (Shoonya Paper Mode)</span>`;
+          } else {
+            todaySub.innerHTML = `<i class="fa-solid fa-circle-check" style="color: var(--accent-green-bright);"></i> <span>No trades triggered today (Market Monitored)</span>`;
+          }
+        }
+
+        const mtdSub = document.getElementById('metric-mtd-sub');
+        if (mtdSub) {
+          if (client.isSandip) {
+            mtdSub.innerHTML = `<i class="fa-solid fa-calendar-check" style="color: var(--accent-cyan);"></i> <span>Account Deployed: 06-Nov-2026</span>`;
+          } else {
+            mtdSub.innerHTML = `<i class="fa-solid fa-chart-line" style="color: var(--accent-cyan);"></i> <span>Win Rate: 78.6% (18 Active Sessions)</span>`;
+          }
+        }
 
         const todayPnl = document.getElementById('metric-today-pnl');
         if (todayPnl) todayPnl.textContent = client.todayPnl;
@@ -1123,75 +1261,157 @@
         const cap = document.getElementById('metric-capital');
         if (cap) cap.textContent = client.capital;
 
-        // Render July 2026 Full Daily Table
-        const julTbody = document.getElementById('daily-jul26-body');
-        if (julTbody && client.dailyJul26) {
-          julTbody.innerHTML = client.dailyJul26.map(d => `
-            <tr>
-              <td style="font-weight: 600; color: #ffffff;">${d.date}</td>
-              <td style="font-family: 'JetBrains Mono', monospace;">${d.trades}</td>
-              <td style="font-weight: 600;">${d.winRate}</td>
-              <td class="${d.pnlClass}">${d.dailyPnl}</td>
-              <td class="pnl-plus">${d.cumPnl}</td>
-              <td><span class="${d.tagClass}">${d.status}</span></td>
-            </tr>
-          `).join('');
-        }
+        // Historical Audit Breakdown: Live vs Demo
+        const histLogBody = document.getElementById('history-log-body');
+        if (histLogBody) {
+          if (client.isSandip) {
+            histLogBody.innerHTML = `
+              <tr>
+                <td style="font-weight: 700; color: #ffffff;">November 2026 (MTD)</td>
+                <td>9:20 AM &amp; 10:00 AM Short Straddle (NIFTY F&amp;O)</td>
+                <td style="font-family: 'JetBrains Mono', monospace;">0</td>
+                <td style="font-weight: 600; color: var(--accent-green-bright);">&mdash;</td>
+                <td class="pnl-zero">₹0.00</td>
+                <td style="color: var(--text-secondary);">₹0.00</td>
+                <td class="pnl-zero">₹0.00</td>
+                <td>
+                  <button onclick="toggleAccordion('nov26')" class="expand-btn">
+                    <span id="acc-btn-nov26">Expand [▼]</span>
+                  </button>
+                </td>
+              </tr>
+              <tr id="acc-row-nov26" class="daily-accordion-row">
+                <td colspan="8" style="padding: 0;">
+                  <div class="daily-accordion-box">
+                    <div style="font-weight: 700; font-size: 0.82rem; color: var(--accent-cyan); margin-bottom: 10px; display: flex; align-items: center; gap: 8px;">
+                      <i class="fa-solid fa-calendar-days"></i> November 2026 Daily Trade Journal (Account Deployed 06-Nov-2026)
+                    </div>
+                    <table class="daily-table">
+                      <thead>
+                        <tr>
+                          <th>Date</th>
+                          <th>Strategy Name</th>
+                          <th>Executed Legs</th>
+                          <th>Shoonya Terminal Orders</th>
+                          <th>Session Outcome / Status</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td style="font-weight: 600; color: #ffffff;">06-Nov-2026 (Today)</td>
+                          <td>9:20 AM &amp; 10:00 AM Short Straddle</td>
+                          <td style="font-family: 'JetBrains Mono', monospace;">24500 CE &amp; 24500 PE (1 Lot)</td>
+                          <td style="font-family: 'JetBrains Mono', monospace; font-size: 0.78rem;">#26110600031359 / #26110600031378</td>
+                          <td><span class="tag-closed">ACTIVE IN POSITION (PAPER TRADE)</span></td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </td>
+              </tr>
+            `;
+          } else {
+            // Restore full demo table
+            histLogBody.innerHTML = demoHistoricalHtml;
 
-        // Render June 2026 Full Daily Table
-        const junTbody = document.getElementById('daily-jun26-body');
-        if (junTbody && client.dailyJun26) {
-          junTbody.innerHTML = client.dailyJun26.map(d => `
-            <tr>
-              <td style="font-weight: 600; color: #ffffff;">${d.date}</td>
-              <td style="font-family: 'JetBrains Mono', monospace;">${d.trades}</td>
-              <td style="font-weight: 600;">${d.winRate}</td>
-              <td class="${d.pnlClass}">${d.dailyPnl}</td>
-              <td class="pnl-plus">${d.cumPnl}</td>
-              <td><span class="${d.tagClass}">${d.status}</span></td>
-            </tr>
-          `).join('');
-        }
+            // Render July 2026 Full Daily Table
+            const julTbody = document.getElementById('daily-jul26-body');
+            if (julTbody && client.dailyJul26) {
+              julTbody.innerHTML = client.dailyJul26.map(d => `
+                <tr>
+                  <td style="font-weight: 600; color: #ffffff;">${d.date}</td>
+                  <td style="font-family: 'JetBrains Mono', monospace;">${d.trades}</td>
+                  <td style="font-weight: 600;">${d.winRate}</td>
+                  <td class="${d.pnlClass}">${d.dailyPnl}</td>
+                  <td class="pnl-plus">${d.cumPnl}</td>
+                  <td><span class="${d.tagClass}">${d.status}</span></td>
+                </tr>
+              `).join('');
+            }
 
-        // Render May 2026 Full Daily Table
-        const mayTbody = document.getElementById('daily-may26-body');
-        if (mayTbody && client.dailyMay26) {
-          mayTbody.innerHTML = client.dailyMay26.map(d => `
-            <tr>
-              <td style="font-weight: 600; color: #ffffff;">${d.date}</td>
-              <td style="font-family: 'JetBrains Mono', monospace;">${d.trades}</td>
-              <td style="font-weight: 600;">${d.winRate}</td>
-              <td class="${d.pnlClass}">${d.dailyPnl}</td>
-              <td class="pnl-plus">${d.cumPnl}</td>
-              <td><span class="${d.tagClass}">${d.status}</span></td>
-            </tr>
-          `).join('');
-        }
+            // Render June 2026 Full Daily Table
+            const junTbody = document.getElementById('daily-jun26-body');
+            if (junTbody && client.dailyJun26) {
+              junTbody.innerHTML = client.dailyJun26.map(d => `
+                <tr>
+                  <td style="font-weight: 600; color: #ffffff;">${d.date}</td>
+                  <td style="font-family: 'JetBrains Mono', monospace;">${d.trades}</td>
+                  <td style="font-weight: 600;">${d.winRate}</td>
+                  <td class="${d.pnlClass}">${d.dailyPnl}</td>
+                  <td class="pnl-plus">${d.cumPnl}</td>
+                  <td><span class="${d.tagClass}">${d.status}</span></td>
+                </tr>
+              `).join('');
+            }
 
-        
-        // Update Overview Summary Table Rows dynamically
-        const sJulNet = document.getElementById('sum-jul26-net');
-        const sJunNet = document.getElementById('sum-jun26-net');
-        const sMayNet = document.getElementById('sum-may26-net');
-
-        if (username === 'mohan') {
-          if (sJulNet) { sJulNet.textContent = '+₹19,868.07'; sJulNet.className = 'pnl-plus'; }
-          if (sJunNet) { sJunNet.textContent = '+₹17,692.20'; sJunNet.className = 'pnl-plus'; }
-          if (sMayNet) { sMayNet.textContent = '-₹9,432.30'; sMayNet.className = 'pnl-minus'; }
-        } else {
-          if (sJulNet) { sJulNet.textContent = '+₹13,754.82'; sJulNet.className = 'pnl-plus'; }
-          if (sJunNet) { sJunNet.textContent = '+₹12,248.45'; sJunNet.className = 'pnl-plus'; }
-          if (sMayNet) { sMayNet.textContent = '-₹6,530.05'; sMayNet.className = 'pnl-minus'; }
+            // Render May 2026 Full Daily Table
+            const mayTbody = document.getElementById('daily-may26-body');
+            if (mayTbody && client.dailyMay26) {
+              mayTbody.innerHTML = client.dailyMay26.map(d => `
+                <tr>
+                  <td style="font-weight: 600; color: #ffffff;">${d.date}</td>
+                  <td style="font-family: 'JetBrains Mono', monospace;">${d.trades}</td>
+                  <td style="font-weight: 600;">${d.winRate}</td>
+                  <td class="${d.pnlClass}">${d.dailyPnl}</td>
+                  <td class="pnl-plus">${d.cumPnl}</td>
+                  <td><span class="${d.tagClass}">${d.status}</span></td>
+                </tr>
+              `).join('');
+            }
+          }
         }
 
         renderTradeLog(username);
       }
 
       function renderTradeLog(username) {
-        const client = CLIENT_DATA[username || sessionStorage.getItem('client_user') || 'anand'];
+        const currentUser = username || sessionStorage.getItem('client_user') || 'demo';
+        const client = CLIENT_DATA[currentUser] || CLIENT_DATA['demo'];
         const tbody = document.getElementById('trade-log-body');
         const btnToggle = document.getElementById('btn-toggle-day');
+        const tradeTitle = document.getElementById('trade-log-title');
         if (!tbody || !client) return;
+
+        if (client.isSandip) {
+          if (tradeTitle) tradeTitle.textContent = "Today's Executed Options Trade Log (06-Nov-2026)";
+          if (btnToggle) btnToggle.style.display = 'none';
+
+          tbody.innerHTML = `
+            <tr>
+              <td style="font-weight: 600; font-family: 'JetBrains Mono', monospace; color: #fff;">NIFTY09NOV26C24500</td>
+              <td><span style="color: #f87171; font-weight: 600;">SELL CE</span> (9:20 AM Straddle)</td>
+              <td style="font-family: 'JetBrains Mono', monospace;">65 (1 Lot)</td>
+              <td style="font-family: 'JetBrains Mono', monospace;">₹167.95</td>
+              <td style="font-family: 'JetBrains Mono', monospace; color: var(--accent-cyan);">SL: ₹209.94 (+25%)</td>
+              <td class="pnl-zero" style="font-family: 'JetBrains Mono', monospace;">Live MTM Tracking</td>
+              <td><span class="tag-closed">ACTIVE (RUNNING)</span></td>
+            </tr>
+            <tr>
+              <td style="font-weight: 600; font-family: 'JetBrains Mono', monospace; color: #fff;">NIFTY09NOV26P24500</td>
+              <td><span style="color: #f87171; font-weight: 600;">SELL PE</span> (9:20 AM Straddle)</td>
+              <td style="font-family: 'JetBrains Mono', monospace;">65 (1 Lot)</td>
+              <td style="font-family: 'JetBrains Mono', monospace;">₹189.65</td>
+              <td style="font-family: 'JetBrains Mono', monospace; color: var(--accent-cyan);">SL: ₹237.06 (+25%)</td>
+              <td class="pnl-zero" style="font-family: 'JetBrains Mono', monospace;">Live MTM Tracking</td>
+              <td><span class="tag-closed">ACTIVE (RUNNING)</span></td>
+            </tr>
+            <tr>
+              <td colspan="7" style="text-align: center; padding: 14px 20px; background: rgba(16, 185, 129, 0.05); border-top: 1px solid rgba(255, 255, 255, 0.05);">
+                <div style="font-size: 0.84rem; font-weight: 600; color: var(--accent-green-bright); margin-bottom: 4px;">
+                  <i class="fa-solid fa-circle-check"></i> Orders Passed to Shoonya Terminal (Client ID: FN246011)
+                </div>
+                <div style="font-size: 0.78rem; color: var(--text-secondary);">
+                  Terminal Order IDs: <code>#26110600031359</code> (CE) &bull; <code>#26110600031378</code> (PE) &bull; Margin shortfall rejection captured &bull; Live paper trailing active. Next bot: <strong>10:00 AM Short Straddle</strong>.
+                </div>
+              </td>
+            </tr>
+          `;
+          return;
+        }
+
+        // Demo behavior
+        if (tradeTitle) tradeTitle.textContent = "Today's Executed Options Trade Log (24-Jul-2026)";
+        if (btnToggle) btnToggle.style.display = 'inline-flex';
 
         if (activeTradeViewDay === 'today') {
           if (btnToggle) btnToggle.innerHTML = '<i class="fa-solid fa-calendar-day"></i> View Yesterday\'s Booked Trades (23-Jul)';
@@ -1209,7 +1429,7 @@
           `;
         } else {
           if (btnToggle) btnToggle.innerHTML = '<i class="fa-solid fa-sun"></i> Switch to Today\'s Live View (24-Jul)';
-          tbody.innerHTML = client.yesterdayTrades.map(t => `
+          tbody.innerHTML = (client.yesterdayTrades || []).map(t => `
             <tr>
               <td style="font-weight: 600; font-family: 'JetBrains Mono', monospace;">${t.symbol}</td>
               <td>${t.type}</td>
