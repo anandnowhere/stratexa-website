@@ -1130,7 +1130,9 @@
       const demoHistoricalHtml = demoHistoryTbodyEl ? demoHistoryTbodyEl.innerHTML : '';
 
       const savedUser = sessionStorage.getItem('client_user');
-      if (savedUser && CLIENT_DATA[savedUser]) {
+      if (savedUser === 'sandip' || savedUser === 'fn246011') {
+        window.location.href = 'http://139.59.43.98:8000';
+      } else if (savedUser && CLIENT_DATA[savedUser]) {
         renderDashboard(savedUser);
       }
 
@@ -1168,7 +1170,12 @@
               return;
             }
             sessionStorage.setItem('client_user', 'sandip');
-            renderDashboard('sandip');
+            const submitBtn = form.querySelector('button[type="submit"]');
+            if (submitBtn) {
+              submitBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Connecting to Live Terminal...';
+              submitBtn.disabled = true;
+            }
+            window.location.href = 'http://139.59.43.98:8000';
             return;
           }
 
