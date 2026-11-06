@@ -1129,6 +1129,16 @@
       const demoHistoryTbodyEl = document.getElementById('history-log-body');
       const demoHistoricalHtml = demoHistoryTbodyEl ? demoHistoryTbodyEl.innerHTML : '';
 
+      // Handle explicit logout
+      const urlParams = new URLSearchParams(window.location.search);
+      if (urlParams.get('logout') === 'true') {
+        sessionStorage.removeItem('client_user');
+        sessionStorage.clear();
+        try {
+          window.history.replaceState({}, document.title, window.location.pathname);
+        } catch (e) {}
+      }
+
       const savedUser = sessionStorage.getItem('client_user');
       if (savedUser === 'sandip' || savedUser === 'fn246011') {
         window.location.href = 'http://139.59.43.98:8000';
