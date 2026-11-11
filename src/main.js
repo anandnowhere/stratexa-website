@@ -536,8 +536,8 @@ function initRoiCalculator() {
   function calculate() {
     // Base setup cost based on selected complexity or flat pre-built fee
     const strategyBase = parseInt(complexityEl ? complexityEl.value : 5000) || 5000;
-    // Onboarding: ₹999 one-time or 0 if self-configured
-    const onboardingCost = parseInt(hostingEl ? hostingEl.value : 0) || 0;
+    // Onboarding & Hosting: ₹2,498 (999 Onboarding + 1,499 Month 1 Pro Care) or ₹999 or 0 if self-configured
+    const onboardingCost = parseInt(hostingEl ? hostingEl.value : 2498) || 0;
     // Extra brokers (multi-account)
     const brokerCount = parseInt(brokersEl ? brokersEl.value : 1) || 1;
     const extraBrokerCost = brokerCount > 1 ? (brokerCount - 1) * 2000 : 0;
@@ -560,7 +560,12 @@ function initRoiCalculator() {
     const strategyName = complexityEl.options[complexityEl.selectedIndex].text;
     const horizonName = frequencyEl ? frequencyEl.options[frequencyEl.selectedIndex].text : 'Standard';
     const brokerName = brokersEl ? brokersEl.options[brokersEl.selectedIndex].text : '1 Broker';
-    const onboardingName = hostingEl && hostingEl.value === "999" ? "Stratexa Managed Dedicated Server (+₹999)" : "Run on Personal PC (₹0)";
+    let onboardingName = "Stratexa Managed Dedicated Server Hosting & Month 1 Pro Care (+₹2,498)";
+    if (hostingEl) {
+      if (hostingEl.value === "2498") onboardingName = "Stratexa Managed Dedicated Server Hosting & Month 1 Pro Care (+₹2,498)";
+      else if (hostingEl.value === "999") onboardingName = "Assisted Setup on Personal PC (+₹999)";
+      else if (hostingEl.value === "0") onboardingName = "Run on Personal PC (₹0)";
+    }
 
     costValEl.textContent = formattedCost;
     if (hoursValEl) hoursValEl.textContent = `~${hoursSaved} hrs/mo`;
@@ -570,9 +575,9 @@ function initRoiCalculator() {
 • Strategy/Tier: ${strategyName}
 • Market & Horizon: ${horizonName}
 • Broker Setup: ${brokerName}
-• Onboarding Option: ${onboardingName}
-• Estimated Upfront Total: ${formattedCost}
-• Monthly Pro Care: ₹1,499/mo (1st month free)
+• Onboarding & Hosting: ${onboardingName}
+• Total First-Month Investment: ${formattedCost}
+• Ongoing Pro Care: ₹1,499/mo (Cancel anytime)
 
 I'd like to discuss and get started!`;
 

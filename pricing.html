@@ -221,7 +221,7 @@
           <ul style="list-style:none; padding:0; color: var(--text-secondary); font-size: 0.88rem; margin-bottom: 1.5rem; flex-grow:1;">
             <li style="margin-bottom:0.55rem; display:flex; align-items:flex-start; gap:8px;"><i class="fa-solid fa-check" style="color:#06b6d4; margin-top:2px; flex-shrink:0;"></i> Broker API configuration &amp; credential setup</li>
             <li style="margin-bottom:0.55rem; display:flex; align-items:flex-start; gap:8px;"><i class="fa-solid fa-check" style="color:#06b6d4; margin-top:2px; flex-shrink:0;"></i> Secure API key encryption &amp; sandboxed execution</li>
-            <li style="margin-bottom:0.55rem; display:flex; align-items:flex-start; gap:8px;"><i class="fa-solid fa-check" style="color:#06b6d4; margin-top:2px; flex-shrink:0;"></i> Dedicated server deployment (first month hosted free)</li>
+            <li style="margin-bottom:0.55rem; display:flex; align-items:flex-start; gap:8px;"><i class="fa-solid fa-check" style="color:#06b6d4; margin-top:2px; flex-shrink:0;"></i> Dedicated server deployment &amp; environment configuration</li>
             <li style="margin-bottom:0.55rem; display:flex; align-items:flex-start; gap:8px;"><i class="fa-solid fa-check" style="color:#06b6d4; margin-top:2px; flex-shrink:0;"></i> Telegram notification alert configuration</li>
             <li style="margin-bottom:0.55rem; display:flex; align-items:flex-start; gap:8px;"><i class="fa-solid fa-check" style="color:#06b6d4; margin-top:2px; flex-shrink:0;"></i> Live paper trading test before go-live</li>
             <li style="margin-bottom:0.55rem; display:flex; align-items:flex-start; gap:8px;"><i class="fa-solid fa-check" style="color:#06b6d4; margin-top:2px; flex-shrink:0;"></i> Final verification &amp; sign-off before live capital</li>
@@ -267,7 +267,7 @@
           &#8377;5,000 (Strategy Setup) + &#8377;999 (Onboarding) + &#8377;1,499 (Month 1 Pro Care) = <strong style="color: var(--accent-green-bright); font-size: 1.1rem;">&#8377;7,498</strong>
         </div>
         <div style="font-size: 0.82rem; color: var(--text-muted); max-width: 380px;">
-          <i class="fa-solid fa-circle-info" style="margin-right:4px; color: var(--accent-green);"></i> First month Pro Care is free with all new deployments. Custom projects quoted upfront based on technical complexity.
+          <i class="fa-solid fa-circle-info" style="margin-right:4px; color: var(--accent-green);"></i> Includes full Month 1 Pro Care (&#8377;1,499) for managed server hosting &amp; monitoring. Custom projects quoted upfront based on technical complexity.
         </div>
       </div>
 
@@ -432,7 +432,8 @@
                 <i class="fa-solid fa-server" title="Choose server hosting or local execution"></i>
               </label>
               <select id="calc-hosting" class="calc-select">
-                <option value="999" selected>Stratexa Managed Dedicated Server Hosting (+&#8377;999 Onboarding &middot; Recommended)</option>
+                <option value="2498" selected>Stratexa Managed Dedicated Server Hosting (+&#8377;2,498 &middot; Onboarding &#8377;999 + Month 1 Care &#8377;1,499 &middot; Recommended)</option>
+                <option value="999">Assisted Setup on Personal PC / Self-Hosted (+&#8377;999 Onboarding &middot; No Monthly Care)</option>
                 <option value="0">Run Locally on Personal PC / Laptop (Free &middot; You run the source code)</option>
               </select>
             </div>
@@ -441,11 +442,11 @@
 
           <div class="calculator-results">
             <div class="result-box-hero">
-              <div class="result-label">Estimated Total to Go Live (One-Time)</div>
-              <div class="result-cost-val" id="calc-cost-display">&#8377;5,999</div>
-              <span class="badge" style="background: rgba(16, 185, 129, 0.1); color: var(--accent-green-bright); border: 1px solid rgba(16, 185, 129, 0.3); font-size: 0.72rem; margin-top: 6px; display: inline-block;">Strategy Setup + Onboarding &middot; 100% Code Ownership</span>
+              <div class="result-label">Estimated Total First-Month Investment</div>
+              <div class="result-cost-val" id="calc-cost-display">&#8377;7,498</div>
+              <span class="badge" style="background: rgba(16, 185, 129, 0.1); color: var(--accent-green-bright); border: 1px solid rgba(16, 185, 129, 0.3); font-size: 0.72rem; margin-top: 6px; display: inline-block;">Strategy Setup + Onboarding + Month 1 Pro Care &middot; 100% Code Ownership</span>
               <div style="font-size: 0.78rem; color: var(--text-muted); margin-top: 8px;">
-                <i class="fa-solid fa-shield-halved" style="color: #f59e0b; margin-right: 4px;"></i> Optional Pro Care: &#8377;1,499/mo (First month free with managed setup)
+                <i class="fa-solid fa-shield-halved" style="color: #f59e0b; margin-right: 4px;"></i> Pro Care: &#8377;1,499/mo after Month 1 (Cancel anytime)
               </div>
             </div>
 
