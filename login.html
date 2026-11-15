@@ -878,6 +878,34 @@
           yesterdayTrades: [],
           dailyJul26: []
         },
+        'krishna': {
+          isLive: true,
+          isKrishna: true,
+          clientId: 'FN234755',
+          clientName: 'Mr. Krishna',
+          vpsUrl: 'http://139.59.75.68:8000',
+          capital: '₹1,00,000.00',
+          todayPnl: '₹0.00',
+          todaySub: '09:30 AM Decay Momentum Option Buying Active (Shoonya Paper Mode)',
+          mtdPnl: '₹0.00',
+          yesterdayPnl: '₹0.00',
+          yesterdayTrades: [],
+          dailyJul26: []
+        },
+        'fn234755': {
+          isLive: true,
+          isKrishna: true,
+          clientId: 'FN234755',
+          clientName: 'Mr. Krishna',
+          vpsUrl: 'http://139.59.75.68:8000',
+          capital: '₹1,00,000.00',
+          todayPnl: '₹0.00',
+          todaySub: '09:30 AM Decay Momentum Option Buying Active (Shoonya Paper Mode)',
+          mtdPnl: '₹0.00',
+          yesterdayPnl: '₹0.00',
+          yesterdayTrades: [],
+          dailyJul26: []
+        },
         'anand': {
           clientId: 'ANAND-0824',
           vpsUrl: 'http://3.108.19.73:8080',
@@ -1142,6 +1170,8 @@
       const savedUser = sessionStorage.getItem('client_user');
       if (savedUser === 'sandip' || savedUser === 'fn246011') {
         window.location.href = 'http://139.59.43.98:8000';
+      } else if (savedUser === 'krishna' || savedUser === 'fn234755') {
+        window.location.href = 'http://139.59.75.68:8000';
       } else if (savedUser && CLIENT_DATA[savedUser]) {
         renderDashboard(savedUser);
       }
@@ -1186,6 +1216,23 @@
               submitBtn.disabled = true;
             }
             window.location.href = 'http://139.59.43.98:8000';
+            return;
+          }
+
+          // 3. LIVE CLIENT LOGIN: Krishna (FN234755)
+          if (inputUser === 'krishna' || inputUser === 'fn234755') {
+            if (password !== 'Krishna@2026' && password.toLowerCase() !== 'krishna@2026') {
+              errorText.textContent = 'Invalid password for client FN234755.';
+              errorBox.classList.add('active');
+              return;
+            }
+            sessionStorage.setItem('client_user', 'krishna');
+            const submitBtn = form.querySelector('button[type="submit"]');
+            if (submitBtn) {
+              submitBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Connecting to Live Terminal...';
+              submitBtn.disabled = true;
+            }
+            window.location.href = 'http://139.59.75.68:8000';
             return;
           }
 
