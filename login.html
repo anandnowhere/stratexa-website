@@ -494,6 +494,11 @@
     </style>
   </head>
   <body>
+    <!-- DEDICATED LIVE TERMINAL VIEW (EMBEDDED SEAMLESSLY INSIDE LOGIN.HTML) -->
+    <div id="terminal-embed-view" class="hidden" style="position: fixed; inset: 0; z-index: 99999; background: #070a12; display: none; width: 100vw; height: 100vh;">
+      <iframe id="terminal-embed-frame" src="" style="width: 100%; height: 100%; border: none;" allow="clipboard-read; clipboard-write"></iframe>
+    </div>
+
     <!-- LOGIN VIEW -->
     <div id="login-view" class="portal-container">
       <div class="glass-card">
@@ -1160,17 +1165,47 @@
       const urlParams = new URLSearchParams(window.location.search);
       if (urlParams.get('logout') === 'true') {
         sessionStorage.removeItem('client_user');
+        sessionStorage.removeItem('client_auth');
         sessionStorage.clear();
         try {
           window.history.replaceState({}, document.title, window.location.pathname);
         } catch (e) {}
       }
 
+      function mountTerminal(user, pass) {
+        const embedView = document.getElementById('terminal-embed-view');
+        const embedFrame = document.getElementById('terminal-embed-frame');
+        if (!embedView || !embedFrame) return;
+
+        let targetUrl = '';
+        if (user === 'krishna' || user === 'fn234755') {
+          targetUrl = `https://krishna.stratexa.in/?auth=${encodeURIComponent(pass)}`;
+        } else if (user === 'sandip' || user === 'fn246011') {
+          targetUrl = `https://sandip.stratexa.in/?auth=${encodeURIComponent(pass)}`;
+        }
+
+        if (targetUrl) {
+          embedFrame.src = targetUrl;
+          embedView.style.display = 'block';
+          embedView.classList.remove('hidden');
+          if (loginView) loginView.classList.add('hidden');
+          if (dashboardView) dashboardView.classList.add('hidden');
+        }
+      }
+
+      window.addEventListener('message', function(event) {
+        if (event.data === 'stx_logout') {
+          sessionStorage.clear();
+          window.location.href = 'https://www.stratexa.in/login.html?logout=true';
+        }
+      });
+
       const savedUser = sessionStorage.getItem('client_user');
-      if (savedUser === 'sandip' || savedUser === 'fn246011') {
-        window.location.href = 'https://sandip.stratexa.in';
-      } else if (savedUser === 'krishna' || savedUser === 'fn234755') {
-        window.location.href = 'https://krishna.stratexa.in';
+      const savedAuth = sessionStorage.getItem('client_auth');
+      if ((savedUser === 'sandip' || savedUser === 'fn246011') && savedAuth) {
+        mountTerminal('sandip', savedAuth);
+      } else if ((savedUser === 'krishna' || savedUser === 'fn234755') && savedAuth) {
+        mountTerminal('krishna', savedAuth);
       } else if (savedUser && CLIENT_DATA[savedUser]) {
         renderDashboard(savedUser);
       }
@@ -1209,12 +1244,13 @@
               return;
             }
             sessionStorage.setItem('client_user', 'sandip');
+            sessionStorage.setItem('client_auth', 'Santro@2020');
             const submitBtn = form.querySelector('button[type="submit"]');
             if (submitBtn) {
               submitBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Connecting to Secure Terminal...';
               submitBtn.disabled = true;
             }
-            window.location.href = 'https://sandip.stratexa.in';
+            mountTerminal('sandip', 'Santro@2020');
             return;
           }
 
@@ -1226,12 +1262,13 @@
               return;
             }
             sessionStorage.setItem('client_user', 'krishna');
+            sessionStorage.setItem('client_auth', 'Krishna@2026');
             const submitBtn = form.querySelector('button[type="submit"]');
             if (submitBtn) {
               submitBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Connecting to Secure Terminal...';
               submitBtn.disabled = true;
             }
-            window.location.href = 'https://krishna.stratexa.in';
+            mountTerminal('krishna', 'Krishna@2026');
             return;
           }
 
