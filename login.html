@@ -1167,7 +1167,11 @@
       }
 
       const savedUser = sessionStorage.getItem('client_user');
-      if (savedUser && CLIENT_DATA[savedUser]) {
+      if (savedUser === 'sandip' || savedUser === 'fn246011') {
+        window.location.href = 'https://sandip.stratexa.in';
+      } else if (savedUser === 'krishna' || savedUser === 'fn234755') {
+        window.location.href = 'https://krishna.stratexa.in';
+      } else if (savedUser && CLIENT_DATA[savedUser]) {
         renderDashboard(savedUser);
       }
 
@@ -1205,7 +1209,12 @@
               return;
             }
             sessionStorage.setItem('client_user', 'sandip');
-            renderDashboard('sandip');
+            const submitBtn = form.querySelector('button[type="submit"]');
+            if (submitBtn) {
+              submitBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Connecting to Secure Terminal...';
+              submitBtn.disabled = true;
+            }
+            window.location.href = 'https://sandip.stratexa.in';
             return;
           }
 
@@ -1217,7 +1226,12 @@
               return;
             }
             sessionStorage.setItem('client_user', 'krishna');
-            renderDashboard('krishna');
+            const submitBtn = form.querySelector('button[type="submit"]');
+            if (submitBtn) {
+              submitBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Connecting to Secure Terminal...';
+              submitBtn.disabled = true;
+            }
+            window.location.href = 'https://krishna.stratexa.in';
             return;
           }
 
