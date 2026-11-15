@@ -912,17 +912,33 @@
           dailyJul26: []
         },
         'anand': {
-          clientId: 'ANAND-0824',
-          capital: '₹2,50,000.00',
+          isLive: true,
+          isAnand: true,
+          clientId: 'FA42905',
+          clientName: 'Mr. Anand',
+          strategyName: '4-Strategy Intraday Multi-System (Dry Run)',
+          capital: '₹2,00,000.00',
           todayPnl: '₹0.00',
-          todaySub: 'No trade signals triggered today (Market Monitored)',
-          mtdPnl: '+₹13,754.82',
-          yesterdayPnl: '+₹4,546.75',
-          yesterdayTrades: [
-            { symbol: 'NIFTY 28JUL26 24350 PE', type: 'SELL CREDIT', qty: '650 (13 Lots)', entry: '₹45.20', exit: '₹31.70', pnl: '+₹3,201.25', pnlClass: 'pnl-plus', status: 'CLOSED (Target)', tagClass: 'tag-closed' },
-            { symbol: 'NIFTY 28JUL26 24350 CE', type: 'SELL CREDIT', qty: '650 (13 Lots)', entry: '₹15.80', exit: '₹13.24', pnl: '+₹1,664.00', pnlClass: 'pnl-plus', status: 'CLOSED (Target)', tagClass: 'tag-closed' },
-            { symbol: 'NIFTY 28JUL26 24350 CE', type: 'MIS BUY (HEDGE)', qty: '650 (13 Lots)', entry: '₹18.25', exit: '₹13.35', pnl: '-₹318.50', pnlClass: 'pnl-minus', status: 'CLOSED (Hedge)', tagClass: 'tag-hedge' }
-          ],
+          todaySub: '4-Strategy Intraday Multi-System Active (Shoonya Routed)',
+          mtdPnl: '₹0.00',
+          yesterdayPnl: '₹0.00',
+          yesterdayTrades: [],
+          dailyJul26: []
+        },
+        'fa42905': {
+          isLive: true,
+          isAnand: true,
+          clientId: 'FA42905',
+          clientName: 'Mr. Anand',
+          strategyName: '4-Strategy Intraday Multi-System (Dry Run)',
+          capital: '₹2,00,000.00',
+          todayPnl: '₹0.00',
+          todaySub: '4-Strategy Intraday Multi-System Active (Shoonya Routed)',
+          mtdPnl: '₹0.00',
+          yesterdayPnl: '₹0.00',
+          yesterdayTrades: [],
+          dailyJul26: []
+        },
           // July 2026 — 100% Audited Bar-by-Bar Strategy Backtest (1 Lot = 65 Qty)
                     dailyJul26: [
             { date: '24-Jul-2026 (Today)', trades: '0 Trades', winRate: '—', dailyPnl: '+₹0.00', pnlClass: 'pnl-zero', cumPnl: '+₹13,754.82', status: 'NO SIGNAL (MARKET MONITORED)', tagClass: 'tag-idle' },
@@ -1307,7 +1323,20 @@
         // Banner customization: Live Client vs Demo Sandbox
         const banner = document.getElementById('demo-banner');
         if (banner) {
-          if (client.isKrishna) {
+          if (client.isAnand) {
+            banner.style.background = 'rgba(16, 185, 129, 0.12)';
+            banner.style.border = '1px solid rgba(16, 185, 129, 0.35)';
+            banner.style.color = '#34d399';
+            banner.innerHTML = `
+              <div style="display: flex; align-items: center; gap: 8px;">
+                <i class="fa-solid fa-circle-check" style="color: #10b981; font-size: 1.1rem;"></i>
+                <span><strong>🟢 Dedicated Live Client Portal</strong> &mdash; Mr. Anand (Client ID: <strong>FA42905</strong>) &bull; Strategy: <strong>4-Strategy Intraday Multi-System (Dry Run)</strong> &bull; Mode: <strong>Shoonya Live Feed (Bid/Ask Fills)</strong></span>
+              </div>
+              <div style="background: rgba(16, 185, 129, 0.2); border: 1px solid #10b981; color: #34d399; font-weight: 700; padding: 6px 14px; border-radius: 6px; font-size: 0.8rem; display: inline-flex; align-items: center; gap: 6px;">
+                <i class="fa-solid fa-shield-halved"></i> Direct Broker Gateway
+              </div>
+            `;
+          } else if (client.isKrishna) {
             banner.style.background = 'rgba(16, 185, 129, 0.12)';
             banner.style.border = '1px solid rgba(16, 185, 129, 0.35)';
             banner.style.color = '#34d399';
@@ -1370,7 +1399,9 @@
 
         const todaySub = document.getElementById('metric-today-sub');
         if (todaySub) {
-          if (client.isKrishna) {
+          if (client.isAnand) {
+            todaySub.innerHTML = `<i class="fa-solid fa-circle-check" style="color: var(--accent-green-bright);"></i> <span>4-Strategy Intraday Multi-System Active (Shoonya Routed)</span>`;
+          } else if (client.isKrishna) {
             todaySub.innerHTML = `<i class="fa-solid fa-circle-check" style="color: var(--accent-green-bright);"></i> <span>09:30 AM Decay Momentum Option Buying (Paper Mode)</span>`;
           } else if (client.isSandip) {
             todaySub.innerHTML = `<i class="fa-solid fa-circle-check" style="color: var(--accent-green-bright);"></i> <span>9:20 AM &amp; 10:00 AM Short Straddles Active (Paper Mode)</span>`;
@@ -1381,7 +1412,9 @@
 
         const mtdSub = document.getElementById('metric-mtd-sub');
         if (mtdSub) {
-          if (client.isKrishna) {
+          if (client.isAnand) {
+            mtdSub.innerHTML = `<i class="fa-solid fa-calendar-check" style="color: var(--accent-cyan);"></i> <span>Account Deployed: 16-Nov-2026 • 4 Coordinated Intraday Strategies</span>`;
+          } else if (client.isKrishna) {
             mtdSub.innerHTML = `<i class="fa-solid fa-calendar-check" style="color: var(--accent-cyan);"></i> <span>Account Deployed: 15-Nov-2026 • 1 Trade Max / Day</span>`;
           } else if (client.isSandip) {
             mtdSub.innerHTML = `<i class="fa-solid fa-calendar-check" style="color: var(--accent-cyan);"></i> <span>Account Deployed: 06-Nov-2026 • 2 Daily Straddle Sessions</span>`;
@@ -1402,7 +1435,74 @@
         // Historical Audit Breakdown: Live vs Demo
         const histLogBody = document.getElementById('history-log-body');
         if (histLogBody) {
-          if (client.isKrishna) {
+          if (client.isAnand) {
+            histLogBody.innerHTML = `
+              <tr>
+                <td style="font-weight: 700; color: #ffffff;">November 2026 (MTD)</td>
+                <td>4-Strategy Intraday Multi-System (NIFTY &amp; BANKNIFTY)</td>
+                <td style="font-family: 'JetBrains Mono', monospace;">0</td>
+                <td style="font-weight: 600; color: var(--accent-green-bright);">&mdash;</td>
+                <td class="pnl-zero">₹0.00</td>
+                <td style="color: var(--text-secondary);">₹0.00</td>
+                <td class="pnl-zero">₹0.00</td>
+                <td>
+                  <button onclick="toggleAccordion('nov26')" class="expand-btn">
+                    <span id="acc-btn-nov26">Expand [▼]</span>
+                  </button>
+                </td>
+              </tr>
+              <tr id="acc-row-nov26" class="daily-accordion-row">
+                <td colspan="8" style="padding: 0;">
+                  <div class="daily-accordion-box">
+                    <div style="font-weight: 700; font-size: 0.82rem; color: var(--accent-cyan); margin-bottom: 10px; display: flex; align-items: center; gap: 8px;">
+                      <i class="fa-solid fa-calendar-days"></i> November 2026 Daily Multi-Strategy Journal (Account Deployed 16-Nov-2026)
+                    </div>
+                    <table class="daily-table">
+                      <thead>
+                        <tr>
+                          <th>Date</th>
+                          <th>Strategy Name</th>
+                          <th>Key Rules &amp; Triggers</th>
+                          <th>Risk &amp; Trailing Rules</th>
+                          <th>Session Outcome / Status</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td style="font-weight: 600; color: #ffffff;">16-Nov-2026 (Today)</td>
+                          <td>Strategy 1: Nifty Weekly Hedged Strangle</td>
+                          <td style="font-family: 'JetBrains Mono', monospace; font-size: 0.78rem;">&plusmn;10 pts of 50-strike &bull; 300 OTM Hedge &bull; &plusmn;0.3% Adjustments (Max 5)</td>
+                          <td style="font-family: 'JetBrains Mono', monospace; font-size: 0.78rem;">Target: +₹5,000 | Trailing SL: -₹3,000 (1:1 lockstep) | Exit: 3:10 PM</td>
+                          <td><span class="tag-idle">READY &bull; MONITORING MARKET</span></td>
+                        </tr>
+                        <tr>
+                          <td style="font-weight: 600; color: #ffffff;">16-Nov-2026 (Today)</td>
+                          <td>Strategy 2: Bank Nifty Monthly Hedged Strangle</td>
+                          <td style="font-family: 'JetBrains Mono', monospace; font-size: 0.78rem;">Round of 100 &bull; 1,000 OTM Hedge &bull; &plusmn;0.3% Adjustments (Max 5)</td>
+                          <td style="font-family: 'JetBrains Mono', monospace; font-size: 0.78rem;">Target: +₹5,000 | Trailing SL: -₹3,000 (1:1 lockstep) | Exit: 3:10 PM</td>
+                          <td><span class="tag-idle">READY &bull; MONITORING MARKET</span></td>
+                        </tr>
+                        <tr>
+                          <td style="font-weight: 600; color: #ffffff;">16-Nov-2026 (Today)</td>
+                          <td>Strategy 3: Nifty Range Breakout &amp; Reversal</td>
+                          <td style="font-family: 'JetBrains Mono', monospace; font-size: 0.78rem;">09:25–09:30 candle high/low sets 0.4% range &bull; 300 OTM Hedge</td>
+                          <td style="font-family: 'JetBrains Mono', monospace; font-size: 0.78rem;">Lot flip progression: 1 &rarr; 2 &rarr; 3 Lots &bull; Exit on 4th bounce or 3:00 PM</td>
+                          <td><span class="tag-idle">READY &bull; MONITORING MARKET</span></td>
+                        </tr>
+                        <tr>
+                          <td style="font-weight: 600; color: #ffffff;">16-Nov-2026 (Today)</td>
+                          <td>Strategy 4: Nifty 1-Trade Trend Scalper</td>
+                          <td style="font-family: 'JetBrains Mono', monospace; font-size: 0.78rem;">VWAP + Supertrend (10, 2) breakout &bull; 1 Trade/Day</td>
+                          <td style="font-family: 'JetBrains Mono', monospace; font-size: 0.78rem;">Target: +₹3,000 | SL: -₹1,500 | Lock BE @ +₹1,000 &bull; Exit: 3:10 PM</td>
+                          <td><span class="tag-idle">READY &bull; MONITORING MARKET</span></td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </td>
+              </tr>
+            `;
+          } else if (client.isKrishna) {
             histLogBody.innerHTML = `
               <tr>
                 <td style="font-weight: 700; color: #ffffff;">November 2026 (MTD)</td>
@@ -1555,6 +1655,47 @@
         const btnToggle = document.getElementById('btn-toggle-day');
         const tradeTitle = document.getElementById('trade-log-title');
         if (!tbody || !client) return;
+
+        if (client.isAnand) {
+          if (tradeTitle) tradeTitle.textContent = "Today's Executed Options Trade Log (16-Nov-2026)";
+          if (btnToggle) btnToggle.style.display = 'none';
+
+          tbody.innerHTML = `
+            <tr>
+              <td colspan="7" style="text-align: center; padding: 26px 20px; background: rgba(16, 185, 129, 0.03);">
+                <div style="display: flex; align-items: center; justify-content: center; gap: 8px; font-size: 1rem; font-weight: 600; color: #34d399; margin-bottom: 6px;">
+                  <span class="pulse-dot"></span> Bot Engine Standing By &bull; 4 Coordinated Intraday Strategies Active
+                </div>
+                <div style="font-size: 0.82rem; color: var(--text-secondary); max-width: 780px; margin: 0 auto; line-height: 1.5;">
+                  All 4 strategies active on AWS Core in <strong>Dry Run Mode</strong> with Bid/Ask depth fills (Sell @ Bid, Buy @ Ask) and Shoonya Spot-LTP corruption shield.
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td colspan="7" style="padding: 16px 20px; background: rgba(255, 255, 255, 0.02); border-top: 1px solid rgba(255, 255, 255, 0.05);">
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 14px; font-size: 0.78rem;">
+                  <div style="background: rgba(6, 182, 212, 0.08); border: 1px solid rgba(6, 182, 212, 0.2); border-radius: 8px; padding: 10px;">
+                    <div style="color: var(--accent-cyan); font-weight: 700; margin-bottom: 4px;">Strategy 1: Nifty Weekly Strangle</div>
+                    <div style="color: var(--text-secondary); line-height: 1.4;">&plusmn;10 pts of 50-strike &bull; 300 OTM Hedge<br>&plusmn;0.3% Adjustments (Max 5)<br>Target: +₹5,000 | SL: -₹3,000 (1:1 Trail)</div>
+                  </div>
+                  <div style="background: rgba(168, 85, 247, 0.08); border: 1px solid rgba(168, 85, 247, 0.2); border-radius: 8px; padding: 10px;">
+                    <div style="color: #c084fc; font-weight: 700; margin-bottom: 4px;">Strategy 2: Bank Nifty Monthly Strangle</div>
+                    <div style="color: var(--text-secondary); line-height: 1.4;">Round of 100 &bull; 1,000 OTM Hedge<br>&plusmn;0.3% Adjustments (Max 5)<br>Target: +₹5,000 | SL: -₹3,000 (1:1 Trail)</div>
+                  </div>
+                  <div style="background: rgba(245, 158, 11, 0.08); border: 1px solid rgba(245, 158, 11, 0.2); border-radius: 8px; padding: 10px;">
+                    <div style="color: #fbbf24; font-weight: 700; margin-bottom: 4px;">Strategy 3: Range Breakout &amp; Flip</div>
+                    <div style="color: var(--text-secondary); line-height: 1.4;">09:25–09:30 Base &bull; 0.4% Range Margin<br>Reversal Lot Flip: 1 &rarr; 2 &rarr; 3 Lots<br>Natural Bounds Stop &bull; Exit: 3:00 PM</div>
+                  </div>
+                  <div style="background: rgba(16, 185, 129, 0.08); border: 1px solid rgba(16, 185, 129, 0.2); border-radius: 8px; padding: 10px;">
+                    <div style="color: #34d399; font-weight: 700; margin-bottom: 4px;">Strategy 4: 1-Trade Trend Scalper</div>
+                    <div style="color: var(--text-secondary); line-height: 1.4;">VWAP + Supertrend (10, 2) Breakout<br>Target: +₹3,000 | SL: -₹1,500<br>Lock BE @ +₹1,000 &bull; 1 Trade/Day</div>
+                  </div>
+                </div>
+              </td>
+            </tr>
+          `;
+          return;
+        }
 
         if (client.isKrishna) {
           if (tradeTitle) tradeTitle.textContent = "Today's Executed Options Trade Log (16-Nov-2026)";
