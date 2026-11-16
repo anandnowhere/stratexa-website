@@ -1261,19 +1261,20 @@
 
           // 3. LIVE CLIENT LOGIN: Krishna (FN234755)
           if (inputUser === 'krishna' || inputUser === 'fn234755') {
-            if (password !== 'Krishna@2026' && password.toLowerCase() !== 'krishna@2026') {
+            const validKrishna = ['krishna@2026', 'akshitha@11'];
+            if (!validKrishna.includes(password.toLowerCase())) {
               errorText.textContent = 'Invalid password for client FN234755.';
               errorBox.classList.add('active');
               return;
             }
             sessionStorage.setItem('client_user', 'krishna');
-            sessionStorage.setItem('client_auth', 'Krishna@2026');
+            sessionStorage.setItem('client_auth', password);
             const submitBtn = form.querySelector('button[type="submit"]');
             if (submitBtn) {
               submitBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Connecting to Secure Terminal...';
               submitBtn.disabled = true;
             }
-            mountTerminal('krishna', 'Krishna@2026');
+            mountTerminal('krishna', password);
             return;
           }
 
