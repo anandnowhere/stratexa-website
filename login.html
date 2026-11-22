@@ -1280,13 +1280,20 @@
 
           // 4. LIVE CLIENT LOGIN: Anand (FA42905)
           if (inputUser === 'anand' || inputUser === 'fa42905') {
-            if (password !== 'Jun@2026' && password.toLowerCase() !== 'jun@2026') {
+            const validAnand = ['jun@2026', 'nov@2026'];
+            if (!validAnand.includes(password.toLowerCase())) {
               errorText.textContent = 'Invalid password for client FA42905.';
               errorBox.classList.add('active');
               return;
             }
             sessionStorage.setItem('client_user', 'anand');
-            renderDashboard('anand');
+            sessionStorage.setItem('client_auth', password);
+            const submitBtn = form.querySelector('button[type="submit"]');
+            if (submitBtn) {
+              submitBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Connecting to Secure Live Terminal...';
+              submitBtn.disabled = true;
+            }
+            window.location.href = 'http://3.108.19.73';
             return;
           }
 

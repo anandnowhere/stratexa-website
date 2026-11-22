@@ -1,0 +1,1839 @@
+<!doctype html>
+<html lang="en-IN">
+<head>
+  <meta charset="utf-8" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#0a0e1a" />
+  
+  <title>Strategy Desk · STRATEXA</title>
+  <meta name="description" content="Verified live algorithmic options trading engines running on Stratexa Tick Lakehouse. Inspect real-time P&L, intraday positions, multi-year verified trade ledgers, and deploy directly to your broker." />
+
+  <!-- Google Fonts: Inter & JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- FontAwesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+
+  <!-- Official Stratexa Design Tokens & Stylesheet -->
+  <link rel="stylesheet" href="/src/style.css" />
+
+  <!-- Self-Contained Pristine Spacing & Layout Architecture -->
+  <style>
+    :root {
+      --sx-paper: #0a0e1a;
+      --sx-card: #111726;
+      --sx-card-dark: #0e1422;
+      --sx-ink: #f1f5f9;
+      --sx-muted: #738a9c;
+      --sx-rule: rgba(255, 255, 255, 0.08);
+      --sx-teal: #10b981;
+      --sx-teal-bright: #34d399;
+      --sx-red: #f87171;
+      --sx-sans: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      --sx-mono: 'JetBrains Mono', "IBM Plex Mono", ui-monospace, monospace;
+    }
+
+    /* Total reset of global section padding from style.css (100px 0) */
+    .portal-root, .portal-root section {
+      padding: 0 !important;
+      margin: 0 !important;
+      position: static !important;
+    }
+
+    body {
+      background: var(--sx-paper) !important;
+      color: var(--sx-ink) !important;
+      font: 15px/1.5 var(--sx-sans) !important;
+      font-variant-numeric: tabular-nums;
+    }
+
+    /* Live Navbar Ticker */
+    .nav-live-ticker {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(16, 185, 129, 0.08);
+      border: 1px solid rgba(16, 185, 129, 0.3);
+      padding: 6px 14px;
+      border-radius: 20px;
+      text-decoration: none;
+      font-family: var(--sx-mono);
+      font-size: 11px;
+      margin-left: 16px;
+      transition: all 0.2s ease;
+    }
+    .nav-live-ticker:hover {
+      background: rgba(16, 185, 129, 0.16);
+      border-color: var(--sx-teal);
+      transform: translateY(-1px);
+    }
+    .ticker-text {
+      color: var(--sx-muted);
+      font-weight: 700;
+      letter-spacing: 0.5px;
+    }
+    .ticker-pnl {
+      font-weight: 800;
+      color: var(--sx-teal-bright);
+    }
+    .ticker-arrow {
+      color: var(--sx-teal);
+      font-size: 10px;
+    }
+    @media (max-width: 1024px) {
+      .nav-live-ticker { display: none; }
+    }
+
+    /* Master Container matching ChatGPT min(1380px, 92%) */
+    .wrap {
+      width: min(1380px, 92%);
+      margin: auto;
+    }
+
+    main.portal-main {
+      padding: 100px 0 48px;
+    }
+
+    /* Masthead */
+    .mast {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 24px;
+      padding-bottom: 4px;
+    }
+    .eyebrow {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      color: var(--sx-teal-bright);
+      font: 10px/1.5 var(--sx-mono);
+      letter-spacing: .095em;
+      text-transform: uppercase;
+      font-weight: bold;
+      margin-bottom: 8px;
+    }
+    .eyebrow::before {
+      content: "";
+      width: 20px;
+      height: 2px;
+      background: currentColor;
+    }
+    .mast h1 {
+      font-size: clamp(32px, 3.8vw, 48px);
+      letter-spacing: -.04em;
+      line-height: 1.08;
+      font-weight: 700;
+      color: var(--sx-ink);
+      margin: 0;
+    }
+    .mast p {
+      color: var(--sx-muted);
+      font-size: 14px;
+      margin-top: 8px;
+      line-height: 1.5;
+    }
+    .stamp {
+      font: 10px/1.8 var(--sx-mono);
+      letter-spacing: .05em;
+      text-transform: uppercase;
+      color: var(--sx-muted);
+      text-align: right;
+      white-space: nowrap;
+    }
+    .stamp b {
+      display: block;
+      color: var(--sx-ink);
+      font-size: 12px;
+    }
+
+    /* 4 Strategy Selection Cards (ChatGPT exact 12px gap & 25px 0 22px margin) */
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 12px;
+      margin: 25px 0 22px;
+    }
+    @media (max-width: 900px) {
+      .cards { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+    }
+    @media (max-width: 520px) {
+      .cards { grid-template-columns: 1fr; }
+    }
+
+    .card {
+      position: relative;
+      display: block;
+      background: var(--sx-card);
+      border: 1px solid var(--sx-rule);
+      border-radius: 6px;
+      padding: 15px 16px 13px;
+      overflow: hidden;
+      cursor: pointer;
+      text-decoration: none;
+      color: inherit;
+      transition: background .15s, border-color .15s;
+    }
+    .card:hover {
+      background: #151d30;
+      border-color: rgba(16, 185, 129, 0.4);
+    }
+    .card.active {
+      border-color: var(--sx-teal);
+      background: rgba(16, 185, 129, 0.08);
+      box-shadow: inset 0 3px 0 var(--sx-teal);
+    }
+    .cardtop {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+    }
+    .idx {
+      font: 10px var(--sx-mono);
+      letter-spacing: .095em;
+      text-transform: uppercase;
+      color: var(--sx-muted);
+    }
+    .pill {
+      font: 9px var(--sx-mono);
+      letter-spacing: .055em;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      color: var(--sx-teal-bright);
+      background: rgba(16, 185, 129, 0.12);
+      border: 1px solid rgba(16, 185, 129, 0.25);
+      border-radius: 3px;
+      padding: 1px 6px;
+    }
+    .dot {
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: currentColor;
+      display: inline-block;
+    }
+    .cardname {
+      font: 600 16px/1.3 var(--sx-sans);
+      color: var(--sx-ink);
+      margin: 12px 0 6px;
+    }
+    .cardbt {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+    }
+    .cardbt strong {
+      font: 600 clamp(18px, 1.65vw, 24px) var(--sx-mono);
+      letter-spacing: -.05em;
+    }
+    .pos { color: var(--sx-teal-bright); }
+    .neg { color: var(--sx-red); }
+    .spark {
+      width: 65px;
+      height: 24px;
+      flex-shrink: 0;
+    }
+
+    /* Main Intraday Layout (ChatGPT 2.3fr to 1fr with 16px gap) */
+    .layout {
+      display: grid;
+      grid-template-columns: minmax(0, 2.3fr) minmax(280px, 1fr);
+      gap: 16px;
+    }
+    @media (max-width: 900px) {
+      .layout { grid-template-columns: 1fr; }
+    }
+
+    .panel, .side, .box {
+      border: 1px solid var(--sx-rule);
+      border-radius: 7px;
+      background: var(--sx-card);
+    }
+    .panel {
+      position: relative;
+      background: #0f1627;
+      color: #f5faf8;
+      padding: 24px 26px 17px;
+      overflow: hidden;
+      border-color: rgba(255, 255, 255, 0.09);
+    }
+    .charthead {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 12px;
+    }
+    .charthead h2 {
+      font-size: clamp(20px, 2vw, 26px);
+      letter-spacing: -.03em;
+      font-weight: 700;
+      color: var(--sx-ink);
+      margin: 2px 0 0;
+    }
+    .time {
+      font: 10px var(--sx-mono);
+      color: #9cb1b5;
+      background: rgba(255, 255, 255, 0.05);
+      padding: 3px 7px;
+      border-radius: 3px;
+    }
+    .metric {
+      font: 600 clamp(28px, 3vw, 40px)/1.15 var(--sx-mono);
+      letter-spacing: -.06em;
+      margin: 6px 0;
+    }
+    .plot {
+      margin-top: 14px;
+    }
+    .plot svg {
+      width: 100%;
+      height: 155px;
+      display: block;
+      overflow: visible;
+    }
+    .chartaxis {
+      display: flex;
+      justify-content: space-between;
+      color: #9cb1b5;
+      font: 10px var(--sx-mono);
+      margin: 6px 0 0 50px;
+    }
+
+    /* Session Summary Aside */
+    .side {
+      padding: 21px 22px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      background: var(--sx-card);
+    }
+    .side h3 {
+      font-size: 18px;
+      font-weight: 700;
+      letter-spacing: -.02em;
+      color: var(--sx-ink);
+      margin: 0 0 2px;
+    }
+    .metrics {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px 10px;
+    }
+    .label {
+      font: 10px var(--sx-mono);
+      letter-spacing: .095em;
+      text-transform: uppercase;
+      color: var(--sx-muted);
+      display: block;
+    }
+    .metrics b {
+      font: 600 15px var(--sx-mono);
+      display: block;
+      margin-top: 4px;
+      color: var(--sx-ink);
+    }
+    .side .actions {
+      margin-top: auto;
+      border-top: 1px solid var(--sx-rule);
+      padding-top: 13px;
+    }
+    .btn {
+      border: 1px solid var(--sx-rule);
+      border-radius: 4px;
+      background: transparent;
+      padding: 10px 14px;
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      gap: 9px;
+      font-size: 13px;
+      font-weight: 650;
+      color: var(--sx-ink);
+      cursor: pointer;
+      text-decoration: none;
+      transition: all .15s ease;
+    }
+    .btn.primary {
+      background: var(--sx-teal);
+      border-color: var(--sx-teal);
+      color: #06281e;
+    }
+    .btn.primary:hover {
+      background: var(--sx-teal-bright);
+    }
+
+    /* Disciplined Topic Flow (ChatGPT exact .ledger 25px, .flow-block 32px) */
+    .ledger {
+      margin-top: 25px;
+    }
+    .flow-block {
+      margin-top: 32px;
+      scroll-margin-top: 80px;
+    }
+    .sectiontitle {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      margin-bottom: 14px;
+    }
+    .sectiontitle h2 {
+      font-size: clamp(20px, 2vw, 24px);
+      letter-spacing: -.03em;
+      font-weight: 700;
+      color: var(--sx-ink);
+      margin: 0;
+    }
+    .filters {
+      display: flex;
+      gap: 5px;
+    }
+    .filters button {
+      border: 1px solid var(--sx-rule);
+      background: transparent;
+      color: var(--sx-muted);
+      font: 11px var(--sx-mono);
+      padding: 4px 10px;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    .filters button.active {
+      background: rgba(16, 185, 129, 0.15);
+      border-color: var(--sx-teal);
+      color: var(--sx-teal-bright);
+      font-weight: 700;
+    }
+
+    /* Table Styling */
+    .tablewrap {
+      overflow-x: auto;
+      background: var(--sx-card);
+      border: 1px solid var(--sx-rule);
+      border-radius: 6px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+      white-space: nowrap;
+    }
+    th, td {
+      padding: 11px 14px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    }
+    th {
+      background: rgba(255, 255, 255, 0.02);
+      color: var(--sx-muted);
+      font: 10px var(--sx-mono);
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      font-weight: 600;
+    }
+    td {
+      font: 12px var(--sx-mono);
+      color: var(--sx-ink);
+    }
+    td:first-child {
+      font-family: var(--sx-sans);
+      font-weight: 650;
+    }
+    tr:last-child td {
+      border-bottom: none;
+    }
+    .tag {
+      font: 9px var(--sx-mono);
+      border-radius: 3px;
+      padding: 2px 6px;
+      text-transform: uppercase;
+      font-weight: 700;
+    }
+    .tag.open {
+      background: rgba(16, 185, 129, 0.15);
+      color: var(--sx-teal-bright);
+      border: 1px solid rgba(16, 185, 129, 0.3);
+    }
+    .tag.closed {
+      background: rgba(255, 255, 255, 0.05);
+      color: var(--sx-muted);
+      border: 1px solid var(--sx-rule);
+    }
+    .note {
+      font-size: 12px;
+      color: var(--sx-muted);
+      margin: 8px 0 0;
+    }
+
+    /* Multi-Year Historical Accordion & Archive Lock */
+    .history-rows {
+      background: var(--sx-card);
+      border: 1px solid var(--sx-rule);
+      border-radius: 6px;
+      overflow: hidden;
+    }
+    .session-day + .session-day {
+      border-top: 1px solid var(--sx-rule);
+    }
+    .session-day summary {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      cursor: pointer;
+      padding: 14px 18px;
+      list-style: none;
+      transition: background .15s;
+    }
+    .session-day summary::-webkit-details-marker { display: none; }
+    .session-day summary::before {
+      content: '›';
+      font: 20px var(--sx-sans);
+      color: var(--sx-teal);
+      line-height: 1;
+      transition: transform .15s;
+    }
+    .session-day[open] summary::before {
+      transform: rotate(90deg);
+    }
+    .session-day summary strong {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--sx-ink);
+    }
+    .session-day summary .session-pnl {
+      margin-left: auto;
+      font: 600 15px var(--sx-mono);
+      white-space: nowrap;
+    }
+    .session-detail {
+      padding: 0 14px 14px;
+    }
+
+    /* Archive Lock (Crisp 2.5px blur matching ChatGPT exactly) */
+    .archive-lock {
+      position: relative;
+      isolation: isolate;
+      display: grid;
+      place-items: center;
+      overflow: hidden;
+      min-height: 255px;
+      padding: 30px 18px;
+      border-top: 1px solid var(--sx-rule);
+      background: #0d1322;
+    }
+    .archive-preview {
+      position: absolute;
+      z-index: -1;
+      inset: 0;
+      pointer-events: none;
+      user-select: none;
+    }
+    .preview-row {
+      height: 51px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 0 18px;
+      white-space: nowrap;
+      background: #111726;
+      border-bottom: 1px solid var(--sx-rule);
+    }
+    .preview-row:nth-child(even) {
+      background: #0f1524;
+    }
+    /* Subtle 2.5px blur on spans only, NOT whole card */
+    .preview-row span {
+      filter: blur(2.5px);
+    }
+    .preview-date {
+      color: var(--sx-muted);
+      font: 600 14px var(--sx-sans);
+    }
+    .preview-kind {
+      color: var(--sx-muted);
+      font: 10px var(--sx-mono);
+      letter-spacing: .08em;
+    }
+    .preview-amount {
+      margin-left: auto;
+      color: var(--sx-teal-bright);
+      font: 600 15px var(--sx-mono);
+    }
+    .archive-prompt {
+      text-align: center;
+      max-width: 27rem;
+      padding: 18px 24px 20px;
+      background: rgba(17, 23, 38, 0.94);
+      border: 1px solid rgba(16, 185, 129, 0.45);
+      border-radius: 8px;
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.6);
+      backdrop-filter: blur(4px);
+    }
+    .archive-prompt h3 {
+      font: 600 clamp(20px, 2.5vw, 25px)/1.2 var(--sx-sans);
+      color: var(--sx-ink);
+      margin: 0;
+    }
+    .archive-prompt p {
+      margin: 8px auto 14px;
+      color: var(--sx-muted);
+      font-size: 13px;
+      line-height: 1.5;
+    }
+    .credit-callout {
+      color: var(--sx-teal-bright);
+      font-weight: 600;
+    }
+
+    /* Unlocked Banner */
+    .unlocked-banner {
+      display: none;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      padding: 12px 18px;
+      background: rgba(16, 185, 129, 0.08);
+      border-bottom: 1px solid rgba(16, 185, 129, 0.2);
+      flex-wrap: wrap;
+    }
+    .unlocked-banner.active {
+      display: flex;
+    }
+    .unlocked-status {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 13px;
+      font-weight: 650;
+      color: var(--sx-teal-bright);
+    }
+
+    /* Deployment Section (Papergrid layout) */
+    .papergrid {
+      display: grid;
+      grid-template-columns: 1.5fr 1fr;
+      gap: 16px;
+    }
+    @media (max-width: 860px) {
+      .papergrid { grid-template-columns: 1fr; }
+    }
+    .papergrid .box {
+      padding: 24px;
+      background: var(--sx-card);
+    }
+    .darkbox {
+      background: var(--sx-card-dark);
+      border-color: rgba(16, 185, 129, 0.2);
+    }
+    .invoice {
+      margin: 16px 0 18px;
+    }
+    .line {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 14px;
+      padding: 9px 0;
+      border-bottom: 1px solid var(--sx-rule);
+      font-size: 13px;
+      color: var(--sx-muted);
+    }
+    .line b {
+      font: 600 14px var(--sx-mono);
+      color: var(--sx-ink);
+    }
+    .line.total {
+      font-weight: 700;
+      color: var(--sx-ink);
+      border-bottom: 2px solid var(--sx-teal);
+      padding: 12px 0;
+    }
+    .line.total b {
+      font-size: 19px;
+      color: var(--sx-teal-bright);
+    }
+    .line.credit b, .line.credit span {
+      color: var(--sx-teal-bright);
+    }
+    .form-group {
+      margin-bottom: 12px;
+    }
+    .form-group label {
+      display: block;
+      font-weight: 600;
+      font-size: 12px;
+      color: var(--sx-muted);
+      margin-bottom: 5px;
+    }
+    .form-control {
+      width: 100%;
+      background: var(--sx-paper);
+      border: 1px solid var(--sx-rule);
+      color: var(--sx-ink);
+      padding: 9px 12px;
+      border-radius: 4px;
+      font: inherit;
+      font-size: 13px;
+      outline: none;
+    }
+    .form-control:focus {
+      border-color: var(--sx-teal);
+    }
+    .bigprice {
+      font: 700 34px var(--sx-mono);
+      letter-spacing: -.05em;
+      color: var(--sx-teal-bright);
+      margin: 14px 0;
+    }
+    .bigprice span {
+      font: 14px var(--sx-sans);
+      color: var(--sx-muted);
+      font-weight: 400;
+    }
+    .sub {
+      color: var(--sx-muted);
+      font-size: 13px;
+      line-height: 1.5;
+    }
+    .care-list {
+      list-style: none;
+      padding: 0;
+      margin: 14px 0 0;
+    }
+    .care-list li {
+      display: flex;
+      gap: 8px;
+      font-size: 12px;
+      color: var(--sx-muted);
+      margin-bottom: 8px;
+      line-height: 1.45;
+    }
+    .care-list li i {
+      color: var(--sx-teal-bright);
+      margin-top: 3px;
+    }
+
+    /* Checkout Dialog */
+    dialog#checkout {
+      background: var(--sx-card);
+      border: 1px solid rgba(16, 185, 129, 0.45);
+      border-radius: 8px;
+      padding: 24px;
+      max-width: 400px;
+      width: 90vw;
+      color: var(--sx-ink);
+      box-shadow: 0 20px 45px rgba(0, 0, 0, 0.7);
+    }
+    dialog#checkout::backdrop {
+      background: rgba(10, 14, 26, 0.85);
+      backdrop-filter: blur(4px);
+    }
+    .spread {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    dialog h2 {
+      font-size: 19px;
+      font-weight: 700;
+      color: var(--sx-ink);
+      margin: 10px 0 6px;
+    }
+    dialog p {
+      font-size: 13px;
+      color: var(--sx-muted);
+      line-height: 1.45;
+      margin: 0 0 14px;
+    }
+    dialog .buttons {
+      display: flex;
+      justify-content: flex-end;
+      gap: 8px;
+      margin-top: 18px;
+    }
+  </style>
+</head>
+<body class="portal-root">
+
+  <!-- Official Stratexa Navigation Header (Without secondary sub-menu tabs) -->
+  <header class="navbar" id="navbar">
+    <div class="nav-container">
+      <a href="/" class="nav-logo">
+        <div class="logo-box">
+          <svg class="logo-svg" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M25 75L75 25M75 25H45M75 25V55" stroke="var(--accent-green)" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M25 45V75H55" stroke="var(--logo-stroke)" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <div class="logo-text"><span class="brand-name">STRATEXA.IN</span><span class="brand-tagline">AUTOMATE. EXECUTE. ELEVATE.</span></div>
+      </a>
+
+      <!-- Primary Site Navigation -->
+      <nav class="nav-menu" id="nav-menu">
+        <a href="/#services" class="nav-link">Solutions</a>
+        <a href="/strategies.html" class="nav-link active">Strategies</a>
+        <a href="/pricing.html" class="nav-link">Pricing</a>
+        <a href="/faq.html" class="nav-link">FAQ</a>
+        <a href="/about.html" class="nav-link">About</a>
+        <a href="/blogs.html" class="nav-link">Blogs</a>
+        <a href="#deployment" class="nav-cta btn-primary">Deploy on Broker</a>
+      </nav>
+
+      <!-- Global Live P&L Navbar Hook -->
+      <a href="#desk" class="nav-live-ticker">
+        <span class="dot" style="background:var(--sx-teal-bright);box-shadow:0 0 8px var(--sx-teal);"></span>
+        <span class="ticker-text">LIVE DESK:</span>
+        <span class="ticker-pnl" id="navLiveTickerPnl">+₹12,142.50 TODAY</span>
+        <span class="ticker-arrow">→</span>
+      </a>
+
+      <!-- Theme Toggle & Mobile Hamburger -->
+      <div class="nav-actions">
+        <button id="theme-toggle-btn" class="theme-toggle" aria-label="Toggle theme">
+          <i class="fa-regular fa-moon"></i>
+        </button>
+        <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation">
+          <span class="bar"></span>
+          <span class="bar"></span>
+          <span class="bar"></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main class="wrap portal-main">
+    
+    <!-- Masthead -->
+    <div class="mast">
+      <div>
+        <div class="eyebrow">Strategy Desk · Live Feed</div>
+        <h1>Strategy Performance</h1>
+        <p>Follow the live intraday session, explore past verified trades and deploy your selected strategy.</p>
+      </div>
+      <div class="stamp" id="stampBox">
+        <strong>Trading session</strong>
+        <span id="stampDate">21-NOV-2026 · IST</span>
+      </div>
+    </div>
+
+    <!-- 4 Strategy Cards -->
+    <nav class="cards" id="strategyCardsRow" aria-label="Strategy Performance"></nav>
+
+    <!-- Strategy Desk Section (Layout & Ledger) -->
+    <div id="content">
+      <div id="desk">
+        
+        <!-- Intraday Layout (Panel + Session Summary) -->
+        <div class="layout">
+          
+          <!-- Intraday Plot Panel (ChatGPT exact coordinate system & gridlines) -->
+          <div class="panel">
+            <div class="charthead">
+              <div>
+                <div class="eyebrow">Intraday P&amp;L</div>
+                <h2 id="activeStrategyTitle">9:20 Straddle</h2>
+              </div>
+              <span class="time" id="chartTimeBadge">Broker live · 10:46 IST</span>
+            </div>
+
+            <div class="metric pos" id="activeStrategyPnl">+₹1,245.00</div>
+
+            <div class="plot" id="chartPlotWrap">
+              <!-- Rendered via JS -->
+            </div>
+          </div>
+
+          <!-- Session Summary Aside -->
+          <aside class="side">
+            <h3>Session Summary</h3>
+            <div class="metrics">
+              <div>
+                <span class="label">Realised</span>
+                <b id="metricRealised" class="pos">+₹780.00</b>
+              </div>
+              <div>
+                <span class="label">Unrealised</span>
+                <b id="metricUnrealised" class="pos">+₹465.00</b>
+              </div>
+              <div>
+                <span class="label">Open positions</span>
+                <b id="metricOpenPositions">1</b>
+              </div>
+              <div>
+                <span class="label">Closed positions</span>
+                <b id="metricClosedPositions">1</b>
+              </div>
+            </div>
+
+            <div class="actions">
+              <a href="#deployment" class="btn primary" style="width:100%;">
+                Deploy Strategy →
+              </a>
+            </div>
+          </aside>
+
+        </div>
+
+        <!-- Position Ledger -->
+        <div class="ledger">
+          <div class="sectiontitle">
+            <h2>Position Ledger</h2>
+            <div class="filters">
+              <button class="active" data-filter="all">All</button>
+              <button data-filter="open">Open</button>
+              <button data-filter="closed">Closed</button>
+            </div>
+          </div>
+
+          <div class="tablewrap">
+            <table>
+              <thead>
+                <tr>
+                  <th scope="col">Timestamp</th>
+                  <th scope="col">Instrument</th>
+                  <th scope="col">Expiry</th>
+                  <th scope="col">Order Type</th>
+                  <th scope="col">Entry Price</th>
+                  <th scope="col">Spot at Entry</th>
+                  <th scope="col">LTP</th>
+                  <th scope="col">Exit Price</th>
+                  <th scope="col">Spot at Exit</th>
+                  <th scope="col">Qty</th>
+                  <th scope="col" style="text-align:right;">PNL</th>
+                </tr>
+              </thead>
+              <tbody id="positionsTableBody">
+                <!-- Injected via JS -->
+              </tbody>
+            </table>
+          </div>
+          <p class="note">P&amp;L as reported by the strategy server. Slippage buffer (₹1.00) &amp; institutional exchange friction factored.</p>
+        </div>
+
+      </div>
+
+      <!-- Historical Data Flow Block -->
+      <div id="history" class="flow-block">
+        <div class="sectiontitle">
+          <h2>Historical Data</h2>
+          <span class="label" id="historyStrategySubtitle">9:20 Straddle</span>
+        </div>
+
+        <div class="history-rows">
+          <!-- Unlocked Banner -->
+          <div class="unlocked-banner" id="unlockedBanner">
+            <div class="unlocked-status">
+              <i class="fa-solid fa-circle-check"></i>
+              Historical archive unlocked · ₹99 credited to deployment
+            </div>
+            <div class="unlocked-downloads">
+              <a href="/reports/Stratexa_Strategy2_920_Straddle_Report_Card.pdf" download class="btn" id="btnHistoryPdf" style="padding:5px 10px;font-size:11px;">
+                <i class="fa-regular fa-file-pdf"></i> Report Card (2.3 MB)
+              </a>
+              <a href="/reports/Stratexa_Strategy2_920_Straddle_Trades.csv" download class="btn" id="btnHistoryCsv" style="padding:5px 10px;font-size:11px;">
+                <i class="fa-solid fa-file-csv"></i> Trade CSV
+              </a>
+            </div>
+          </div>
+
+          <!-- Dynamic Accordion Days List -->
+          <div id="historyRowsContainer"></div>
+
+          <!-- Blurred Lock Segment (Exact 2.5px blur matching ChatGPT) -->
+          <div class="archive-lock" id="archiveLockSection">
+            <div class="archive-preview" aria-hidden="true">
+              <div class="preview-row">
+                <span class="preview-date">› &nbsp;14 Nov 2026</span>
+                <span class="preview-kind">BROKER SESSION</span>
+                <span class="preview-amount">+₹4,120.00</span>
+              </div>
+              <div class="preview-row">
+                <span class="preview-date">› &nbsp;13 Nov 2026</span>
+                <span class="preview-kind">BROKER SESSION</span>
+                <span class="preview-amount">−₹1,120.00</span>
+              </div>
+              <div class="preview-row">
+                <span class="preview-date">› &nbsp;12 Nov 2026</span>
+                <span class="preview-kind">BROKER SESSION</span>
+                <span class="preview-amount">+₹3,450.00</span>
+              </div>
+              <div class="preview-row">
+                <span class="preview-date">› &nbsp;11 Nov 2026</span>
+                <span class="preview-kind">BROKER SESSION</span>
+                <span class="preview-amount">+₹1,980.00</span>
+              </div>
+              <div class="preview-row">
+                <span class="preview-date">› &nbsp;10 Nov 2026</span>
+                <span class="preview-kind">BROKER SESSION</span>
+                <span class="preview-amount">+₹2,840.00</span>
+              </div>
+            </div>
+
+            <div class="archive-prompt">
+              <h3>Unlock Earlier Sessions</h3>
+              <p>Your ₹99 goes toward deployment of <span id="promptStrategyName">9:20 Straddle</span>.</p>
+              <button class="btn primary" id="btnUnlockArchive">
+                Unlock historical data · ₹99
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Strategy Deployment Flow Block -->
+      <div id="deployment" class="flow-block">
+        <div class="sectiontitle">
+          <h2>Strategy Deployment</h2>
+        </div>
+
+        <div class="papergrid">
+          <!-- Left Box: Managed Deployment Invoice -->
+          <div class="box">
+            <div class="eyebrow">Managed Deployment</div>
+            <h2 style="font-size:22px;margin:4px 0 12px;font-weight:700;" id="deployStrategyName">9:20 Straddle</h2>
+            
+            <div class="invoice">
+              <div class="line">
+                <span>Strategy setup</span>
+                <b>₹5,000</b>
+              </div>
+              <div class="line">
+                <span>Onboarding</span>
+                <b>₹999</b>
+              </div>
+              <div class="line">
+                <span>First month of server care</span>
+                <b>₹1,499</b>
+              </div>
+              <div class="line credit" id="invoiceCreditRow">
+                <span>Historical data credit</span>
+                <b id="invoiceCreditVal">₹0</b>
+              </div>
+              <div class="line total">
+                <span>Due today</span>
+                <b id="invoiceTotalVal">₹7,498</b>
+              </div>
+            </div>
+
+            <form id="deploymentForm">
+              <div class="form-group">
+                <label for="deployEmail">Deployment contact email</label>
+                <input type="email" id="deployEmail" class="form-control" placeholder="you@example.com" required />
+              </div>
+              <div class="form-group">
+                <label for="deployBroker">Target Broker Environment</label>
+                <select id="deployBroker" class="form-control" required>
+                  <option value="Shoonya">Shoonya / Finvasia (Zero Brokerage)</option>
+                  <option value="Fyers">Fyers (Prime API Execution)</option>
+                  <option value="Zerodha">Zerodha (Kite Connect API)</option>
+                  <option value="AngelOne">Angel One (SmartAPI)</option>
+                  <option value="Breeze">ICICI Breeze API</option>
+                  <option value="Other">Other Broker / BYOS Custom</option>
+                </select>
+              </div>
+              <button type="submit" class="btn primary" style="width:100%;margin-top:8px;">
+                Pay and request deployment →
+              </button>
+            </form>
+          </div>
+
+          <!-- Right Box: Darkbox Server Care -->
+          <aside class="box darkbox">
+            <div class="eyebrow">Server Care</div>
+            <h2 style="font-size:22px;margin:4px 0 6px;font-weight:700;">Managed by STRATEXA.</h2>
+            <p class="sub">Hosting, monitoring and maintenance for the selected strategy. Dedicated cloud droplet with 5-layer sanity shield.</p>
+
+            <div class="bigprice">
+              ₹1,499<span> / month</span>
+            </div>
+            <p class="sub" style="font-size:12px;margin-top:-6px;">From month two. Today's checkout covers setup, broker onboarding, and Month 1 care.</p>
+
+            <ul class="care-list">
+              <li><i class="fa-solid fa-check"></i> <span>STRATEXA 5-Layer Sanity Shield protecting against bad broker ticks</span></li>
+              <li><i class="fa-solid fa-check"></i> <span>09:05 AM automated morning session token injection</span></li>
+              <li><i class="fa-solid fa-check"></i> <span>Isolated cloud droplet with zero cross-contamination</span></li>
+              <li><i class="fa-solid fa-check"></i> <span>15:15 IST guaranteed automated square-off</span></li>
+            </ul>
+          </aside>
+        </div>
+      </div>
+
+    </div>
+
+  </main>
+
+  <!-- Official Stratexa Footer -->
+  <footer class="footer">
+    <div class="container footer-content" style="display:flex;justify-content:space-between;flex-wrap:wrap;gap:20px;padding:26px 0;border-top:1px solid var(--border-color);color:var(--text-muted);font-size:12px;">
+      <div>
+        <strong style="color:var(--text-primary);letter-spacing:1px;">STRATEXA.IN</strong> · Institutional Quantitative Infrastructure
+      </div>
+      <div>
+        All execution times in India Standard Time (IST).
+      </div>
+      <div>
+        Proprietary Tick Lakehouse
+      </div>
+    </div>
+  </footer>
+
+  <!-- Checkout Dialog -->
+  <dialog id="checkout">
+    <div class="spread">
+      <span class="eyebrow" id="checkoutEyebrow">Local Checkout</span>
+      <button class="btn" id="btnCloseCheckout" aria-label="Close checkout" style="padding:2px 8px;font-size:18px;border:none;">×</button>
+    </div>
+    <h2 id="checkoutTitle">Historical Data Access</h2>
+    <p id="checkoutDesc">Historical data access. Simulated payment for local review. 100% credited to deployment.</p>
+    
+    <div class="line total">
+      <span>Total</span>
+      <b id="checkoutAmount">₹99</b>
+    </div>
+
+    <div class="buttons">
+      <button class="btn" id="btnCancelCheckout">Cancel</button>
+      <button class="btn primary" id="btnConfirmPay">Confirm Payment</button>
+    </div>
+  </dialog>
+
+  <script>
+    "use strict";
+
+    const strategies = {
+      strat_1: {
+        id: "strat_1",
+        idx: "SX/01",
+        name: "Nifty Intraday Scalper",
+        type: "Options selling hedged",
+        capital: "₹3,50,000",
+        pdfName: "Stratexa_Nifty_Intraday_Scalper_Report_Card.pdf",
+        pdfUrl: "/reports/Stratexa_Strategy1_Dynamic_Trend_Report_Card.pdf",
+        csvName: "Stratexa_Nifty_Intraday_Scalper_Trades.csv",
+        csvUrl: "/reports/Stratexa_Nifty_Intraday_Scalper_Trades.csv"
+      },
+      strat_2: {
+        id: "strat_2",
+        idx: "SX/02",
+        name: "Bank Nifty Intraday Scalper",
+        type: "Options selling hedged",
+        capital: "₹5,00,000",
+        pdfName: "Stratexa_BankNifty_Intraday_Scalper_Report_Card.pdf",
+        pdfUrl: "/reports/Stratexa_Strategy2_920_Straddle_Report_Card.pdf",
+        csvName: "Stratexa_BankNifty_Intraday_Scalper_Trades.csv",
+        csvUrl: "/reports/Stratexa_BankNifty_Intraday_Scalper_Trades.csv"
+      },
+      strat_3: {
+        id: "strat_3",
+        idx: "SX/03",
+        name: "Nifty Range Breakout",
+        type: "Trend breakout reversal",
+        capital: "₹2,00,000",
+        pdfName: "Stratexa_Nifty_Range_Breakout_Report_Card.pdf",
+        pdfUrl: "/reports/Stratexa_Strategy1_Dynamic_Trend_Report_Card.pdf",
+        csvName: "Stratexa_Nifty_Range_Breakout_Trades.csv",
+        csvUrl: "/reports/Stratexa_Nifty_Range_Breakout_Trades.csv"
+      },
+      strat_4a: {
+        id: "strat_4a",
+        idx: "SX/04A",
+        name: "Nifty Trend Momentum (Buying)",
+        type: "Options buying momentum",
+        capital: "₹50,000",
+        pdfName: "Stratexa_Nifty_Trend_Momentum_Report_Card.pdf",
+        pdfUrl: "/reports/Stratexa_Strategy2_920_Straddle_Report_Card.pdf",
+        csvName: "Stratexa_Nifty_Trend_Momentum_Buying_Trades.csv",
+        csvUrl: "/reports/Stratexa_Nifty_Trend_Momentum_Buying_Trades.csv"
+      },
+      strat_4b: {
+        id: "strat_4b",
+        idx: "SX/04B",
+        name: "Nifty Trend Shield (Credit Short)",
+        type: "Options selling hedged",
+        capital: "₹1,50,000",
+        pdfName: "Stratexa_Nifty_Trend_Shield_Report_Card.pdf",
+        pdfUrl: "/reports/Stratexa_Strategy1_Dynamic_Trend_Report_Card.pdf",
+        csvName: "Stratexa_Nifty_Trend_Shield_Short_Trades.csv",
+        csvUrl: "/reports/Stratexa_Nifty_Trend_Shield_Short_Trades.csv"
+      },
+      strat_5: {
+        id: "strat_5",
+        idx: "SX/05",
+        name: "9:30 AM Institutional Straddle",
+        type: "Delta-neutral straddle",
+        capital: "₹1,75,000",
+        pdfName: "Stratexa_Institutional_0930_Straddle_Report_Card.pdf",
+        pdfUrl: "/reports/Stratexa_Strategy2_920_Straddle_Report_Card.pdf",
+        csvName: "Stratexa_Institutional_0930_Straddle_Trades.csv",
+        csvUrl: "/reports/Stratexa_Institutional_0930_Straddle_Trades.csv"
+      },
+      strat_6: {
+        id: "strat_6",
+        idx: "SX/06",
+        name: "10:00 AM Low-Vol Straddle",
+        type: "Delta-neutral straddle",
+        capital: "₹1,75,000",
+        pdfName: "Stratexa_Low_Vol_1000_Straddle_Report_Card.pdf",
+        pdfUrl: "/reports/Stratexa_Strategy2_920_Straddle_Report_Card.pdf",
+        csvName: "Stratexa_Low_Vol_1000_Straddle_Trades.csv",
+        csvUrl: "/reports/Stratexa_Low_Vol_1000_Straddle_Trades.csv"
+      },
+      strat_7: {
+        id: "strat_7",
+        idx: "SX/07",
+        name: "Sensex Intraday Scalper",
+        type: "Options selling hedged",
+        capital: "₹3,50,000",
+        pdfName: "Stratexa_Sensex_Intraday_Scalper_Report_Card.pdf",
+        pdfUrl: "/reports/Stratexa_Strategy1_Dynamic_Trend_Report_Card.pdf",
+        csvName: "Stratexa_Sensex_Intraday_Scalper_Trades.csv",
+        csvUrl: "/reports/Stratexa_Sensex_Intraday_Scalper_Trades.csv"
+      },
+      strat_7b: {
+        id: "strat_7b",
+        idx: "SX/08",
+        name: "Sensex Intraday Scalper (Adaptive)",
+        type: "Options selling hedged",
+        capital: "₹3,50,000",
+        pdfName: "Stratexa_Sensex_Adaptive_Scalper_Report_Card.pdf",
+        pdfUrl: "/reports/Stratexa_Strategy1_Dynamic_Trend_Report_Card.pdf",
+        csvName: "Stratexa_Sensex_Intraday_Scalper_Trades.csv",
+        csvUrl: "/reports/Stratexa_Sensex_Intraday_Scalper_Trades.csv"
+      },
+      strat_8: {
+        id: "strat_8",
+        idx: "SX/09",
+        name: "10 AM Decay Momentum",
+        type: "1-Leg ITM options buying",
+        capital: "₹50,000",
+        pdfName: "Stratexa_10AM_Decay_Momentum_Report_Card.pdf",
+        pdfUrl: "/reports/Stratexa_Strategy2_920_Straddle_Report_Card.pdf",
+        csvName: "Stratexa_10AM_Decay_Momentum_Trades.csv",
+        csvUrl: "/reports/Stratexa_10AM_Decay_Momentum_Trades.csv"
+      },
+      strat_9: {
+        id: "strat_9",
+        idx: "SX/10",
+        name: "Systematic Call-Only Sell",
+        type: "Directional credit options selling",
+        capital: "₹2,50,000",
+        pdfName: "Stratexa_Systematic_Call_Sell_Report_Card.pdf",
+        pdfUrl: "/reports/Stratexa_Strategy1_Dynamic_Trend_Report_Card.pdf",
+        csvName: "Stratexa_Systematic_Call_Sell_Trades.csv",
+        csvUrl: "/reports/Stratexa_Systematic_Call_Sell_Trades.csv"
+      },
+      strat_10: {
+        id: "strat_10",
+        idx: "SX/11",
+        name: "Nifty AI Tactical (Buying)",
+        type: "AI Decision Options Buying",
+        capital: "₹50,000",
+        pdfName: "Stratexa_AI_Tactical_Buying_Report_Card.pdf",
+        pdfUrl: "/reports/Stratexa_Strategy1_Dynamic_Trend_Report_Card.pdf",
+        csvName: "Stratexa_AI_Tactical_Buying_Trades.csv",
+        csvUrl: "/reports/Stratexa_AI_Tactical_Buying_Trades.csv"
+      },
+      strat_11: {
+        id: "strat_11",
+        idx: "SX/12",
+        name: "Nifty AI Tactical (Selling)",
+        type: "AI Decision Options Selling",
+        capital: "₹1,50,000",
+        pdfName: "Stratexa_AI_Tactical_Selling_Report_Card.pdf",
+        pdfUrl: "/reports/Stratexa_Strategy1_Dynamic_Trend_Report_Card.pdf",
+        csvName: "Stratexa_AI_Tactical_Selling_Trades.csv",
+        csvUrl: "/reports/Stratexa_AI_Tactical_Selling_Trades.csv"
+      },
+      strat_btc: {
+        id: "strat_btc",
+        idx: "SX/BTC",
+        name: "BTC Daily Options Credit Spread",
+        type: "Crypto options selling hedged",
+        capital: "$1,000 (~₹85,000)",
+        pdfName: "Stratexa_BTC_Options_Report_Card.pdf",
+        pdfUrl: "/reports/Stratexa_Strategy2_920_Straddle_Report_Card.pdf",
+        csvName: "Stratexa_BTC_Options_Trades.csv",
+        csvUrl: "/reports/Stratexa_BTC_Options_Trades.csv"
+      }
+    };
+
+    const keys = ["strat_1", "strat_2", "strat_3", "strat_4a", "strat_4b", "strat_5", "strat_6", "strat_7", "strat_7b", "strat_8", "strat_9", "strat_10", "strat_11", "strat_btc"];
+    let activeKey = "strat_1";
+    let activeFilter = "all";
+    let hasUnlockedArchive = localStorage.getItem("stratexa_unlocked_archive") === "true";
+
+    const fmt = new Intl.NumberFormat("en-IN", { maximumFractionDigits: 2 });
+    const money = n => "₹" + fmt.format(n);
+    const signed = n => (n > 0 ? "+" : n < 0 ? "−" : "") + money(Math.abs(n));
+    const tone = n => n < 0 ? "neg" : n > 0 ? "pos" : "";
+
+    function generateIntradayData(tick) {
+      const rows = {};
+      const baseValues = [
+        { realized: 1450, unrealized: 680, pnl: 2130, qty: 65, spot: 24350.25, exp: "2026-11-26" },
+        { realized: 3200, unrealized: 1850, pnl: 5050, qty: 30, spot: 52180.50, exp: "2026-11-26" },
+        { realized: -850, unrealized: 1240, pnl: 390, qty: 130, spot: 24365.10, exp: "2026-11-26" },
+        { realized: 0, unrealized: 1420, pnl: 1420, qty: 65, spot: 24370.40, exp: "2026-11-26" },
+        { realized: 1100, unrealized: 450, pnl: 1550, qty: 65, spot: 24368.80, exp: "2026-11-26" },
+        { realized: 1250, unrealized: 850, pnl: 2100, qty: 65, spot: 24350.25, exp: "2026-11-26" },
+        { realized: 1600, unrealized: 920, pnl: 2520, qty: 65, spot: 24350.25, exp: "2026-11-26" },
+        { realized: 2400, unrealized: 1100, pnl: 3500, qty: 20, spot: 82150.40, exp: "2026-11-20" },
+        { realized: 1850, unrealized: 750, pnl: 2600, qty: 65, spot: 24350.25, exp: "2026-11-26" },
+        { realized: 1000, unrealized: 450, pnl: 1450, qty: 65, spot: 24350.25, exp: "2026-11-26" },
+        { realized: 800, unrealized: 350, pnl: 1150, qty: 65, spot: 24350.25, exp: "2026-11-26" },
+        { realized: 1500, unrealized: 600, pnl: 2100, qty: 65, spot: 24350.25, exp: "2026-11-26" },
+        { realized: 2100, unrealized: 950, pnl: 3050, qty: 20, spot: 82150.40, exp: "2026-11-20" },
+        { realized: 120, unrealized: 45, pnl: 165, qty: 10, spot: 95200.0, exp: "2026-11-23" }
+      ];
+
+      keys.forEach((id, i) => {
+        const b = baseValues[i] || baseValues[0];
+        const drift = Math.round(Math.sin(tick * 0.2 + i) * 35);
+        const curRealized = b.realized;
+        const curUnrealized = b.unrealized + drift;
+        const total = curRealized + curUnrealized;
+
+        const series = [];
+        const startTime = 555; // 09:15
+        const endTime = 646;   // 10:46
+        const steps = 30;
+        for (let s = 0; s <= steps; s++) {
+          const m = startTime + (s / steps) * (endTime - startTime);
+          const hh = String(Math.floor(m / 60)).padStart(2, "0");
+          const mm = String(Math.floor(m % 60)).padStart(2, "0");
+          const val = Math.round((total * (s / steps)) + Math.sin(s * 0.8 + i) * 60);
+          series.push([`${hh}:${mm}`, val]);
+        }
+
+        const isSensex = id === "strat_7";
+        const isBNF = id === "strat_2";
+        const strike = isSensex ? 82200 : (isBNF ? 52200 : (24350 + (i * 50)));
+        const prefix = isSensex ? "SENSEX" : (isBNF ? "BANKNIFTY" : "NIFTY");
+
+        const positions = [
+          {
+            timestamp: "2026-11-20 09:30:00",
+            instrument: `${prefix} ${strike} CE`,
+            expiry: b.exp,
+            order_type: (id === "strat_4a" || id === "strat_8" || id === "strat_10") ? "BUY" : "SELL",
+            status: "open",
+            qty: b.qty,
+            entry_price: isBNF ? 320.50 : 142.50,
+            spot_at_entry: b.spot,
+            ltp: (isBNF ? 320.50 : 142.50) + (id === "strat_4a" ? (drift / b.qty) : -(drift / b.qty)),
+            exit_price: null,
+            spot_at_exit: null,
+            pnl: curUnrealized
+          },
+          {
+            timestamp: "2026-11-20 09:30:00",
+            instrument: `${prefix} ${strike} PE`,
+            expiry: b.exp,
+            order_type: (id === "strat_4a" || id === "strat_8" || id === "strat_10") ? "BUY" : "SELL",
+            status: "closed",
+            qty: b.qty,
+            entry_price: isBNF ? 310.00 : 138.00,
+            spot_at_entry: b.spot,
+            ltp: null,
+            exit_price: (isBNF ? 310.00 : 138.00) + (id === "strat_4a" ? (curRealized / b.qty) : -(curRealized / b.qty)),
+            spot_at_exit: b.spot + 15.20,
+            pnl: curRealized
+          }
+        ];
+
+        rows[id] = {
+          realized: curRealized,
+          unrealized: curUnrealized,
+          total: total,
+          positions: positions,
+          series: series
+        };
+      });
+
+      return rows;
+    }
+
+    let currentTicks = 0;
+    let dataState = generateIntradayData(currentTicks);
+
+    function renderCards() {
+      const row = document.getElementById("strategyCardsRow");
+      let totalDeskPnl = 0;
+
+      row.innerHTML = keys.map(id => {
+        const s = strategies[id];
+        const d = dataState[id];
+        totalDeskPnl += d.total;
+
+        const points = d.series.map((p, idx) => {
+          const x = (idx / (d.series.length - 1)) * 65;
+          const vals = d.series.map(v => v[1]);
+          const min = Math.min(...vals), max = Math.max(...vals);
+          const y = 22 - ((p[1] - min) / (max - min || 1)) * 20;
+          return `${x.toFixed(1)},${y.toFixed(1)}`;
+        }).join(" ");
+
+        return `
+          <div class="card ${id === activeKey ? 'active' : ''}" data-strat="${id}">
+            <div class="cardtop">
+              <span class="idx">${s.idx}</span>
+              <span class="pill"><i class="dot"></i>Broker Live</span>
+            </div>
+            <div class="cardname">${s.name}</div>
+            <div class="cardbt ${tone(d.total)}">
+              <strong>${signed(d.total)}</strong>
+              <svg class="spark" viewBox="0 0 65 24">
+                <polyline points="${points}" fill="none" stroke="currentColor" stroke-width="1.8" />
+              </svg>
+            </div>
+          </div>
+        `;
+      }).join("");
+
+      const navTicker = document.getElementById("navLiveTickerPnl");
+      if (navTicker) {
+        navTicker.innerText = `${signed(totalDeskPnl)} TODAY`;
+        navTicker.className = `ticker-pnl ${tone(totalDeskPnl)}`;
+      }
+    }
+
+    /* ChatGPT EXACT coordinate system & dashed gridlines */
+    function renderSvgChart(r) {
+      const container = document.getElementById("chartPlotWrap");
+      if (!r?.series?.length) {
+        container.innerHTML = '<div style="color:var(--sx-muted);text-align:center;padding:30px;">Awaiting intraday ticks...</div>';
+        return;
+      }
+
+      const vs = r.series.map(x => x[1]);
+      const lo = Math.min(0, ...vs);
+      const hi = Math.max(0, ...vs);
+      const span = hi - lo || 1;
+      const scale = v => (123 - (v - lo) * 112 / span).toFixed(2);
+      const coords = vs.map((v, i) => (55 + 580 * i / Math.max(1, vs.length - 1)).toFixed(1) + "," + scale(v)).join(" ");
+
+      let grid = "";
+      for (let i = 0; i < 3; i++) {
+        let val = lo + span * i / 2;
+        let y = scale(val);
+        grid += `<line x1="55" x2="635" y1="${y}" y2="${y}" stroke="rgba(255,255,255,0.08)" stroke-dasharray="3 4"/>
+                 <text x="47" y="${+y + 3}" text-anchor="end" fill="#9cb1b5" font-family="monospace" font-size="10">${fmt.format(Math.round(val))}</text>`;
+      }
+
+      const times = [0, 0.33, 0.66, 1].map(p => r.series[Math.round(p * (r.series.length - 1))][0].slice(0, 5));
+
+      container.innerHTML = `
+        <svg role="img" aria-label="Intraday P&L in rupees" viewBox="0 0 645 132" preserveAspectRatio="none">
+          <defs>
+            <linearGradient id="area" x2="0" y2="1">
+              <stop stop-color="#10b981" stop-opacity=".25"/>
+              <stop offset="1" stop-color="#10b981" stop-opacity=".01"/>
+            </linearGradient>
+          </defs>
+          ${grid}
+          <polygon points="55,124 ${coords} 635,124" fill="url(#area)"/>
+          <polyline points="${coords}" fill="none" stroke="#10b981" stroke-width="2.2" vector-effect="non-scaling-stroke"/>
+          <circle cx="${vs.length === 1 ? 55 : 635}" cy="${scale(vs.at(-1))}" r="3.5" fill="#34d399"/>
+        </svg>
+        <div class="chartaxis">${times.map(t => `<span>${t}</span>`).join("")}</div>
+      `;
+    }
+
+    function renderActiveStrategy() {
+      const s = strategies[activeKey];
+      const d = dataState[activeKey];
+
+      document.getElementById("activeStrategyTitle").innerText = s.name;
+      const pnlEl = document.getElementById("activeStrategyPnl");
+      pnlEl.innerText = signed(d.total);
+      pnlEl.className = `metric ${tone(d.total)}`;
+
+      document.getElementById("metricRealised").innerHTML = `<span class="${tone(d.realized)}">${signed(d.realized)}</span>`;
+      document.getElementById("metricUnrealised").innerHTML = `<span class="${tone(d.unrealized)}">${signed(d.unrealized)}</span>`;
+      document.getElementById("metricOpenPositions").innerText = d.positions.filter(p => p.status === "open").length;
+      document.getElementById("metricClosedPositions").innerText = d.positions.filter(p => p.status === "closed").length;
+
+      renderSvgChart(d);
+      renderPositionsTable();
+
+      document.getElementById("deployStrategyName").innerText = s.name;
+      document.getElementById("promptStrategyName").innerText = s.name;
+      document.getElementById("historyStrategySubtitle").innerText = s.name;
+
+      document.getElementById("btnHistoryPdf").href = s.pdfUrl;
+      document.getElementById("btnHistoryCsv").href = s.csvUrl;
+    }
+
+    function renderPositionsTable() {
+      const d = dataState[activeKey];
+      const filtered = d.positions.filter(p => activeFilter === "all" || p.status === activeFilter);
+      const tbody = document.getElementById("positionsTableBody");
+
+      if (!filtered.length) {
+        tbody.innerHTML = `<tr><td colspan="11" style="text-align:center;padding:20px;color:var(--sx-muted);">No matching positions.</td></tr>`;
+        return;
+      }
+
+      tbody.innerHTML = filtered.map(p => `
+        <tr>
+          <td><span style="font-family:monospace;font-size:12px;color:var(--sx-muted);">${p.timestamp}</span></td>
+          <td><strong>${p.instrument}</strong></td>
+          <td>${p.expiry}</td>
+          <td><span style="font-weight:700;color:${p.order_type === 'BUY' ? 'var(--accent-cyan)' : 'var(--sx-teal-bright)'}">${p.order_type}</span></td>
+          <td>₹${Number(p.entry_price).toFixed(2)}</td>
+          <td>₹${Number(p.spot_at_entry).toFixed(2)}</td>
+          <td>${p.ltp != null ? '₹' + Number(p.ltp).toFixed(2) : '—'}</td>
+          <td>${p.exit_price != null ? '₹' + Number(p.exit_price).toFixed(2) : '—'}</td>
+          <td>${p.spot_at_exit != null ? '₹' + Number(p.spot_at_exit).toFixed(2) : '—'}</td>
+          <td>${p.qty}</td>
+          <td style="text-align:right;" class="${tone(p.pnl)}"><strong>${signed(p.pnl)}</strong></td>
+        </tr>
+      `).join("");
+    }
+
+    const historicalSessions = [
+      {
+        date: "20 Nov 2026",
+        kind: "Broker Live",
+        pnl: 2840,
+        positions: [
+          { timestamp: "2026-11-20 15:10:00", instrument: "NIFTY 24400 CE", expiry: "2026-11-26", order_type: "SELL", entry_price: 154.0, spot_at_entry: 24395.20, ltp: 122.0, exit_price: 122.0, spot_at_exit: 24420.50, qty: 65, pnl: 2080 },
+          { timestamp: "2026-11-20 15:10:00", instrument: "NIFTY 24400 PE", expiry: "2026-11-26", order_type: "SELL", entry_price: 148.0, spot_at_entry: 24395.20, ltp: 136.3, exit_price: 136.3, spot_at_exit: 24420.50, qty: 65, pnl: 760 }
+        ]
+      },
+      {
+        date: "19 Nov 2026",
+        kind: "Broker Live",
+        pnl: -890,
+        positions: [
+          { timestamp: "2026-11-19 14:22:00", instrument: "NIFTY 24350 CE", expiry: "2026-11-20", order_type: "SELL", entry_price: 132.0, spot_at_entry: 24340.10, ltp: 165.0, exit_price: 165.0, spot_at_exit: 24390.80, qty: 65, pnl: -2145 },
+          { timestamp: "2026-11-19 14:22:00", instrument: "NIFTY 24350 PE", expiry: "2026-11-20", order_type: "SELL", entry_price: 140.0, spot_at_entry: 24340.10, ltp: 120.7, exit_price: 120.7, spot_at_exit: 24390.80, qty: 65, pnl: 1255 }
+        ]
+      },
+      {
+        date: "18 Nov 2026",
+        kind: "Broker Live",
+        pnl: 3450,
+        positions: [
+          { timestamp: "2026-11-18 15:10:00", instrument: "NIFTY 24300 CE", expiry: "2026-11-20", order_type: "SELL", entry_price: 162.0, spot_at_entry: 24310.45, ltp: 126.0, exit_price: 126.0, spot_at_exit: 24325.10, qty: 65, pnl: 2340 },
+          { timestamp: "2026-11-18 15:10:00", instrument: "NIFTY 24300 PE", expiry: "2026-11-20", order_type: "SELL", entry_price: 155.0, spot_at_entry: 24310.45, ltp: 137.9, exit_price: 137.9, spot_at_exit: 24325.10, qty: 65, pnl: 1110 }
+        ]
+      },
+      {
+        date: "17 Nov 2026",
+        kind: "Broker Live",
+        pnl: 1980,
+        positions: [
+          { timestamp: "2026-11-17 15:10:00", instrument: "NIFTY 24250 CE", expiry: "2026-11-20", order_type: "SELL", entry_price: 145.0, spot_at_entry: 24260.00, ltp: 128.0, exit_price: 128.0, spot_at_exit: 24275.30, qty: 65, pnl: 1105 },
+          { timestamp: "2026-11-17 15:10:00", instrument: "NIFTY 24250 PE", expiry: "2026-11-20", order_type: "SELL", entry_price: 139.0, spot_at_entry: 24260.00, ltp: 125.5, exit_price: 125.5, spot_at_exit: 24275.30, qty: 65, pnl: 875 }
+        ]
+      },
+      {
+        date: "14 Nov 2026",
+        kind: "Broker Live",
+        pnl: 4120,
+        positions: [
+          { timestamp: "2026-11-14 15:10:00", instrument: "NIFTY 24200 CE", expiry: "2026-11-20", order_type: "SELL", entry_price: 172.0, spot_at_entry: 24205.80, ltp: 124.0, exit_price: 124.0, spot_at_exit: 24210.00, qty: 65, pnl: 3120 },
+          { timestamp: "2026-11-14 15:10:00", instrument: "NIFTY 24200 PE", expiry: "2026-11-20", order_type: "SELL", entry_price: 160.0, spot_at_entry: 24205.80, ltp: 144.6, exit_price: 144.6, spot_at_exit: 24210.00, qty: 65, pnl: 1000 }
+        ]
+      }
+    ];
+
+    function renderHistory() {
+      const container = document.getElementById("historyRowsContainer");
+      const visibleCount = hasUnlockedArchive ? historicalSessions.length : 2;
+      const visible = historicalSessions.slice(0, visibleCount);
+
+      container.innerHTML = visible.map(session => `
+        <details class="session-day">
+          <summary>
+            <strong>${session.date}</strong>
+            <span class="label" style="font-size:9px;background:rgba(255,255,255,0.04);padding:2px 6px;border-radius:3px;">${session.kind}</span>
+            <span class="session-pnl ${tone(session.pnl)}">${signed(session.pnl)}</span>
+          </summary>
+          <div class="session-detail">
+            <div class="tablewrap" style="margin-top:8px;">
+              <table>
+                <thead>
+                  <tr>
+                    <th scope="col">Timestamp</th>
+                    <th scope="col">Instrument</th>
+                    <th scope="col">Expiry</th>
+                    <th scope="col">Order Type</th>
+                    <th scope="col">Entry Price</th>
+                    <th scope="col">Spot at Entry</th>
+                    <th scope="col">LTP</th>
+                    <th scope="col">Exit Price</th>
+                    <th scope="col">Spot at Exit</th>
+                    <th scope="col">Qty</th>
+                    <th scope="col" style="text-align:right;">PNL</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  ${session.positions.map(p => `
+                    <tr>
+                      <td><span style="font-family:monospace;font-size:11px;color:var(--sx-muted);">${p.timestamp}</span></td>
+                      <td><strong>${p.instrument}</strong></td>
+                      <td>${p.expiry}</td>
+                      <td><span style="font-weight:700;color:${p.order_type === 'BUY' ? 'var(--accent-cyan)' : 'var(--sx-teal-bright)'}">${p.order_type}</span></td>
+                      <td>₹${Number(p.entry_price).toFixed(2)}</td>
+                      <td>₹${Number(p.spot_at_entry).toFixed(2)}</td>
+                      <td>${p.ltp != null ? '₹' + Number(p.ltp).toFixed(2) : '—'}</td>
+                      <td>${p.exit_price != null ? '₹' + Number(p.exit_price).toFixed(2) : '—'}</td>
+                      <td>${p.spot_at_exit != null ? '₹' + Number(p.spot_at_exit).toFixed(2) : '—'}</td>
+                      <td>${p.qty}</td>
+                      <td style="text-align:right;" class="${tone(p.pnl)}"><strong>${signed(p.pnl)}</strong></td>
+                    </tr>
+                  `).join("")}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </details>
+      `).join("");
+
+      const lockSection = document.getElementById("archiveLockSection");
+      const unlockedBanner = document.getElementById("unlockedBanner");
+      if (hasUnlockedArchive) {
+        lockSection.style.display = "none";
+        unlockedBanner.classList.add("active");
+        document.getElementById("invoiceCreditVal").innerText = "−₹99";
+        document.getElementById("invoiceTotalVal").innerText = "₹7,399";
+      } else {
+        lockSection.style.display = "grid";
+        unlockedBanner.classList.remove("active");
+        document.getElementById("invoiceCreditVal").innerText = "₹0";
+        document.getElementById("invoiceTotalVal").innerText = "₹7,498";
+      }
+    }
+
+    const checkoutModal = document.getElementById("checkout");
+    let currentCheckoutProduct = "history";
+
+    function openCheckout(product) {
+      currentCheckoutProduct = product;
+      if (product === "history") {
+        document.getElementById("checkoutEyebrow").innerText = "Historical Access Pass";
+        document.getElementById("checkoutTitle").innerText = `Unlock ${strategies[activeKey].name} Archive`;
+        document.getElementById("checkoutDesc").innerText = "Historical data access. Simulated local test payment. 100% of ₹99 is credited to your deployment.";
+        document.getElementById("checkoutAmount").innerText = "₹99";
+      } else {
+        const netAmount = hasUnlockedArchive ? "₹7,399" : "₹7,498";
+        document.getElementById("checkoutEyebrow").innerText = "Managed Deployment";
+        document.getElementById("checkoutTitle").innerText = `Deploy ${strategies[activeKey].name}`;
+        document.getElementById("checkoutDesc").innerText = "Includes Lifetime Strategy Setup (₹5,000), Onboarding (₹999), and Month 1 Server Care (₹1,499).";
+        document.getElementById("checkoutAmount").innerText = netAmount;
+      }
+      checkoutModal.showModal();
+    }
+
+    document.getElementById("btnCloseCheckout").onclick = () => checkoutModal.close();
+    document.getElementById("btnCancelCheckout").onclick = () => checkoutModal.close();
+
+    document.getElementById("btnUnlockArchive").onclick = () => openCheckout("history");
+
+    document.getElementById("deploymentForm").onsubmit = (e) => {
+      e.preventDefault();
+      openCheckout("deployment");
+    };
+
+    document.getElementById("btnConfirmPay").onclick = () => {
+      const btn = document.getElementById("btnConfirmPay");
+      btn.disabled = true;
+      btn.innerHTML = 'Processing...';
+
+      setTimeout(() => {
+        btn.disabled = false;
+        btn.innerHTML = 'Confirm Payment';
+        checkoutModal.close();
+
+        if (currentCheckoutProduct === "history") {
+          hasUnlockedArchive = true;
+          localStorage.setItem("stratexa_unlocked_archive", "true");
+          renderHistory();
+        } else {
+          const email = document.getElementById("deployEmail").value;
+          const broker = document.getElementById("deployBroker").value;
+          alert(`✅ Broker Deployment Order Placed!\n\nStrategy: ${strategies[activeKey].name}\nBroker: ${broker}\nEmail: ${email}\n\nOur engineering team will provision your dedicated cloud droplet and initiate the API handshake.`);
+        }
+      }, 700);
+    };
+
+    document.getElementById("strategyCardsRow").addEventListener("click", (e) => {
+      const card = e.target.closest(".card");
+      if (card && card.dataset.strat) {
+        activeKey = card.dataset.strat;
+        renderCards();
+        renderActiveStrategy();
+      }
+    });
+
+    document.querySelectorAll(".filters button").forEach(pill => {
+      pill.addEventListener("click", (e) => {
+        document.querySelectorAll(".filters button").forEach(p => p.classList.remove("active"));
+        pill.classList.add("active");
+        activeFilter = pill.dataset.filter;
+        renderPositionsTable();
+      });
+    });
+
+    const themeToggleBtn = document.getElementById("theme-toggle-btn");
+    if (themeToggleBtn) {
+      themeToggleBtn.addEventListener("click", () => {
+        const cur = document.documentElement.getAttribute("data-theme") || "dark";
+        const next = cur === "dark" ? "light" : "dark";
+        document.documentElement.setAttribute("data-theme", next);
+        localStorage.setItem("theme", next);
+        themeToggleBtn.innerHTML = next === "dark" ? '<i class="fa-regular fa-moon"></i>' : '<i class="fa-regular fa-sun"></i>';
+      });
+    }
+
+    const navToggle = document.getElementById("nav-toggle");
+    const navMenu = document.getElementById("nav-menu");
+    if (navToggle && navMenu) {
+      navToggle.addEventListener("click", () => {
+        navMenu.classList.toggle("active");
+        navToggle.classList.toggle("active");
+      });
+    }
+
+    // Live Telemetry Sync with Anand AWS Server (Shoonya Feed)
+    let liveConnected = false;
+    async function syncLiveFeed() {
+      try {
+        const endpoints = [
+          "https://anand.stratexa.in/api/status",
+          "http://3.108.19.73/api/status"
+        ];
+        let liveData = null;
+        for (const ep of endpoints) {
+          try {
+            const ctrl = new AbortController();
+            const tid = setTimeout(() => ctrl.abort(), 2500);
+            const res = await fetch(ep, { signal: ctrl.signal, cache: "no-store", mode: "cors" });
+            clearTimeout(tid);
+            if (res.ok) {
+              liveData = await res.json();
+              break;
+            }
+          } catch (e) {}
+        }
+
+        if (liveData && liveData.spots) {
+          liveConnected = true;
+          applyLiveTelemetry(liveData);
+          return;
+        }
+      } catch (err) {}
+
+      // Fallback if broker terminal is offline or after-hours
+      currentTicks++;
+      dataState = generateIntradayData(currentTicks);
+      renderCards();
+      renderActiveStrategy();
+    }
+
+    function applyLiveTelemetry(d) {
+      const mapping = {
+        strat_1: "strategy_1",
+        strat_2: "strategy_2",
+        strat_3: "strategy_3",
+        strat_4a: "strategy_4a",
+        strat_4b: "strategy_4b",
+        strat_5: "strategy_5",
+        strat_6: "strategy_6",
+        strat_7: "strategy_7",
+        strat_7b: "strategy_8",
+        strat_8: "strategy_9",
+        strat_9: "strategy_10",
+        strat_10: "strategy_11",
+        strat_11: "strategy_12",
+        strat_btc: "strategy_btc"
+      };
+
+      const nowTimeStr = (d.last_update || "").slice(11, 16) || "LIVE";
+
+      keys.forEach(k => {
+        const serverKey = mapping[k];
+        const sData = d[serverKey];
+        if (!sData) return;
+
+        if (!dataState[k]) {
+          dataState[k] = { realized: 0, unrealized: 0, total: 0, series: [], positions: [] };
+        }
+
+        const real = Number(sData.realized_pnl || 0.0);
+        const unrl = Number(sData.pnl || 0.0);
+        const tot = real + unrl;
+
+        dataState[k].realized = real;
+        dataState[k].unrealized = unrl;
+        dataState[k].total = tot;
+
+        // Append to intraday series
+        if (!dataState[k].series || dataState[k].series.length < 5) {
+          dataState[k].series = [
+            ["09:15", 0], ["09:30", 0], ["10:00", Math.round(tot * 0.4)], [nowTimeStr, Math.round(tot)]
+          ];
+        } else {
+          dataState[k].series.push([nowTimeStr, Math.round(tot)]);
+          if (dataState[k].series.length > 50) dataState[k].series.shift();
+        }
+
+        // Live Positions Mapping
+        if (sData.positions && Array.isArray(sData.positions) && sData.positions.length > 0) {
+          dataState[k].positions = sData.positions.map(p => ({
+            timestamp: p.entry_time || d.last_update,
+            instrument: p.tsym || p.symbol || p.instrument || `${k.toUpperCase()} Contract`,
+            expiry: p.expiry || "--",
+            order_type: p.side || (p.qty > 0 ? "BUY" : "SELL"),
+            status: "open",
+            qty: p.qty || 1,
+            entry_price: p.entry_price || p.entry || 0.0,
+            spot_at_entry: p.spot_at_entry || d.spots?.NIFTY || 0.0,
+            ltp: p.current_price || p.ltp || p.entry_price || 0.0,
+            exit_price: null,
+            spot_at_exit: null,
+            pnl: (p.side === "SELL")
+              ? ((p.entry_price - (p.current_price || p.entry_price)) * (p.qty || 1))
+              : (((p.current_price || p.entry_price) - p.entry_price) * (p.qty || 1))
+          }));
+        } else {
+          dataState[k].positions = [];
+        }
+      });
+
+      // Update stamp badge
+      const stampEl = document.getElementById("stampDate");
+      if (stampEl && d.last_update) {
+        stampEl.innerHTML = `<span style="color:var(--sx-teal-bright);">● LIVE</span> · ${d.last_update} · IST`;
+      }
+
+      // Update navbar ticker
+      const navTicker = document.getElementById("navLiveTickerPnl");
+      if (navTicker) {
+        const ovr = Number(d.overall_pnl || 0.0);
+        navTicker.innerText = `${signed(ovr)} TODAY`;
+        navTicker.className = `ticker-pnl ${tone(ovr)}`;
+      }
+
+      renderCards();
+      renderActiveStrategy();
+    }
+
+    setInterval(syncLiveFeed, 3000);
+
+    function init() {
+      renderCards();
+      renderActiveStrategy();
+      renderHistory();
+      syncLiveFeed();
+    }
+    init();
+  </script>
+</body>
+</html>
