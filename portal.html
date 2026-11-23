@@ -3958,20 +3958,20 @@
       pnlEl.innerText = signed(d.total);
       pnlEl.className = `metric ${tone(d.total)}`;
 
-      // Update Session Summary aside metrics (Capital Required & Overall PnL %: 2024 to yesterday + today unrealized)
+      // Update Session Summary aside metrics (Capital Required & Overall PnL %: 2024 to yesterday + today live realized)
       const capEl = document.getElementById("metricCapitalRequired");
       if (capEl) capEl.innerText = s.capital || "₹3,50,000";
 
       const capNum = s.capitalNum || 350000;
       const histPnl = s.histPnl || 0.0;
-      const todayUnrealized = Number(d.unrealized || 0.0);
-      const totalOverallPnl = histPnl + todayUnrealized;
+      const todayRealized = Number(d.realized || 0.0);
+      const totalOverallPnl = histPnl + todayRealized;
       const overallPct = (totalOverallPnl / capNum) * 100.0;
       const pctSign = overallPct >= 0 ? "+" : "";
 
       const ovrPnlEl = document.getElementById("metricOverallPnl");
       if (ovrPnlEl) {
-        ovrPnlEl.innerHTML = `<span class="${tone(overallPct)}" title="Cumulative 2024-Present PnL: ${signed(totalOverallPnl)}">${pctSign}${overallPct.toFixed(1)}%</span>`;
+        ovrPnlEl.innerHTML = `<span class="${tone(overallPct)}" title="Cumulative 2024-Present Realized PnL: ${signed(totalOverallPnl)}">${pctSign}${overallPct.toFixed(1)}%</span>`;
       }
 
       document.getElementById("metricRealised").innerHTML = `<span class="${tone(d.realized)}">${signed(d.realized)}</span>`;
