@@ -852,14 +852,6 @@
             <h3>Session Summary</h3>
             <div class="metrics">
               <div>
-                <span class="label">Total Capital Required</span>
-                <b id="metricCapitalRequired" style="color:var(--accent-cyan);font-weight:700;">₹3,50,000</b>
-              </div>
-              <div>
-                <span class="label">Overall PnL</span>
-                <b id="metricOverallPnl" class="pos">+₹0.00</b>
-              </div>
-              <div>
                 <span class="label">Realised PnL</span>
                 <b id="metricRealised" class="pos">+₹0.00</b>
               </div>
@@ -874,6 +866,14 @@
               <div>
                 <span class="label">Closed positions</span>
                 <b id="metricClosedPositions">0</b>
+              </div>
+              <div>
+                <span class="label">Total Capital Required</span>
+                <b id="metricCapitalRequired" style="color:var(--accent-cyan);font-weight:700;">₹3,50,000</b>
+              </div>
+              <div>
+                <span class="label">Overall PnL</span>
+                <b id="metricOverallPnl" class="pos">+176.7%</b>
               </div>
             </div>
 
@@ -1312,6 +1312,8 @@
     const strategies = {
       strat_1: {
         id: "strat_1",
+        capitalNum: 350000,
+        histPnl: 618283.25,
         idx: "SX/01",
         name: "Nifty Intraday Scalper",
         type: "Options selling hedged",
@@ -1323,6 +1325,8 @@
       },
       strat_2: {
         id: "strat_2",
+        capitalNum: 500000,
+        histPnl: 1122271.5,
         idx: "SX/02",
         name: "Bank Nifty Intraday Scalper",
         type: "Options selling hedged",
@@ -1334,6 +1338,8 @@
       },
       strat_3: {
         id: "strat_3",
+        capitalNum: 200000,
+        histPnl: 547303.25,
         idx: "SX/03",
         name: "Nifty Range Breakout",
         type: "Trend breakout reversal",
@@ -1345,6 +1351,8 @@
       },
       strat_4a: {
         id: "strat_4a",
+        capitalNum: 50000,
+        histPnl: -4426.5,
         idx: "SX/04A",
         name: "Nifty Trend Momentum (Buying)",
         type: "Options buying momentum",
@@ -1356,6 +1364,8 @@
       },
       strat_4b: {
         id: "strat_4b",
+        capitalNum: 150000,
+        histPnl: 8911.5,
         idx: "SX/04B",
         name: "Nifty Trend Shield (Credit Short)",
         type: "Options selling hedged",
@@ -1367,6 +1377,8 @@
       },
       strat_5: {
         id: "strat_5",
+        capitalNum: 175000,
+        histPnl: 167924.25,
         idx: "SX/05",
         name: "9:30 AM Institutional Straddle",
         type: "Delta-neutral straddle",
@@ -1378,6 +1390,8 @@
       },
       strat_6: {
         id: "strat_6",
+        capitalNum: 175000,
+        histPnl: 201798.35,
         idx: "SX/06",
         name: "10:00 AM Low-Vol Straddle",
         type: "Delta-neutral straddle",
@@ -1389,6 +1403,8 @@
       },
       strat_7: {
         id: "strat_7",
+        capitalNum: 350000,
+        histPnl: 705335.0,
         idx: "SX/07",
         name: "Sensex Intraday Scalper",
         type: "Options selling hedged",
@@ -1400,6 +1416,8 @@
       },
       strat_7b: {
         id: "strat_7b",
+        capitalNum: 350000,
+        histPnl: 545491.0,
         idx: "SX/08",
         name: "Sensex Intraday Scalper (Adaptive)",
         type: "Options selling hedged",
@@ -1411,6 +1429,8 @@
       },
       strat_8: {
         id: "strat_8",
+        capitalNum: 50000,
+        histPnl: 59970.3,
         idx: "SX/09",
         name: "10 AM Decay Momentum",
         type: "1-Leg ITM options buying",
@@ -1422,6 +1442,8 @@
       },
       strat_9: {
         id: "strat_9",
+        capitalNum: 250000,
+        histPnl: 109824.0,
         idx: "SX/10",
         name: "Systematic Call-Only Sell",
         type: "Directional credit options selling",
@@ -1433,6 +1455,8 @@
       },
       strat_10: {
         id: "strat_10",
+        capitalNum: 50000,
+        histPnl: 19048.25,
         idx: "SX/11",
         name: "Nifty AI Tactical (Buying)",
         type: "AI Decision Options Buying",
@@ -1444,6 +1468,8 @@
       },
       strat_11: {
         id: "strat_11",
+        capitalNum: 150000,
+        histPnl: 60079.5,
         idx: "SX/12",
         name: "Nifty AI Tactical (Selling)",
         type: "AI Decision Options Selling",
@@ -1455,6 +1481,8 @@
       },
       strat_btc: {
         id: "strat_btc",
+        capitalNum: 85000,
+        histPnl: 114500.0,
         idx: "SX/BTC",
         name: "BTC Daily Options Credit Spread",
         type: "Crypto options selling hedged",
@@ -3930,12 +3958,20 @@
       pnlEl.innerText = signed(d.total);
       pnlEl.className = `metric ${tone(d.total)}`;
 
-      // Update Session Summary aside metrics
+      // Update Session Summary aside metrics (Capital Required & Overall PnL %: 2024 to yesterday + today unrealized)
       const capEl = document.getElementById("metricCapitalRequired");
       if (capEl) capEl.innerText = s.capital || "₹3,50,000";
+
+      const capNum = s.capitalNum || 350000;
+      const histPnl = s.histPnl || 0.0;
+      const todayUnrealized = Number(d.unrealized || 0.0);
+      const totalOverallPnl = histPnl + todayUnrealized;
+      const overallPct = (totalOverallPnl / capNum) * 100.0;
+      const pctSign = overallPct >= 0 ? "+" : "";
+
       const ovrPnlEl = document.getElementById("metricOverallPnl");
       if (ovrPnlEl) {
-        ovrPnlEl.innerHTML = `<span class="${tone(d.total)}">${signed(d.total)}</span>`;
+        ovrPnlEl.innerHTML = `<span class="${tone(overallPct)}" title="Cumulative 2024-Present PnL: ${signed(totalOverallPnl)}">${pctSign}${overallPct.toFixed(1)}%</span>`;
       }
 
       document.getElementById("metricRealised").innerHTML = `<span class="${tone(d.realized)}">${signed(d.realized)}</span>`;
