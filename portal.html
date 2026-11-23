@@ -893,7 +893,8 @@
             <table>
               <thead>
                 <tr>
-                  <th scope="col">Timestamp</th>
+                  <th scope="col">Entry Time</th>
+                  <th scope="col">Exit Time</th>
                   <th scope="col">Instrument</th>
                   <th scope="col">Expiry</th>
                   <th scope="col">Order Type</th>
@@ -1316,6 +1317,8 @@
 
         const positions = [
           {
+            entry_time: "2026-11-20 09:30:00",
+            exit_time: "—",
             timestamp: "2026-11-20 09:30:00",
             instrument: `${prefix} ${strike} CE`,
             expiry: b.exp,
@@ -1330,6 +1333,8 @@
             pnl: curUnrealized
           },
           {
+            entry_time: "2026-11-20 09:30:00",
+            exit_time: "2026-11-20 15:10:00",
             timestamp: "2026-11-20 09:30:00",
             instrument: `${prefix} ${strike} PE`,
             expiry: b.exp,
@@ -1474,13 +1479,14 @@
       const tbody = document.getElementById("positionsTableBody");
 
       if (!filtered.length) {
-        tbody.innerHTML = `<tr><td colspan="11" style="text-align:center;padding:20px;color:var(--sx-muted);">No matching positions.</td></tr>`;
+        tbody.innerHTML = `<tr><td colspan="12" style="text-align:center;padding:20px;color:var(--sx-muted);">No matching positions.</td></tr>`;
         return;
       }
 
       tbody.innerHTML = filtered.map(p => `
         <tr>
-          <td><span style="font-family:monospace;font-size:12px;color:var(--sx-muted);">${p.timestamp}</span></td>
+          <td><span style="font-family:monospace;font-size:12px;color:var(--sx-muted);">${p.entry_time || p.timestamp || '—'}</span></td>
+          <td><span style="font-family:monospace;font-size:12px;color:var(--sx-muted);">${p.exit_time || '—'}</span></td>
           <td><strong>${p.instrument}</strong></td>
           <td>${p.expiry}</td>
           <td><span style="font-weight:700;color:${p.order_type === 'BUY' ? 'var(--accent-cyan)' : 'var(--sx-teal-bright)'}">${p.order_type}</span></td>
@@ -1501,8 +1507,8 @@
         kind: "Broker Live",
         pnl: 2840,
         positions: [
-          { timestamp: "2026-11-20 15:10:00", instrument: "NIFTY 24400 CE", expiry: "2026-11-26", order_type: "SELL", entry_price: 154.0, spot_at_entry: 24395.20, ltp: 122.0, exit_price: 122.0, spot_at_exit: 24420.50, qty: 65, pnl: 2080 },
-          { timestamp: "2026-11-20 15:10:00", instrument: "NIFTY 24400 PE", expiry: "2026-11-26", order_type: "SELL", entry_price: 148.0, spot_at_entry: 24395.20, ltp: 136.3, exit_price: 136.3, spot_at_exit: 24420.50, qty: 65, pnl: 760 }
+          { entry_time: "2026-11-20 09:30:00", exit_time: "2026-11-20 15:10:00", timestamp: "2026-11-20 09:30:00", instrument: "NIFTY 24400 CE", expiry: "2026-11-26", order_type: "SELL", entry_price: 154.0, spot_at_entry: 24395.20, ltp: 122.0, exit_price: 122.0, spot_at_exit: 24420.50, qty: 65, pnl: 2080 },
+          { entry_time: "2026-11-20 09:30:00", exit_time: "2026-11-20 15:10:00", timestamp: "2026-11-20 09:30:00", instrument: "NIFTY 24400 PE", expiry: "2026-11-26", order_type: "SELL", entry_price: 148.0, spot_at_entry: 24395.20, ltp: 136.3, exit_price: 136.3, spot_at_exit: 24420.50, qty: 65, pnl: 760 }
         ]
       },
       {
@@ -1510,8 +1516,8 @@
         kind: "Broker Live",
         pnl: -890,
         positions: [
-          { timestamp: "2026-11-19 14:22:00", instrument: "NIFTY 24350 CE", expiry: "2026-11-20", order_type: "SELL", entry_price: 132.0, spot_at_entry: 24340.10, ltp: 165.0, exit_price: 165.0, spot_at_exit: 24390.80, qty: 65, pnl: -2145 },
-          { timestamp: "2026-11-19 14:22:00", instrument: "NIFTY 24350 PE", expiry: "2026-11-20", order_type: "SELL", entry_price: 140.0, spot_at_entry: 24340.10, ltp: 120.7, exit_price: 120.7, spot_at_exit: 24390.80, qty: 65, pnl: 1255 }
+          { entry_time: "2026-11-19 09:30:00", exit_time: "2026-11-19 14:22:00", timestamp: "2026-11-19 09:30:00", instrument: "NIFTY 24350 CE", expiry: "2026-11-20", order_type: "SELL", entry_price: 132.0, spot_at_entry: 24340.10, ltp: 165.0, exit_price: 165.0, spot_at_exit: 24390.80, qty: 65, pnl: -2145 },
+          { entry_time: "2026-11-19 09:30:00", exit_time: "2026-11-19 14:22:00", timestamp: "2026-11-19 09:30:00", instrument: "NIFTY 24350 PE", expiry: "2026-11-20", order_type: "SELL", entry_price: 140.0, spot_at_entry: 24340.10, ltp: 120.7, exit_price: 120.7, spot_at_exit: 24390.80, qty: 65, pnl: 1255 }
         ]
       },
       {
@@ -1519,8 +1525,8 @@
         kind: "Broker Live",
         pnl: 3450,
         positions: [
-          { timestamp: "2026-11-18 15:10:00", instrument: "NIFTY 24300 CE", expiry: "2026-11-20", order_type: "SELL", entry_price: 162.0, spot_at_entry: 24310.45, ltp: 126.0, exit_price: 126.0, spot_at_exit: 24325.10, qty: 65, pnl: 2340 },
-          { timestamp: "2026-11-18 15:10:00", instrument: "NIFTY 24300 PE", expiry: "2026-11-20", order_type: "SELL", entry_price: 155.0, spot_at_entry: 24310.45, ltp: 137.9, exit_price: 137.9, spot_at_exit: 24325.10, qty: 65, pnl: 1110 }
+          { entry_time: "2026-11-18 09:30:00", exit_time: "2026-11-18 15:10:00", timestamp: "2026-11-18 09:30:00", instrument: "NIFTY 24300 CE", expiry: "2026-11-20", order_type: "SELL", entry_price: 162.0, spot_at_entry: 24310.45, ltp: 126.0, exit_price: 126.0, spot_at_exit: 24325.10, qty: 65, pnl: 2340 },
+          { entry_time: "2026-11-18 09:30:00", exit_time: "2026-11-18 15:10:00", timestamp: "2026-11-18 09:30:00", instrument: "NIFTY 24300 PE", expiry: "2026-11-20", order_type: "SELL", entry_price: 155.0, spot_at_entry: 24310.45, ltp: 137.9, exit_price: 137.9, spot_at_exit: 24325.10, qty: 65, pnl: 1110 }
         ]
       },
       {
@@ -1528,8 +1534,8 @@
         kind: "Broker Live",
         pnl: 1980,
         positions: [
-          { timestamp: "2026-11-17 15:10:00", instrument: "NIFTY 24250 CE", expiry: "2026-11-20", order_type: "SELL", entry_price: 145.0, spot_at_entry: 24260.00, ltp: 128.0, exit_price: 128.0, spot_at_exit: 24275.30, qty: 65, pnl: 1105 },
-          { timestamp: "2026-11-17 15:10:00", instrument: "NIFTY 24250 PE", expiry: "2026-11-20", order_type: "SELL", entry_price: 139.0, spot_at_entry: 24260.00, ltp: 125.5, exit_price: 125.5, spot_at_exit: 24275.30, qty: 65, pnl: 875 }
+          { entry_time: "2026-11-17 09:30:00", exit_time: "2026-11-17 15:10:00", timestamp: "2026-11-17 09:30:00", instrument: "NIFTY 24250 CE", expiry: "2026-11-20", order_type: "SELL", entry_price: 145.0, spot_at_entry: 24260.00, ltp: 128.0, exit_price: 128.0, spot_at_exit: 24275.30, qty: 65, pnl: 1105 },
+          { entry_time: "2026-11-17 09:30:00", exit_time: "2026-11-17 15:10:00", timestamp: "2026-11-17 09:30:00", instrument: "NIFTY 24250 PE", expiry: "2026-11-20", order_type: "SELL", entry_price: 139.0, spot_at_entry: 24260.00, ltp: 125.5, exit_price: 125.5, spot_at_exit: 24275.30, qty: 65, pnl: 875 }
         ]
       },
       {
@@ -1537,8 +1543,8 @@
         kind: "Broker Live",
         pnl: 4120,
         positions: [
-          { timestamp: "2026-11-14 15:10:00", instrument: "NIFTY 24200 CE", expiry: "2026-11-20", order_type: "SELL", entry_price: 172.0, spot_at_entry: 24205.80, ltp: 124.0, exit_price: 124.0, spot_at_exit: 24210.00, qty: 65, pnl: 3120 },
-          { timestamp: "2026-11-14 15:10:00", instrument: "NIFTY 24200 PE", expiry: "2026-11-20", order_type: "SELL", entry_price: 160.0, spot_at_entry: 24205.80, ltp: 144.6, exit_price: 144.6, spot_at_exit: 24210.00, qty: 65, pnl: 1000 }
+          { entry_time: "2026-11-14 09:30:00", exit_time: "2026-11-14 15:10:00", timestamp: "2026-11-14 09:30:00", instrument: "NIFTY 24200 CE", expiry: "2026-11-20", order_type: "SELL", entry_price: 172.0, spot_at_entry: 24205.80, ltp: 124.0, exit_price: 124.0, spot_at_exit: 24210.00, qty: 65, pnl: 3120 },
+          { entry_time: "2026-11-14 09:30:00", exit_time: "2026-11-14 15:10:00", timestamp: "2026-11-14 09:30:00", instrument: "NIFTY 24200 PE", expiry: "2026-11-20", order_type: "SELL", entry_price: 160.0, spot_at_entry: 24205.80, ltp: 144.6, exit_price: 144.6, spot_at_exit: 24210.00, qty: 65, pnl: 1000 }
         ]
       }
     ];
@@ -1560,7 +1566,8 @@
               <table>
                 <thead>
                   <tr>
-                    <th scope="col">Timestamp</th>
+                    <th scope="col">Entry Time</th>
+                    <th scope="col">Exit Time</th>
                     <th scope="col">Instrument</th>
                     <th scope="col">Expiry</th>
                     <th scope="col">Order Type</th>
@@ -1576,7 +1583,8 @@
                 <tbody>
                   ${session.positions.map(p => `
                     <tr>
-                      <td><span style="font-family:monospace;font-size:11px;color:var(--sx-muted);">${p.timestamp}</span></td>
+                      <td><span style="font-family:monospace;font-size:11px;color:var(--sx-muted);">${p.entry_time || p.timestamp}</span></td>
+                      <td><span style="font-family:monospace;font-size:11px;color:var(--sx-muted);">${p.exit_time || '—'}</span></td>
                       <td><strong>${p.instrument}</strong></td>
                       <td>${p.expiry}</td>
                       <td><span style="font-weight:700;color:${p.order_type === 'BUY' ? 'var(--accent-cyan)' : 'var(--sx-teal-bright)'}">${p.order_type}</span></td>
@@ -1787,7 +1795,9 @@
         // Live Positions Mapping
         if (sData.positions && Array.isArray(sData.positions) && sData.positions.length > 0) {
           dataState[k].positions = sData.positions.map(p => ({
-            timestamp: p.entry_time || d.last_update,
+            entry_time: p.entry_time || p.timestamp || d.last_update,
+            exit_time: p.exit_time || "—",
+            timestamp: p.entry_time || p.timestamp || d.last_update,
             instrument: p.tsym || p.symbol || p.instrument || `${k.toUpperCase()} Contract`,
             expiry: p.expiry || "--",
             order_type: p.side || (p.qty > 0 ? "BUY" : "SELL"),
