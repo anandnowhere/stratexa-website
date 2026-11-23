@@ -835,7 +835,7 @@
             <div class="charthead">
               <div>
                 <div class="eyebrow">Intraday P&amp;L</div>
-                <h2 id="activeStrategyTitle">9:20 Straddle</h2>
+                <h2 id="activeStrategyTitle">Nifty Intraday Scalper</h2>
               </div>
               <span class="time" id="chartTimeBadge">Broker live · 10:46 IST</span>
             </div>
@@ -852,20 +852,28 @@
             <h3>Session Summary</h3>
             <div class="metrics">
               <div>
-                <span class="label">Realised</span>
-                <b id="metricRealised" class="pos">+₹780.00</b>
+                <span class="label">Total Capital Required</span>
+                <b id="metricCapitalRequired" style="color:var(--accent-cyan);font-weight:700;">₹3,50,000</b>
               </div>
               <div>
-                <span class="label">Unrealised</span>
-                <b id="metricUnrealised" class="pos">+₹465.00</b>
+                <span class="label">Overall PnL</span>
+                <b id="metricOverallPnl" class="pos">+₹0.00</b>
+              </div>
+              <div>
+                <span class="label">Realised PnL</span>
+                <b id="metricRealised" class="pos">+₹0.00</b>
+              </div>
+              <div>
+                <span class="label">Unrealised PnL</span>
+                <b id="metricUnrealised">₹0.00</b>
               </div>
               <div>
                 <span class="label">Open positions</span>
-                <b id="metricOpenPositions">1</b>
+                <b id="metricOpenPositions">0</b>
               </div>
               <div>
                 <span class="label">Closed positions</span>
-                <b id="metricClosedPositions">1</b>
+                <b id="metricClosedPositions">0</b>
               </div>
             </div>
 
@@ -921,7 +929,7 @@
       <div id="history" class="flow-block">
         <div class="sectiontitle">
           <h2>Historical Data</h2>
-          <span class="label" id="historyStrategySubtitle">9:20 Straddle</span>
+          <span class="label" id="historyStrategySubtitle">Nifty Intraday Scalper</span>
         </div>
 
         <div class="history-rows">
@@ -942,7 +950,203 @@
           </div>
 
           <!-- Dynamic Accordion Days List -->
-          <div id="historyRowsContainer"></div>
+          <div id="historyRowsContainer">
+        <details class="session-day" open style="margin-bottom:12px;border:1px solid rgba(255,255,255,0.08);border-radius:10px;background:rgba(255,255,255,0.015);overflow:hidden;">
+          <summary style="display:flex;align-items:center;justify-content:space-between;cursor:pointer;padding:14px 16px;background:rgba(255,255,255,0.03);border-bottom:1px solid rgba(255,255,255,0.06);">
+            <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap;">
+              <strong style="color:var(--sx-text-primary);font-size:14px;">20 Nov 2026</strong>
+              <span class="label" style="font-size:10px;background:rgba(0,229,255,0.08);padding:3px 8px;border-radius:4px;color:var(--accent-cyan);border:1px solid rgba(0,229,255,0.25);font-weight:600;">Broker Live</span>
+              <span style="font-size:12px;color:var(--sx-muted);"><i class="fa-solid fa-vault" style="margin-right:4px;color:var(--accent-cyan);"></i> Total Capital Required: <strong style="color:var(--sx-text-primary);">₹3,50,000</strong></span>
+            </div>
+            <div style="display:flex;align-items:center;gap:10px;">
+              <span style="font-size:12px;color:var(--sx-muted);">Overall PnL:</span>
+              <span class="session-pnl pos" style="font-weight:700;font-size:14px;">+₹2,840.00</span>
+            </div>
+          </summary>
+          <div class="session-detail" style="padding:12px 14px;">
+            <div class="tablewrap" style="margin-top:0;">
+              <table>
+                <thead>
+                  <tr>
+                    <th scope="col">Entry Time</th>
+                    <th scope="col">Exit Time</th>
+                    <th scope="col">Instrument</th>
+                    <th scope="col">Expiry</th>
+                    <th scope="col">Order Type</th>
+                    <th scope="col">Entry Price</th>
+                    <th scope="col">Spot at Entry</th>
+                    <th scope="col">LTP</th>
+                    <th scope="col">Exit Price</th>
+                    <th scope="col">Spot at Exit</th>
+                    <th scope="col">Qty</th>
+                    <th scope="col" style="text-align:right;">PNL</th>
+                  </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                      <td><span style="font-family:monospace;font-size:11px;color:var(--sx-muted);">2026-11-20 09:30:00</span></td>
+                      <td><span style="font-family:monospace;font-size:11px;color:var(--sx-muted);">2026-11-20 15:10:00</span></td>
+                      <td><strong>NIFTY 24400 CE</strong></td>
+                      <td>2026-11-26</td>
+                      <td><span style="font-weight:700;color:var(--sx-teal-bright)">SELL</span></td>
+                      <td>₹154.00</td>
+                      <td>₹24395.20</td>
+                      <td>₹122.00</td>
+                      <td>₹122.00</td>
+                      <td>₹24420.50</td>
+                      <td>65</td>
+                      <td style="text-align:right;" class="pos"><strong>+₹2,080.00</strong></td>
+                    </tr>
+                    <tr>
+                      <td><span style="font-family:monospace;font-size:11px;color:var(--sx-muted);">2026-11-20 09:30:00</span></td>
+                      <td><span style="font-family:monospace;font-size:11px;color:var(--sx-muted);">2026-11-20 15:10:00</span></td>
+                      <td><strong>NIFTY 24400 PE</strong></td>
+                      <td>2026-11-26</td>
+                      <td><span style="font-weight:700;color:var(--sx-teal-bright)">SELL</span></td>
+                      <td>₹148.00</td>
+                      <td>₹24395.20</td>
+                      <td>₹136.30</td>
+                      <td>₹136.30</td>
+                      <td>₹24420.50</td>
+                      <td>65</td>
+                      <td style="text-align:right;" class="pos"><strong>+₹760.00</strong></td>
+                    </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </details>
+        <details class="session-day" open style="margin-bottom:12px;border:1px solid rgba(255,255,255,0.08);border-radius:10px;background:rgba(255,255,255,0.015);overflow:hidden;">
+          <summary style="display:flex;align-items:center;justify-content:space-between;cursor:pointer;padding:14px 16px;background:rgba(255,255,255,0.03);border-bottom:1px solid rgba(255,255,255,0.06);">
+            <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap;">
+              <strong style="color:var(--sx-text-primary);font-size:14px;">19 Nov 2026</strong>
+              <span class="label" style="font-size:10px;background:rgba(0,229,255,0.08);padding:3px 8px;border-radius:4px;color:var(--accent-cyan);border:1px solid rgba(0,229,255,0.25);font-weight:600;">Broker Live</span>
+              <span style="font-size:12px;color:var(--sx-muted);"><i class="fa-solid fa-vault" style="margin-right:4px;color:var(--accent-cyan);"></i> Total Capital Required: <strong style="color:var(--sx-text-primary);">₹3,50,000</strong></span>
+            </div>
+            <div style="display:flex;align-items:center;gap:10px;">
+              <span style="font-size:12px;color:var(--sx-muted);">Overall PnL:</span>
+              <span class="session-pnl neg" style="font-weight:700;font-size:14px;">-₹890.00</span>
+            </div>
+          </summary>
+          <div class="session-detail" style="padding:12px 14px;">
+            <div class="tablewrap" style="margin-top:0;">
+              <table>
+                <thead>
+                  <tr>
+                    <th scope="col">Entry Time</th>
+                    <th scope="col">Exit Time</th>
+                    <th scope="col">Instrument</th>
+                    <th scope="col">Expiry</th>
+                    <th scope="col">Order Type</th>
+                    <th scope="col">Entry Price</th>
+                    <th scope="col">Spot at Entry</th>
+                    <th scope="col">LTP</th>
+                    <th scope="col">Exit Price</th>
+                    <th scope="col">Spot at Exit</th>
+                    <th scope="col">Qty</th>
+                    <th scope="col" style="text-align:right;">PNL</th>
+                  </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                      <td><span style="font-family:monospace;font-size:11px;color:var(--sx-muted);">2026-11-19 09:30:00</span></td>
+                      <td><span style="font-family:monospace;font-size:11px;color:var(--sx-muted);">2026-11-19 14:22:00</span></td>
+                      <td><strong>NIFTY 24350 CE</strong></td>
+                      <td>2026-11-20</td>
+                      <td><span style="font-weight:700;color:var(--sx-teal-bright)">SELL</span></td>
+                      <td>₹132.00</td>
+                      <td>₹24340.10</td>
+                      <td>₹165.00</td>
+                      <td>₹165.00</td>
+                      <td>₹24390.80</td>
+                      <td>65</td>
+                      <td style="text-align:right;" class="neg"><strong>-₹2,145.00</strong></td>
+                    </tr>
+                    <tr>
+                      <td><span style="font-family:monospace;font-size:11px;color:var(--sx-muted);">2026-11-19 09:30:00</span></td>
+                      <td><span style="font-family:monospace;font-size:11px;color:var(--sx-muted);">2026-11-19 14:22:00</span></td>
+                      <td><strong>NIFTY 24350 PE</strong></td>
+                      <td>2026-11-20</td>
+                      <td><span style="font-weight:700;color:var(--sx-teal-bright)">SELL</span></td>
+                      <td>₹140.00</td>
+                      <td>₹24340.10</td>
+                      <td>₹120.70</td>
+                      <td>₹120.70</td>
+                      <td>₹24390.80</td>
+                      <td>65</td>
+                      <td style="text-align:right;" class="pos"><strong>+₹1,255.00</strong></td>
+                    </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </details>
+        <details class="session-day" open style="margin-bottom:12px;border:1px solid rgba(255,255,255,0.08);border-radius:10px;background:rgba(255,255,255,0.015);overflow:hidden;">
+          <summary style="display:flex;align-items:center;justify-content:space-between;cursor:pointer;padding:14px 16px;background:rgba(255,255,255,0.03);border-bottom:1px solid rgba(255,255,255,0.06);">
+            <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap;">
+              <strong style="color:var(--sx-text-primary);font-size:14px;">18 Nov 2026</strong>
+              <span class="label" style="font-size:10px;background:rgba(0,229,255,0.08);padding:3px 8px;border-radius:4px;color:var(--accent-cyan);border:1px solid rgba(0,229,255,0.25);font-weight:600;">Broker Live</span>
+              <span style="font-size:12px;color:var(--sx-muted);"><i class="fa-solid fa-vault" style="margin-right:4px;color:var(--accent-cyan);"></i> Total Capital Required: <strong style="color:var(--sx-text-primary);">₹3,50,000</strong></span>
+            </div>
+            <div style="display:flex;align-items:center;gap:10px;">
+              <span style="font-size:12px;color:var(--sx-muted);">Overall PnL:</span>
+              <span class="session-pnl pos" style="font-weight:700;font-size:14px;">+₹3,450.00</span>
+            </div>
+          </summary>
+          <div class="session-detail" style="padding:12px 14px;">
+            <div class="tablewrap" style="margin-top:0;">
+              <table>
+                <thead>
+                  <tr>
+                    <th scope="col">Entry Time</th>
+                    <th scope="col">Exit Time</th>
+                    <th scope="col">Instrument</th>
+                    <th scope="col">Expiry</th>
+                    <th scope="col">Order Type</th>
+                    <th scope="col">Entry Price</th>
+                    <th scope="col">Spot at Entry</th>
+                    <th scope="col">LTP</th>
+                    <th scope="col">Exit Price</th>
+                    <th scope="col">Spot at Exit</th>
+                    <th scope="col">Qty</th>
+                    <th scope="col" style="text-align:right;">PNL</th>
+                  </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                      <td><span style="font-family:monospace;font-size:11px;color:var(--sx-muted);">2026-11-18 09:30:00</span></td>
+                      <td><span style="font-family:monospace;font-size:11px;color:var(--sx-muted);">2026-11-18 15:10:00</span></td>
+                      <td><strong>NIFTY 24300 CE</strong></td>
+                      <td>2026-11-20</td>
+                      <td><span style="font-weight:700;color:var(--sx-teal-bright)">SELL</span></td>
+                      <td>₹162.00</td>
+                      <td>₹24310.45</td>
+                      <td>₹126.00</td>
+                      <td>₹126.00</td>
+                      <td>₹24325.10</td>
+                      <td>65</td>
+                      <td style="text-align:right;" class="pos"><strong>+₹2,340.00</strong></td>
+                    </tr>
+                    <tr>
+                      <td><span style="font-family:monospace;font-size:11px;color:var(--sx-muted);">2026-11-18 09:30:00</span></td>
+                      <td><span style="font-family:monospace;font-size:11px;color:var(--sx-muted);">2026-11-18 15:10:00</span></td>
+                      <td><strong>NIFTY 24300 PE</strong></td>
+                      <td>2026-11-20</td>
+                      <td><span style="font-weight:700;color:var(--sx-teal-bright)">SELL</span></td>
+                      <td>₹155.00</td>
+                      <td>₹24310.45</td>
+                      <td>₹137.90</td>
+                      <td>₹137.90</td>
+                      <td>₹24325.10</td>
+                      <td>65</td>
+                      <td style="text-align:right;" class="pos"><strong>+₹1,110.00</strong></td>
+                    </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </details>
+          </div>
 
           <!-- Blurred Lock Segment (Exact 2.5px blur matching ChatGPT) -->
           <div class="archive-lock" id="archiveLockSection">
@@ -976,7 +1180,7 @@
 
             <div class="archive-prompt">
               <h3>Unlock Earlier Sessions</h3>
-              <p>Your ₹99 goes toward deployment of <span id="promptStrategyName">9:20 Straddle</span>.</p>
+              <p>Your ₹99 goes toward deployment of <span id="promptStrategyName">Nifty Intraday Scalper</span>.</p>
               <button class="btn primary" id="btnUnlockArchive">
                 Unlock historical data · ₹99
               </button>
@@ -995,7 +1199,7 @@
           <!-- Left Box: Managed Deployment Invoice -->
           <div class="box">
             <div class="eyebrow">Managed Deployment</div>
-            <h2 style="font-size:22px;margin:4px 0 12px;font-weight:700;" id="deployStrategyName">9:20 Straddle</h2>
+            <h2 style="font-size:22px;margin:4px 0 12px;font-weight:700;" id="deployStrategyName">Nifty Intraday Scalper</h2>
             
             <div class="invoice">
               <div class="line">
@@ -3687,7 +3891,8 @@
     }
 
     function renderSvgChart(r) {
-      const chart = document.getElementById("chartBox");
+      const chart = document.getElementById("chartPlotWrap") || document.getElementById("chartBox");
+      if (!chart) return;
       const vs = (r.series && r.series.length > 0) ? r.series.map(p => p[1]) : [0];
       const times = (r.series && r.series.length > 0) ? [r.series[0][0], r.series[Math.floor(r.series.length / 2)][0], r.series.at(-1)[0]] : ["09:15", "12:00", "15:30"];
       const min = Math.min(...vs, 0);
@@ -3725,12 +3930,24 @@
       pnlEl.innerText = signed(d.total);
       pnlEl.className = `metric ${tone(d.total)}`;
 
+      // Update Session Summary aside metrics
+      const capEl = document.getElementById("metricCapitalRequired");
+      if (capEl) capEl.innerText = s.capital || "₹3,50,000";
+      const ovrPnlEl = document.getElementById("metricOverallPnl");
+      if (ovrPnlEl) {
+        ovrPnlEl.innerHTML = `<span class="${tone(d.total)}">${signed(d.total)}</span>`;
+      }
+
       document.getElementById("metricRealised").innerHTML = `<span class="${tone(d.realized)}">${signed(d.realized)}</span>`;
       document.getElementById("metricUnrealised").innerHTML = `<span class="${tone(d.unrealized)}">${signed(d.unrealized)}</span>`;
       document.getElementById("metricOpenPositions").innerText = (d.positions || []).filter(p => p.status === "open").length;
       document.getElementById("metricClosedPositions").innerText = (d.positions || []).filter(p => p.status === "closed").length;
 
-      renderSvgChart(d);
+      try {
+        renderSvgChart(d);
+      } catch (err) {
+        console.warn("Chart render warning:", err);
+      }
       renderPositionsTable();
       renderHistory(); // Re-render independent history upon selecting strategy!
 
@@ -3781,24 +3998,24 @@
     function renderHistory() {
       const container = document.getElementById("historyRowsContainer");
       const stratHistory = strategyHistoryData[activeKey] || strategyHistoryData["strat_1"];
-      const visibleCount = hasUnlockedArchive ? stratHistory.length : 2;
+      const visibleCount = hasUnlockedArchive ? stratHistory.length : 3;
       const visible = stratHistory.slice(0, visibleCount);
 
-      container.innerHTML = visible.map(session => `
-        <details class="session-day">
-          <summary style="display:flex;align-items:center;justify-content:space-between;cursor:pointer;padding:12px 14px;background:rgba(255,255,255,0.02);border-radius:8px;border:1px solid rgba(255,255,255,0.06);margin-bottom:8px;">
+      container.innerHTML = visible.map((session, sIdx) => `
+        <details class="session-day" open style="margin-bottom:12px;border:1px solid rgba(255,255,255,0.08);border-radius:10px;background:rgba(255,255,255,0.015);overflow:hidden;">
+          <summary style="display:flex;align-items:center;justify-content:space-between;cursor:pointer;padding:14px 16px;background:rgba(255,255,255,0.03);border-bottom:1px solid rgba(255,255,255,0.06);">
             <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap;">
-              <strong style="color:var(--sx-text-primary);">${session.date}</strong>
-              <span class="label" style="font-size:9px;background:rgba(255,255,255,0.06);padding:2px 8px;border-radius:4px;color:var(--accent-cyan);border:1px solid rgba(0,229,255,0.2);">${session.kind}</span>
-              <span style="font-size:11px;color:var(--sx-muted);"><i class="fa-solid fa-vault" style="margin-right:4px;"></i> Total Capital Required: <strong style="color:var(--sx-text-primary);">${session.capital_required}</strong></span>
+              <strong style="color:var(--sx-text-primary);font-size:14px;">${session.date}</strong>
+              <span class="label" style="font-size:10px;background:rgba(0,229,255,0.08);padding:3px 8px;border-radius:4px;color:var(--accent-cyan);border:1px solid rgba(0,229,255,0.25);font-weight:600;">${session.kind}</span>
+              <span style="font-size:12px;color:var(--sx-muted);"><i class="fa-solid fa-vault" style="margin-right:4px;color:var(--accent-cyan);"></i> Total Capital Required: <strong style="color:var(--sx-text-primary);">${session.capital_required}</strong></span>
             </div>
             <div style="display:flex;align-items:center;gap:10px;">
-              <span style="font-size:11px;color:var(--sx-muted);">Overall PnL:</span>
-              <span class="session-pnl ${tone(session.pnl)}" style="font-weight:700;font-size:13px;">${signed(session.pnl)}</span>
+              <span style="font-size:12px;color:var(--sx-muted);">Overall PnL:</span>
+              <span class="session-pnl ${tone(session.pnl)}" style="font-weight:700;font-size:14px;">${signed(session.pnl)}</span>
             </div>
           </summary>
-          <div class="session-detail" style="padding:10px 0;">
-            <div class="tablewrap" style="margin-top:4px;">
+          <div class="session-detail" style="padding:12px 14px;">
+            <div class="tablewrap" style="margin-top:0;">
               <table>
                 <thead>
                   <tr>
