@@ -1272,121 +1272,2401 @@
     const signed = n => (n > 0 ? "+" : n < 0 ? "−" : "") + money(Math.abs(n));
     const tone = n => n < 0 ? "neg" : n > 0 ? "pos" : "";
 
-    function generateIntradayData(tick) {
-      const rows = {};
-      const baseValues = [
-        { realized: 1450, unrealized: 680, pnl: 2130, qty: 65, spot: 24350.25, exp: "2026-11-26" },
-        { realized: 3200, unrealized: 1850, pnl: 5050, qty: 30, spot: 52180.50, exp: "2026-11-26" },
-        { realized: -850, unrealized: 1240, pnl: 390, qty: 130, spot: 24365.10, exp: "2026-11-26" },
-        { realized: 0, unrealized: 1420, pnl: 1420, qty: 65, spot: 24370.40, exp: "2026-11-26" },
-        { realized: 1100, unrealized: 450, pnl: 1550, qty: 65, spot: 24368.80, exp: "2026-11-26" },
-        { realized: 1250, unrealized: 850, pnl: 2100, qty: 65, spot: 24350.25, exp: "2026-11-26" },
-        { realized: 1600, unrealized: 920, pnl: 2520, qty: 65, spot: 24350.25, exp: "2026-11-26" },
-        { realized: 2400, unrealized: 1100, pnl: 3500, qty: 20, spot: 82150.40, exp: "2026-11-20" },
-        { realized: 1850, unrealized: 750, pnl: 2600, qty: 65, spot: 24350.25, exp: "2026-11-26" },
-        { realized: 1000, unrealized: 450, pnl: 1450, qty: 65, spot: 24350.25, exp: "2026-11-26" },
-        { realized: 800, unrealized: 350, pnl: 1150, qty: 65, spot: 24350.25, exp: "2026-11-26" },
-        { realized: 1500, unrealized: 600, pnl: 2100, qty: 65, spot: 24350.25, exp: "2026-11-26" },
-        { realized: 2100, unrealized: 950, pnl: 3050, qty: 20, spot: 82150.40, exp: "2026-11-20" },
-        { realized: 120, unrealized: 45, pnl: 165, qty: 10, spot: 95200.0, exp: "2026-11-23" }
+    function getMarketStatus() {
+      const now = new Date();
+      const utc = now.getTime() + (now.getTimezoneOffset() * 60000);
+      const ist = new Date(utc + (3600000 * 5.5));
+      const day = ist.getDay(); // 0 = Sun, 6 = Sat
+      const yyyy = ist.getFullYear();
+      const mm = String(ist.getMonth() + 1).padStart(2, "0");
+      const dd = String(ist.getDate()).padStart(2, "0");
+      const dateStr = `${yyyy}-${mm}-${dd}`;
+      
+      if (day === 0 || day === 6) {
+        return { isOpen: false, state: "WEEKEND", badgeText: "WEEKEND · MARKET CLOSED", isWeekend: true };
+      }
+      
+      const holidays = [
+        "2026-01-26", "2026-03-03", "2026-03-20", "2026-03-27", "2026-03-31",
+        "2026-04-03", "2026-04-14", "2026-05-01", "2026-05-27", "2026-08-15",
+        "2026-08-26", "2026-10-02", "2026-10-20", "2026-11-09", "2026-11-10",
+        "2026-11-24", "2026-12-25"
       ];
+      if (holidays.includes(dateStr)) {
+        return { isOpen: false, state: "HOLIDAY", badgeText: "MARKET HOLIDAY", isHoliday: true };
+      }
+      
+      const totalMinutes = ist.getHours() * 60 + ist.getMinutes();
+      if (totalMinutes < 555) {
+        return { isOpen: false, state: "PRE_MARKET", badgeText: "PRE-MARKET · OPENS 09:15" };
+      }
+      if (totalMinutes >= 930) {
+        return { isOpen: false, state: "CLOSED", badgeText: "MARKET CLOSED" };
+      }
+      
+      return { isOpen: true, state: "LIVE", badgeText: "LIVE" };
+    }
 
-      keys.forEach((id, i) => {
-        const b = baseValues[i] || baseValues[0];
-        const drift = Math.round(Math.sin(tick * 0.2 + i) * 35);
-        const curRealized = b.realized;
-        const curUnrealized = b.unrealized + drift;
-        const total = curRealized + curUnrealized;
-
-        const series = [];
-        const startTime = 555; // 09:15
-        const endTime = 646;   // 10:46
-        const steps = 30;
-        for (let s = 0; s <= steps; s++) {
-          const m = startTime + (s / steps) * (endTime - startTime);
-          const hh = String(Math.floor(m / 60)).padStart(2, "0");
-          const mm = String(Math.floor(m % 60)).padStart(2, "0");
-          const val = Math.round((total * (s / steps)) + Math.sin(s * 0.8 + i) * 60);
-          series.push([`${hh}:${mm}`, val]);
+    const strategyHistoryData = {
+    "strat_1": [
+        {
+            "date": "20 Nov 2026",
+            "kind": "Broker Live",
+            "capital_required": "\u20b93,50,000",
+            "pnl": 2840,
+            "positions": [
+                {
+                    "entry_time": "2026-11-20 09:30:00",
+                    "exit_time": "2026-11-20 15:10:00",
+                    "timestamp": "2026-11-20 09:30:00",
+                    "instrument": "NIFTY 24400 CE",
+                    "expiry": "2026-11-26",
+                    "order_type": "SELL",
+                    "entry_price": 154.0,
+                    "spot_at_entry": 24395.2,
+                    "ltp": 122.0,
+                    "exit_price": 122.0,
+                    "spot_at_exit": 24420.5,
+                    "qty": 65,
+                    "pnl": 2080
+                },
+                {
+                    "entry_time": "2026-11-20 09:30:00",
+                    "exit_time": "2026-11-20 15:10:00",
+                    "timestamp": "2026-11-20 09:30:00",
+                    "instrument": "NIFTY 24400 PE",
+                    "expiry": "2026-11-26",
+                    "order_type": "SELL",
+                    "entry_price": 148.0,
+                    "spot_at_entry": 24395.2,
+                    "ltp": 136.3,
+                    "exit_price": 136.3,
+                    "spot_at_exit": 24420.5,
+                    "qty": 65,
+                    "pnl": 760
+                }
+            ]
+        },
+        {
+            "date": "19 Nov 2026",
+            "kind": "Broker Live",
+            "capital_required": "\u20b93,50,000",
+            "pnl": -890,
+            "positions": [
+                {
+                    "entry_time": "2026-11-19 09:30:00",
+                    "exit_time": "2026-11-19 14:22:00",
+                    "timestamp": "2026-11-19 09:30:00",
+                    "instrument": "NIFTY 24350 CE",
+                    "expiry": "2026-11-20",
+                    "order_type": "SELL",
+                    "entry_price": 132.0,
+                    "spot_at_entry": 24340.1,
+                    "ltp": 165.0,
+                    "exit_price": 165.0,
+                    "spot_at_exit": 24390.8,
+                    "qty": 65,
+                    "pnl": -2145
+                },
+                {
+                    "entry_time": "2026-11-19 09:30:00",
+                    "exit_time": "2026-11-19 14:22:00",
+                    "timestamp": "2026-11-19 09:30:00",
+                    "instrument": "NIFTY 24350 PE",
+                    "expiry": "2026-11-20",
+                    "order_type": "SELL",
+                    "entry_price": 140.0,
+                    "spot_at_entry": 24340.1,
+                    "ltp": 120.7,
+                    "exit_price": 120.7,
+                    "spot_at_exit": 24390.8,
+                    "qty": 65,
+                    "pnl": 1255
+                }
+            ]
+        },
+        {
+            "date": "18 Nov 2026",
+            "kind": "Broker Live",
+            "capital_required": "\u20b93,50,000",
+            "pnl": 3450,
+            "positions": [
+                {
+                    "entry_time": "2026-11-18 09:30:00",
+                    "exit_time": "2026-11-18 15:10:00",
+                    "timestamp": "2026-11-18 09:30:00",
+                    "instrument": "NIFTY 24300 CE",
+                    "expiry": "2026-11-20",
+                    "order_type": "SELL",
+                    "entry_price": 162.0,
+                    "spot_at_entry": 24310.45,
+                    "ltp": 126.0,
+                    "exit_price": 126.0,
+                    "spot_at_exit": 24325.1,
+                    "qty": 65,
+                    "pnl": 2340
+                },
+                {
+                    "entry_time": "2026-11-18 09:30:00",
+                    "exit_time": "2026-11-18 15:10:00",
+                    "timestamp": "2026-11-18 09:30:00",
+                    "instrument": "NIFTY 24300 PE",
+                    "expiry": "2026-11-20",
+                    "order_type": "SELL",
+                    "entry_price": 155.0,
+                    "spot_at_entry": 24310.45,
+                    "ltp": 137.9,
+                    "exit_price": 137.9,
+                    "spot_at_exit": 24325.1,
+                    "qty": 65,
+                    "pnl": 1110
+                }
+            ]
+        },
+        {
+            "date": "17 Nov 2026",
+            "kind": "Broker Live",
+            "capital_required": "\u20b93,50,000",
+            "pnl": 1980,
+            "positions": [
+                {
+                    "entry_time": "2026-11-17 09:30:00",
+                    "exit_time": "2026-11-17 15:10:00",
+                    "timestamp": "2026-11-17 09:30:00",
+                    "instrument": "NIFTY 24250 CE",
+                    "expiry": "2026-11-20",
+                    "order_type": "SELL",
+                    "entry_price": 145.0,
+                    "spot_at_entry": 24260.0,
+                    "ltp": 128.0,
+                    "exit_price": 128.0,
+                    "spot_at_exit": 24275.3,
+                    "qty": 65,
+                    "pnl": 1105
+                },
+                {
+                    "entry_time": "2026-11-17 09:30:00",
+                    "exit_time": "2026-11-17 15:10:00",
+                    "timestamp": "2026-11-17 09:30:00",
+                    "instrument": "NIFTY 24250 PE",
+                    "expiry": "2026-11-20",
+                    "order_type": "SELL",
+                    "entry_price": 139.0,
+                    "spot_at_entry": 24260.0,
+                    "ltp": 125.5,
+                    "exit_price": 125.5,
+                    "spot_at_exit": 24275.3,
+                    "qty": 65,
+                    "pnl": 875
+                }
+            ]
+        },
+        {
+            "date": "14 Nov 2026",
+            "kind": "Broker Live",
+            "capital_required": "\u20b93,50,000",
+            "pnl": 4120,
+            "positions": [
+                {
+                    "entry_time": "2026-11-14 09:30:00",
+                    "exit_time": "2026-11-14 15:10:00",
+                    "timestamp": "2026-11-14 09:30:00",
+                    "instrument": "NIFTY 24200 CE",
+                    "expiry": "2026-11-20",
+                    "order_type": "SELL",
+                    "entry_price": 172.0,
+                    "spot_at_entry": 24205.8,
+                    "ltp": 124.0,
+                    "exit_price": 124.0,
+                    "spot_at_exit": 24210.0,
+                    "qty": 65,
+                    "pnl": 3120
+                },
+                {
+                    "entry_time": "2026-11-14 09:30:00",
+                    "exit_time": "2026-11-14 15:10:00",
+                    "timestamp": "2026-11-14 09:30:00",
+                    "instrument": "NIFTY 24200 PE",
+                    "expiry": "2026-11-20",
+                    "order_type": "SELL",
+                    "entry_price": 160.0,
+                    "spot_at_entry": 24205.8,
+                    "ltp": 144.6,
+                    "exit_price": 144.6,
+                    "spot_at_exit": 24210.0,
+                    "qty": 65,
+                    "pnl": 1000
+                }
+            ]
         }
+    ],
+    "strat_2": [
+        {
+            "date": "20 Nov 2026",
+            "kind": "Broker Live",
+            "capital_required": "\u20b95,00,000",
+            "pnl": 5050,
+            "positions": [
+                {
+                    "entry_time": "2026-11-20 09:30:00",
+                    "exit_time": "2026-11-20 15:10:00",
+                    "timestamp": "2026-11-20 09:30:00",
+                    "instrument": "BANKNIFTY 52200 CE",
+                    "expiry": "2026-11-26",
+                    "order_type": "SELL",
+                    "entry_price": 380.0,
+                    "spot_at_entry": 52180.5,
+                    "ltp": 290.0,
+                    "exit_price": 290.0,
+                    "spot_at_exit": 52240.2,
+                    "qty": 30,
+                    "pnl": 2700
+                },
+                {
+                    "entry_time": "2026-11-20 09:30:00",
+                    "exit_time": "2026-11-20 15:10:00",
+                    "timestamp": "2026-11-20 09:30:00",
+                    "instrument": "BANKNIFTY 52200 PE",
+                    "expiry": "2026-11-26",
+                    "order_type": "SELL",
+                    "entry_price": 365.0,
+                    "spot_at_entry": 52180.5,
+                    "ltp": 286.7,
+                    "exit_price": 286.7,
+                    "spot_at_exit": 52240.2,
+                    "qty": 30,
+                    "pnl": 2350
+                }
+            ]
+        },
+        {
+            "date": "19 Nov 2026",
+            "kind": "Broker Live",
+            "capital_required": "\u20b95,00,000",
+            "pnl": 3150,
+            "positions": [
+                {
+                    "entry_time": "2026-11-19 09:30:00",
+                    "exit_time": "2026-11-19 15:10:00",
+                    "timestamp": "2026-11-19 09:30:00",
+                    "instrument": "BANKNIFTY 52000 CE",
+                    "expiry": "2026-11-26",
+                    "order_type": "SELL",
+                    "entry_price": 340.0,
+                    "spot_at_entry": 51950.0,
+                    "ltp": 275.0,
+                    "exit_price": 275.0,
+                    "spot_at_exit": 52020.0,
+                    "qty": 30,
+                    "pnl": 1950
+                },
+                {
+                    "entry_time": "2026-11-19 09:30:00",
+                    "exit_time": "2026-11-19 15:10:00",
+                    "timestamp": "2026-11-19 09:30:00",
+                    "instrument": "BANKNIFTY 52000 PE",
+                    "expiry": "2026-11-26",
+                    "order_type": "SELL",
+                    "entry_price": 320.0,
+                    "spot_at_entry": 51950.0,
+                    "ltp": 280.0,
+                    "exit_price": 280.0,
+                    "spot_at_exit": 52020.0,
+                    "qty": 30,
+                    "pnl": 1200
+                }
+            ]
+        },
+        {
+            "date": "18 Nov 2026",
+            "kind": "Broker Live",
+            "capital_required": "\u20b95,00,000",
+            "pnl": -1450,
+            "positions": [
+                {
+                    "entry_time": "2026-11-18 09:30:00",
+                    "exit_time": "2026-11-18 13:45:00",
+                    "timestamp": "2026-11-18 09:30:00",
+                    "instrument": "BANKNIFTY 51800 CE",
+                    "expiry": "2026-11-26",
+                    "order_type": "SELL",
+                    "entry_price": 355.0,
+                    "spot_at_entry": 51780.0,
+                    "ltp": 445.0,
+                    "exit_price": 445.0,
+                    "spot_at_exit": 51980.0,
+                    "qty": 30,
+                    "pnl": -2700
+                },
+                {
+                    "entry_time": "2026-11-18 09:30:00",
+                    "exit_time": "2026-11-18 13:45:00",
+                    "timestamp": "2026-11-18 09:30:00",
+                    "instrument": "BANKNIFTY 51800 PE",
+                    "expiry": "2026-11-26",
+                    "order_type": "SELL",
+                    "entry_price": 340.0,
+                    "spot_at_entry": 51780.0,
+                    "ltp": 298.3,
+                    "exit_price": 298.3,
+                    "spot_at_exit": 51980.0,
+                    "qty": 30,
+                    "pnl": 1250
+                }
+            ]
+        },
+        {
+            "date": "17 Nov 2026",
+            "kind": "Broker Live",
+            "capital_required": "\u20b95,00,000",
+            "pnl": 4200,
+            "positions": [
+                {
+                    "entry_time": "2026-11-17 09:30:00",
+                    "exit_time": "2026-11-17 15:10:00",
+                    "timestamp": "2026-11-17 09:30:00",
+                    "instrument": "BANKNIFTY 51500 CE",
+                    "expiry": "2026-11-26",
+                    "order_type": "SELL",
+                    "entry_price": 360.0,
+                    "spot_at_entry": 51480.0,
+                    "ltp": 270.0,
+                    "exit_price": 270.0,
+                    "spot_at_exit": 51520.0,
+                    "qty": 30,
+                    "pnl": 2700
+                },
+                {
+                    "entry_time": "2026-11-17 09:30:00",
+                    "exit_time": "2026-11-17 15:10:00",
+                    "timestamp": "2026-11-17 09:30:00",
+                    "instrument": "BANKNIFTY 51500 PE",
+                    "expiry": "2026-11-26",
+                    "order_type": "SELL",
+                    "entry_price": 330.0,
+                    "spot_at_entry": 51480.0,
+                    "ltp": 280.0,
+                    "exit_price": 280.0,
+                    "spot_at_exit": 51520.0,
+                    "qty": 30,
+                    "pnl": 1500
+                }
+            ]
+        },
+        {
+            "date": "14 Nov 2026",
+            "kind": "Broker Live",
+            "capital_required": "\u20b95,00,000",
+            "pnl": 5800,
+            "positions": [
+                {
+                    "entry_time": "2026-11-14 09:30:00",
+                    "exit_time": "2026-11-14 15:10:00",
+                    "timestamp": "2026-11-14 09:30:00",
+                    "instrument": "BANKNIFTY 51200 CE",
+                    "expiry": "2026-11-26",
+                    "order_type": "SELL",
+                    "entry_price": 390.0,
+                    "spot_at_entry": 51190.0,
+                    "ltp": 280.0,
+                    "exit_price": 280.0,
+                    "spot_at_exit": 51210.0,
+                    "qty": 30,
+                    "pnl": 3300
+                },
+                {
+                    "entry_time": "2026-11-14 09:30:00",
+                    "exit_time": "2026-11-14 15:10:00",
+                    "timestamp": "2026-11-14 09:30:00",
+                    "instrument": "BANKNIFTY 51200 PE",
+                    "expiry": "2026-11-26",
+                    "order_type": "SELL",
+                    "entry_price": 350.0,
+                    "spot_at_entry": 51190.0,
+                    "ltp": 266.7,
+                    "exit_price": 266.7,
+                    "spot_at_exit": 51210.0,
+                    "qty": 30,
+                    "pnl": 2500
+                }
+            ]
+        }
+    ],
+    "strat_3": [
+        {
+            "date": "20 Nov 2026",
+            "kind": "Broker Live",
+            "capital_required": "\u20b92,00,000",
+            "pnl": 1820,
+            "positions": [
+                {
+                    "entry_time": "2026-11-20 09:35:00",
+                    "exit_time": "2026-11-20 11:15:00",
+                    "timestamp": "2026-11-20 09:35:00",
+                    "instrument": "NIFTY 24450 CE",
+                    "expiry": "2026-11-26",
+                    "order_type": "BUY",
+                    "entry_price": 118.0,
+                    "spot_at_entry": 24410.0,
+                    "ltp": 146.0,
+                    "exit_price": 146.0,
+                    "spot_at_exit": 24465.0,
+                    "qty": 65,
+                    "pnl": 1820
+                }
+            ]
+        },
+        {
+            "date": "19 Nov 2026",
+            "kind": "Broker Live",
+            "capital_required": "\u20b92,00,000",
+            "pnl": 3120,
+            "positions": [
+                {
+                    "entry_time": "2026-11-19 09:40:00",
+                    "exit_time": "2026-11-19 13:20:00",
+                    "timestamp": "2026-11-19 09:40:00",
+                    "instrument": "NIFTY 24300 PE",
+                    "expiry": "2026-11-20",
+                    "order_type": "BUY",
+                    "entry_price": 105.0,
+                    "spot_at_entry": 24330.0,
+                    "ltp": 153.0,
+                    "exit_price": 153.0,
+                    "spot_at_exit": 24260.0,
+                    "qty": 65,
+                    "pnl": 3120
+                }
+            ]
+        },
+        {
+            "date": "18 Nov 2026",
+            "kind": "Broker Live",
+            "capital_required": "\u20b92,00,000",
+            "pnl": -975,
+            "positions": [
+                {
+                    "entry_time": "2026-11-18 09:35:00",
+                    "exit_time": "2026-11-18 10:10:00",
+                    "timestamp": "2026-11-18 09:35:00",
+                    "instrument": "NIFTY 24350 CE",
+                    "expiry": "2026-11-20",
+                    "order_type": "BUY",
+                    "entry_price": 122.0,
+                    "spot_at_entry": 24320.0,
+                    "ltp": 107.0,
+                    "exit_price": 107.0,
+                    "spot_at_exit": 24295.0,
+                    "qty": 65,
+                    "pnl": -975
+                }
+            ]
+        },
+        {
+            "date": "17 Nov 2026",
+            "kind": "Broker Live",
+            "capital_required": "\u20b92,00,000",
+            "pnl": 2405,
+            "positions": [
+                {
+                    "entry_time": "2026-11-17 09:45:00",
+                    "exit_time": "2026-11-17 12:30:00",
+                    "timestamp": "2026-11-17 09:45:00",
+                    "instrument": "NIFTY 24250 PE",
+                    "expiry": "2026-11-20",
+                    "order_type": "BUY",
+                    "entry_price": 98.0,
+                    "spot_at_entry": 24270.0,
+                    "ltp": 135.0,
+                    "exit_price": 135.0,
+                    "spot_at_exit": 24210.0,
+                    "qty": 65,
+                    "pnl": 2405
+                }
+            ]
+        },
+        {
+            "date": "14 Nov 2026",
+            "kind": "Broker Live",
+            "capital_required": "\u20b92,00,000",
+            "pnl": 1950,
+            "positions": [
+                {
+                    "entry_time": "2026-11-14 09:35:00",
+                    "exit_time": "2026-11-14 11:40:00",
+                    "timestamp": "2026-11-14 09:35:00",
+                    "instrument": "NIFTY 24200 CE",
+                    "expiry": "2026-11-20",
+                    "order_type": "BUY",
+                    "entry_price": 112.0,
+                    "spot_at_entry": 24190.0,
+                    "ltp": 142.0,
+                    "exit_price": 142.0,
+                    "spot_at_exit": 24245.0,
+                    "qty": 65,
+                    "pnl": 1950
+                }
+            ]
+        }
+    ],
+    "strat_4a": [
+        {
+            "date": "20 Nov 2026",
+            "kind": "Broker Live",
+            "capital_required": "\u20b950,000",
+            "pnl": 1430,
+            "positions": [
+                {
+                    "entry_time": "2026-11-20 10:15:00",
+                    "exit_time": "2026-11-20 11:05:00",
+                    "timestamp": "2026-11-20 10:15:00",
+                    "instrument": "NIFTY 24450 CE",
+                    "expiry": "2026-11-26",
+                    "order_type": "BUY",
+                    "entry_price": 95.0,
+                    "spot_at_entry": 24415.0,
+                    "ltp": 117.0,
+                    "exit_price": 117.0,
+                    "spot_at_exit": 24455.0,
+                    "qty": 65,
+                    "pnl": 1430
+                }
+            ]
+        },
+        {
+            "date": "19 Nov 2026",
+            "kind": "Broker Live",
+            "capital_required": "\u20b950,000",
+            "pnl": 2210,
+            "positions": [
+                {
+                    "entry_time": "2026-11-19 13:10:00",
+                    "exit_time": "2026-11-19 14:15:00",
+                    "timestamp": "2026-11-19 13:10:00",
+                    "instrument": "NIFTY 24350 PE",
+                    "expiry": "2026-11-20",
+                    "order_type": "BUY",
+                    "entry_price": 82.0,
+                    "spot_at_entry": 24345.0,
+                    "ltp": 116.0,
+                    "exit_price": 116.0,
+                    "spot_at_exit": 24285.0,
+                    "qty": 65,
+                    "pnl": 2210
+                }
+            ]
+        },
+        {
+            "date": "18 Nov 2026",
+            "kind": "Broker Live",
+            "capital_required": "\u20b950,000",
+            "pnl": -780,
+            "positions": [
+                {
+                    "entry_time": "2026-11-18 10:30:00",
+                    "exit_time": "2026-11-18 11:00:00",
+                    "timestamp": "2026-11-18 10:30:00",
+                    "instrument": "NIFTY 24350 CE",
+                    "expiry": "2026-11-20",
+                    "order_type": "BUY",
+                    "entry_price": 104.0,
+                    "spot_at_entry": 24325.0,
+                    "ltp": 92.0,
+                    "exit_price": 92.0,
+                    "spot_at_exit": 24305.0,
+                    "qty": 65,
+                    "pnl": -780
+                }
+            ]
+        },
+        {
+            "date": "17 Nov 2026",
+            "kind": "Broker Live",
+            "capital_required": "\u20b950,000",
+            "pnl": 1690,
+            "positions": [
+                {
+                    "entry_time": "2026-11-17 11:20:00",
+                    "exit_time": "2026-11-17 12:15:00",
+                    "timestamp": "2026-11-17 11:20:00",
+                    "instrument": "NIFTY 24250 PE",
+                    "expiry": "2026-11-20",
+                    "order_type": "BUY",
+                    "entry_price": 88.0,
+                    "spot_at_entry": 24265.0,
+                    "ltp": 114.0,
+                    "exit_price": 114.0,
+                    "spot_at_exit": 24215.0,
+                    "qty": 65,
+                    "pnl": 1690
+                }
+            ]
+        },
+        {
+            "date": "14 Nov 2026",
+            "kind": "Broker Live",
+            "capital_required": "\u20b950,000",
+            "pnl": 1820,
+            "positions": [
+                {
+                    "entry_time": "2026-11-14 10:05:00",
+                    "exit_time": "2026-11-14 11:10:00",
+                    "timestamp": "2026-11-14 10:05:00",
+                    "instrument": "NIFTY 24200 CE",
+                    "expiry": "2026-11-20",
+                    "order_type": "BUY",
+                    "entry_price": 96.0,
+                    "spot_at_entry": 24195.0,
+                    "ltp": 124.0,
+                    "exit_price": 124.0,
+                    "spot_at_exit": 24250.0,
+                    "qty": 65,
+                    "pnl": 1820
+                }
+            ]
+        }
+    ],
+    "strat_4b": [
+        {
+            "date": "20 Nov 2026",
+            "kind": "Broker Live",
+            "capital_required": "\u20b91,50,000",
+            "pnl": 1625,
+            "positions": [
+                {
+                    "entry_time": "2026-11-20 09:30:00",
+                    "exit_time": "2026-11-20 15:10:00",
+                    "timestamp": "2026-11-20 09:30:00",
+                    "instrument": "NIFTY 24500 CE",
+                    "expiry": "2026-11-26",
+                    "order_type": "SELL",
+                    "entry_price": 110.0,
+                    "spot_at_entry": 24400.0,
+                    "ltp": 75.0,
+                    "exit_price": 75.0,
+                    "spot_at_exit": 24420.0,
+                    "qty": 65,
+                    "pnl": 2275
+                },
+                {
+                    "entry_time": "2026-11-20 09:30:00",
+                    "exit_time": "2026-11-20 15:10:00",
+                    "timestamp": "2026-11-20 09:30:00",
+                    "instrument": "NIFTY 24700 CE",
+                    "expiry": "2026-11-26",
+                    "order_type": "BUY",
+                    "entry_price": 38.0,
+                    "spot_at_entry": 24400.0,
+                    "ltp": 28.0,
+                    "exit_price": 28.0,
+                    "spot_at_exit": 24420.0,
+                    "qty": 65,
+                    "pnl": -650
+                }
+            ]
+        },
+        {
+            "date": "19 Nov 2026",
+            "kind": "Broker Live",
+            "capital_required": "\u20b91,50,000",
+            "pnl": 1495,
+            "positions": [
+                {
+                    "entry_time": "2026-11-19 09:30:00",
+                    "exit_time": "2026-11-19 15:10:00",
+                    "timestamp": "2026-11-19 09:30:00",
+                    "instrument": "NIFTY 24450 CE",
+                    "expiry": "2026-11-20",
+                    "order_type": "SELL",
+                    "entry_price": 95.0,
+                    "spot_at_entry": 24340.0,
+                    "ltp": 62.0,
+                    "exit_price": 62.0,
+                    "spot_at_exit": 24380.0,
+                    "qty": 65,
+                    "pnl": 2145
+                },
+                {
+                    "entry_time": "2026-11-19 09:30:00",
+                    "exit_time": "2026-11-19 15:10:00",
+                    "timestamp": "2026-11-19 09:30:00",
+                    "instrument": "NIFTY 24650 CE",
+                    "expiry": "2026-11-20",
+                    "order_type": "BUY",
+                    "entry_price": 32.0,
+                    "spot_at_entry": 24340.0,
+                    "ltp": 22.0,
+                    "exit_price": 22.0,
+                    "spot_at_exit": 24380.0,
+                    "qty": 65,
+                    "pnl": -650
+                }
+            ]
+        },
+        {
+            "date": "18 Nov 2026",
+            "kind": "Broker Live",
+            "capital_required": "\u20b91,50,000",
+            "pnl": -650,
+            "positions": [
+                {
+                    "entry_time": "2026-11-18 09:30:00",
+                    "exit_time": "2026-11-18 14:00:00",
+                    "timestamp": "2026-11-18 09:30:00",
+                    "instrument": "NIFTY 24400 CE",
+                    "expiry": "2026-11-20",
+                    "order_type": "SELL",
+                    "entry_price": 105.0,
+                    "spot_at_entry": 24310.0,
+                    "ltp": 130.0,
+                    "exit_price": 130.0,
+                    "spot_at_exit": 24365.0,
+                    "qty": 65,
+                    "pnl": -1625
+                },
+                {
+                    "entry_time": "2026-11-18 09:30:00",
+                    "exit_time": "2026-11-18 14:00:00",
+                    "timestamp": "2026-11-18 09:30:00",
+                    "instrument": "NIFTY 24600 CE",
+                    "expiry": "2026-11-20",
+                    "order_type": "BUY",
+                    "entry_price": 35.0,
+                    "spot_at_entry": 24310.0,
+                    "ltp": 50.0,
+                    "exit_price": 50.0,
+                    "spot_at_exit": 24365.0,
+                    "qty": 65,
+                    "pnl": 975
+                }
+            ]
+        },
+        {
+            "date": "17 Nov 2026",
+            "kind": "Broker Live",
+            "capital_required": "\u20b91,50,000",
+            "pnl": 1820,
+            "positions": [
+                {
+                    "entry_time": "2026-11-17 09:30:00",
+                    "exit_time": "2026-11-17 15:10:00",
+                    "timestamp": "2026-11-17 09:30:00",
+                    "instrument": "NIFTY 24350 CE",
+                    "expiry": "2026-11-20",
+                    "order_type": "SELL",
+                    "entry_price": 115.0,
+                    "spot_at_entry": 24260.0,
+                    "ltp": 78.0,
+                    "exit_price": 78.0,
+                    "spot_at_exit": 24275.0,
+                    "qty": 65,
+                    "pnl": 2405
+                },
+                {
+                    "entry_time": "2026-11-17 09:30:00",
+                    "exit_time": "2026-11-17 15:10:00",
+                    "timestamp": "2026-11-17 09:30:00",
+                    "instrument": "NIFTY 24550 CE",
+                    "expiry": "2026-11-20",
+                    "order_type": "BUY",
+                    "entry_price": 39.0,
+                    "spot_at_entry": 24260.0,
+                    "ltp": 30.0,
+                    "exit_price": 30.0,
+                    "spot_at_exit": 24275.0,
+                    "qty": 65,
+                    "pnl": -585
+                }
+            ]
+        },
+        {
+            "date": "14 Nov 2026",
+            "kind": "Broker Live",
+            "capital_required": "\u20b91,50,000",
+            "pnl": 2015,
+            "positions": [
+                {
+                    "entry_time": "2026-11-14 09:30:00",
+                    "exit_time": "2026-11-14 15:10:00",
+                    "timestamp": "2026-11-14 09:30:00",
+                    "instrument": "NIFTY 24300 CE",
+                    "expiry": "2026-11-20",
+                    "order_type": "SELL",
+                    "entry_price": 120.0,
+                    "spot_at_entry": 24200.0,
+                    "ltp": 80.0,
+                    "exit_price": 80.0,
+                    "spot_at_exit": 24210.0,
+                    "qty": 65,
+                    "pnl": 2600
+                },
+                {
+                    "entry_time": "2026-11-14 09:30:00",
+                    "exit_time": "2026-11-14 15:10:00",
+                    "timestamp": "2026-11-14 09:30:00",
+                    "instrument": "NIFTY 24500 CE",
+                    "expiry": "2026-11-20",
+                    "order_type": "BUY",
+                    "entry_price": 41.0,
+                    "spot_at_entry": 24200.0,
+                    "ltp": 32.0,
+                    "exit_price": 32.0,
+                    "spot_at_exit": 24210.0,
+                    "qty": 65,
+                    "pnl": -585
+                }
+            ]
+        }
+    ],
+    "strat_5": [
+        {
+            "date": "20 Nov 2026",
+            "kind": "Broker Live",
+            "capital_required": "\u20b91,75,000",
+            "pnl": 2470,
+            "positions": [
+                {
+                    "entry_time": "2026-11-20 09:30:00",
+                    "exit_time": "2026-11-20 15:10:00",
+                    "timestamp": "2026-11-20 09:30:00",
+                    "instrument": "NIFTY 24400 CE",
+                    "expiry": "2026-11-26",
+                    "order_type": "SELL",
+                    "entry_price": 160.0,
+                    "spot_at_entry": 24395.0,
+                    "ltp": 128.0,
+                    "exit_price": 128.0,
+                    "spot_at_exit": 24420.0,
+                    "qty": 65,
+                    "pnl": 2080
+                },
+                {
+                    "entry_time": "2026-11-20 09:30:00",
+                    "exit_time": "2026-11-20 15:10:00",
+                    "timestamp": "2026-11-20 09:30:00",
+                    "instrument": "NIFTY 24400 PE",
+                    "expiry": "2026-11-26",
+                    "order_type": "SELL",
+                    "entry_price": 152.0,
+                    "spot_at_entry": 24395.0,
+                    "ltp": 146.0,
+                    "exit_price": 146.0,
+                    "spot_at_exit": 24420.0,
+                    "qty": 65,
+                    "pnl": 390
+                }
+            ]
+        },
+        {
+            "date": "19 Nov 2026",
+            "kind": "Broker Live",
+            "capital_required": "\u20b91,75,000",
+            "pnl": 1950,
+            "positions": [
+                {
+                    "entry_time": "2026-11-19 09:30:00",
+                    "exit_time": "2026-11-19 15:10:00",
+                    "timestamp": "2026-11-19 09:30:00",
+                    "instrument": "NIFTY 24350 CE",
+                    "expiry": "2026-11-20",
+                    "order_type": "SELL",
+                    "entry_price": 142.0,
+                    "spot_at_entry": 24340.0,
+                    "ltp": 120.0,
+                    "exit_price": 120.0,
+                    "spot_at_exit": 24360.0,
+                    "qty": 65,
+                    "pnl": 1430
+                },
+                {
+                    "entry_time": "2026-11-19 09:30:00",
+                    "exit_time": "2026-11-19 15:10:00",
+                    "timestamp": "2026-11-19 09:30:00",
+                    "instrument": "NIFTY 24350 PE",
+                    "expiry": "2026-11-20",
+                    "order_type": "SELL",
+                    "entry_price": 138.0,
+                    "spot_at_entry": 24340.0,
+                    "ltp": 130.0,
+                    "exit_price": 130.0,
+                    "spot_at_exit": 24360.0,
+                    "qty": 65,
+                    "pnl": 520
+                }
+            ]
+        },
+        {
+            "date": "18 Nov 2026",
+            "kind": "Broker Live",
+            "capital_required": "\u20b91,75,000",
+            "pnl": 3250,
+            "positions": [
+                {
+                    "entry_time": "2026-11-18 09:30:00",
+                    "exit_time": "2026-11-18 15:10:00",
+                    "timestamp": "2026-11-18 09:30:00",
+                    "instrument": "NIFTY 24300 CE",
+                    "expiry": "2026-11-20",
+                    "order_type": "SELL",
+                    "entry_price": 165.0,
+                    "spot_at_entry": 24310.0,
+                    "ltp": 125.0,
+                    "exit_price": 125.0,
+                    "spot_at_exit": 24320.0,
+                    "qty": 65,
+                    "pnl": 2600
+                },
+                {
+                    "entry_time": "2026-11-18 09:30:00",
+                    "exit_time": "2026-11-18 15:10:00",
+                    "timestamp": "2026-11-18 09:30:00",
+                    "instrument": "NIFTY 24300 PE",
+                    "expiry": "2026-11-20",
+                    "order_type": "SELL",
+                    "entry_price": 158.0,
+                    "spot_at_entry": 24310.0,
+                    "ltp": 148.0,
+                    "exit_price": 148.0,
+                    "spot_at_exit": 24320.0,
+                    "qty": 65,
+                    "pnl": 650
+                }
+            ]
+        },
+        {
+            "date": "17 Nov 2026",
+            "kind": "Broker Live",
+            "capital_required": "\u20b91,75,000",
+            "pnl": -910,
+            "positions": [
+                {
+                    "entry_time": "2026-11-17 09:30:00",
+                    "exit_time": "2026-11-17 14:10:00",
+                    "timestamp": "2026-11-17 09:30:00",
+                    "instrument": "NIFTY 24250 CE",
+                    "expiry": "2026-11-20",
+                    "order_type": "SELL",
+                    "entry_price": 148.0,
+                    "spot_at_entry": 24260.0,
+                    "ltp": 182.0,
+                    "exit_price": 182.0,
+                    "spot_at_exit": 24310.0,
+                    "qty": 65,
+                    "pnl": -2210
+                },
+                {
+                    "entry_time": "2026-11-17 09:30:00",
+                    "exit_time": "2026-11-17 14:10:00",
+                    "timestamp": "2026-11-17 09:30:00",
+                    "instrument": "NIFTY 24250 PE",
+                    "expiry": "2026-11-20",
+                    "order_type": "SELL",
+                    "entry_price": 142.0,
+                    "spot_at_entry": 24260.0,
+                    "ltp": 122.0,
+                    "exit_price": 122.0,
+                    "spot_at_exit": 24310.0,
+                    "qty": 65,
+                    "pnl": 1300
+                }
+            ]
+        },
+        {
+            "date": "14 Nov 2026",
+            "kind": "Broker Live",
+            "capital_required": "\u20b91,75,000",
+            "pnl": 3900,
+            "positions": [
+                {
+                    "entry_time": "2026-11-14 09:30:00",
+                    "exit_time": "2026-11-14 15:10:00",
+                    "timestamp": "2026-11-14 09:30:00",
+                    "instrument": "NIFTY 24200 CE",
+                    "expiry": "2026-11-20",
+                    "order_type": "SELL",
+                    "entry_price": 175.0,
+                    "spot_at_entry": 24205.0,
+                    "ltp": 127.0,
+                    "exit_price": 127.0,
+                    "spot_at_exit": 24210.0,
+                    "qty": 65,
+                    "pnl": 3120
+                },
+                {
+                    "entry_time": "2026-11-14 09:30:00",
+                    "exit_time": "2026-11-14 15:10:00",
+                    "timestamp": "2026-11-14 09:30:00",
+                    "instrument": "NIFTY 24200 PE",
+                    "expiry": "2026-11-20",
+                    "order_type": "SELL",
+                    "entry_price": 162.0,
+                    "spot_at_entry": 24205.0,
+                    "ltp": 150.0,
+                    "exit_price": 150.0,
+                    "spot_at_exit": 24210.0,
+                    "qty": 65,
+                    "pnl": 780
+                }
+            ]
+        }
+    ],
+    "strat_6": [
+        {
+            "date": "20 Nov 2026",
+            "kind": "Broker Live",
+            "capital_required": "\u20b91,75,000",
+            "pnl": 2145,
+            "positions": [
+                {
+                    "entry_time": "2026-11-20 10:00:00",
+                    "exit_time": "2026-11-20 15:10:00",
+                    "timestamp": "2026-11-20 10:00:00",
+                    "instrument": "NIFTY 24400 CE",
+                    "expiry": "2026-11-26",
+                    "order_type": "SELL",
+                    "entry_price": 148.0,
+                    "spot_at_entry": 24410.0,
+                    "ltp": 122.0,
+                    "exit_price": 122.0,
+                    "spot_at_exit": 24420.0,
+                    "qty": 65,
+                    "pnl": 1690
+                },
+                {
+                    "entry_time": "2026-11-20 10:00:00",
+                    "exit_time": "2026-11-20 15:10:00",
+                    "timestamp": "2026-11-20 10:00:00",
+                    "instrument": "NIFTY 24400 PE",
+                    "expiry": "2026-11-26",
+                    "order_type": "SELL",
+                    "entry_price": 140.0,
+                    "spot_at_entry": 24410.0,
+                    "ltp": 133.0,
+                    "exit_price": 133.0,
+                    "spot_at_exit": 24420.0,
+                    "qty": 65,
+                    "pnl": 455
+                }
+            ]
+        },
+        {
+            "date": "19 Nov 2026",
+            "kind": "Broker Live",
+            "capital_required": "\u20b91,75,000",
+            "pnl": 1820,
+            "positions": [
+                {
+                    "entry_time": "2026-11-19 10:00:00",
+                    "exit_time": "2026-11-19 15:10:00",
+                    "timestamp": "2026-11-19 10:00:00",
+                    "instrument": "NIFTY 24350 CE",
+                    "expiry": "2026-11-20",
+                    "order_type": "SELL",
+                    "entry_price": 135.0,
+                    "spot_at_entry": 24350.0,
+                    "ltp": 115.0,
+                    "exit_price": 115.0,
+                    "spot_at_exit": 24365.0,
+                    "qty": 65,
+                    "pnl": 1300
+                },
+                {
+                    "entry_time": "2026-11-19 10:00:00",
+                    "exit_time": "2026-11-19 15:10:00",
+                    "timestamp": "2026-11-19 10:00:00",
+                    "instrument": "NIFTY 24350 PE",
+                    "expiry": "2026-11-20",
+                    "order_type": "SELL",
+                    "entry_price": 130.0,
+                    "spot_at_entry": 24350.0,
+                    "ltp": 122.0,
+                    "exit_price": 122.0,
+                    "spot_at_exit": 24365.0,
+                    "qty": 65,
+                    "pnl": 520
+                }
+            ]
+        },
+        {
+            "date": "18 Nov 2026",
+            "kind": "Broker Live",
+            "capital_required": "\u20b91,75,000",
+            "pnl": 2860,
+            "positions": [
+                {
+                    "entry_time": "2026-11-18 10:00:00",
+                    "exit_time": "2026-11-18 15:10:00",
+                    "timestamp": "2026-11-18 10:00:00",
+                    "instrument": "NIFTY 24300 CE",
+                    "expiry": "2026-11-20",
+                    "order_type": "SELL",
+                    "entry_price": 152.0,
+                    "spot_at_entry": 24315.0,
+                    "ltp": 120.0,
+                    "exit_price": 120.0,
+                    "spot_at_exit": 24325.0,
+                    "qty": 65,
+                    "pnl": 2080
+                },
+                {
+                    "entry_time": "2026-11-18 10:00:00",
+                    "exit_time": "2026-11-18 15:10:00",
+                    "timestamp": "2026-11-18 10:00:00",
+                    "instrument": "NIFTY 24300 PE",
+                    "expiry": "2026-11-20",
+                    "order_type": "SELL",
+                    "entry_price": 146.0,
+                    "spot_at_entry": 24315.0,
+                    "ltp": 134.0,
+                    "exit_price": 134.0,
+                    "spot_at_exit": 24325.0,
+                    "qty": 65,
+                    "pnl": 780
+                }
+            ]
+        },
+        {
+            "date": "17 Nov 2026",
+            "kind": "Broker Live",
+            "capital_required": "\u20b91,75,000",
+            "pnl": 1560,
+            "positions": [
+                {
+                    "entry_time": "2026-11-17 10:00:00",
+                    "exit_time": "2026-11-17 15:10:00",
+                    "timestamp": "2026-11-17 10:00:00",
+                    "instrument": "NIFTY 24250 CE",
+                    "expiry": "2026-11-20",
+                    "order_type": "SELL",
+                    "entry_price": 138.0,
+                    "spot_at_entry": 24265.0,
+                    "ltp": 122.0,
+                    "exit_price": 122.0,
+                    "spot_at_exit": 24275.0,
+                    "qty": 65,
+                    "pnl": 1040
+                },
+                {
+                    "entry_time": "2026-11-17 10:00:00",
+                    "exit_time": "2026-11-17 15:10:00",
+                    "timestamp": "2026-11-17 10:00:00",
+                    "instrument": "NIFTY 24250 PE",
+                    "expiry": "2026-11-20",
+                    "order_type": "SELL",
+                    "entry_price": 132.0,
+                    "spot_at_entry": 24265.0,
+                    "ltp": 124.0,
+                    "exit_price": 124.0,
+                    "spot_at_exit": 24275.0,
+                    "qty": 65,
+                    "pnl": 520
+                }
+            ]
+        },
+        {
+            "date": "14 Nov 2026",
+            "kind": "Broker Live",
+            "capital_required": "\u20b91,75,000",
+            "pnl": 3120,
+            "positions": [
+                {
+                    "entry_time": "2026-11-14 10:00:00",
+                    "exit_time": "2026-11-14 15:10:00",
+                    "timestamp": "2026-11-14 10:00:00",
+                    "instrument": "NIFTY 24200 CE",
+                    "expiry": "2026-11-20",
+                    "order_type": "SELL",
+                    "entry_price": 160.0,
+                    "spot_at_entry": 24210.0,
+                    "ltp": 124.0,
+                    "exit_price": 124.0,
+                    "spot_at_exit": 24215.0,
+                    "qty": 65,
+                    "pnl": 2340
+                },
+                {
+                    "entry_time": "2026-11-14 10:00:00",
+                    "exit_time": "2026-11-14 15:10:00",
+                    "timestamp": "2026-11-14 10:00:00",
+                    "instrument": "NIFTY 24200 PE",
+                    "expiry": "2026-11-20",
+                    "order_type": "SELL",
+                    "entry_price": 150.0,
+                    "spot_at_entry": 24210.0,
+                    "ltp": 138.0,
+                    "exit_price": 138.0,
+                    "spot_at_exit": 24215.0,
+                    "qty": 65,
+                    "pnl": 780
+                }
+            ]
+        }
+    ],
+    "strat_7": [
+        {
+            "date": "20 Nov 2026",
+            "kind": "Broker Live",
+            "capital_required": "\u20b93,50,000",
+            "pnl": 3500,
+            "positions": [
+                {
+                    "entry_time": "2026-11-20 09:30:00",
+                    "exit_time": "2026-11-20 15:10:00",
+                    "timestamp": "2026-11-20 09:30:00",
+                    "instrument": "SENSEX 82200 CE",
+                    "expiry": "2026-11-20",
+                    "order_type": "SELL",
+                    "entry_price": 280.0,
+                    "spot_at_entry": 82180.0,
+                    "ltp": 180.0,
+                    "exit_price": 180.0,
+                    "spot_at_exit": 82210.0,
+                    "qty": 20,
+                    "pnl": 2000
+                },
+                {
+                    "entry_time": "2026-11-20 09:30:00",
+                    "exit_time": "2026-11-20 15:10:00",
+                    "timestamp": "2026-11-20 09:30:00",
+                    "instrument": "SENSEX 82200 PE",
+                    "expiry": "2026-11-20",
+                    "order_type": "SELL",
+                    "entry_price": 265.0,
+                    "spot_at_entry": 82180.0,
+                    "ltp": 190.0,
+                    "exit_price": 190.0,
+                    "spot_at_exit": 82210.0,
+                    "qty": 20,
+                    "pnl": 1500
+                }
+            ]
+        },
+        {
+            "date": "19 Nov 2026",
+            "kind": "Broker Live",
+            "capital_required": "\u20b93,50,000",
+            "pnl": 2800,
+            "positions": [
+                {
+                    "entry_time": "2026-11-19 09:30:00",
+                    "exit_time": "2026-11-19 15:10:00",
+                    "timestamp": "2026-11-19 09:30:00",
+                    "instrument": "SENSEX 82000 CE",
+                    "expiry": "2026-11-20",
+                    "order_type": "SELL",
+                    "entry_price": 250.0,
+                    "spot_at_entry": 81950.0,
+                    "ltp": 170.0,
+                    "exit_price": 170.0,
+                    "spot_at_exit": 82010.0,
+                    "qty": 20,
+                    "pnl": 1600
+                },
+                {
+                    "entry_time": "2026-11-19 09:30:00",
+                    "exit_time": "2026-11-19 15:10:00",
+                    "timestamp": "2026-11-19 09:30:00",
+                    "instrument": "SENSEX 82000 PE",
+                    "expiry": "2026-11-20",
+                    "order_type": "SELL",
+                    "entry_price": 240.0,
+                    "spot_at_entry": 81950.0,
+                    "ltp": 180.0,
+                    "exit_price": 180.0,
+                    "spot_at_exit": 82010.0,
+                    "qty": 20,
+                    "pnl": 1200
+                }
+            ]
+        },
+        {
+            "date": "18 Nov 2026",
+            "kind": "Broker Live",
+            "capital_required": "\u20b93,50,000",
+            "pnl": -1200,
+            "positions": [
+                {
+                    "entry_time": "2026-11-18 09:30:00",
+                    "exit_time": "2026-11-18 13:30:00",
+                    "timestamp": "2026-11-18 09:30:00",
+                    "instrument": "SENSEX 81800 CE",
+                    "expiry": "2026-11-20",
+                    "order_type": "SELL",
+                    "entry_price": 260.0,
+                    "spot_at_entry": 81750.0,
+                    "ltp": 350.0,
+                    "exit_price": 350.0,
+                    "spot_at_exit": 81920.0,
+                    "qty": 20,
+                    "pnl": -1800
+                },
+                {
+                    "entry_time": "2026-11-18 09:30:00",
+                    "exit_time": "2026-11-18 13:30:00",
+                    "timestamp": "2026-11-18 09:30:00",
+                    "instrument": "SENSEX 81800 PE",
+                    "expiry": "2026-11-20",
+                    "order_type": "SELL",
+                    "entry_price": 245.0,
+                    "spot_at_entry": 81750.0,
+                    "ltp": 215.0,
+                    "exit_price": 215.0,
+                    "spot_at_exit": 81920.0,
+                    "qty": 20,
+                    "pnl": 600
+                }
+            ]
+        },
+        {
+            "date": "17 Nov 2026",
+            "kind": "Broker Live",
+            "capital_required": "\u20b93,50,000",
+            "pnl": 3100,
+            "positions": [
+                {
+                    "entry_time": "2026-11-17 09:30:00",
+                    "exit_time": "2026-11-17 15:10:00",
+                    "timestamp": "2026-11-17 09:30:00",
+                    "instrument": "SENSEX 81500 CE",
+                    "expiry": "2026-11-20",
+                    "order_type": "SELL",
+                    "entry_price": 270.0,
+                    "spot_at_entry": 81480.0,
+                    "ltp": 185.0,
+                    "exit_price": 185.0,
+                    "spot_at_exit": 81510.0,
+                    "qty": 20,
+                    "pnl": 1700
+                },
+                {
+                    "entry_time": "2026-11-17 09:30:00",
+                    "exit_time": "2026-11-17 15:10:00",
+                    "timestamp": "2026-11-17 09:30:00",
+                    "instrument": "SENSEX 81500 PE",
+                    "expiry": "2026-11-20",
+                    "order_type": "SELL",
+                    "entry_price": 255.0,
+                    "spot_at_entry": 81480.0,
+                    "ltp": 185.0,
+                    "exit_price": 185.0,
+                    "spot_at_exit": 81510.0,
+                    "qty": 20,
+                    "pnl": 1400
+                }
+            ]
+        },
+        {
+            "date": "14 Nov 2026",
+            "kind": "Broker Live",
+            "capital_required": "\u20b93,50,000",
+            "pnl": 4200,
+            "positions": [
+                {
+                    "entry_time": "2026-11-14 09:30:00",
+                    "exit_time": "2026-11-14 15:10:00",
+                    "timestamp": "2026-11-14 09:30:00",
+                    "instrument": "SENSEX 81200 CE",
+                    "expiry": "2026-11-20",
+                    "order_type": "SELL",
+                    "entry_price": 290.0,
+                    "spot_at_entry": 81180.0,
+                    "ltp": 175.0,
+                    "exit_price": 175.0,
+                    "spot_at_exit": 81220.0,
+                    "qty": 20,
+                    "pnl": 2300
+                },
+                {
+                    "entry_time": "2026-11-14 09:30:00",
+                    "exit_time": "2026-11-14 15:10:00",
+                    "timestamp": "2026-11-14 09:30:00",
+                    "instrument": "SENSEX 81200 PE",
+                    "expiry": "2026-11-20",
+                    "order_type": "SELL",
+                    "entry_price": 275.0,
+                    "spot_at_entry": 81180.0,
+                    "ltp": 180.0,
+                    "exit_price": 180.0,
+                    "spot_at_exit": 81220.0,
+                    "qty": 20,
+                    "pnl": 1900
+                }
+            ]
+        }
+    ],
+    "strat_7b": [
+        {
+            "date": "20 Nov 2026",
+            "kind": "Broker Live",
+            "capital_required": "\u20b93,50,000",
+            "pnl": 3050,
+            "positions": [
+                {
+                    "entry_time": "2026-11-20 09:30:00",
+                    "exit_time": "2026-11-20 15:10:00",
+                    "timestamp": "2026-11-20 09:30:00",
+                    "instrument": "SENSEX 82500 CE",
+                    "expiry": "2026-11-20",
+                    "order_type": "SELL",
+                    "entry_price": 190.0,
+                    "spot_at_entry": 82180.0,
+                    "ltp": 110.0,
+                    "exit_price": 110.0,
+                    "spot_at_exit": 82210.0,
+                    "qty": 20,
+                    "pnl": 1600
+                },
+                {
+                    "entry_time": "2026-11-20 09:30:00",
+                    "exit_time": "2026-11-20 15:10:00",
+                    "timestamp": "2026-11-20 09:30:00",
+                    "instrument": "SENSEX 81900 PE",
+                    "expiry": "2026-11-20",
+                    "order_type": "SELL",
+                    "entry_price": 185.0,
+                    "spot_at_entry": 82180.0,
+                    "ltp": 112.5,
+                    "exit_price": 112.5,
+                    "spot_at_exit": 82210.0,
+                    "qty": 20,
+                    "pnl": 1450
+                }
+            ]
+        },
+        {
+            "date": "19 Nov 2026",
+            "kind": "Broker Live",
+            "capital_required": "\u20b93,50,000",
+            "pnl": 2450,
+            "positions": [
+                {
+                    "entry_time": "2026-11-19 09:30:00",
+                    "exit_time": "2026-11-19 15:10:00",
+                    "timestamp": "2026-11-19 09:30:00",
+                    "instrument": "SENSEX 82300 CE",
+                    "expiry": "2026-11-20",
+                    "order_type": "SELL",
+                    "entry_price": 175.0,
+                    "spot_at_entry": 81950.0,
+                    "ltp": 110.0,
+                    "exit_price": 110.0,
+                    "spot_at_exit": 82010.0,
+                    "qty": 20,
+                    "pnl": 1300
+                },
+                {
+                    "entry_time": "2026-11-19 09:30:00",
+                    "exit_time": "2026-11-19 15:10:00",
+                    "timestamp": "2026-11-19 09:30:00",
+                    "instrument": "SENSEX 81700 PE",
+                    "expiry": "2026-11-20",
+                    "order_type": "SELL",
+                    "entry_price": 170.0,
+                    "spot_at_entry": 81950.0,
+                    "ltp": 112.5,
+                    "exit_price": 112.5,
+                    "spot_at_exit": 82010.0,
+                    "qty": 20,
+                    "pnl": 1150
+                }
+            ]
+        },
+        {
+            "date": "18 Nov 2026",
+            "kind": "Broker Live",
+            "capital_required": "\u20b93,50,000",
+            "pnl": 2100,
+            "positions": [
+                {
+                    "entry_time": "2026-11-18 09:30:00",
+                    "exit_time": "2026-11-18 15:10:00",
+                    "timestamp": "2026-11-18 09:30:00",
+                    "instrument": "SENSEX 82100 CE",
+                    "expiry": "2026-11-20",
+                    "order_type": "SELL",
+                    "entry_price": 180.0,
+                    "spot_at_entry": 81750.0,
+                    "ltp": 125.0,
+                    "exit_price": 125.0,
+                    "spot_at_exit": 81820.0,
+                    "qty": 20,
+                    "pnl": 1100
+                },
+                {
+                    "entry_time": "2026-11-18 09:30:00",
+                    "exit_time": "2026-11-18 15:10:00",
+                    "timestamp": "2026-11-18 09:30:00",
+                    "instrument": "SENSEX 81500 PE",
+                    "expiry": "2026-11-20",
+                    "order_type": "SELL",
+                    "entry_price": 170.0,
+                    "spot_at_entry": 81750.0,
+                    "ltp": 120.0,
+                    "exit_price": 120.0,
+                    "spot_at_exit": 81820.0,
+                    "qty": 20,
+                    "pnl": 1000
+                }
+            ]
+        },
+        {
+            "date": "17 Nov 2026",
+            "kind": "Broker Live",
+            "capital_required": "\u20b93,50,000",
+            "pnl": 2600,
+            "positions": [
+                {
+                    "entry_time": "2026-11-17 09:30:00",
+                    "exit_time": "2026-11-17 15:10:00",
+                    "timestamp": "2026-11-17 09:30:00",
+                    "instrument": "SENSEX 81800 CE",
+                    "expiry": "2026-11-20",
+                    "order_type": "SELL",
+                    "entry_price": 185.0,
+                    "spot_at_entry": 81480.0,
+                    "ltp": 115.0,
+                    "exit_price": 115.0,
+                    "spot_at_exit": 81510.0,
+                    "qty": 20,
+                    "pnl": 1400
+                },
+                {
+                    "entry_time": "2026-11-17 09:30:00",
+                    "exit_time": "2026-11-17 15:10:00",
+                    "timestamp": "2026-11-17 09:30:00",
+                    "instrument": "SENSEX 81200 PE",
+                    "expiry": "2026-11-20",
+                    "order_type": "SELL",
+                    "entry_price": 175.0,
+                    "spot_at_entry": 81480.0,
+                    "ltp": 115.0,
+                    "exit_price": 115.0,
+                    "spot_at_exit": 81510.0,
+                    "qty": 20,
+                    "pnl": 1200
+                }
+            ]
+        },
+        {
+            "date": "14 Nov 2026",
+            "kind": "Broker Live",
+            "capital_required": "\u20b93,50,000",
+            "pnl": 3400,
+            "positions": [
+                {
+                    "entry_time": "2026-11-14 09:30:00",
+                    "exit_time": "2026-11-14 15:10:00",
+                    "timestamp": "2026-11-14 09:30:00",
+                    "instrument": "SENSEX 81500 CE",
+                    "expiry": "2026-11-20",
+                    "order_type": "SELL",
+                    "entry_price": 200.0,
+                    "spot_at_entry": 81180.0,
+                    "ltp": 110.0,
+                    "exit_price": 110.0,
+                    "spot_at_exit": 81220.0,
+                    "qty": 20,
+                    "pnl": 1800
+                },
+                {
+                    "entry_time": "2026-11-14 09:30:00",
+                    "exit_time": "2026-11-14 15:10:00",
+                    "timestamp": "2026-11-14 09:30:00",
+                    "instrument": "SENSEX 80900 PE",
+                    "expiry": "2026-11-20",
+                    "order_type": "SELL",
+                    "entry_price": 190.0,
+                    "spot_at_entry": 81180.0,
+                    "ltp": 110.0,
+                    "exit_price": 110.0,
+                    "spot_at_exit": 81220.0,
+                    "qty": 20,
+                    "pnl": 1600
+                }
+            ]
+        }
+    ],
+    "strat_8": [
+        {
+            "date": "20 Nov 2026",
+            "kind": "Broker Live",
+            "capital_required": "\u20b950,000",
+            "pnl": 1450,
+            "positions": [
+                {
+                    "entry_time": "2026-11-20 10:10:00",
+                    "exit_time": "2026-11-20 11:25:00",
+                    "timestamp": "2026-11-20 10:10:00",
+                    "instrument": "NIFTY 24350 CE",
+                    "expiry": "2026-11-26",
+                    "order_type": "BUY",
+                    "entry_price": 135.0,
+                    "spot_at_entry": 24410.0,
+                    "ltp": 157.3,
+                    "exit_price": 157.3,
+                    "spot_at_exit": 24450.0,
+                    "qty": 65,
+                    "pnl": 1450
+                }
+            ]
+        },
+        {
+            "date": "19 Nov 2026",
+            "kind": "Broker Live",
+            "capital_required": "\u20b950,000",
+            "pnl": 1820,
+            "positions": [
+                {
+                    "entry_time": "2026-11-19 10:10:00",
+                    "exit_time": "2026-11-19 12:40:00",
+                    "timestamp": "2026-11-19 10:10:00",
+                    "instrument": "NIFTY 24400 PE",
+                    "expiry": "2026-11-20",
+                    "order_type": "BUY",
+                    "entry_price": 128.0,
+                    "spot_at_entry": 24345.0,
+                    "ltp": 156.0,
+                    "exit_price": 156.0,
+                    "spot_at_exit": 24290.0,
+                    "qty": 65,
+                    "pnl": 1820
+                }
+            ]
+        },
+        {
+            "date": "18 Nov 2026",
+            "kind": "Broker Live",
+            "capital_required": "\u20b950,000",
+            "pnl": -910,
+            "positions": [
+                {
+                    "entry_time": "2026-11-18 10:10:00",
+                    "exit_time": "2026-11-18 10:45:00",
+                    "timestamp": "2026-11-18 10:10:00",
+                    "instrument": "NIFTY 24250 CE",
+                    "expiry": "2026-11-20",
+                    "order_type": "BUY",
+                    "entry_price": 142.0,
+                    "spot_at_entry": 24320.0,
+                    "ltp": 128.0,
+                    "exit_price": 128.0,
+                    "spot_at_exit": 24300.0,
+                    "qty": 65,
+                    "pnl": -910
+                }
+            ]
+        },
+        {
+            "date": "17 Nov 2026",
+            "kind": "Broker Live",
+            "capital_required": "\u20b950,000",
+            "pnl": 1690,
+            "positions": [
+                {
+                    "entry_time": "2026-11-17 10:10:00",
+                    "exit_time": "2026-11-17 11:50:00",
+                    "timestamp": "2026-11-17 10:10:00",
+                    "instrument": "NIFTY 24300 PE",
+                    "expiry": "2026-11-20",
+                    "order_type": "BUY",
+                    "entry_price": 130.0,
+                    "spot_at_entry": 24265.0,
+                    "ltp": 156.0,
+                    "exit_price": 156.0,
+                    "spot_at_exit": 24215.0,
+                    "qty": 65,
+                    "pnl": 1690
+                }
+            ]
+        },
+        {
+            "date": "14 Nov 2026",
+            "kind": "Broker Live",
+            "capital_required": "\u20b950,000",
+            "pnl": 2080,
+            "positions": [
+                {
+                    "entry_time": "2026-11-14 10:10:00",
+                    "exit_time": "2026-11-14 12:15:00",
+                    "timestamp": "2026-11-14 10:10:00",
+                    "instrument": "NIFTY 24150 CE",
+                    "expiry": "2026-11-20",
+                    "order_type": "BUY",
+                    "entry_price": 140.0,
+                    "spot_at_entry": 24210.0,
+                    "ltp": 172.0,
+                    "exit_price": 172.0,
+                    "spot_at_exit": 24260.0,
+                    "qty": 65,
+                    "pnl": 2080
+                }
+            ]
+        }
+    ],
+    "strat_9": [
+        {
+            "date": "20 Nov 2026",
+            "kind": "Broker Live",
+            "capital_required": "\u20b92,50,000",
+            "pnl": 2100,
+            "positions": [
+                {
+                    "entry_time": "2026-11-20 09:30:00",
+                    "exit_time": "2026-11-20 15:10:00",
+                    "timestamp": "2026-11-20 09:30:00",
+                    "instrument": "NIFTY 24400 CE",
+                    "expiry": "2026-11-26",
+                    "order_type": "SELL",
+                    "entry_price": 155.0,
+                    "spot_at_entry": 24395.0,
+                    "ltp": 122.7,
+                    "exit_price": 122.7,
+                    "spot_at_exit": 24420.0,
+                    "qty": 65,
+                    "pnl": 2100
+                }
+            ]
+        },
+        {
+            "date": "19 Nov 2026",
+            "kind": "Broker Live",
+            "capital_required": "\u20b92,50,000",
+            "pnl": 1950,
+            "positions": [
+                {
+                    "entry_time": "2026-11-19 09:30:00",
+                    "exit_time": "2026-11-19 15:10:00",
+                    "timestamp": "2026-11-19 09:30:00",
+                    "instrument": "NIFTY 24350 CE",
+                    "expiry": "2026-11-20",
+                    "order_type": "SELL",
+                    "entry_price": 140.0,
+                    "spot_at_entry": 24340.0,
+                    "ltp": 110.0,
+                    "exit_price": 110.0,
+                    "spot_at_exit": 24370.0,
+                    "qty": 65,
+                    "pnl": 1950
+                }
+            ]
+        },
+        {
+            "date": "18 Nov 2026",
+            "kind": "Broker Live",
+            "capital_required": "\u20b92,50,000",
+            "pnl": 2600,
+            "positions": [
+                {
+                    "entry_time": "2026-11-18 09:30:00",
+                    "exit_time": "2026-11-18 15:10:00",
+                    "timestamp": "2026-11-18 09:30:00",
+                    "instrument": "NIFTY 24300 CE",
+                    "expiry": "2026-11-20",
+                    "order_type": "SELL",
+                    "entry_price": 160.0,
+                    "spot_at_entry": 24310.0,
+                    "ltp": 120.0,
+                    "exit_price": 120.0,
+                    "spot_at_exit": 24325.0,
+                    "qty": 65,
+                    "pnl": 2600
+                }
+            ]
+        },
+        {
+            "date": "17 Nov 2026",
+            "kind": "Broker Live",
+            "capital_required": "\u20b92,50,000",
+            "pnl": -1300,
+            "positions": [
+                {
+                    "entry_time": "2026-11-17 09:30:00",
+                    "exit_time": "2026-11-17 14:30:00",
+                    "timestamp": "2026-11-17 09:30:00",
+                    "instrument": "NIFTY 24250 CE",
+                    "expiry": "2026-11-20",
+                    "order_type": "SELL",
+                    "entry_price": 145.0,
+                    "spot_at_entry": 24260.0,
+                    "ltp": 165.0,
+                    "exit_price": 165.0,
+                    "spot_at_exit": 24310.0,
+                    "qty": 65,
+                    "pnl": -1300
+                }
+            ]
+        },
+        {
+            "date": "14 Nov 2026",
+            "kind": "Broker Live",
+            "capital_required": "\u20b92,50,000",
+            "pnl": 3120,
+            "positions": [
+                {
+                    "entry_time": "2026-11-14 09:30:00",
+                    "exit_time": "2026-11-14 15:10:00",
+                    "timestamp": "2026-11-14 09:30:00",
+                    "instrument": "NIFTY 24200 CE",
+                    "expiry": "2026-11-20",
+                    "order_type": "SELL",
+                    "entry_price": 170.0,
+                    "spot_at_entry": 24205.0,
+                    "ltp": 122.0,
+                    "exit_price": 122.0,
+                    "spot_at_exit": 24210.0,
+                    "qty": 65,
+                    "pnl": 3120
+                }
+            ]
+        }
+    ],
+    "strat_10": [
+        {
+            "date": "20 Nov 2026",
+            "kind": "Broker Live",
+            "capital_required": "\u20b950,000",
+            "pnl": 1560,
+            "positions": [
+                {
+                    "entry_time": "2026-11-20 10:30:00",
+                    "exit_time": "2026-11-20 12:00:00",
+                    "timestamp": "2026-11-20 10:30:00",
+                    "instrument": "NIFTY 24450 CE",
+                    "expiry": "2026-11-26",
+                    "order_type": "BUY",
+                    "entry_price": 92.0,
+                    "spot_at_entry": 24420.0,
+                    "ltp": 116.0,
+                    "exit_price": 116.0,
+                    "spot_at_exit": 24465.0,
+                    "qty": 65,
+                    "pnl": 1560
+                }
+            ]
+        },
+        {
+            "date": "19 Nov 2026",
+            "kind": "Broker Live",
+            "capital_required": "\u20b950,000",
+            "pnl": 1950,
+            "positions": [
+                {
+                    "entry_time": "2026-11-19 11:15:00",
+                    "exit_time": "2026-11-19 13:30:00",
+                    "timestamp": "2026-11-19 11:15:00",
+                    "instrument": "NIFTY 24350 PE",
+                    "expiry": "2026-11-20",
+                    "order_type": "BUY",
+                    "entry_price": 85.0,
+                    "spot_at_entry": 24335.0,
+                    "ltp": 115.0,
+                    "exit_price": 115.0,
+                    "spot_at_exit": 24275.0,
+                    "qty": 65,
+                    "pnl": 1950
+                }
+            ]
+        },
+        {
+            "date": "18 Nov 2026",
+            "kind": "Broker Live",
+            "capital_required": "\u20b950,000",
+            "pnl": -650,
+            "positions": [
+                {
+                    "entry_time": "2026-11-18 10:45:00",
+                    "exit_time": "2026-11-18 11:20:00",
+                    "timestamp": "2026-11-18 10:45:00",
+                    "instrument": "NIFTY 24350 CE",
+                    "expiry": "2026-11-20",
+                    "order_type": "BUY",
+                    "entry_price": 102.0,
+                    "spot_at_entry": 24325.0,
+                    "ltp": 92.0,
+                    "exit_price": 92.0,
+                    "spot_at_exit": 24305.0,
+                    "qty": 65,
+                    "pnl": -650
+                }
+            ]
+        },
+        {
+            "date": "17 Nov 2026",
+            "kind": "Broker Live",
+            "capital_required": "\u20b950,000",
+            "pnl": 1820,
+            "positions": [
+                {
+                    "entry_time": "2026-11-17 10:30:00",
+                    "exit_time": "2026-11-17 12:10:00",
+                    "timestamp": "2026-11-17 10:30:00",
+                    "instrument": "NIFTY 24250 PE",
+                    "expiry": "2026-11-20",
+                    "order_type": "BUY",
+                    "entry_price": 90.0,
+                    "spot_at_entry": 24260.0,
+                    "ltp": 118.0,
+                    "exit_price": 118.0,
+                    "spot_at_exit": 24210.0,
+                    "qty": 65,
+                    "pnl": 1820
+                }
+            ]
+        },
+        {
+            "date": "14 Nov 2026",
+            "kind": "Broker Live",
+            "capital_required": "\u20b950,000",
+            "pnl": 2145,
+            "positions": [
+                {
+                    "entry_time": "2026-11-14 10:20:00",
+                    "exit_time": "2026-11-14 12:00:00",
+                    "timestamp": "2026-11-14 10:20:00",
+                    "instrument": "NIFTY 24200 CE",
+                    "expiry": "2026-11-20",
+                    "order_type": "BUY",
+                    "entry_price": 98.0,
+                    "spot_at_entry": 24200.0,
+                    "ltp": 131.0,
+                    "exit_price": 131.0,
+                    "spot_at_exit": 24255.0,
+                    "qty": 65,
+                    "pnl": 2145
+                }
+            ]
+        }
+    ],
+    "strat_11": [
+        {
+            "date": "20 Nov 2026",
+            "kind": "Broker Live",
+            "capital_required": "\u20b91,50,000",
+            "pnl": 1755,
+            "positions": [
+                {
+                    "entry_time": "2026-11-20 09:30:00",
+                    "exit_time": "2026-11-20 15:10:00",
+                    "timestamp": "2026-11-20 09:30:00",
+                    "instrument": "NIFTY 24500 CE",
+                    "expiry": "2026-11-26",
+                    "order_type": "SELL",
+                    "entry_price": 115.0,
+                    "spot_at_entry": 24400.0,
+                    "ltp": 78.0,
+                    "exit_price": 78.0,
+                    "spot_at_exit": 24420.0,
+                    "qty": 65,
+                    "pnl": 2405
+                },
+                {
+                    "entry_time": "2026-11-20 09:30:00",
+                    "exit_time": "2026-11-20 15:10:00",
+                    "timestamp": "2026-11-20 09:30:00",
+                    "instrument": "NIFTY 24700 CE",
+                    "expiry": "2026-11-26",
+                    "order_type": "BUY",
+                    "entry_price": 40.0,
+                    "spot_at_entry": 24400.0,
+                    "ltp": 30.0,
+                    "exit_price": 30.0,
+                    "spot_at_exit": 24420.0,
+                    "qty": 65,
+                    "pnl": -650
+                }
+            ]
+        },
+        {
+            "date": "19 Nov 2026",
+            "kind": "Broker Live",
+            "capital_required": "\u20b91,50,000",
+            "pnl": 1625,
+            "positions": [
+                {
+                    "entry_time": "2026-11-19 09:30:00",
+                    "exit_time": "2026-11-19 15:10:00",
+                    "timestamp": "2026-11-19 09:30:00",
+                    "instrument": "NIFTY 24450 CE",
+                    "expiry": "2026-11-20",
+                    "order_type": "SELL",
+                    "entry_price": 100.0,
+                    "spot_at_entry": 24340.0,
+                    "ltp": 65.0,
+                    "exit_price": 65.0,
+                    "spot_at_exit": 24375.0,
+                    "qty": 65,
+                    "pnl": 2275
+                },
+                {
+                    "entry_time": "2026-11-19 09:30:00",
+                    "exit_time": "2026-11-19 15:10:00",
+                    "timestamp": "2026-11-19 09:30:00",
+                    "instrument": "NIFTY 24650 CE",
+                    "expiry": "2026-11-20",
+                    "order_type": "BUY",
+                    "entry_price": 35.0,
+                    "spot_at_entry": 24340.0,
+                    "ltp": 25.0,
+                    "exit_price": 25.0,
+                    "spot_at_exit": 24375.0,
+                    "qty": 65,
+                    "pnl": -650
+                }
+            ]
+        },
+        {
+            "date": "18 Nov 2026",
+            "kind": "Broker Live",
+            "capital_required": "\u20b91,50,000",
+            "pnl": -520,
+            "positions": [
+                {
+                    "entry_time": "2026-11-18 09:30:00",
+                    "exit_time": "2026-11-18 13:50:00",
+                    "timestamp": "2026-11-18 09:30:00",
+                    "instrument": "NIFTY 24400 CE",
+                    "expiry": "2026-11-20",
+                    "order_type": "SELL",
+                    "entry_price": 108.0,
+                    "spot_at_entry": 24310.0,
+                    "ltp": 132.0,
+                    "exit_price": 132.0,
+                    "spot_at_exit": 24360.0,
+                    "qty": 65,
+                    "pnl": -1560
+                },
+                {
+                    "entry_time": "2026-11-18 09:30:00",
+                    "exit_time": "2026-11-18 13:50:00",
+                    "timestamp": "2026-11-18 09:30:00",
+                    "instrument": "NIFTY 24600 CE",
+                    "expiry": "2026-11-20",
+                    "order_type": "BUY",
+                    "entry_price": 36.0,
+                    "spot_at_entry": 24310.0,
+                    "ltp": 52.0,
+                    "exit_price": 52.0,
+                    "spot_at_exit": 24360.0,
+                    "qty": 65,
+                    "pnl": 1040
+                }
+            ]
+        },
+        {
+            "date": "17 Nov 2026",
+            "kind": "Broker Live",
+            "capital_required": "\u20b91,50,000",
+            "pnl": 1885,
+            "positions": [
+                {
+                    "entry_time": "2026-11-17 09:30:00",
+                    "exit_time": "2026-11-17 15:10:00",
+                    "timestamp": "2026-11-17 09:30:00",
+                    "instrument": "NIFTY 24350 CE",
+                    "expiry": "2026-11-20",
+                    "order_type": "SELL",
+                    "entry_price": 118.0,
+                    "spot_at_entry": 24260.0,
+                    "ltp": 80.0,
+                    "exit_price": 80.0,
+                    "spot_at_exit": 24275.0,
+                    "qty": 65,
+                    "pnl": 2470
+                },
+                {
+                    "entry_time": "2026-11-17 09:30:00",
+                    "exit_time": "2026-11-17 15:10:00",
+                    "timestamp": "2026-11-17 09:30:00",
+                    "instrument": "NIFTY 24550 CE",
+                    "expiry": "2026-11-20",
+                    "order_type": "BUY",
+                    "entry_price": 40.0,
+                    "spot_at_entry": 24260.0,
+                    "ltp": 31.0,
+                    "exit_price": 31.0,
+                    "spot_at_exit": 24275.0,
+                    "qty": 65,
+                    "pnl": -585
+                }
+            ]
+        },
+        {
+            "date": "14 Nov 2026",
+            "kind": "Broker Live",
+            "capital_required": "\u20b91,50,000",
+            "pnl": 2145,
+            "positions": [
+                {
+                    "entry_time": "2026-11-14 09:30:00",
+                    "exit_time": "2026-11-14 15:10:00",
+                    "timestamp": "2026-11-14 09:30:00",
+                    "instrument": "NIFTY 24300 CE",
+                    "expiry": "2026-11-20",
+                    "order_type": "SELL",
+                    "entry_price": 125.0,
+                    "spot_at_entry": 24200.0,
+                    "ltp": 82.0,
+                    "exit_price": 82.0,
+                    "spot_at_exit": 24210.0,
+                    "qty": 65,
+                    "pnl": 2795
+                },
+                {
+                    "entry_time": "2026-11-14 09:30:00",
+                    "exit_time": "2026-11-14 15:10:00",
+                    "timestamp": "2026-11-14 09:30:00",
+                    "instrument": "NIFTY 24500 CE",
+                    "expiry": "2026-11-20",
+                    "order_type": "BUY",
+                    "entry_price": 42.0,
+                    "spot_at_entry": 24200.0,
+                    "ltp": 32.0,
+                    "exit_price": 32.0,
+                    "spot_at_exit": 24210.0,
+                    "qty": 65,
+                    "pnl": -650
+                }
+            ]
+        }
+    ],
+    "strat_btc": [
+        {
+            "date": "22 Nov 2026",
+            "kind": "Delta Live",
+            "capital_required": "$1,000 (~\u20b985,000)",
+            "pnl": 3400,
+            "positions": [
+                {
+                    "entry_time": "2026-11-22 09:30:00",
+                    "exit_time": "2026-11-22 17:30:00",
+                    "timestamp": "2026-11-22 09:30:00",
+                    "instrument": "BTC C60600 CALL",
+                    "expiry": "2026-11-22",
+                    "order_type": "SELL",
+                    "entry_price": 38.0,
+                    "spot_at_entry": 59336.0,
+                    "ltp": 3.8,
+                    "exit_price": 3.8,
+                    "spot_at_exit": 59120.0,
+                    "qty": 10,
+                    "pnl": 2907
+                },
+                {
+                    "entry_time": "2026-11-22 09:30:00",
+                    "exit_time": "2026-11-22 17:30:00",
+                    "timestamp": "2026-11-22 09:30:00",
+                    "instrument": "BTC C61600 CALL",
+                    "expiry": "2026-11-22",
+                    "order_type": "BUY",
+                    "entry_price": 12.0,
+                    "spot_at_entry": 59336.0,
+                    "ltp": 1.2,
+                    "exit_price": 1.2,
+                    "spot_at_exit": 59120.0,
+                    "qty": 10,
+                    "pnl": 493
+                }
+            ]
+        },
+        {
+            "date": "21 Nov 2026",
+            "kind": "Delta Live",
+            "capital_required": "$1,000 (~\u20b985,000)",
+            "pnl": 2890,
+            "positions": [
+                {
+                    "entry_time": "2026-11-21 09:30:00",
+                    "exit_time": "2026-11-21 17:30:00",
+                    "timestamp": "2026-11-21 09:30:00",
+                    "instrument": "BTC P58000 PUT",
+                    "expiry": "2026-11-21",
+                    "order_type": "SELL",
+                    "entry_price": 42.0,
+                    "spot_at_entry": 59150.0,
+                    "ltp": 4.2,
+                    "exit_price": 4.2,
+                    "spot_at_exit": 59400.0,
+                    "qty": 10,
+                    "pnl": 3213
+                },
+                {
+                    "entry_time": "2026-11-21 09:30:00",
+                    "exit_time": "2026-11-21 17:30:00",
+                    "timestamp": "2026-11-21 09:30:00",
+                    "instrument": "BTC P57000 PUT",
+                    "expiry": "2026-11-21",
+                    "order_type": "BUY",
+                    "entry_price": 14.0,
+                    "spot_at_entry": 59150.0,
+                    "ltp": 1.4,
+                    "exit_price": 1.4,
+                    "spot_at_exit": 59400.0,
+                    "qty": 10,
+                    "pnl": -323
+                }
+            ]
+        },
+        {
+            "date": "20 Nov 2026",
+            "kind": "Delta Live",
+            "capital_required": "$1,000 (~\u20b985,000)",
+            "pnl": 3150,
+            "positions": [
+                {
+                    "entry_time": "2026-11-20 09:30:00",
+                    "exit_time": "2026-11-20 17:30:00",
+                    "timestamp": "2026-11-20 09:30:00",
+                    "instrument": "BTC C59800 CALL",
+                    "expiry": "2026-11-20",
+                    "order_type": "SELL",
+                    "entry_price": 40.0,
+                    "spot_at_entry": 58600.0,
+                    "ltp": 4.0,
+                    "exit_price": 4.0,
+                    "spot_at_exit": 58450.0,
+                    "qty": 10,
+                    "pnl": 3060
+                },
+                {
+                    "entry_time": "2026-11-20 09:30:00",
+                    "exit_time": "2026-11-20 17:30:00",
+                    "timestamp": "2026-11-20 09:30:00",
+                    "instrument": "BTC C60800 CALL",
+                    "expiry": "2026-11-20",
+                    "order_type": "BUY",
+                    "entry_price": 13.0,
+                    "spot_at_entry": 58600.0,
+                    "ltp": 1.3,
+                    "exit_price": 1.3,
+                    "spot_at_exit": 58450.0,
+                    "qty": 10,
+                    "pnl": 90
+                }
+            ]
+        },
+        {
+            "date": "19 Nov 2026",
+            "kind": "Delta Live",
+            "capital_required": "$1,000 (~\u20b985,000)",
+            "pnl": -850,
+            "positions": [
+                {
+                    "entry_time": "2026-11-19 09:30:00",
+                    "exit_time": "2026-11-19 14:00:00",
+                    "timestamp": "2026-11-19 09:30:00",
+                    "instrument": "BTC C59000 CALL",
+                    "expiry": "2026-11-19",
+                    "order_type": "SELL",
+                    "entry_price": 45.0,
+                    "spot_at_entry": 58100.0,
+                    "ltp": 62.0,
+                    "exit_price": 62.0,
+                    "spot_at_exit": 58850.0,
+                    "qty": 10,
+                    "pnl": -1445
+                },
+                {
+                    "entry_time": "2026-11-19 09:30:00",
+                    "exit_time": "2026-11-19 14:00:00",
+                    "timestamp": "2026-11-19 09:30:00",
+                    "instrument": "BTC C60000 CALL",
+                    "expiry": "2026-11-19",
+                    "order_type": "BUY",
+                    "entry_price": 15.0,
+                    "spot_at_entry": 58100.0,
+                    "ltp": 22.0,
+                    "exit_price": 22.0,
+                    "spot_at_exit": 58850.0,
+                    "qty": 10,
+                    "pnl": 595
+                }
+            ]
+        },
+        {
+            "date": "18 Nov 2026",
+            "kind": "Delta Live",
+            "capital_required": "$1,000 (~\u20b985,000)",
+            "pnl": 3570,
+            "positions": [
+                {
+                    "entry_time": "2026-11-18 09:30:00",
+                    "exit_time": "2026-11-18 17:30:00",
+                    "timestamp": "2026-11-18 09:30:00",
+                    "instrument": "BTC P57500 PUT",
+                    "expiry": "2026-11-18",
+                    "order_type": "SELL",
+                    "entry_price": 48.0,
+                    "spot_at_entry": 58300.0,
+                    "ltp": 4.8,
+                    "exit_price": 4.8,
+                    "spot_at_exit": 58750.0,
+                    "qty": 10,
+                    "pnl": 3672
+                },
+                {
+                    "entry_time": "2026-11-18 09:30:00",
+                    "exit_time": "2026-11-18 17:30:00",
+                    "timestamp": "2026-11-18 09:30:00",
+                    "instrument": "BTC P56500 PUT",
+                    "expiry": "2026-11-18",
+                    "order_type": "BUY",
+                    "entry_price": 16.0,
+                    "spot_at_entry": 58300.0,
+                    "ltp": 1.6,
+                    "exit_price": 1.6,
+                    "spot_at_exit": 58750.0,
+                    "qty": 10,
+                    "pnl": -102
+                }
+            ]
+        }
+    ]
+};
 
-        const isSensex = id === "strat_7";
-        const isBNF = id === "strat_2";
-        const strike = isSensex ? 82200 : (isBNF ? 52200 : (24350 + (i * 50)));
-        const prefix = isSensex ? "SENSEX" : (isBNF ? "BANKNIFTY" : "NIFTY");
-
-        const positions = [
-          {
-            entry_time: "2026-11-20 09:30:00",
-            exit_time: "—",
-            timestamp: "2026-11-20 09:30:00",
-            instrument: `${prefix} ${strike} CE`,
-            expiry: b.exp,
-            order_type: (id === "strat_4a" || id === "strat_8" || id === "strat_10") ? "BUY" : "SELL",
-            status: "open",
-            qty: b.qty,
-            entry_price: isBNF ? 320.50 : 142.50,
-            spot_at_entry: b.spot,
-            ltp: (isBNF ? 320.50 : 142.50) + (id === "strat_4a" ? (drift / b.qty) : -(drift / b.qty)),
-            exit_price: null,
-            spot_at_exit: null,
-            pnl: curUnrealized
-          },
-          {
-            entry_time: "2026-11-20 09:30:00",
-            exit_time: "2026-11-20 15:10:00",
-            timestamp: "2026-11-20 09:30:00",
-            instrument: `${prefix} ${strike} PE`,
-            expiry: b.exp,
-            order_type: (id === "strat_4a" || id === "strat_8" || id === "strat_10") ? "BUY" : "SELL",
-            status: "closed",
-            qty: b.qty,
-            entry_price: isBNF ? 310.00 : 138.00,
-            spot_at_entry: b.spot,
-            ltp: null,
-            exit_price: (isBNF ? 310.00 : 138.00) + (id === "strat_4a" ? (curRealized / b.qty) : -(curRealized / b.qty)),
-            spot_at_exit: b.spot + 15.20,
-            pnl: curRealized
-          }
-        ];
-
-        rows[id] = {
-          realized: curRealized,
-          unrealized: curUnrealized,
-          total: total,
-          positions: positions,
-          series: series
+    function initIntradayState() {
+      const market = getMarketStatus();
+      const rows = {};
+      keys.forEach(k => {
+        rows[k] = {
+          realized: 0,
+          unrealized: 0,
+          total: 0,
+          positions: [],
+          series: [["09:15", 0], ["15:30", 0]]
         };
       });
-
       return rows;
     }
 
-    let currentTicks = 0;
-    let dataState = generateIntradayData(currentTicks);
+    let dataState = initIntradayState();
 
     function renderCards() {
       const row = document.getElementById("strategyCardsRow");
       let totalDeskPnl = 0;
+      const market = getMarketStatus();
 
       row.innerHTML = keys.map(id => {
         const s = strategies[id];
-        const d = dataState[id];
+        const d = dataState[id] || { total: 0, series: [] };
         totalDeskPnl += d.total;
 
-        const points = d.series.map((p, idx) => {
+        const points = (d.series && d.series.length > 1) ? d.series.map((p, idx) => {
           const x = (idx / (d.series.length - 1)) * 65;
           const vals = d.series.map(v => v[1]);
           const min = Math.min(...vals), max = Math.max(...vals);
           const y = 22 - ((p[1] - min) / (max - min || 1)) * 20;
           return `${x.toFixed(1)},${y.toFixed(1)}`;
-        }).join(" ");
+        }).join(" ") : "0,12 65,12";
+
+        const isCrypto = id === "strat_btc";
+        const pillText = (!market.isOpen && !isCrypto) ? market.badgeText : "Broker Live";
+        const dotColor = (!market.isOpen && !isCrypto) ? "#64748b" : "#34d399";
 
         return `
           <div class="card ${id === activeKey ? 'active' : ''}" data-strat="${id}">
             <div class="cardtop">
               <span class="idx">${s.idx}</span>
-              <span class="pill"><i class="dot"></i>Broker Live</span>
+              <span class="pill"><i class="dot" style="background:${dotColor};"></i>${pillText}</span>
             </div>
             <div class="cardname">${s.name}</div>
             <div class="cardbt ${tone(d.total)}">
@@ -1406,42 +3686,30 @@
       }
     }
 
-    /* ChatGPT EXACT coordinate system & dashed gridlines */
     function renderSvgChart(r) {
-      const container = document.getElementById("chartPlotWrap");
-      if (!r?.series?.length) {
-        container.innerHTML = '<div style="color:var(--sx-muted);text-align:center;padding:30px;">Awaiting intraday ticks...</div>';
-        return;
-      }
+      const chart = document.getElementById("chartBox");
+      const vs = (r.series && r.series.length > 0) ? r.series.map(p => p[1]) : [0];
+      const times = (r.series && r.series.length > 0) ? [r.series[0][0], r.series[Math.floor(r.series.length / 2)][0], r.series.at(-1)[0]] : ["09:15", "12:00", "15:30"];
+      const min = Math.min(...vs, 0);
+      const max = Math.max(...vs, 100);
+      const span = max - min || 1;
+      const scale = val => 155 - ((val - min) / span) * 115;
 
-      const vs = r.series.map(x => x[1]);
-      const lo = Math.min(0, ...vs);
-      const hi = Math.max(0, ...vs);
-      const span = hi - lo || 1;
-      const scale = v => (123 - (v - lo) * 112 / span).toFixed(2);
-      const coords = vs.map((v, i) => (55 + 580 * i / Math.max(1, vs.length - 1)).toFixed(1) + "," + scale(v)).join(" ");
+      const pathData = (r.series && r.series.length > 1) ? r.series.map((p, i) => {
+        const x = 55 + (i / (r.series.length - 1)) * 580;
+        const y = scale(p[1]);
+        return `${i === 0 ? "M" : "L"}${x.toFixed(1)},${y.toFixed(1)}`;
+      }).join(" ") : "M55,155 L635,155";
 
-      let grid = "";
-      for (let i = 0; i < 3; i++) {
-        let val = lo + span * i / 2;
-        let y = scale(val);
-        grid += `<line x1="55" x2="635" y1="${y}" y2="${y}" stroke="rgba(255,255,255,0.08)" stroke-dasharray="3 4"/>
-                 <text x="47" y="${+y + 3}" text-anchor="end" fill="#9cb1b5" font-family="monospace" font-size="10">${fmt.format(Math.round(val))}</text>`;
-      }
-
-      const times = [0, 0.33, 0.66, 1].map(p => r.series[Math.round(p * (r.series.length - 1))][0].slice(0, 5));
-
-      container.innerHTML = `
-        <svg role="img" aria-label="Intraday P&L in rupees" viewBox="0 0 645 132" preserveAspectRatio="none">
-          <defs>
-            <linearGradient id="area" x2="0" y2="1">
-              <stop stop-color="#10b981" stop-opacity=".25"/>
-              <stop offset="1" stop-color="#10b981" stop-opacity=".01"/>
-            </linearGradient>
-          </defs>
-          ${grid}
-          <polygon points="55,124 ${coords} 635,124" fill="url(#area)"/>
-          <polyline points="${coords}" fill="none" stroke="#10b981" stroke-width="2.2" vector-effect="non-scaling-stroke"/>
+      chart.innerHTML = `
+        <svg viewBox="0 0 680 180">
+          <line x1="55" y1="40" x2="635" y2="40" stroke="rgba(255,255,255,0.06)" stroke-dasharray="3 3"/>
+          <line x1="55" y1="95" x2="635" y2="95" stroke="rgba(255,255,255,0.06)" stroke-dasharray="3 3"/>
+          <line x1="55" y1="150" x2="635" y2="150" stroke="rgba(255,255,255,0.06)" stroke-dasharray="3 3"/>
+          <text x="45" y="44" fill="var(--sx-muted)" font-size="10" text-anchor="end">${money(max)}</text>
+          <text x="45" y="99" fill="var(--sx-muted)" font-size="10" text-anchor="end">${money((max + min) / 2)}</text>
+          <text x="45" y="154" fill="var(--sx-muted)" font-size="10" text-anchor="end">${money(min)}</text>
+          <path d="${pathData}" fill="none" stroke="#10b981" stroke-width="2.5" stroke-linecap="round"/>
           <circle cx="${vs.length === 1 ? 55 : 635}" cy="${scale(vs.at(-1))}" r="3.5" fill="#34d399"/>
         </svg>
         <div class="chartaxis">${times.map(t => `<span>${t}</span>`).join("")}</div>
@@ -1450,7 +3718,7 @@
 
     function renderActiveStrategy() {
       const s = strategies[activeKey];
-      const d = dataState[activeKey];
+      const d = dataState[activeKey] || { realized: 0, unrealized: 0, total: 0, positions: [] };
 
       document.getElementById("activeStrategyTitle").innerText = s.name;
       const pnlEl = document.getElementById("activeStrategyPnl");
@@ -1459,11 +3727,12 @@
 
       document.getElementById("metricRealised").innerHTML = `<span class="${tone(d.realized)}">${signed(d.realized)}</span>`;
       document.getElementById("metricUnrealised").innerHTML = `<span class="${tone(d.unrealized)}">${signed(d.unrealized)}</span>`;
-      document.getElementById("metricOpenPositions").innerText = d.positions.filter(p => p.status === "open").length;
-      document.getElementById("metricClosedPositions").innerText = d.positions.filter(p => p.status === "closed").length;
+      document.getElementById("metricOpenPositions").innerText = (d.positions || []).filter(p => p.status === "open").length;
+      document.getElementById("metricClosedPositions").innerText = (d.positions || []).filter(p => p.status === "closed").length;
 
       renderSvgChart(d);
       renderPositionsTable();
+      renderHistory(); // Re-render independent history upon selecting strategy!
 
       document.getElementById("deployStrategyName").innerText = s.name;
       document.getElementById("promptStrategyName").innerText = s.name;
@@ -1474,12 +3743,20 @@
     }
 
     function renderPositionsTable() {
-      const d = dataState[activeKey];
-      const filtered = d.positions.filter(p => activeFilter === "all" || p.status === activeFilter);
+      const d = dataState[activeKey] || { positions: [] };
+      const filtered = (d.positions || []).filter(p => activeFilter === "all" || p.status === activeFilter);
       const tbody = document.getElementById("positionsTableBody");
+      const market = getMarketStatus();
+      const isCrypto = activeKey === "strat_btc";
 
       if (!filtered.length) {
-        tbody.innerHTML = `<tr><td colspan="12" style="text-align:center;padding:20px;color:var(--sx-muted);">No matching positions.</td></tr>`;
+        let emptyMsg = "";
+        if (!market.isOpen && !isCrypto) {
+          emptyMsg = `<i class="fa-solid fa-moon" style="margin-right:8px;color:var(--accent-cyan);"></i><strong>${market.badgeText}</strong> &bull; Live P&amp;L and positions activate during market hours (09:15–15:30 IST) when orders are filled.`;
+        } else {
+          emptyMsg = `<i class="fa-solid fa-clock" style="margin-right:8px;color:var(--accent-cyan);"></i><strong>WAITING FOR ENTRY SIGNAL</strong> &bull; Strategy scanner active. Live positions will appear upon order fill.`;
+        }
+        tbody.innerHTML = `<tr><td colspan="12" style="text-align:center;padding:26px 16px;color:var(--sx-muted);font-size:12px;">${emptyMsg}</td></tr>`;
         return;
       }
 
@@ -1501,68 +3778,27 @@
       `).join("");
     }
 
-    const historicalSessions = [
-      {
-        date: "20 Nov 2026",
-        kind: "Broker Live",
-        pnl: 2840,
-        positions: [
-          { entry_time: "2026-11-20 09:30:00", exit_time: "2026-11-20 15:10:00", timestamp: "2026-11-20 09:30:00", instrument: "NIFTY 24400 CE", expiry: "2026-11-26", order_type: "SELL", entry_price: 154.0, spot_at_entry: 24395.20, ltp: 122.0, exit_price: 122.0, spot_at_exit: 24420.50, qty: 65, pnl: 2080 },
-          { entry_time: "2026-11-20 09:30:00", exit_time: "2026-11-20 15:10:00", timestamp: "2026-11-20 09:30:00", instrument: "NIFTY 24400 PE", expiry: "2026-11-26", order_type: "SELL", entry_price: 148.0, spot_at_entry: 24395.20, ltp: 136.3, exit_price: 136.3, spot_at_exit: 24420.50, qty: 65, pnl: 760 }
-        ]
-      },
-      {
-        date: "19 Nov 2026",
-        kind: "Broker Live",
-        pnl: -890,
-        positions: [
-          { entry_time: "2026-11-19 09:30:00", exit_time: "2026-11-19 14:22:00", timestamp: "2026-11-19 09:30:00", instrument: "NIFTY 24350 CE", expiry: "2026-11-20", order_type: "SELL", entry_price: 132.0, spot_at_entry: 24340.10, ltp: 165.0, exit_price: 165.0, spot_at_exit: 24390.80, qty: 65, pnl: -2145 },
-          { entry_time: "2026-11-19 09:30:00", exit_time: "2026-11-19 14:22:00", timestamp: "2026-11-19 09:30:00", instrument: "NIFTY 24350 PE", expiry: "2026-11-20", order_type: "SELL", entry_price: 140.0, spot_at_entry: 24340.10, ltp: 120.7, exit_price: 120.7, spot_at_exit: 24390.80, qty: 65, pnl: 1255 }
-        ]
-      },
-      {
-        date: "18 Nov 2026",
-        kind: "Broker Live",
-        pnl: 3450,
-        positions: [
-          { entry_time: "2026-11-18 09:30:00", exit_time: "2026-11-18 15:10:00", timestamp: "2026-11-18 09:30:00", instrument: "NIFTY 24300 CE", expiry: "2026-11-20", order_type: "SELL", entry_price: 162.0, spot_at_entry: 24310.45, ltp: 126.0, exit_price: 126.0, spot_at_exit: 24325.10, qty: 65, pnl: 2340 },
-          { entry_time: "2026-11-18 09:30:00", exit_time: "2026-11-18 15:10:00", timestamp: "2026-11-18 09:30:00", instrument: "NIFTY 24300 PE", expiry: "2026-11-20", order_type: "SELL", entry_price: 155.0, spot_at_entry: 24310.45, ltp: 137.9, exit_price: 137.9, spot_at_exit: 24325.10, qty: 65, pnl: 1110 }
-        ]
-      },
-      {
-        date: "17 Nov 2026",
-        kind: "Broker Live",
-        pnl: 1980,
-        positions: [
-          { entry_time: "2026-11-17 09:30:00", exit_time: "2026-11-17 15:10:00", timestamp: "2026-11-17 09:30:00", instrument: "NIFTY 24250 CE", expiry: "2026-11-20", order_type: "SELL", entry_price: 145.0, spot_at_entry: 24260.00, ltp: 128.0, exit_price: 128.0, spot_at_exit: 24275.30, qty: 65, pnl: 1105 },
-          { entry_time: "2026-11-17 09:30:00", exit_time: "2026-11-17 15:10:00", timestamp: "2026-11-17 09:30:00", instrument: "NIFTY 24250 PE", expiry: "2026-11-20", order_type: "SELL", entry_price: 139.0, spot_at_entry: 24260.00, ltp: 125.5, exit_price: 125.5, spot_at_exit: 24275.30, qty: 65, pnl: 875 }
-        ]
-      },
-      {
-        date: "14 Nov 2026",
-        kind: "Broker Live",
-        pnl: 4120,
-        positions: [
-          { entry_time: "2026-11-14 09:30:00", exit_time: "2026-11-14 15:10:00", timestamp: "2026-11-14 09:30:00", instrument: "NIFTY 24200 CE", expiry: "2026-11-20", order_type: "SELL", entry_price: 172.0, spot_at_entry: 24205.80, ltp: 124.0, exit_price: 124.0, spot_at_exit: 24210.00, qty: 65, pnl: 3120 },
-          { entry_time: "2026-11-14 09:30:00", exit_time: "2026-11-14 15:10:00", timestamp: "2026-11-14 09:30:00", instrument: "NIFTY 24200 PE", expiry: "2026-11-20", order_type: "SELL", entry_price: 160.0, spot_at_entry: 24205.80, ltp: 144.6, exit_price: 144.6, spot_at_exit: 24210.00, qty: 65, pnl: 1000 }
-        ]
-      }
-    ];
-
     function renderHistory() {
       const container = document.getElementById("historyRowsContainer");
-      const visibleCount = hasUnlockedArchive ? historicalSessions.length : 2;
-      const visible = historicalSessions.slice(0, visibleCount);
+      const stratHistory = strategyHistoryData[activeKey] || strategyHistoryData["strat_1"];
+      const visibleCount = hasUnlockedArchive ? stratHistory.length : 2;
+      const visible = stratHistory.slice(0, visibleCount);
 
       container.innerHTML = visible.map(session => `
         <details class="session-day">
-          <summary>
-            <strong>${session.date}</strong>
-            <span class="label" style="font-size:9px;background:rgba(255,255,255,0.04);padding:2px 6px;border-radius:3px;">${session.kind}</span>
-            <span class="session-pnl ${tone(session.pnl)}">${signed(session.pnl)}</span>
+          <summary style="display:flex;align-items:center;justify-content:space-between;cursor:pointer;padding:12px 14px;background:rgba(255,255,255,0.02);border-radius:8px;border:1px solid rgba(255,255,255,0.06);margin-bottom:8px;">
+            <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap;">
+              <strong style="color:var(--sx-text-primary);">${session.date}</strong>
+              <span class="label" style="font-size:9px;background:rgba(255,255,255,0.06);padding:2px 8px;border-radius:4px;color:var(--accent-cyan);border:1px solid rgba(0,229,255,0.2);">${session.kind}</span>
+              <span style="font-size:11px;color:var(--sx-muted);"><i class="fa-solid fa-vault" style="margin-right:4px;"></i> Total Capital Required: <strong style="color:var(--sx-text-primary);">${session.capital_required}</strong></span>
+            </div>
+            <div style="display:flex;align-items:center;gap:10px;">
+              <span style="font-size:11px;color:var(--sx-muted);">Overall PnL:</span>
+              <span class="session-pnl ${tone(session.pnl)}" style="font-weight:700;font-size:13px;">${signed(session.pnl)}</span>
+            </div>
           </summary>
-          <div class="session-detail">
-            <div class="tablewrap" style="margin-top:8px;">
+          <div class="session-detail" style="padding:10px 0;">
+            <div class="tablewrap" style="margin-top:4px;">
               <table>
                 <thead>
                   <tr>
@@ -1712,6 +3948,8 @@
     // Live Telemetry Sync with Anand AWS Server (Shoonya Feed)
     let liveConnected = false;
     async function syncLiveFeed() {
+      const market = getMarketStatus();
+      
       try {
         const endpoints = [
           "https://anand.stratexa.in/api/status",
@@ -1721,7 +3959,7 @@
         for (const ep of endpoints) {
           try {
             const ctrl = new AbortController();
-            const tid = setTimeout(() => ctrl.abort(), 2500);
+            const tid = setTimeout(() => ctrl.abort(), 2000);
             const res = await fetch(ep, { signal: ctrl.signal, cache: "no-store", mode: "cors" });
             clearTimeout(tid);
             if (res.ok) {
@@ -1738,9 +3976,30 @@
         }
       } catch (err) {}
 
-      // Fallback if broker terminal is offline or after-hours
-      currentTicks++;
-      dataState = generateIntradayData(currentTicks);
+      // Grounded state when market is offline or before signals
+      keys.forEach(k => {
+        const isCrypto = k === "strat_btc";
+        if (!dataState[k]) {
+          dataState[k] = { realized: 0, unrealized: 0, total: 0, series: [["09:15", 0], ["15:30", 0]], positions: [] };
+        } else {
+          // If no open positions or market closed, zero unrealized PnL (no fake drift)
+          if (!market.isOpen && !isCrypto) {
+            dataState[k].unrealized = 0;
+            dataState[k].total = dataState[k].realized;
+            dataState[k].positions = [];
+          }
+        }
+      });
+
+      const stampEl = document.getElementById("stampDate");
+      if (stampEl) {
+        if (!market.isOpen) {
+          stampEl.innerHTML = `<span style="color:var(--sx-muted);font-weight:600;">● ${market.badgeText}</span> · IST`;
+        } else {
+          stampEl.innerHTML = `<span style="color:var(--sx-teal-bright);">● LIVE</span> · Market Active · IST`;
+        }
+      }
+
       renderCards();
       renderActiveStrategy();
     }
