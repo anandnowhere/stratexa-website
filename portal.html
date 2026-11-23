@@ -3958,13 +3958,17 @@
       pnlEl.innerText = signed(d.total);
       pnlEl.className = `metric ${tone(d.total)}`;
 
+      // Realized PnL is strictly the sum of closed positions in the ledger:
+      const closedList = (d.positions || []).filter(p => p.status === "closed");
+      const closedCount = closedList.length;
+      const todayRealized = closedList.reduce((sum, p) => sum + Number(p.pnl || 0.0), 0.0);
+
       // Update Session Summary aside metrics (Capital Required & Overall PnL %: 2024 to yesterday + today live realized)
       const capEl = document.getElementById("metricCapitalRequired");
       if (capEl) capEl.innerText = s.capital || "₹3,50,000";
 
       const capNum = s.capitalNum || 350000;
       const histPnl = s.histPnl || 0.0;
-      const todayRealized = Number(d.realized || 0.0);
       const totalOverallPnl = histPnl + todayRealized;
       const overallPct = (totalOverallPnl / capNum) * 100.0;
       const pctSign = overallPct >= 0 ? "+" : "";
@@ -3974,10 +3978,10 @@
         ovrPnlEl.innerHTML = `<span class="${tone(overallPct)}" title="Cumulative 2024-Present Realized PnL: ${signed(totalOverallPnl)}">${pctSign}${overallPct.toFixed(1)}%</span>`;
       }
 
-      document.getElementById("metricRealised").innerHTML = `<span class="${tone(d.realized)}">${signed(d.realized)}</span>`;
+      document.getElementById("metricRealised").innerHTML = `<span class="${tone(todayRealized)}">${signed(todayRealized)}</span>`;
       document.getElementById("metricUnrealised").innerHTML = `<span class="${tone(d.unrealized)}">${signed(d.unrealized)}</span>`;
       document.getElementById("metricOpenPositions").innerText = (d.positions || []).filter(p => p.status === "open").length;
-      document.getElementById("metricClosedPositions").innerText = (d.positions || []).filter(p => p.status === "closed").length;
+      document.getElementById("metricClosedPositions").innerText = closedCount;
 
       try {
         renderSvgChart(d);
@@ -4305,29 +4309,50 @@
           if (dataState[k].series.length > 50) dataState[k].series.shift();
         }
 
-        // Live Positions Mapping
-        if (sData.positions && Array.isArray(sData.positions) && sData.positions.length > 0) {
-          dataState[k].positions = sData.positions.map(p => ({
-            entry_time: p.entry_time || p.timestamp || d.last_update,
-            exit_time: p.exit_time || "—",
-            timestamp: p.entry_time || p.timestamp || d.last_update,
-            instrument: p.tsym || p.symbol || p.instrument || `${k.toUpperCase()} Contract`,
-            expiry: p.expiry || "--",
-            order_type: p.side || (p.qty > 0 ? "BUY" : "SELL"),
-            status: "open",
-            qty: p.qty || 1,
-            entry_price: p.entry_price || p.entry || 0.0,
-            spot_at_entry: p.spot_at_entry || d.spots?.NIFTY || 0.0,
-            ltp: p.current_price || p.ltp || p.entry_price || 0.0,
-            exit_price: null,
-            spot_at_exit: null,
-            pnl: (p.side === "SELL")
-              ? ((p.entry_price - (p.current_price || p.entry_price)) * (p.qty || 1))
-              : (((p.current_price || p.entry_price) - p.entry_price) * (p.qty || 1))
-          }));
-        } else {
-          dataState[k].positions = [];
-        }
+        // Live Positions Mapping (Open + Closed from recorded trades)
+        const openPos = (sData.positions && Array.isArray(sData.positions)) ? sData.positions.map(p => ({
+          entry_time: p.entry_time || p.timestamp || d.last_update,
+          exit_time: "—",
+          timestamp: p.entry_time || p.timestamp || d.last_update,
+          instrument: p.tsym || p.symbol || p.instrument || `${k.toUpperCase()} Contract`,
+          expiry: p.expiry || "--",
+          order_type: p.side || (p.qty > 0 ? "BUY" : "SELL"),
+          status: "open",
+          qty: p.qty || 1,
+          entry_price: p.entry_price || p.entry || 0.0,
+          spot_at_entry: p.spot_at_entry || d.spots?.NIFTY || 0.0,
+          ltp: p.current_price || p.ltp || p.entry_price || 0.0,
+          exit_price: null,
+          spot_at_exit: null,
+          pnl: (p.side === "SELL")
+            ? ((p.entry_price - (p.current_price || p.entry_price)) * (p.qty || 1))
+            : (((p.current_price || p.entry_price) - p.entry_price) * (p.qty || 1))
+        })) : [];
+
+        const closedPos = (sData.closed_positions && Array.isArray(sData.closed_positions)) ? sData.closed_positions.map(p => ({
+          entry_time: p.entry_time || p.timestamp || d.last_update,
+          exit_time: p.exit_time || d.last_update,
+          timestamp: p.entry_time || p.timestamp || d.last_update,
+          instrument: p.instrument || p.tsym || p.symbol || `${k.toUpperCase()} Contract`,
+          expiry: p.expiry || "--",
+          order_type: p.order_type || p.side || (p.qty > 0 ? "BUY" : "SELL"),
+          status: "closed",
+          qty: p.qty || 1,
+          entry_price: p.entry_price || p.entry || 0.0,
+          spot_at_entry: p.spot_at_entry || d.spots?.NIFTY || 0.0,
+          ltp: p.exit_price || p.current_price || 0.0,
+          exit_price: p.exit_price || p.current_price || 0.0,
+          spot_at_exit: p.spot_at_exit || d.spots?.NIFTY || 0.0,
+          pnl: Number(p.pnl || 0.0)
+        })) : [];
+
+        dataState[k].positions = [...openPos, ...closedPos];
+
+        // Realized PnL is STRICTLY the sum of closed positions in this strategy's ledger!
+        const closedRealized = closedPos.reduce((sum, p) => sum + Number(p.pnl || 0.0), 0.0);
+        dataState[k].realized = closedRealized;
+        dataState[k].unrealized = unrl;
+        dataState[k].total = closedRealized + unrl;
       });
 
       // Update stamp badge
