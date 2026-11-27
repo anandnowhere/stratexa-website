@@ -28,6 +28,7 @@ export default defineConfig({
         server_execution: resolve(__dirname, 'server-side-execution-vs-browser-terminal-freezes.html'),
         login: resolve(__dirname, 'login.html'),
         analytics_dashboard: resolve(__dirname, 'analytics-dashboard.html'),
+        business_ops: resolve(__dirname, 'business-ops.html'),
         portal: resolve(__dirname, 'portal.html'),
       }
     }

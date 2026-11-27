@@ -1,0 +1,1518 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Stratexa Business Ops | Quotes, Invoices & Unified P&L</title>
+  <meta name="robots" content="noindex, nofollow" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/logo.png" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Outfit:wght@500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+
+  <style>
+    :root {
+      --bg-dark: #050811;
+      --bg-panel: #0b132b;
+      --card-bg: rgba(15, 23, 42, 0.82);
+      --card-border: rgba(255, 255, 255, 0.08);
+      --card-border-glow: rgba(16, 185, 129, 0.28);
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+      --accent-green: #10b981;
+      --accent-cyan: #06b6d4;
+      --accent-blue: #3b82f6;
+      --accent-purple: #8b5cf6;
+      --accent-amber: #f59e0b;
+      --accent-red: #ef4444;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: radial-gradient(circle at top center, #0c1a30 0%, var(--bg-dark) 100%);
+      color: var(--text-main);
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      min-height: 100vh;
+      padding: 24px 20px 64px;
+    }
+
+    .container { max-width: 1360px; margin: 0 auto; }
+
+    /* Lock Screen */
+    .lock-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      background: rgba(5, 8, 17, 0.94);
+      backdrop-filter: blur(18px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+    .lock-overlay.hidden { display: none; }
+
+    .lock-card {
+      width: 100%;
+      max-width: 420px;
+      background: linear-gradient(160deg, rgba(15, 23, 42, 0.95), rgba(11, 19, 43, 0.98));
+      border: 1px solid rgba(16, 185, 129, 0.3);
+      border-radius: 18px;
+      padding: 34px 28px;
+      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.65);
+      text-align: center;
+    }
+
+    .lock-icon {
+      width: 58px;
+      height: 58px;
+      margin: 0 auto 16px;
+      border-radius: 14px;
+      background: rgba(16, 185, 129, 0.12);
+      border: 1px solid rgba(16, 185, 129, 0.35);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      color: var(--accent-green);
+    }
+
+    .lock-card h1 {
+      font-family: 'Outfit', sans-serif;
+      font-size: 22px;
+      font-weight: 800;
+      margin-bottom: 6px;
+    }
+
+    .lock-card p {
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-bottom: 22px;
+      line-height: 1.5;
+    }
+
+    .lock-input-wrap {
+      position: relative;
+      margin-bottom: 14px;
+    }
+
+    .lock-input {
+      width: 100%;
+      background: rgba(5, 8, 17, 0.85);
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      border-radius: 10px;
+      padding: 13px 16px;
+      color: #fff;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 15px;
+      text-align: center;
+      letter-spacing: 2px;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    .lock-input:focus { border-color: var(--accent-green); }
+
+    .lock-error {
+      color: var(--accent-red);
+      font-size: 12px;
+      min-height: 18px;
+      margin-bottom: 10px;
+    }
+
+    /* Buttons */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 9px 15px;
+      border-radius: 9px;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      border: 1px solid transparent;
+      transition: all 0.18s ease;
+      text-decoration: none;
+      font-family: inherit;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #10b981, #059669);
+      color: #03150e;
+      font-weight: 700;
+    }
+    .btn-primary:hover { filter: brightness(1.08); transform: translateY(-1px); }
+
+    .btn-secondary {
+      background: rgba(255, 255, 255, 0.06);
+      border-color: var(--card-border);
+      color: var(--text-main);
+    }
+    .btn-secondary:hover { background: rgba(255, 255, 255, 0.11); }
+
+    .btn-cyan {
+      background: rgba(6, 182, 212, 0.12);
+      border-color: rgba(6, 182, 212, 0.35);
+      color: #67e8f9;
+    }
+    .btn-cyan:hover { background: rgba(6, 182, 212, 0.22); }
+
+    .btn-danger {
+      background: rgba(239, 68, 68, 0.12);
+      border-color: rgba(239, 68, 68, 0.35);
+      color: #fca5a5;
+    }
+    .btn-danger:hover { background: rgba(239, 68, 68, 0.24); }
+
+    .btn-sm { padding: 5px 10px; font-size: 11.5px; border-radius: 7px; }
+
+    /* Header */
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 22px;
+      padding-bottom: 18px;
+      border-bottom: 1px solid var(--card-border);
+      flex-wrap: wrap;
+      gap: 14px;
+    }
+
+    .header-brand { display: flex; align-items: center; gap: 14px; }
+    .header-logo {
+      width: 44px;
+      height: 44px;
+      background: rgba(16, 185, 129, 0.12);
+      border: 1px solid rgba(16, 185, 129, 0.32);
+      border-radius: 11px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--accent-green);
+      font-size: 19px;
+    }
+    .header-title {
+      font-family: 'Outfit', sans-serif;
+      font-size: 22px;
+      font-weight: 800;
+      color: #fff;
+    }
+    .header-subtitle { font-size: 12px; color: var(--text-muted); margin-top: 2px; }
+
+    .header-controls { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+
+    /* KPI Grid */
+    .kpi-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+      gap: 14px;
+      margin-bottom: 22px;
+    }
+
+    .kpi-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 14px;
+      padding: 16px 18px;
+      position: relative;
+      overflow: hidden;
+    }
+    .kpi-card.highlight { border-color: var(--card-border-glow); }
+
+    .kpi-label {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.7px;
+      color: var(--text-muted);
+      font-weight: 700;
+      margin-bottom: 8px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .kpi-value {
+      font-family: 'Outfit', sans-serif;
+      font-size: 25px;
+      font-weight: 800;
+      color: #fff;
+      margin-bottom: 4px;
+    }
+    .kpi-sub { font-size: 11.5px; color: var(--text-muted); }
+
+    .text-green { color: var(--accent-green) !important; }
+    .text-cyan { color: var(--accent-cyan) !important; }
+    .text-amber { color: var(--accent-amber) !important; }
+    .text-red { color: var(--accent-red) !important; }
+
+    /* Tabs */
+    .tabs-bar {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+      border-bottom: 1px solid var(--card-border);
+      padding-bottom: 12px;
+    }
+
+    .tab-btn {
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid var(--card-border);
+      color: var(--text-muted);
+      padding: 9px 16px;
+      border-radius: 10px;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.18s;
+    }
+    .tab-btn:hover { color: #fff; background: rgba(255, 255, 255, 0.08); }
+    .tab-btn.active {
+      background: rgba(16, 185, 129, 0.14);
+      border-color: rgba(16, 185, 129, 0.45);
+      color: var(--accent-green);
+    }
+
+    .tab-panel { display: none; }
+    .tab-panel.active { display: block; }
+
+    /* Cards & Tables */
+    .panel-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 15px;
+      padding: 20px;
+      margin-bottom: 20px;
+    }
+
+    .panel-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+
+    .panel-title {
+      font-family: 'Outfit', sans-serif;
+      font-size: 17px;
+      font-weight: 700;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      gap: 9px;
+    }
+
+    .filter-row {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    .input, .select {
+      background: rgba(5, 8, 17, 0.78);
+      border: 1px solid var(--card-border);
+      color: var(--text-main);
+      padding: 8px 12px;
+      border-radius: 8px;
+      font-size: 13px;
+      font-family: inherit;
+      outline: none;
+    }
+    .input:focus, .select:focus { border-color: var(--accent-cyan); }
+
+    .table-wrap { overflow-x: auto; }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13px;
+    }
+    th {
+      text-align: left;
+      padding: 11px 12px;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.6px;
+      color: var(--text-muted);
+      border-bottom: 1px solid var(--card-border);
+      white-space: nowrap;
+    }
+    td {
+      padding: 12px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+      vertical-align: middle;
+    }
+    tr:hover td { background: rgba(255, 255, 255, 0.02); }
+
+    .mono { font-family: 'JetBrains Mono', monospace; }
+
+    /* Badges */
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      padding: 3px 9px;
+      border-radius: 999px;
+      font-size: 11px;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+    .badge-green { background: rgba(16, 185, 129, 0.14); color: #34d399; border: 1px solid rgba(16, 185, 129, 0.3); }
+    .badge-amber { background: rgba(245, 158, 11, 0.14); color: #fbbf24; border: 1px solid rgba(245, 158, 11, 0.3); }
+    .badge-cyan { background: rgba(6, 182, 212, 0.14); color: #22d3ee; border: 1px solid rgba(6, 182, 212, 0.3); }
+    .badge-purple { background: rgba(139, 92, 246, 0.14); color: #c4b5fd; border: 1px solid rgba(139, 92, 246, 0.3); }
+    .badge-red { background: rgba(239, 68, 68, 0.14); color: #fca5a5; border: 1px solid rgba(239, 68, 68, 0.3); }
+    .badge-slate { background: rgba(148, 163, 184, 0.14); color: #cbd5e1; border: 1px solid rgba(148, 163, 184, 0.25); }
+
+    /* Overview Grid */
+    .overview-grid {
+      display: grid;
+      grid-template-columns: 1.3fr 1fr;
+      gap: 18px;
+    }
+    @media (max-width: 960px) {
+      .overview-grid { grid-template-columns: 1fr; }
+    }
+
+    .bar-row { margin-bottom: 12px; }
+    .bar-label {
+      display: flex;
+      justify-content: space-between;
+      font-size: 12.5px;
+      margin-bottom: 5px;
+    }
+    .bar-track {
+      height: 8px;
+      background: rgba(255, 255, 255, 0.06);
+      border-radius: 999px;
+      overflow: hidden;
+    }
+    .bar-fill { height: 100%; border-radius: 999px; transition: width 0.35s ease; }
+
+    /* Modal */
+    .modal-backdrop {
+      position: fixed;
+      inset: 0;
+      z-index: 5000;
+      background: rgba(5, 8, 17, 0.8);
+      backdrop-filter: blur(6px);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+    .modal-backdrop.open { display: flex; }
+
+    .modal-box {
+      width: 100%;
+      max-width: 560px;
+      max-height: 90vh;
+      overflow-y: auto;
+      background: #0f172a;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 16px;
+      padding: 24px;
+    }
+    .modal-title {
+      font-family: 'Outfit', sans-serif;
+      font-size: 18px;
+      font-weight: 700;
+      margin-bottom: 16px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+    .form-group { display: flex; flex-direction: column; gap: 5px; }
+    .form-group.full { grid-column: 1 / -1; }
+    .form-group label { font-size: 11.5px; color: var(--text-muted); font-weight: 600; }
+
+    .modal-actions {
+      display: flex;
+      justify-content: flex-end;
+      gap: 10px;
+      margin-top: 18px;
+    }
+
+    .action-group { display: flex; gap: 6px; flex-wrap: wrap; }
+  </style>
+</head>
+<body>
+
+  <!-- LOCK OVERLAY -->
+  <div id="lockOverlay" class="lock-overlay">
+    <div class="lock-card">
+      <div class="lock-icon"><i class="fa-solid fa-shield-halved"></i></div>
+      <h1>Stratexa Business Ops</h1>
+      <p>Restricted Executive Vault &middot; Quotes, Invoices, Expenses &amp; Unified P&amp;L.<br>Enter your passcode to unlock.</p>
+      <form id="unlockForm">
+        <div class="lock-input-wrap">
+          <input type="password" id="unlockInput" class="lock-input" placeholder="••••••••••••" autocomplete="off" autofocus />
+        </div>
+        <div id="unlockError" class="lock-error"></div>
+        <button type="submit" class="btn btn-primary" style="width: 100%; padding: 12px;">
+          <i class="fa-solid fa-lock-open"></i> Unlock Dashboard
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- MAIN APP -->
+  <div class="container" id="appRoot" style="display: none;">
+
+    <header class="header">
+      <div class="header-brand">
+        <div class="header-logo"><i class="fa-solid fa-chart-pie"></i></div>
+        <div>
+          <div class="header-title">Stratexa Business Ops &amp; Unified P&amp;L</div>
+          <div class="header-subtitle">Quotes &rarr; Invoices Conversion &middot; Payment Tracking &middot; Operating Expenses &middot; Lead CRM</div>
+        </div>
+      </div>
+
+      <div class="header-controls">
+        <select id="monthFilter" class="select">
+          <option value="all">All Time</option>
+          <option value="2026-11">Nov 2026</option>
+          <option value="2026-10">Oct 2026</option>
+          <option value="2026-07">Jul 2026</option>
+        </select>
+        <a href="/analytics-dashboard.html" class="btn btn-secondary btn-sm"><i class="fa-solid fa-wave-square"></i> Web Analytics</a>
+        <button id="btnExportJson" class="btn btn-cyan btn-sm"><i class="fa-solid fa-download"></i> Backup JSON</button>
+        <button id="btnLockNow" class="btn btn-danger btn-sm"><i class="fa-solid fa-lock"></i> Lock Vault</button>
+      </div>
+    </header>
+
+    <!-- UNIFIED KPI STRIP -->
+    <section class="kpi-grid" id="kpiGrid"></section>
+
+    <!-- TABS -->
+    <nav class="tabs-bar">
+      <button class="tab-btn active" data-tab="pnl"><i class="fa-solid fa-scale-balanced"></i> Unified P&amp;L</button>
+      <button class="tab-btn" data-tab="billing"><i class="fa-solid fa-file-invoice-dollar"></i> Quotes &amp; Invoices</button>
+      <button class="tab-btn" data-tab="expenses"><i class="fa-solid fa-receipt"></i> Business Expenses</button>
+      <button class="tab-btn" data-tab="leads"><i class="fa-solid fa-users"></i> Leads &amp; Customers</button>
+      <button class="tab-btn" data-tab="settings"><i class="fa-solid fa-sliders"></i> Vault &amp; Backup</button>
+    </nav>
+
+    <!-- TAB 1: UNIFIED P&L -->
+    <div id="tab-pnl" class="tab-panel active">
+      <div class="overview-grid">
+        <div class="panel-card">
+          <div class="panel-header">
+            <div class="panel-title"><i class="fa-solid fa-calendar-days text-cyan"></i> Monthly P&amp;L Statement</div>
+            <div class="action-group">
+              <button class="btn btn-primary btn-sm" onclick="openModal('billingModal')"><i class="fa-solid fa-plus"></i> Quote / Invoice</button>
+              <button class="btn btn-secondary btn-sm" onclick="openModal('expenseModal')"><i class="fa-solid fa-plus"></i> Add Expense</button>
+            </div>
+          </div>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Month</th>
+                  <th>Revenue Received</th>
+                  <th>Operating Expenses</th>
+                  <th>Net P&amp;L</th>
+                  <th>Margin</th>
+                </tr>
+              </thead>
+              <tbody id="monthlyPnlBody"></tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="panel-card">
+          <div class="panel-header">
+            <div class="panel-title"><i class="fa-solid fa-layer-group text-amber"></i> Expense Breakdown by Category</div>
+          </div>
+          <div id="expenseBreakdownBars"></div>
+        </div>
+      </div>
+
+      <div class="panel-card">
+        <div class="panel-header">
+          <div class="panel-title"><i class="fa-solid fa-funnel-dollar text-green"></i> Sales &amp; Conversion Funnel</div>
+        </div>
+        <div class="kpi-grid" id="funnelGrid" style="margin-bottom: 0;"></div>
+      </div>
+    </div>
+
+    <!-- TAB 2: QUOTES & INVOICES -->
+    <div id="tab-billing" class="tab-panel">
+      <div class="panel-card">
+        <div class="panel-header">
+          <div class="panel-title"><i class="fa-solid fa-file-contract text-green"></i> Quotes, Invoices &amp; Payment Tracker</div>
+          <div class="filter-row">
+            <input type="text" id="billingSearch" class="input" placeholder="Search ID, client, scope..." />
+            <select id="billingStatusFilter" class="select">
+              <option value="all">All Statuses</option>
+              <option value="Paid">Paid</option>
+              <option value="Pending">Pending</option>
+              <option value="Quote Only">Quote Only</option>
+              <option value="Overdue">Overdue</option>
+            </select>
+            <button class="btn btn-primary btn-sm" onclick="openBillingModal()"><i class="fa-solid fa-plus"></i> Add Quote / Invoice</button>
+          </div>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Ref # &amp; Date</th>
+                <th>Customer</th>
+                <th>Scope / Items</th>
+                <th>Amount</th>
+                <th>Conversion Stage</th>
+                <th>Payment Status</th>
+                <th>Downloads</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="billingTableBody"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- TAB 3: EXPENSES -->
+    <div id="tab-expenses" class="tab-panel">
+      <div class="panel-card">
+        <div class="panel-header">
+          <div class="panel-title"><i class="fa-solid fa-wallet text-red"></i> Business Expense Ledger</div>
+          <div class="filter-row">
+            <select id="expenseCatFilter" class="select">
+              <option value="all">All Categories</option>
+              <option value="Server Costs">Server Costs</option>
+              <option value="Domain Charges">Domain Charges</option>
+              <option value="Internet Charges">Internet Charges</option>
+              <option value="Salary">Salary</option>
+              <option value="Marketing & Ads">Marketing &amp; Ads</option>
+              <option value="Software & APIs">Software &amp; APIs</option>
+              <option value="Misc">Misc</option>
+            </select>
+            <button class="btn btn-primary btn-sm" onclick="openExpenseModal()"><i class="fa-solid fa-plus"></i> Log Expense</button>
+          </div>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Date</th>
+                <th>Category</th>
+                <th>Vendor / Description</th>
+                <th>Type</th>
+                <th>Amount</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="expenseTableBody"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- TAB 4: LEADS & CUSTOMERS -->
+    <div id="tab-leads" class="tab-panel">
+      <div class="panel-card">
+        <div class="panel-header">
+          <div class="panel-title"><i class="fa-solid fa-address-book text-cyan"></i> Leads &amp; Customer Directory</div>
+          <div class="filter-row">
+            <select id="leadStageFilter" class="select">
+              <option value="all">All Stages</option>
+              <option value="New Lead">New Lead</option>
+              <option value="Discovery">Discovery</option>
+              <option value="Quote Sent">Quote Sent</option>
+              <option value="Active Client">Active Client</option>
+              <option value="Lost">Lost</option>
+            </select>
+            <button class="btn btn-primary btn-sm" onclick="openLeadModal()"><i class="fa-solid fa-user-plus"></i> Add Lead / Client</button>
+          </div>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Customer / Lead</th>
+                <th>Contact</th>
+                <th>Broker &amp; Infra</th>
+                <th>Stage</th>
+                <th>Est. Value / Capital</th>
+                <th>Notes</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="leadsTableBody"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- TAB 5: SETTINGS & BACKUP -->
+    <div id="tab-settings" class="tab-panel">
+      <div class="overview-grid">
+        <div class="panel-card">
+          <div class="panel-title" style="margin-bottom: 14px;"><i class="fa-solid fa-key text-amber"></i> Change Vault Passcode</div>
+          <p style="font-size: 12.5px; color: var(--text-muted); margin-bottom: 14px;">
+            Passcode is hashed locally with SHA-256 and stored in your browser.
+          </p>
+          <div class="form-group" style="margin-bottom: 12px;">
+            <label>New Passcode</label>
+            <input type="password" id="newPasscodeInput" class="input" placeholder="Enter new passcode (min 6 chars)" />
+          </div>
+          <button class="btn btn-primary btn-sm" onclick="updatePasscode()"><i class="fa-solid fa-check"></i> Save Passcode</button>
+          <span id="passcodeMsg" style="font-size: 12px; margin-left: 10px;"></span>
+        </div>
+
+        <div class="panel-card">
+          <div class="panel-title" style="margin-bottom: 14px;"><i class="fa-solid fa-database text-cyan"></i> Data Backup &amp; Restore</div>
+          <p style="font-size: 12.5px; color: var(--text-muted); margin-bottom: 14px;">
+            All edits are saved automatically in <code>localStorage</code>. Export JSON regularly to sync across devices.
+          </p>
+          <div class="action-group">
+            <button class="btn btn-cyan btn-sm" onclick="exportBackup()"><i class="fa-solid fa-download"></i> Export JSON</button>
+            <label class="btn btn-secondary btn-sm" style="cursor: pointer;">
+              <i class="fa-solid fa-upload"></i> Import JSON
+              <input type="file" id="importFileInput" accept=".json" style="display: none;" onchange="importBackup(event)" />
+            </label>
+            <button class="btn btn-danger btn-sm" onclick="resetToSeed()"><i class="fa-solid fa-rotate-left"></i> Reset to Default Seed</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- BILLING MODAL -->
+  <div id="billingModal" class="modal-backdrop">
+    <div class="modal-box">
+      <div class="modal-title">
+        <span id="billingModalTitle">Add Quote / Invoice</span>
+        <button class="btn btn-secondary btn-sm" onclick="closeModal('billingModal')">&times;</button>
+      </div>
+      <form id="billingForm" class="form-grid">
+        <input type="hidden" id="bEditId" />
+        <div class="form-group">
+          <label>Reference #</label>
+          <input type="text" id="bRef" class="input" placeholder="STX-2611-106" required />
+        </div>
+        <div class="form-group">
+          <label>Date</label>
+          <input type="date" id="bDate" class="input" required />
+        </div>
+        <div class="form-group">
+          <label>Customer Name</label>
+          <input type="text" id="bCustomer" class="input" required />
+        </div>
+        <div class="form-group">
+          <label>Amount (₹)</label>
+          <input type="number" id="bAmount" class="input" step="0.01" required />
+        </div>
+        <div class="form-group full">
+          <label>Scope / Description</label>
+          <input type="text" id="bScope" class="input" placeholder="e.g. 9:20 Short Straddle + VPS Setup" required />
+        </div>
+        <div class="form-group">
+          <label>Conversion Stage</label>
+          <select id="bStage" class="select">
+            <option value="Quote Shared">Quote Shared</option>
+            <option value="Converted to Invoice">Converted to Invoice</option>
+            <option value="Direct Invoice">Direct Invoice</option>
+            <option value="Cancelled">Cancelled</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Payment Status</label>
+          <select id="bPayment" class="select">
+            <option value="Quote Only">Quote Only</option>
+            <option value="Pending">Pending</option>
+            <option value="Partial">Partial</option>
+            <option value="Paid">Paid</option>
+            <option value="Overdue">Overdue</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Quote PDF URL</label>
+          <input type="text" id="bQuoteUrl" class="input" placeholder="/billing/Stratexa_Quote_....pdf" />
+        </div>
+        <div class="form-group">
+          <label>Invoice PDF URL</label>
+          <input type="text" id="bInvoiceUrl" class="input" placeholder="/billing/Stratexa_Invoice_....pdf" />
+        </div>
+        <div class="modal-actions full">
+          <button type="button" class="btn btn-secondary" onclick="closeModal('billingModal')">Cancel</button>
+          <button type="submit" class="btn btn-primary">Save Record</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- EXPENSE MODAL -->
+  <div id="expenseModal" class="modal-backdrop">
+    <div class="modal-box">
+      <div class="modal-title">
+        <span>Log Business Expense</span>
+        <button class="btn btn-secondary btn-sm" onclick="closeModal('expenseModal')">&times;</button>
+      </div>
+      <form id="expenseForm" class="form-grid">
+        <input type="hidden" id="eEditId" />
+        <div class="form-group">
+          <label>Date</label>
+          <input type="date" id="eDate" class="input" required />
+        </div>
+        <div class="form-group">
+          <label>Category</label>
+          <select id="eCategory" class="select">
+            <option value="Server Costs">Server Costs</option>
+            <option value="Domain Charges">Domain Charges</option>
+            <option value="Internet Charges">Internet Charges</option>
+            <option value="Salary">Salary</option>
+            <option value="Marketing & Ads">Marketing &amp; Ads</option>
+            <option value="Software & APIs">Software &amp; APIs</option>
+            <option value="Misc">Misc</option>
+          </select>
+        </div>
+        <div class="form-group full">
+          <label>Vendor / Description</label>
+          <input type="text" id="eDesc" class="input" placeholder="e.g. DigitalOcean Droplets / ACT Fibernet / Domain Renewal" required />
+        </div>
+        <div class="form-group">
+          <label>Amount (₹)</label>
+          <input type="number" id="eAmount" class="input" step="0.01" required />
+        </div>
+        <div class="form-group">
+          <label>Frequency</label>
+          <select id="eType" class="select">
+            <option value="Recurring">Recurring</option>
+            <option value="One-Time">One-Time</option>
+          </select>
+        </div>
+        <div class="modal-actions full">
+          <button type="button" class="btn btn-secondary" onclick="closeModal('expenseModal')">Cancel</button>
+          <button type="submit" class="btn btn-primary">Save Expense</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- LEAD MODAL -->
+  <div id="leadModal" class="modal-backdrop">
+    <div class="modal-box">
+      <div class="modal-title">
+        <span>Add / Edit Lead or Customer</span>
+        <button class="btn btn-secondary btn-sm" onclick="closeModal('leadModal')">&times;</button>
+      </div>
+      <form id="leadForm" class="form-grid">
+        <input type="hidden" id="lEditId" />
+        <div class="form-group">
+          <label>Name</label>
+          <input type="text" id="lName" class="input" required />
+        </div>
+        <div class="form-group">
+          <label>Phone / Email</label>
+          <input type="text" id="lContact" class="input" required />
+        </div>
+        <div class="form-group">
+          <label>Broker / Account ID</label>
+          <input type="text" id="lBroker" class="input" placeholder="Shoonya FN234755" />
+        </div>
+        <div class="form-group">
+          <label>Server IP / Domain</label>
+          <input type="text" id="lInfra" class="input" placeholder="139.59.75.68 / krishna.stratexa.in" />
+        </div>
+        <div class="form-group">
+          <label>Stage</label>
+          <select id="lStage" class="select">
+            <option value="New Lead">New Lead</option>
+            <option value="Discovery">Discovery</option>
+            <option value="Quote Sent">Quote Sent</option>
+            <option value="Active Client">Active Client</option>
+            <option value="Lost">Lost</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Est. Value / Capital</label>
+          <input type="text" id="lValue" class="input" placeholder="₹25,000 quote / ₹1L capital" />
+        </div>
+        <div class="form-group full">
+          <label>Notes</label>
+          <input type="text" id="lNotes" class="input" placeholder="Requirements, follow-up date..." />
+        </div>
+        <div class="modal-actions full">
+          <button type="button" class="btn btn-secondary" onclick="closeModal('leadModal')">&times; Cancel</button>
+          <button type="submit" class="btn btn-primary">Save Lead</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    const STORAGE_KEY = 'stratexa_business_ops_v1';
+    const PASS_HASH_KEY = 'stratexa_ops_pass_hash';
+    // Default SHA-256 of "stratexa2026"
+    const DEFAULT_PASS_HASH = '48b1d25ec17eb3e8a562f0e8dcad70ae11b973ff4f3253aff39ed50574f3f484';
+
+    async function sha256(str) {
+      const buf = new TextEncoder().encode(str);
+      const hashBuf = await crypto.subtle.digest('SHA-256', buf);
+      return Array.from(new Uint8Array(hashBuf)).map(b => b.toString(16).padStart(2, '0')).join('');
+    }
+
+    // Seed Data grounded in Stratexa Invoices & Client Tracker
+    const SEED_DATA = {
+      billing: [
+        {
+          id: 'b-0001',
+          ref: 'STX-2026-0001',
+          date: '2026-07-10',
+          customer: 'Initial Client (0001)',
+          scope: 'Algorithmic Trading Implementation & Setup',
+          amount: 5000,
+          stage: 'Direct Invoice',
+          paymentStatus: 'Paid',
+          quoteUrl: '',
+          invoiceUrl: '/billing/Stratexa _ 0001.pdf'
+        },
+        {
+          id: 'b-101',
+          ref: 'STX-2611-101',
+          date: '2026-11-01',
+          customer: 'Mr. Sandip Chandrakant',
+          scope: '9:20 Short Straddle License + Alice Blue Setup + Month 1 VPS',
+          amount: 7498,
+          stage: 'Direct Invoice',
+          paymentStatus: 'Paid',
+          quoteUrl: '',
+          invoiceUrl: '/billing/Stratexa_Invoice_STX-2611-101_Sandip_Chandrakant.pdf'
+        },
+        {
+          id: 'b-102',
+          ref: 'STX-2611-102',
+          date: '2026-11-14',
+          customer: 'Mr. Krishnakumar G',
+          scope: '9:20 Short Straddle + Broker API & VPS + Month 1 (Promo Discount)',
+          amount: 5000,
+          stage: 'Direct Invoice',
+          paymentStatus: 'Paid',
+          quoteUrl: '',
+          invoiceUrl: '/billing/Stratexa_Invoice_STX-2611-102_Krishnakumar_G.pdf'
+        },
+        {
+          id: 'b-103',
+          ref: 'STX-2611-103',
+          date: '2026-11-22',
+          customer: 'Mr. Krishnakumar G',
+          scope: 'Quantitative ML Parameter Optimization (1-Leg ITM) & VPS Deploy',
+          amount: 1999,
+          stage: 'Converted to Invoice',
+          paymentStatus: 'Pending',
+          quoteUrl: '/billing/Stratexa_Quote_STX-2611-103_Krishnakumar_G.pdf',
+          invoiceUrl: '/billing/Stratexa_Invoice_STX-2611-103_Krishnakumar_G.pdf'
+        },
+        {
+          id: 'b-104',
+          ref: 'STX-2611-104',
+          date: '2026-11-27',
+          customer: 'Mr. Srinivasan',
+          scope: '3-Strategy Custom Build + 3-Year 1-Min Backtest Package',
+          amount: 25000,
+          stage: 'Quote Shared',
+          paymentStatus: 'Quote Only',
+          quoteUrl: '/billing/Stratexa_Quote_STX-2611-104_Srinivasan.pdf',
+          invoiceUrl: ''
+        },
+        {
+          id: 'b-105',
+          ref: 'STX-2611-105',
+          date: '2026-11-27',
+          customer: 'Mr. Srinivasan',
+          scope: 'Monthly Managed Cloud Server (3 Users) & Platform Support',
+          amount: 12000,
+          stage: 'Quote Shared',
+          paymentStatus: 'Quote Only',
+          quoteUrl: '/billing/Stratexa_Quote_STX-2611-105_Srinivasan_Monthly.pdf',
+          invoiceUrl: ''
+        }
+      ],
+      expenses: [
+        { id: 'e-1', date: '2026-11-01', category: 'Server Costs', desc: 'DigitalOcean BLR1 Droplets (Sandip / Krishna)', type: 'Recurring', amount: 1800 },
+        { id: 'e-2', date: '2026-11-05', category: 'Internet Charges', desc: 'High-Speed Fiber & Backup Broadband', type: 'Recurring', amount: 1200 },
+        { id: 'e-3', date: '2026-11-10', category: 'Domain Charges', desc: 'stratexa.in Domain & Cloudflare DNS', type: 'One-Time', amount: 999 },
+        { id: 'e-4', date: '2026-11-15', category: 'Software & APIs', desc: 'Market Data & Cloud Tooling', type: 'Recurring', amount: 1500 }
+      ],
+      leads: [
+        {
+          id: 'l-1',
+          name: 'Sandip Chandrakant',
+          contact: '+91 99252 09747',
+          broker: 'Shoonya (FN246011)',
+          infra: '139.59.43.98 · sandip.stratexa.in',
+          stage: 'Active Client',
+          value: '₹1,00,000 Capital · ₹7,498 Billed',
+          notes: '10AM: LIVE / 920: PAPER'
+        },
+        {
+          id: 'l-2',
+          name: 'Krishna Mohan (Krishnakumar G)',
+          contact: '+91 97501 77185',
+          broker: 'Fyers / Shoonya (FN234755)',
+          infra: '139.59.75.68 · krishna.stratexa.in',
+          stage: 'Active Client',
+          value: '₹17,593 Capital · ₹6,999 Billed',
+          notes: 'LIVE EXECUTION'
+        },
+        {
+          id: 'l-3',
+          name: 'Mohan Kumar',
+          contact: 'FA286644',
+          broker: 'Shoonya (FA286644)',
+          infra: '139.59.43.98:8001 · mohan.stratexa.in',
+          stage: 'Active Client',
+          value: '₹1,50,000 Capital',
+          notes: 'PAPER SIMULATION'
+        },
+        {
+          id: 'l-4',
+          name: 'Mr. Srinivasan',
+          contact: 'Pending Contact Details',
+          broker: 'Multi-User Desk (3 Users)',
+          infra: 'Proposed Hub + 3 Static IPs',
+          stage: 'Quote Sent',
+          value: '₹25,000 Setup + ₹12,000/mo',
+          notes: 'Quotes STX-2611-104 & STX-2611-105 shared on 27-Nov-2026'
+        }
+      ]
+    };
+
+    let state = loadState();
+
+    function loadState() {
+      try {
+        const raw = localStorage.getItem(STORAGE_KEY);
+        if (raw) return JSON.parse(raw);
+      } catch (e) {}
+      return JSON.parse(JSON.stringify(SEED_DATA));
+    }
+
+    function saveState() {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+      renderAll();
+    }
+
+    // Lock Logic
+    async function checkPasscode(input) {
+      const h = await sha256(input);
+      const expected = localStorage.getItem(PASS_HASH_KEY) || DEFAULT_PASS_HASH;
+      return h === expected;
+    }
+
+    function unlockUI() {
+      sessionStorage.setItem('stx_ops_unlocked', '1');
+      document.getElementById('lockOverlay').classList.add('hidden');
+      document.getElementById('appRoot').style.display = 'block';
+      renderAll();
+    }
+
+    function lockUI() {
+      sessionStorage.removeItem('stx_ops_unlocked');
+      document.getElementById('unlockInput').value = '';
+      document.getElementById('unlockError').textContent = '';
+      document.getElementById('appRoot').style.display = 'none';
+      document.getElementById('lockOverlay').classList.remove('hidden');
+    }
+
+    document.getElementById('unlockForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const val = document.getElementById('unlockInput').value.trim();
+      if (!val) return;
+      const ok = await checkPasscode(val);
+      if (ok) {
+        unlockUI();
+      } else {
+        document.getElementById('unlockError').textContent = 'Invalid passcode. Access denied.';
+      }
+    });
+
+    document.getElementById('btnLockNow').addEventListener('click', lockUI);
+
+    // Auto-unlock if active in current tab session
+    if (sessionStorage.getItem('stx_ops_unlocked') === '1') {
+      unlockUI();
+    }
+
+    // Tabs
+    document.querySelectorAll('.tab-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+        document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+        btn.classList.add('active');
+        document.getElementById('tab-' + btn.dataset.tab).classList.add('active');
+      });
+    });
+
+    function fmtINR(num) {
+      return '₹' + Number(num || 0).toLocaleString('en-IN', { minimumFractionDigits: 0, maximumFractionDigits: 2 });
+    }
+
+    function filterMonth(items) {
+      const m = document.getElementById('monthFilter').value;
+      if (m === 'all') return items;
+      return items.filter(x => (x.date || '').startsWith(m));
+    }
+
+    function renderAll() {
+      renderKPIs();
+      renderMonthlyPnL();
+      renderExpenseBreakdown();
+      renderBillingTable();
+      renderExpenseTable();
+      renderLeadsTable();
+    }
+
+    function renderKPIs() {
+      const bills = filterMonth(state.billing);
+      const exps = filterMonth(state.expenses);
+
+      const paidRev = bills.filter(b => b.paymentStatus === 'Paid').reduce((s, b) => s + Number(b.amount), 0);
+      const pendingRev = bills.filter(b => b.paymentStatus === 'Pending' || b.paymentStatus === 'Overdue' || b.paymentStatus === 'Partial').reduce((s, b) => s + Number(b.amount), 0);
+      const quotePipeline = bills.filter(b => b.paymentStatus === 'Quote Only').reduce((s, b) => s + Number(b.amount), 0);
+      const totalExp = exps.reduce((s, e) => s + Number(e.amount), 0);
+      const netPnl = paidRev - totalExp;
+      const margin = paidRev > 0 ? ((netPnl / paidRev) * 100).toFixed(1) : '0.0';
+
+      const totalQuotes = bills.filter(b => b.quoteUrl || b.stage === 'Quote Shared' || b.stage === 'Converted to Invoice').length;
+      const convertedQuotes = bills.filter(b => b.stage === 'Converted to Invoice').length;
+      const convRate = totalQuotes > 0 ? Math.round((convertedQuotes / totalQuotes) * 100) : 0;
+
+      document.getElementById('kpiGrid').innerHTML = `
+        <div class="kpi-card highlight">
+          <div class="kpi-label"><span>Net Business P&amp;L</span><i class="fa-solid fa-scale-balanced text-green"></i></div>
+          <div class="kpi-value ${netPnl >= 0 ? 'text-green' : 'text-red'}">${fmtINR(netPnl)}</div>
+          <div class="kpi-sub">Net Margin: ${margin}% (Paid Rev &minus; Expenses)</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-label"><span>Payments Received</span><i class="fa-solid fa-circle-check text-green"></i></div>
+          <div class="kpi-value text-green">${fmtINR(paidRev)}</div>
+          <div class="kpi-sub">${bills.filter(b => b.paymentStatus === 'Paid').length} Paid Invoices</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-label"><span>Pending Receivables</span><i class="fa-solid fa-clock text-amber"></i></div>
+          <div class="kpi-value text-amber">${fmtINR(pendingRev)}</div>
+          <div class="kpi-sub">Awaiting Client Settlement</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-label"><span>Total Operating Expenses</span><i class="fa-solid fa-receipt text-red"></i></div>
+          <div class="kpi-value text-red">${fmtINR(totalExp)}</div>
+          <div class="kpi-sub">${exps.length} Logged Expense Entries</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-label"><span>Open Quote Pipeline</span><i class="fa-solid fa-file-signature text-cyan"></i></div>
+          <div class="kpi-value text-cyan">${fmtINR(quotePipeline)}</div>
+          <div class="kpi-sub">Quote &rarr; Invoice Conv: ${convRate}%</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-label"><span>Leads &amp; Active Clients</span><i class="fa-solid fa-users text-cyan"></i></div>
+          <div class="kpi-value">${state.leads.length}</div>
+          <div class="kpi-sub">${state.leads.filter(l => l.stage === 'Active Client').length} Active Clients</div>
+        </div>
+      `;
+
+      const invoicesSent = bills.filter(b => b.stage === 'Direct Invoice' || b.stage === 'Converted to Invoice').length;
+      document.getElementById('funnelGrid').innerHTML = `
+        <div class="kpi-card"><div class="kpi-label">Leads Created</div><div class="kpi-value">${state.leads.length}</div></div>
+        <div class="kpi-card"><div class="kpi-label">Quotes Shared</div><div class="kpi-value text-cyan">${totalQuotes}</div></div>
+        <div class="kpi-card"><div class="kpi-label">Invoices Sent</div><div class="kpi-value text-amber">${invoicesSent}</div></div>
+        <div class="kpi-card"><div class="kpi-label">Payments Received</div><div class="kpi-value text-green">${bills.filter(b => b.paymentStatus === 'Paid').length}</div></div>
+      `;
+    }
+
+    function renderMonthlyPnL() {
+      const map = {};
+      state.billing.filter(b => b.paymentStatus === 'Paid').forEach(b => {
+        const m = (b.date || '').slice(0, 7) || 'Unknown';
+        if (!map[m]) map[m] = { rev: 0, exp: 0 };
+        map[m].rev += Number(b.amount);
+      });
+      state.expenses.forEach(e => {
+        const m = (e.date || '').slice(0, 7) || 'Unknown';
+        if (!map[m]) map[m] = { rev: 0, exp: 0 };
+        map[m].exp += Number(e.amount);
+      });
+
+      const months = Object.keys(map).sort().reverse();
+      document.getElementById('monthlyPnlBody').innerHTML = months.map(m => {
+        const { rev, exp } = map[m];
+        const net = rev - exp;
+        const margin = rev > 0 ? ((net / rev) * 100).toFixed(1) + '%' : 'N/A';
+        return `
+          <tr>
+            <td class="mono">${m}</td>
+            <td class="text-green mono">${fmtINR(rev)}</td>
+            <td class="text-red mono">${fmtINR(exp)}</td>
+            <td class="mono ${net >= 0 ? 'text-green' : 'text-red'}" style="font-weight:700;">${fmtINR(net)}</td>
+            <td class="mono">${margin}</td>
+          </tr>
+        `;
+      }).join('') || '<tr><td colspan="5" style="text-align:center;color:var(--text-muted);">No records yet</td></tr>';
+    }
+
+    function renderExpenseBreakdown() {
+      const exps = filterMonth(state.expenses);
+      const total = exps.reduce((s, e) => s + Number(e.amount), 0) || 1;
+      const cats = {};
+      exps.forEach(e => {
+        cats[e.category] = (cats[e.category] || 0) + Number(e.amount);
+      });
+      const colors = {
+        'Server Costs': '#06b6d4',
+        'Domain Charges': '#8b5cf6',
+        'Internet Charges': '#3b82f6',
+        'Salary': '#f59e0b',
+        'Marketing & Ads': '#ec4899',
+        'Software & APIs': '#10b981',
+        'Misc': '#94a3b8'
+      };
+      const sorted = Object.entries(cats).sort((a, b) => b[1] - a[1]);
+      document.getElementById('expenseBreakdownBars').innerHTML = sorted.map(([cat, amt]) => {
+        const pct = Math.round((amt / total) * 100);
+        return `
+          <div class="bar-row">
+            <div class="bar-label">
+              <span>${cat}</span>
+              <span class="mono">${fmtINR(amt)} (${pct}%)</span>
+            </div>
+            <div class="bar-track">
+              <div class="bar-fill" style="width:${pct}%; background:${colors[cat] || '#10b981'};"></div>
+            </div>
+          </div>
+        `;
+      }).join('') || '<p style="color:var(--text-muted);font-size:13px;">No expenses logged for this period.</p>';
+    }
+
+    function renderBillingTable() {
+      const q = document.getElementById('billingSearch').value.toLowerCase();
+      const sf = document.getElementById('billingStatusFilter').value;
+      const rows = filterMonth(state.billing).filter(b => {
+        if (sf !== 'all' && b.paymentStatus !== sf) return false;
+        if (q && !(b.ref + ' ' + b.customer + ' ' + b.scope).toLowerCase().includes(q)) return false;
+        return true;
+      });
+
+      const payBadge = (st) => {
+        if (st === 'Paid') return '<span class="badge badge-green">Paid</span>';
+        if (st === 'Pending') return '<span class="badge badge-amber">Pending</span>';
+        if (st === 'Overdue') return '<span class="badge badge-red">Overdue</span>';
+        if (st === 'Partial') return '<span class="badge badge-purple">Partial</span>';
+        return '<span class="badge badge-slate">Quote Only</span>';
+      };
+
+      const stageBadge = (st) => {
+        if (st === 'Converted to Invoice') return '<span class="badge badge-green">Quote &rarr; Invoice</span>';
+        if (st === 'Direct Invoice') return '<span class="badge badge-cyan">Direct Invoice</span>';
+        if (st === 'Quote Shared') return '<span class="badge badge-amber">Quote Shared</span>';
+        return '<span class="badge badge-red">' + st + '</span>';
+      };
+
+      document.getElementById('billingTableBody').innerHTML = rows.map(b => `
+        <tr>
+          <td>
+            <div class="mono" style="font-weight:700;">${b.ref}</div>
+            <div style="font-size:11px;color:var(--text-muted);">${b.date}</div>
+          </td>
+          <td style="font-weight:600;">${b.customer}</td>
+          <td style="max-width:260px;font-size:12px;color:var(--text-muted);">${b.scope}</td>
+          <td class="mono" style="font-weight:700;">${fmtINR(b.amount)}</td>
+          <td>${stageBadge(b.stage)}</td>
+          <td>${payBadge(b.paymentStatus)}</td>
+          <td>
+            <div class="action-group">
+              ${b.quoteUrl ? `<a href="${encodeURI(b.quoteUrl)}" target="_blank" download class="btn btn-secondary btn-sm"><i class="fa-solid fa-file-pdf"></i> Quote</a>` : ''}
+              ${b.invoiceUrl ? `<a href="${encodeURI(b.invoiceUrl)}" target="_blank" download class="btn btn-cyan btn-sm"><i class="fa-solid fa-file-invoice"></i> Invoice</a>` : ''}
+            </div>
+          </td>
+          <td>
+            <div class="action-group">
+              ${b.stage === 'Quote Shared' ? `<button class="btn btn-secondary btn-sm" onclick="convertQuote('${b.id}')" title="Convert to Invoice"><i class="fa-solid fa-arrow-right-arrow-left"></i></button>` : ''}
+              ${b.paymentStatus !== 'Paid' ? `<button class="btn btn-primary btn-sm" onclick="markPaid('${b.id}')" title="Mark Paid"><i class="fa-solid fa-check"></i></button>` : ''}
+              <button class="btn btn-secondary btn-sm" onclick="editBilling('${b.id}')" title="Edit"><i class="fa-solid fa-pen"></i></button>
+              <button class="btn btn-danger btn-sm" onclick="deleteBilling('${b.id}')" title="Delete"><i class="fa-solid fa-trash"></i></button>
+            </div>
+          </td>
+        </tr>
+      `).join('') || '<tr><td colspan="8" style="text-align:center;color:var(--text-muted);">No matching quotes or invoices.</td></tr>';
+    }
+
+    function renderExpenseTable() {
+      const cf = document.getElementById('expenseCatFilter').value;
+      const rows = filterMonth(state.expenses).filter(e => cf === 'all' || e.category === cf);
+      document.getElementById('expenseTableBody').innerHTML = rows.map(e => `
+        <tr>
+          <td class="mono">${e.date}</td>
+          <td><span class="badge badge-cyan">${e.category}</span></td>
+          <td>${e.desc}</td>
+          <td><span class="badge badge-slate">${e.type}</span></td>
+          <td class="mono text-red" style="font-weight:700;">${fmtINR(e.amount)}</td>
+          <td>
+            <div class="action-group">
+              <button class="btn btn-secondary btn-sm" onclick="editExpense('${e.id}')"><i class="fa-solid fa-pen"></i></button>
+              <button class="btn btn-danger btn-sm" onclick="deleteExpense('${e.id}')"><i class="fa-solid fa-trash"></i></button>
+            </div>
+          </td>
+        </tr>
+      `).join('') || '<tr><td colspan="6" style="text-align:center;color:var(--text-muted);">No expenses logged.</td></tr>';
+    }
+
+    function renderLeadsTable() {
+      const sf = document.getElementById('leadStageFilter').value;
+      const rows = state.leads.filter(l => sf === 'all' || l.stage === sf);
+      document.getElementById('leadsTableBody').innerHTML = rows.map(l => `
+        <tr>
+          <td style="font-weight:700;">${l.name}</td>
+          <td class="mono" style="font-size:12px;">${l.contact}</td>
+          <td style="font-size:12px;">
+            <div>${l.broker || '-'}</div>
+            <div style="color:var(--text-muted);font-size:11px;">${l.infra || ''}</div>
+          </td>
+          <td><span class="badge ${l.stage === 'Active Client' ? 'badge-green' : l.stage === 'Quote Sent' ? 'badge-amber' : 'badge-cyan'}">${l.stage}</span></td>
+          <td style="font-size:12px;">${l.value || '-'}</td>
+          <td style="font-size:12px;color:var(--text-muted);max-width:200px;">${l.notes || ''}</td>
+          <td>
+            <div class="action-group">
+              <button class="btn btn-secondary btn-sm" onclick="editLead('${l.id}')"><i class="fa-solid fa-pen"></i></button>
+              <button class="btn btn-danger btn-sm" onclick="deleteLead('${l.id}')"><i class="fa-solid fa-trash"></i></button>
+            </div>
+          </td>
+        </tr>
+      `).join('');
+    }
+
+    // Modal & CRUD Helpers
+    window.openModal = (id) => document.getElementById(id).classList.add('open');
+    window.closeModal = (id) => document.getElementById(id).classList.remove('open');
+
+    window.openBillingModal = () => {
+      document.getElementById('billingForm').reset();
+      document.getElementById('bEditId').value = '';
+      document.getElementById('bDate').value = new Date().toISOString().slice(0, 10);
+      openModal('billingModal');
+    };
+
+    window.editBilling = (id) => {
+      const b = state.billing.find(x => x.id === id);
+      if (!b) return;
+      document.getElementById('bEditId').value = b.id;
+      document.getElementById('bRef').value = b.ref;
+      document.getElementById('bDate').value = b.date;
+      document.getElementById('bCustomer').value = b.customer;
+      document.getElementById('bAmount').value = b.amount;
+      document.getElementById('bScope').value = b.scope;
+      document.getElementById('bStage').value = b.stage;
+      document.getElementById('bPayment').value = b.paymentStatus;
+      document.getElementById('bQuoteUrl').value = b.quoteUrl || '';
+      document.getElementById('bInvoiceUrl').value = b.invoiceUrl || '';
+      openModal('billingModal');
+    };
+
+    window.convertQuote = (id) => {
+      const b = state.billing.find(x => x.id === id);
+      if (!b) return;
+      b.stage = 'Converted to Invoice';
+      if (b.paymentStatus === 'Quote Only') b.paymentStatus = 'Pending';
+      saveState();
+    };
+
+    window.markPaid = (id) => {
+      const b = state.billing.find(x => x.id === id);
+      if (!b) return;
+      b.paymentStatus = 'Paid';
+      if (b.stage === 'Quote Shared') b.stage = 'Converted to Invoice';
+      saveState();
+    };
+
+    window.deleteBilling = (id) => {
+      if (!confirm('Delete this billing record?')) return;
+      state.billing = state.billing.filter(x => x.id !== id);
+      saveState();
+    };
+
+    document.getElementById('billingForm').addEventListener('submit', (e) => {
+      e.preventDefault();
+      const id = document.getElementById('bEditId').value || ('b-' + Date.now());
+      const item = {
+        id,
+        ref: document.getElementById('bRef').value.trim(),
+        date: document.getElementById('bDate').value,
+        customer: document.getElementById('bCustomer').value.trim(),
+        amount: Number(document.getElementById('bAmount').value),
+        scope: document.getElementById('bScope').value.trim(),
+        stage: document.getElementById('bStage').value,
+        paymentStatus: document.getElementById('bPayment').value,
+        quoteUrl: document.getElementById('bQuoteUrl').value.trim(),
+        invoiceUrl: document.getElementById('bInvoiceUrl').value.trim()
+      };
+      const idx = state.billing.findIndex(x => x.id === id);
+      if (idx >= 0) state.billing[idx] = item;
+      else state.billing.unshift(item);
+      closeModal('billingModal');
+      saveState();
+    });
+
+    window.openExpenseModal = () => {
+      document.getElementById('expenseForm').reset();
+      document.getElementById('eEditId').value = '';
+      document.getElementById('eDate').value = new Date().toISOString().slice(0, 10);
+      openModal('expenseModal');
+    };
+
+    window.editExpense = (id) => {
+      const e = state.expenses.find(x => x.id === id);
+      if (!e) return;
+      document.getElementById('eEditId').value = e.id;
+      document.getElementById('eDate').value = e.date;
+      document.getElementById('eCategory').value = e.category;
+      document.getElementById('eDesc').value = e.desc;
+      document.getElementById('eAmount').value = e.amount;
+      document.getElementById('eType').value = e.type;
+      openModal('expenseModal');
+    };
+
+    window.deleteExpense = (id) => {
+      if (!confirm('Delete this expense?')) return;
+      state.expenses = state.expenses.filter(x => x.id !== id);
+      saveState();
+    };
+
+    document.getElementById('expenseForm').addEventListener('submit', (e) => {
+      e.preventDefault();
+      const id = document.getElementById('eEditId').value || ('e-' + Date.now());
+      const item = {
+        id,
+        date: document.getElementById('eDate').value,
+        category: document.getElementById('eCategory').value,
+        desc: document.getElementById('eDesc').value.trim(),
+        amount: Number(document.getElementById('eAmount').value),
+        type: document.getElementById('eType').value
+      };
+      const idx = state.expenses.findIndex(x => x.id === id);
+      if (idx >= 0) state.expenses[idx] = item;
+      else state.expenses.unshift(item);
+      closeModal('expenseModal');
+      saveState();
+    });
+
+    window.openLeadModal = () => {
+      document.getElementById('leadForm').reset();
+      document.getElementById('lEditId').value = '';
+      openModal('leadModal');
+    };
+
+    window.editLead = (id) => {
+      const l = state.leads.find(x => x.id === id);
+      if (!l) return;
+      document.getElementById('lEditId').value = l.id;
+      document.getElementById('lName').value = l.name;
+      document.getElementById('lContact').value = l.contact;
+      document.getElementById('lBroker').value = l.broker || '';
+      document.getElementById('lInfra').value = l.infra || '';
+      document.getElementById('lStage').value = l.stage;
+      document.getElementById('lValue').value = l.value || '';
+      document.getElementById('lNotes').value = l.notes || '';
+      openModal('leadModal');
+    };
+
+    window.deleteLead = (id) => {
+      if (!confirm('Delete this lead/customer?')) return;
+      state.leads = state.leads.filter(x => x.id !== id);
+      saveState();
+    };
+
+    document.getElementById('leadForm').addEventListener('submit', (e) => {
+      e.preventDefault();
+      const id = document.getElementById('lEditId').value || ('l-' + Date.now());
+      const item = {
+        id,
+        name: document.getElementById('lName').value.trim(),
+        contact: document.getElementById('lContact').value.trim(),
+        broker: document.getElementById('lBroker').value.trim(),
+        infra: document.getElementById('lInfra').value.trim(),
+        stage: document.getElementById('lStage').value,
+        value: document.getElementById('lValue').value.trim(),
+        notes: document.getElementById('lNotes').value.trim()
+      };
+      const idx = state.leads.findIndex(x => x.id === id);
+      if (idx >= 0) state.leads[idx] = item;
+      else state.leads.unshift(item);
+      closeModal('leadModal');
+      saveState();
+    });
+
+    // Settings & Backup
+    window.updatePasscode = async () => {
+      const val = document.getElementById('newPasscodeInput').value.trim();
+      const msg = document.getElementById('passcodeMsg');
+      if (val.length < 6) {
+        msg.textContent = 'Minimum 6 characters required.';
+        msg.className = 'text-red';
+        return;
+      }
+      localStorage.setItem(PASS_HASH_KEY, await sha256(val));
+      document.getElementById('newPasscodeInput').value = '';
+      msg.textContent = 'Passcode updated!';
+      msg.className = 'text-green';
+    };
+
+    window.exportBackup = () => {
+      const blob = new Blob([JSON.stringify(state, null, 2)], { type: 'application/json' });
+      const a = document.createElement('a');
+      a.href = URL.createObjectURL(blob);
+      a.download = `stratexa_business_ops_${new Date().toISOString().slice(0, 10)}.json`;
+      a.click();
+    };
+    document.getElementById('btnExportJson').addEventListener('click', window.exportBackup);
+
+    window.importBackup = (e) => {
+      const file = e.target.files[0];
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = () => {
+        try {
+          const parsed = JSON.parse(reader.result);
+          if (parsed.billing && parsed.expenses && parsed.leads) {
+            state = parsed;
+            saveState();
+            alert('Backup imported successfully.');
+          }
+        } catch (err) {
+          alert('Invalid JSON backup file.');
+        }
+      };
+      reader.readAsText(file);
+    };
+
+    window.resetToSeed = () => {
+      if (!confirm('Reset all local edits back to default seed records?')) return;
+      state = JSON.parse(JSON.stringify(SEED_DATA));
+      saveState();
+    };
+
+    // Filters
+    ['monthFilter', 'billingSearch', 'billingStatusFilter', 'expenseCatFilter', 'leadStageFilter'].forEach(id => {
+      document.getElementById(id).addEventListener('input', renderAll);
+      document.getElementById(id).addEventListener('change', renderAll);
+    });
+  </script>
+</body>
+</html>
